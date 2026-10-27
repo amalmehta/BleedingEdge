@@ -52,9 +52,8 @@ repo (about 1 GB). From a fresh clone the backtest makes roughly 2,800 GitHub, 3
 Hacker News calls, spaced out to respect each site's rate limit: about 2 hours. After that, re-runs
 take seconds and give the same numbers.
 
-**Criterion (b) needs the mined candidates.** Until you've run the two mining steps below,
-`data/CandidatesMined2023.csv` doesn't exist, and the backtest checks only (a) and notes
-"No candidates file yet". The committed results were made with the earlier
+**Criterion (b) uses the mined candidates.** `data/CandidatesMined2023.csv` is in the repo, so
+you don't need to run the mining steps below first. The committed results were made with the earlier
 `data/Candidates2023.csv` (workshop topics), before the backtest switched to mined ones. Results from a fresh clone can differ slightly from the
 committed ones, because the APIs return what they hold today.
 
@@ -86,8 +85,8 @@ uv run python -m bleedingedge.mining
 ```
 
 Once the harvest is done, this writes `data/CandidatesMined2023.csv`, which the backtest reads,
-and `data/backtest/MinedArxivCounts.json`. Neither is in the repo yet: the first harvest is
-still running.
+and `data/backtest/MinedArxivCounts.json`. Both are in the repo, from the first harvest, so run
+these steps only to re-mine.
 
 ## Read the results
 
