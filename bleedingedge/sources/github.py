@@ -45,10 +45,6 @@ def _range(phrase: str, start: date, end: date) -> dict[str, date]:
 def dates(phrases: list[str], start: date, end: date) -> list[date]:
     items: dict[str, date] = {}
     for phrase in phrases:
-        # Year by year keeps most queries under the 1000-result cap.
-        y = start
-        while y < end:
-            nxt = min(end, date(y.year + 1, 1, 1))
-            items.update(_range(phrase, y, nxt))
-            y = nxt
+        # One query for the whole span; _range halves it while a slice is over the 1000 cap.
+        items.update(_range(phrase, start, end))
     return list(items.values())
