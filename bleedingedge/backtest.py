@@ -7,7 +7,8 @@
 
 Two checks, kept separate so the test topics don't grade themselves:
   (a) lead on the 3 test topics, with every lead weight at its default of 1 (untuned);
-  (b) precision on 2023 workshop-title candidates during 2024, with lead weights set from (a).
+  (b) precision on candidate topics during 2024, with lead weights set from (a). Candidates are
+      2–3-word phrases new on arXiv in 2023 (bleedingedge/mining.py), so nobody picks them.
       The candidates are split in half by a hash of their name. Normal runs fetch and score only
       the dev half; the held-out half is fetched only with --holdout, so it is seen once.
 A baseline (arXiv growth alone) runs through the same checks.
@@ -31,7 +32,10 @@ ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "data" / "backtest"
 TOP_N = 10
 HORIZON = 13  # windows: "reaches consensus within 12 months"
-CANDIDATES = ROOT / "data" / "Candidates2023.csv"
+# Mined from 2023 arXiv titles (bleedingedge/mining.py). Earlier hand-named lists:
+# data/Candidates2023.csv (2023 workshops), data/Candidates2022-24.csv.
+CANDIDATES = ROOT / "data" / "CandidatesMined2023.csv"
+MINED_COUNTS = OUT / "MinedArxivCounts.json"
 CUTOFF = 2023  # a candidate whose crowd arrived before this year was never new in 2024
 
 
@@ -51,6 +55,7 @@ class Topic:
     is_test: bool
     sources: str = ""
     venue: str = ""
+    local: bool = False  # arXiv counts from the bulk harvest, not the search API
     counts: dict[str, list[int]] = field(default_factory=dict)
     gb: dict[str, list] = field(default_factory=dict)       # burst growth ratios
     gt: dict[str, list] = field(default_factory=dict)       # trend growth ratios
@@ -81,13 +86,16 @@ def load_topics() -> list[Topic]:
             for r in csv.DictReader(f):
                 ph = _split(r["arxiv_phrases"])
                 topics.append(Topic(_slug(r["topic"]), r["topic"], r["domain"].strip(), ph, ph, _full_phrases(ph),
-                                    False, r.get("source_urls", ""), r.get("venue", "")))
+                                    False, r.get("source_urls", ""), r.get("venue", ""), "titles_2023" in r))
     return topics
 
 
 def fetch(t: Topic, log=print) -> None:
     log(f"  {t.name}: arxiv")
-    t.counts["arxiv"] = counts(arxiv.dates(t.arxiv, START, END))
+    if t.local:
+        t.counts["arxiv"] = _mined_counts()[t.arxiv[0]]
+    else:
+        t.counts["arxiv"] = counts(arxiv.dates(t.arxiv, START, END))
     log(f"  {t.name}: github")
     t.counts["github"] = counts(github.dates(t.github, START, END))
     log(f"  {t.name}: hn")
@@ -97,6 +105,16 @@ def fetch(t: Topic, log=print) -> None:
     t.gb = {s: sc.growth(c) for s, c in t.counts.items()}
     t.gt = {s: sc.trend(c) for s, c in t.counts.items()}
     t.rolled = {s: sc.rolling(c) for s, c in t.counts.items()}
+
+
+_mined: dict | None = None
+
+
+def _mined_counts() -> dict[str, list[int]]:
+    global _mined
+    if _mined is None:
+        _mined = json.loads(MINED_COUNTS.read_text())
+    return _mined
 
 
 def available_signals() -> list[str]:

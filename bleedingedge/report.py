@@ -93,7 +93,7 @@ def write_report(result: dict, tests, fl_a) -> None:
         rises = ", ".join(f"{k}: {_w(v)}" for k, v in by_topic.items())
         L.append(f"| {s} | {rises} | {'undetermined (default 1)' if raw is None else f'{raw:.2f}'} |")
 
-    L += ["", "## (b) Precision on 2023 workshop-title candidates, flags in 2024", ""]
+    L += ["", "## (b) Precision on candidates, flags in 2024", ""]
     if result["precision"]:
         c = result["candidates"]
         L += [f"From `data/{c['file']}`: {c['total_both_halves']} candidates, split in half by hash. "
