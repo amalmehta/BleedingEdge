@@ -41,7 +41,8 @@ The tests use saved responses in `tests/fixtures/`, so they need no network and 
 uv run python -m bleedingedge.backtest
 ```
 
-This runs the 3 test topics and the dev half of the 2023 candidates, then rewrites
+This runs the 3 test topics and the dev half of the candidates in `data/CandidatesMined2023.csv`,
+then rewrites
 `docs/BacktestResults.md`, the charts in `docs/img/` and the data in `data/backtest/`.
 `docs/BACKTEST.md` is written by hand from those, so update it yourself after a run that
 changes the numbers. It prints the lead times, lead weights and whether each pass criterion held.
@@ -49,7 +50,12 @@ changes the numbers. It prints the lead times, lead weights and whether each pas
 **The first run is slow.** Every API response is cached in `data/cache/`, which is not in the
 repo (about 1 GB). From a fresh clone the backtest makes roughly 2,800 GitHub, 300 arXiv and 300
 Hacker News calls, spaced out to respect each site's rate limit: about 2 hours. After that, re-runs
-take seconds and give the same numbers. Results from a fresh clone can differ slightly from the
+take seconds and give the same numbers.
+
+**Criterion (b) needs the mined candidates.** Until you've run the two mining steps below,
+`data/CandidatesMined2023.csv` doesn't exist, and the backtest checks only (a) and notes
+"No candidates file yet". The committed results were made with the earlier
+`data/Candidates2023.csv` (workshop topics), before the backtest switched to mined ones. Results from a fresh clone can differ slightly from the
 committed ones, because the APIs return what they hold today.
 
 Other options:
@@ -62,7 +68,7 @@ Other options:
 
 To refresh the data, delete `data/cache/` (or one host's folder inside it) and run again.
 
-## Mine candidate topics from arXiv (in progress)
+## Mine candidate topics from arXiv
 
 The next candidate list comes from phrases that were new on arXiv in 2023, so that no one picks
 the topics by hand. It takes two steps:
@@ -79,8 +85,9 @@ run it again to carry on from `state.json`.
 uv run python -m bleedingedge.mining
 ```
 
-Once the harvest is done, this writes `data/CandidatesMined2023.csv` and
-`data/backtest/MinedArxivCounts.json`. The backtest doesn't use these yet.
+Once the harvest is done, this writes `data/CandidatesMined2023.csv`, which the backtest reads,
+and `data/backtest/MinedArxivCounts.json`. Neither is in the repo yet: the first harvest is
+still running.
 
 ## Read the results
 

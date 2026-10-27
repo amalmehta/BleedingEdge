@@ -27,7 +27,8 @@ BleedingEdge/
 │
 ├── data/
 │   ├── TestTopics.csv       The 3 test topics and their search phrases
-│   ├── Candidates2023.csv   Precision-check topics from 2023 workshops, dev and held-out halves
+│   ├── CandidatesMined2023.csv  Not yet made: precision-check topics mined from arXiv (backtest reads it)
+│   ├── Candidates2023.csv   Earlier precision-check topics, from 2023 workshops
 │   ├── Candidates2022-24.csv  The first candidate list, kept for comparison
 │   ├── Funding.csv          Announced funding rounds, each with a source URL
 │   ├── backtest/            Generated: Counts.csv, Summary.json, WithReadme/ comparison
