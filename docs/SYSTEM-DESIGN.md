@@ -42,7 +42,7 @@ package rather than a single throwaway script.
 | `bleedingedge/sources/*.py` | One module per source. Each returns the dates of matching items | `dates(phrases, start, end) -> list[date]` |
 | `bleedingedge/scoring.py` | Growth ratio, score, heating-up and consensus flags, lead weights | pure functions, no I/O |
 | `bleedingedge/backtest.py` | Loads topics, fetches, scores, measures leads and precision | `python -m bleedingedge.backtest` |
-| `bleedingedge/report.py` | Writes `docs/BACKTEST.md` and the charts | `write_report(results)` |
+| `bleedingedge/report.py` | Writes `docs/BacktestResults.md` and the charts (`docs/BACKTEST.md` is written by hand from them) | `write_report(results)` |
 
 Each source returns **item dates, not counts**. One paginated query per phrase gets every
 matching item in the window, and binning happens locally. For example, arXiv gets one query per

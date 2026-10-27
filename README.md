@@ -10,7 +10,7 @@ A personal research radar: it looks for AI research topics that are heating up b
 
 ## Links
 
-- **Run it:** [Reproduce the backtest](docs/BACKTEST.md#reproduce) (one `uv run` command; cached data makes re-runs free)
+- **Run it:** [Setup and instructions](docs/INSTRUCTIONS.md) (one `uv run` command; the first run fetches about 2 hours of data, then re-runs are free)
 - **Results:** [What the backtest found](docs/BACKTEST.md) · [Every count, query and chart](docs/BacktestResults.md)
-- **How it works:** [System design](docs/SYSTEM-DESIGN.md)
+- **How it works:** [System design](docs/SYSTEM-DESIGN.md) · [What's where](docs/FILE-STRUCTURE.md)
 - **The spec:** [BleedingEdge.md](BleedingEdge.md)
