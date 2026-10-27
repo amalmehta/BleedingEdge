@@ -39,6 +39,7 @@ package rather than a single throwaway script.
 |---|---|---|
 | `bleedingedge/windows.py` | Splits 2021–25 into 4-week windows that start on Mondays | `windows()`, `window_index(date)` |
 | `bleedingedge/http.py` | GET with a disk cache, polite per-host delays, retries on 429/5xx | `get_text(url)`, `get_json(url)` |
+| `bleedingedge/mining.py` | Mines candidate phrases new in 2023 from the bulk arXiv metadata | `python -m bleedingedge.mining` |
 | `bleedingedge/sources/*.py` | One module per source. Each returns the dates of matching items | `dates(phrases, start, end) -> list[date]` |
 | `bleedingedge/scoring.py` | Growth ratio, score, heating-up and consensus flags, lead weights | pure functions, no I/O |
 | `bleedingedge/backtest.py` | Loads topics, fetches, scores, measures leads and precision | `python -m bleedingedge.backtest` |
@@ -52,7 +53,11 @@ phrase instead of one per window: about 3 calls instead of 65.
 
 - `data/TestTopics.csv`: the three test topics and their search phrases (chosen now, a known
   source of hindsight).
-- `data/Candidates2023.csv`: precision-check topics, every relevant 2023 workshop at CoRL/RSS/ICRA/NeurIPS/ICML/ICLR,
+- `data/CandidatesMined2023.csv`: precision-check topics mined from 2023 arXiv titles by `bleedingedge/mining.py`
+  (phrases new in 2023), with local arXiv counts in `data/backtest/MinedArxivCounts.json`. Split by hash into
+  dev and held-out halves.
+- `data/cache/arxiv_bulk/`: bulk arXiv metadata since 2021 (cs.RO/LG/AI/CL), from OAI-PMH, ~200 MB gzipped.
+- `data/Candidates2023.csv`: earlier precision-check topics, every relevant 2023 workshop at CoRL/RSS/ICRA/NeurIPS/ICML/ICLR,
   split by hash into a dev half and a held-out half (`--holdout`, run once). The earlier 2022–24 list is
   `data/Candidates2022-24.csv`. Each row cites its source URL.
 - `data/Funding.csv`: announced rounds, each with a source URL.
@@ -79,6 +84,10 @@ phrase instead of one per window: about 3 calls instead of 65.
   had more than 1 story with ≥50 points in a window. The crowd date uses hindsight, so it only
   grades the method; the detector's own "early" test (fewer than 50 papers in 12 weeks, and fewer than 10 two years earlier) uses
   only past data.
+- **arXiv growth is relative to all papers.** arXiv grew ~30% a year in these categories (39k papers in
+  2021, 91k in 2025), so a raw ratio calls every topic "heating up". Totals come from the bulk download.
+- **"Small" depends on how papers were counted.** The bulk download counts ~0.6× what arXiv search does for
+  the same phrase (`bleedingedge/calibrate.py`), so mined topics use 30 papers per 12 weeks, not 50.
 - **Funding adds a bonus, never a drag.** Rounds are rare, so averaging their zeros pulled every
   score toward "no change".
 - **Stdlib HTTP, matplotlib for charts, pytest.** Boring, proven tools, with few dependencies.

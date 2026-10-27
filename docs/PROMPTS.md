@@ -23,3 +23,9 @@
    → First run exposed method flaws (HN too sparse, burst-only missed VLAs, acronym noise, funding zeros); you chose fixes. README search found to leak hindsight and dropped. Full run: (a) passes in-sample, (b) fails at 6%. Wrote docs/BACKTEST.md with proposed fixes, not applied.
 10. "Apply fixes 1 and 2: rebuild candidates from 2023 sources with a held-out half, and add the newness test to 'early'. Then re-run."
    → Added the newness test; a subagent built 97 candidates from all 2023 workshop lists by rule; hash split, held-out half sealed. Dev-half precision 0 of 3, with no reachable hits. Proposed mining new arXiv phrases.
+11. "Build the phrase-mining candidate list from 2023 arXiv titles (bulk metadata), split it by hash, and re-run the dev half."
+   → Harvested arXiv OAI-PMH (cs.RO/LG/AI/CL since 2021); mined 88 phrases new in 2023; dev half 52. Precision 41% vs 23% arXiv-only; caught 4 of 5 winners. Held-out half sealed.
+12. "keep going"
+   → Continued the harvest, mining and run.
+13. "Before opening the held-out half, apply the fixes we'd want in the final method: divide by total arXiv growth and lower the 'small' bar to fit local counts. Check them on the dev half only, then stop."
+   → Relative arXiv growth; small bar 30 for bulk counts (calibrated at 0.61× on 11 neutral phrases). Dev half 52% (15/29) vs 30% arXiv-only, in-sample. Held-out half not opened.

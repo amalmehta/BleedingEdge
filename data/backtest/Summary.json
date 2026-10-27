@@ -21,7 +21,7 @@
       "key": "grpo_rlvr",
       "topic": "RL for LLM reasoning (GRPO / RLVR)",
       "heating_window": 52,
-      "mode": "trend",
+      "mode": "burst",
       "consensus_window": 56,
       "hn_first_story_window": 53,
       "lead_weeks": 16,
@@ -114,57 +114,87 @@
   },
   "precision": {
     "untuned": {
-      "pairs": 3,
-      "hits": 0,
-      "precision": 0.0,
-      "topics_flagged": 3,
-      "topics_hit": 0,
-      "topic_precision": 0.0,
+      "pairs": 28,
+      "hits": 14,
+      "precision": 0.5,
+      "topics_flagged": 10,
+      "topics_hit": 4,
+      "topic_precision": 0.4,
       "per_window": [
         {
           "window_start": "2024-01-01",
-          "flagged": 0,
-          "hits": 0,
-          "topics": []
+          "flagged": 10,
+          "hits": 4,
+          "topics": [
+            "segment_anything",
+            "large_multimodal_models",
+            "ai_generated_text",
+            "gpt_4v_ision",
+            "flow_matching",
+            "large_vision_language_models",
+            "low_rank_adaptation",
+            "chain_of_thought_reasoning",
+            "chain_of_thought_prompting",
+            "diffusion_generative"
+          ]
         },
         {
           "window_start": "2024-01-29",
-          "flagged": 0,
-          "hits": 0,
-          "topics": []
+          "flagged": 6,
+          "hits": 3,
+          "topics": [
+            "segment_anything",
+            "large_multimodal_models",
+            "large_vision_language_models",
+            "ai_generated_text",
+            "low_rank_adaptation",
+            "chain_of_thought_reasoning"
+          ]
         },
         {
           "window_start": "2024-02-26",
-          "flagged": 1,
-          "hits": 0,
+          "flagged": 4,
+          "hits": 1,
           "topics": [
-            "variable_impedance_learning_and_control"
+            "segment_anything",
+            "large_multimodal_models",
+            "large_vision_language_models",
+            "ai_generated_text"
           ]
         },
         {
           "window_start": "2024-03-25",
-          "flagged": 0,
-          "hits": 0,
-          "topics": []
+          "flagged": 2,
+          "hits": 1,
+          "topics": [
+            "large_multimodal_models",
+            "large_vision_language_models"
+          ]
         },
         {
           "window_start": "2024-04-22",
-          "flagged": 0,
-          "hits": 0,
-          "topics": []
+          "flagged": 3,
+          "hits": 2,
+          "topics": [
+            "large_multimodal_models",
+            "large_vision_language_models",
+            "flow_matching"
+          ]
         },
         {
           "window_start": "2024-05-20",
-          "flagged": 0,
-          "hits": 0,
-          "topics": []
+          "flagged": 1,
+          "hits": 1,
+          "topics": [
+            "flow_matching"
+          ]
         },
         {
           "window_start": "2024-06-17",
           "flagged": 1,
-          "hits": 0,
+          "hits": 1,
           "topics": [
-            "construction_robotics"
+            "flow_matching"
           ]
         },
         {
@@ -181,17 +211,17 @@
         },
         {
           "window_start": "2024-09-09",
-          "flagged": 0,
-          "hits": 0,
-          "topics": []
+          "flagged": 1,
+          "hits": 1,
+          "topics": [
+            "flow_matching"
+          ]
         },
         {
           "window_start": "2024-10-07",
-          "flagged": 1,
+          "flagged": 0,
           "hits": 0,
-          "topics": [
-            "perception_and_manipulation_for_warehouse_automation"
-          ]
+          "topics": []
         },
         {
           "window_start": "2024-11-04",
@@ -214,57 +244,87 @@
       ]
     },
     "tuned": {
-      "pairs": 3,
-      "hits": 0,
-      "precision": 0.0,
-      "topics_flagged": 3,
-      "topics_hit": 0,
-      "topic_precision": 0.0,
+      "pairs": 29,
+      "hits": 15,
+      "precision": 0.5172413793103449,
+      "topics_flagged": 10,
+      "topics_hit": 4,
+      "topic_precision": 0.4,
       "per_window": [
         {
           "window_start": "2024-01-01",
-          "flagged": 0,
-          "hits": 0,
-          "topics": []
+          "flagged": 10,
+          "hits": 4,
+          "topics": [
+            "segment_anything",
+            "large_multimodal_models",
+            "ai_generated_text",
+            "gpt_4v_ision",
+            "flow_matching",
+            "chain_of_thought_reasoning",
+            "low_rank_adaptation",
+            "chain_of_thought_prompting",
+            "large_vision_language_models",
+            "diffusion_generative"
+          ]
         },
         {
           "window_start": "2024-01-29",
-          "flagged": 0,
-          "hits": 0,
-          "topics": []
+          "flagged": 6,
+          "hits": 3,
+          "topics": [
+            "segment_anything",
+            "large_multimodal_models",
+            "large_vision_language_models",
+            "low_rank_adaptation",
+            "ai_generated_text",
+            "chain_of_thought_reasoning"
+          ]
         },
         {
           "window_start": "2024-02-26",
-          "flagged": 1,
-          "hits": 0,
+          "flagged": 4,
+          "hits": 1,
           "topics": [
-            "variable_impedance_learning_and_control"
+            "segment_anything",
+            "large_multimodal_models",
+            "large_vision_language_models",
+            "ai_generated_text"
           ]
         },
         {
           "window_start": "2024-03-25",
-          "flagged": 0,
-          "hits": 0,
-          "topics": []
+          "flagged": 2,
+          "hits": 1,
+          "topics": [
+            "large_multimodal_models",
+            "large_vision_language_models"
+          ]
         },
         {
           "window_start": "2024-04-22",
-          "flagged": 0,
-          "hits": 0,
-          "topics": []
+          "flagged": 3,
+          "hits": 2,
+          "topics": [
+            "large_multimodal_models",
+            "large_vision_language_models",
+            "flow_matching"
+          ]
         },
         {
           "window_start": "2024-05-20",
-          "flagged": 0,
-          "hits": 0,
-          "topics": []
+          "flagged": 1,
+          "hits": 1,
+          "topics": [
+            "flow_matching"
+          ]
         },
         {
           "window_start": "2024-06-17",
           "flagged": 1,
-          "hits": 0,
+          "hits": 1,
           "topics": [
-            "construction_robotics"
+            "flow_matching"
           ]
         },
         {
@@ -275,23 +335,25 @@
         },
         {
           "window_start": "2024-08-12",
-          "flagged": 0,
-          "hits": 0,
-          "topics": []
+          "flagged": 1,
+          "hits": 1,
+          "topics": [
+            "flow_matching"
+          ]
         },
         {
           "window_start": "2024-09-09",
-          "flagged": 0,
-          "hits": 0,
-          "topics": []
+          "flagged": 1,
+          "hits": 1,
+          "topics": [
+            "flow_matching"
+          ]
         },
         {
           "window_start": "2024-10-07",
-          "flagged": 1,
+          "flagged": 0,
           "hits": 0,
-          "topics": [
-            "perception_and_manipulation_for_warehouse_automation"
-          ]
+          "topics": []
         },
         {
           "window_start": "2024-11-04",
@@ -314,95 +376,158 @@
       ]
     },
     "baseline_arxiv_only": {
-      "pairs": 15,
-      "hits": 0,
-      "precision": 0.0,
-      "topics_flagged": 5,
-      "topics_hit": 0,
-      "topic_precision": 0.0,
+      "pairs": 77,
+      "hits": 23,
+      "precision": 0.2987012987012987,
+      "topics_flagged": 19,
+      "topics_hit": 4,
+      "topic_precision": 0.21052631578947367,
       "per_window": [
         {
           "window_start": "2024-01-01",
-          "flagged": 0,
-          "hits": 0,
-          "topics": []
+          "flagged": 10,
+          "hits": 4,
+          "topics": [
+            "segment_anything",
+            "large_multimodal_models",
+            "chain_of_thought_reasoning",
+            "flow_matching",
+            "gpt_4v_ision",
+            "chain_of_thought_prompting",
+            "low_rank_adaptation",
+            "generative_diffusion",
+            "large_vision_language_models",
+            "diffusion_generative"
+          ]
         },
         {
           "window_start": "2024-01-29",
-          "flagged": 0,
-          "hits": 0,
-          "topics": []
+          "flagged": 9,
+          "hits": 4,
+          "topics": [
+            "segment_anything",
+            "large_multimodal_models",
+            "low_rank_adaptation",
+            "chain_of_thought_reasoning",
+            "chatgpt_and_gpt_4",
+            "large_vision_language_models",
+            "chain_of_thought_prompting",
+            "ai_generated_text",
+            "flow_matching"
+          ]
         },
         {
           "window_start": "2024-02-26",
-          "flagged": 1,
-          "hits": 0,
+          "flagged": 6,
+          "hits": 2,
           "topics": [
-            "variable_impedance_learning_and_control"
+            "segment_anything",
+            "chatgpt_and_gpt_4",
+            "large_multimodal_models",
+            "large_vision_language_models",
+            "ai_generated_text",
+            "flow_matching"
           ]
         },
         {
           "window_start": "2024-03-25",
-          "flagged": 0,
-          "hits": 0,
-          "topics": []
+          "flagged": 9,
+          "hits": 3,
+          "topics": [
+            "large_multimodal_models",
+            "large_vision_language_models",
+            "chain_of_thought_reasoning",
+            "segment_anything",
+            "chatgpt_and_gpt_4",
+            "flow_matching",
+            "ai_generated_text",
+            "latent_diffusion",
+            "generative_diffusion"
+          ]
         },
         {
           "window_start": "2024-04-22",
-          "flagged": 1,
-          "hits": 0,
+          "flagged": 7,
+          "hits": 3,
           "topics": [
-            "variable_impedance_learning_and_control"
+            "large_multimodal_models",
+            "large_vision_language_models",
+            "chain_of_thought_reasoning",
+            "flow_matching",
+            "ai_generated_text",
+            "diffusion_generative",
+            "segment_anything"
           ]
         },
         {
           "window_start": "2024-05-20",
-          "flagged": 0,
-          "hits": 0,
-          "topics": []
+          "flagged": 6,
+          "hits": 2,
+          "topics": [
+            "flow_matching",
+            "chain_of_thought_reasoning",
+            "contextual_biasing",
+            "ai_generated_text",
+            "pre_trained_diffusion",
+            "guided_diffusion"
+          ]
         },
         {
           "window_start": "2024-06-17",
-          "flagged": 1,
-          "hits": 0,
+          "flagged": 5,
+          "hits": 2,
           "topics": [
-            "unconventional_spatial_representations_for_robotics"
+            "flow_matching",
+            "ai_generated_text",
+            "chain_of_thought_reasoning",
+            "guided_diffusion",
+            "ai_act"
           ]
         },
         {
           "window_start": "2024-07-15",
-          "flagged": 1,
-          "hits": 0,
+          "flagged": 5,
+          "hits": 1,
           "topics": [
-            "unconventional_spatial_representations_for_robotics"
+            "ai_generated_text",
+            "flow_matching",
+            "chain_of_thought_reasoning",
+            "generative_diffusion",
+            "ai_act"
           ]
         },
         {
           "window_start": "2024-08-12",
-          "flagged": 2,
-          "hits": 0,
+          "flagged": 5,
+          "hits": 1,
           "topics": [
-            "unconventional_spatial_representations_for_robotics",
-            "variable_impedance_learning_and_control"
+            "flow_matching",
+            "pre_trained_diffusion",
+            "chain_of_thought_reasoning",
+            "generative_diffusion",
+            "chain_of_thought_prompting"
           ]
         },
         {
           "window_start": "2024-09-09",
-          "flagged": 3,
-          "hits": 0,
+          "flagged": 4,
+          "hits": 1,
           "topics": [
-            "robotics_and_ai_for_industrial_assembly",
-            "construction_robotics",
-            "unconventional_spatial_representations_for_robotics"
+            "flow_matching",
+            "chain_of_thought_reasoning",
+            "generative_diffusion",
+            "pre_trained_diffusion"
           ]
         },
         {
           "window_start": "2024-10-07",
-          "flagged": 2,
+          "flagged": 4,
           "hits": 0,
           "topics": [
-            "perception_and_manipulation_for_warehouse_automation",
-            "construction_robotics"
+            "generative_diffusion",
+            "visual_reinforcement",
+            "pre_trained_diffusion",
+            "ai_generated_text"
           ]
         },
         {
@@ -410,8 +535,8 @@
           "flagged": 2,
           "hits": 0,
           "topics": [
-            "construction_robotics",
-            "unconventional_spatial_representations_for_robotics"
+            "ai_act",
+            "visual_prompt"
           ]
         },
         {
@@ -419,75 +544,104 @@
           "flagged": 1,
           "hits": 0,
           "topics": [
-            "construction_robotics"
+            "ai_act"
           ]
         },
         {
           "window_start": "2024-12-30",
-          "flagged": 1,
+          "flagged": 4,
           "hits": 0,
           "topics": [
-            "construction_robotics"
+            "visual_prompt",
+            "ai_act",
+            "ai_generated_text",
+            "segment_anything"
           ]
         }
       ]
     },
     "tuned_all_candidates": {
-      "pairs": 7,
-      "hits": 0,
-      "precision": 0.0,
-      "topics_flagged": 5,
-      "topics_hit": 0,
-      "topic_precision": 0.0,
+      "pairs": 29,
+      "hits": 15,
+      "precision": 0.5172413793103449,
+      "topics_flagged": 10,
+      "topics_hit": 4,
+      "topic_precision": 0.4,
       "per_window": [
         {
           "window_start": "2024-01-01",
-          "flagged": 0,
-          "hits": 0,
-          "topics": []
+          "flagged": 10,
+          "hits": 4,
+          "topics": [
+            "segment_anything",
+            "large_multimodal_models",
+            "ai_generated_text",
+            "gpt_4v_ision",
+            "flow_matching",
+            "chain_of_thought_reasoning",
+            "low_rank_adaptation",
+            "chain_of_thought_prompting",
+            "large_vision_language_models",
+            "diffusion_generative"
+          ]
         },
         {
           "window_start": "2024-01-29",
-          "flagged": 1,
-          "hits": 0,
+          "flagged": 6,
+          "hits": 3,
           "topics": [
-            "social_intelligence_in_humans_and_robots"
+            "segment_anything",
+            "large_multimodal_models",
+            "large_vision_language_models",
+            "low_rank_adaptation",
+            "ai_generated_text",
+            "chain_of_thought_reasoning"
           ]
         },
         {
           "window_start": "2024-02-26",
-          "flagged": 1,
-          "hits": 0,
+          "flagged": 4,
+          "hits": 1,
           "topics": [
-            "variable_impedance_learning_and_control"
+            "segment_anything",
+            "large_multimodal_models",
+            "large_vision_language_models",
+            "ai_generated_text"
           ]
         },
         {
           "window_start": "2024-03-25",
-          "flagged": 1,
-          "hits": 0,
+          "flagged": 2,
+          "hits": 1,
           "topics": [
-            "social_intelligence_in_humans_and_robots"
+            "large_multimodal_models",
+            "large_vision_language_models"
           ]
         },
         {
           "window_start": "2024-04-22",
-          "flagged": 0,
-          "hits": 0,
-          "topics": []
+          "flagged": 3,
+          "hits": 2,
+          "topics": [
+            "large_multimodal_models",
+            "large_vision_language_models",
+            "flow_matching"
+          ]
         },
         {
           "window_start": "2024-05-20",
-          "flagged": 0,
-          "hits": 0,
-          "topics": []
+          "flagged": 1,
+          "hits": 1,
+          "topics": [
+            "flow_matching"
+          ]
         },
         {
           "window_start": "2024-06-17",
           "flagged": 1,
-          "hits": 0,
+          "hits": 1,
           "topics": [
-            "construction_robotics"
+            "flow_matching"
           ]
         },
         {
@@ -498,25 +652,25 @@
         },
         {
           "window_start": "2024-08-12",
-          "flagged": 0,
-          "hits": 0,
-          "topics": []
+          "flagged": 1,
+          "hits": 1,
+          "topics": [
+            "flow_matching"
+          ]
         },
         {
           "window_start": "2024-09-09",
           "flagged": 1,
-          "hits": 0,
+          "hits": 1,
           "topics": [
-            "environment_generation_for_generalizable_robots"
+            "flow_matching"
           ]
         },
         {
           "window_start": "2024-10-07",
-          "flagged": 1,
+          "flagged": 0,
           "hits": 0,
-          "topics": [
-            "perception_and_manipulation_for_warehouse_automation"
-          ]
+          "topics": []
         },
         {
           "window_start": "2024-11-04",
@@ -532,26 +686,24 @@
         },
         {
           "window_start": "2024-12-30",
-          "flagged": 1,
+          "flagged": 0,
           "hits": 0,
-          "topics": [
-            "social_intelligence_in_humans_and_robots"
-          ]
+          "topics": []
         }
       ]
     }
   },
   "passes": {
     "a_lead": true,
-    "b_precision": false
+    "b_precision": true
   },
   "candidates": {
-    "file": "Candidates2023.csv",
+    "file": "CandidatesMined2023.csv",
     "half": "dev",
-    "total_both_halves": 97,
-    "in_this_half": 40,
-    "dropped_crowd_before_cutoff": 14,
-    "judged": 26,
-    "crowd_in_2024_25": 0
+    "total_both_halves": 88,
+    "in_this_half": 52,
+    "dropped_crowd_before_cutoff": 0,
+    "judged": 52,
+    "crowd_in_2024_25": 5
   }
 }

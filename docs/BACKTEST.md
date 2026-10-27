@@ -1,12 +1,13 @@
 # Backtest: would the method have spotted past trends early?
 
-**Verdict: fail, so don't run the weekly brief yet.**
+**Verdict: both criteria now pass on the dev half, but only just, and only after tuning on it. The held-out half decides. Don't run the weekly brief until it has.**
 
 - Criterion (a) passes, but it's in-sample, so it's weak evidence.
-- Criterion (b) failed twice, and both times the candidate list could barely score a hit:
-  - **First run (2026-10-26):** 6% precision against a 50% bar.
-  - **Second run (2026-10-27):** 0 of 3, after the newness fix and a new list of 2023 candidates.
-- The precision test needs a different source of candidates before it can say anything. See [the second run](#second-run-2023-candidates-and-a-newness-test).
+- Criterion (b) was 6%, then 0 of 3, then 41%. With the final two fixes it's **52% (15 of 29)**, just over the 50% bar. arXiv-only scored 30%.
+  - **Treat 52% as in-sample:** I chose the fixes after seeing the 41%.
+  - **One hit fewer and it fails:** 14 of 29 is 48%.
+  - **Counted by distinct topic, it's 40%:** 4 of 10.
+- See [the final fixes](#final-fixes-relative-growth-and-a-calibrated-small-bar). The held-out half (36 topics) is still sealed. It's the only clean test left.
 
 Run on 2026-10-26 over Jan 2021 – Dec 2025: 65 four-week windows, 3 test topics, 59 candidate topics. The signals were arXiv, new GitHub repos and funding rounds. Citations and lab papers were left out because they wait on API keys. Every count, query URL and chart is in [BacktestResults.md](BacktestResults.md), which is generated. Raw counts are in `data/backtest/Counts.csv`.
 
@@ -104,6 +105,89 @@ The 3 topics flagged were exactly these small niches, and none of them took off.
 
 **What this says.** Workshop lists are the wrong place to find candidates. A workshop gets organised either after a topic is established or around a niche. Both lists, 156 topics in total, contained only 1 topic whose crowd arrived in 2024–25. That one was cross-embodiment learning, from the first list. A detector can't show precision on a list with almost no positives.
 
+## Third run: candidates mined from arXiv
+
+**What changed (2026-10-27):**
+
+1. **Nobody picks the candidates.** I downloaded metadata for every arXiv paper since 2021 in cs.RO, cs.LG, cs.AI and cs.CL: about 420,000 papers, CC0 licensed.
+   - A **candidate** is a 2–3-word phrase that was in at least 8 titles in 2023, but in fewer than 10 papers (titles or abstracts) in 2021–22. Both cutoffs are invented.
+   - Only data up to the end of 2023 chooses the candidates.
+   - The code is [`bleedingedge/mining.py`](../bleedingedge/mining.py), and the list is [`data/CandidatesMined2023.csv`](../data/CandidatesMined2023.csv): 88 phrases.
+2. **Counts come from the downloaded metadata.** For these candidates, arXiv counts come from the bulk download instead of the search API. GitHub and Hacker News are still searched online.
+3. **Same hash split as before.** The dev half has 52 topics. The held-out half has 36 and is still sealed.
+
+**Dev-half result:**
+
+| Method | Flags in 2024 | Crowd arrived within 12 months | Precision | Topics flagged | Topics that hit |
+|---|---|---|---|---|---|
+| Full method (tuned) | 46 | 19 | **41%** | 12 | 4 |
+| arXiv only | 117 | 27 | 23% | 20 | 4 |
+
+"Flags" counts each topic once per 4-week window it was flagged in, so one topic can count several times.
+
+**What it got right:**
+
+- **The test can finally score hits.** 5 of the 52 dev topics had their crowd arrive in 2024–25.
+- **It caught 4 of those 5:** flow matching, low-rank adaptation (LoRA), large vision-language models, and chain-of-thought reasoning. It missed "reasoning in language".
+- **GitHub earns its place on this list.** Both methods caught the same 4 winners. The full method flagged about a third as many topic-windows (46 vs 117) and wasn't fooled by "AI act" or "latent diffusion". That's the first evidence that a second signal adds anything. On the 3 test topics, it added nothing.
+
+**What it got wrong:**
+
+- **Precision is 41%, below the 50% bar.** Most misses are one topic flagged many times. "Large multimodal models" was flagged in 10 windows, but its crowd had already arrived in Nov 2023.
+  - The cause: "early" means fewer than 50 papers in 12 weeks. On these 4-category counts, 50 is generous. A topic can be crowded at 30 papers.
+  - I haven't changed it. Tuning on the dev half after seeing it would spend its credibility.
+- **Counted by distinct topic, precision is 33%.** 4 of the 12 flagged topics took off.
+
+**Before trusting this, know that:**
+
+- **This list is mostly LLM and generative-AI topics.** 80 of 88 candidates are tagged AI tooling and only 8 robotics. Robotics phrases rarely reach 8 titles a year. So this run tests the method on AI topics, not on your main domain.
+- **cs.CV isn't in the download.** Diffusion and vision work mostly lives there, so some phrases ("latent diffusion") look newer than they are.
+- **arXiv itself is growing.** It had about 30% more papers each year in these categories (39k in 2021, 91k in 2025). Every topic's growth ratio is inflated by that much. A fix would divide by total volume, but it isn't applied.
+- **I adjusted the mining rules twice before this run.** That included keeping hyphenated words whole and dropping title boilerplate like "leveraging large language". I did it after reading the 2023 candidate list, but before looking at any 2024–25 outcome.
+
+## Final fixes: relative growth and a calibrated "small" bar
+
+These were decided 2026-10-27, before the held-out half was opened.
+
+1. **Relative growth.** A topic's arXiv growth ratio is now divided by the same ratio for all harvested papers.
+   - Without this, arXiv's own growth (about 30% a year in these categories) counted as every topic heating up.
+   - Example: a topic that only keeps pace with arXiv now scores 1, not 1.3.
+   - This applies to arXiv only. GitHub repos and funding are left as they were.
+   - For the 3 test topics, arXiv counts come from search across all categories, but they're divided by the 4-category total. That's an approximation.
+2. **"Small" bar calibrated to the downloaded counts.** The downloaded counts cover 4 categories and match whole words only, so they come out lower than arXiv search counts for the same phrase.
+   - I checked 11 neutral phrases that are neither test topics nor candidates, such as "imitation learning" and "federated learning". The download counted a median of 0.61 of what search counts.
+   - So "small" for mined topics is now fewer than 30 papers in 12 weeks (50 × 0.6). The test topics keep 50.
+   - Calibration data: [`data/backtest/calibration/SmallBar.txt`](../data/backtest/calibration/SmallBar.txt).
+
+**Each fix's effect on the dev half** (full method, tuned):
+
+| Version | Precision | Flags | Topics that hit / flagged | arXiv-only precision |
+|---|---|---|---|---|
+| Third run (neither fix) | 41% | 46 | 4 / 12 | 23% |
+| Relative growth only | 44% | 41 | 4 / 10 | 26% |
+| Small bar only | 48% | 33 | 4 / 12 | 27% |
+| **Both (final)** | **52%** | 29 | 4 / 10 | 30% |
+
+Criterion (a) is unchanged at 16 / 16 / 48 weeks.
+
+**What the fixes do:**
+
+- **Both fixes only remove flags.** They catch no new winners: it's the same 4 of 5 either way.
+- **Most of the removed flags were repeats.** "Large multimodal models" dropped from 10 flags to 5.
+- **The remaining misses are topics whose crowd arrived in 2023:** large multimodal models, Segment Anything and AI-generated text. They were still under 30 papers per 12 weeks when flagged in 2024.
+
+**How much to trust 52%:**
+
+- **It's in-sample.** I picked these fixes after seeing the dev half.
+- **The 29 flags aren't independent.** One topic is flagged in several windows.
+- **The margin is one hit.** A rough 95% interval on 15 of 29 is 34–69%.
+
+**The held-out half is the real test.** Open it once, with nothing changed in between:
+
+```bash
+uv run python -m bleedingedge.backtest --holdout
+```
+
 ## Other findings
 
 - **README search leaks hindsight.** When GitHub search included README text, 61 "VLA" repos showed up as created in 2021, before the term existed, because README text is what the repo says today. That gave VLAs a fake 96-week lead. GitHub now searches only names and descriptions. Run `--with-readme` to reproduce the comparison; results go to `data/backtest/WithReadme/`.
@@ -117,23 +201,19 @@ The 3 topics flagged were exactly these small niches, and none of them took off.
 - Deleted GitHub repos are missing. This biases older windows downward.
 - 3 test topics is a very small sample. One topic changing its result moves (a) a lot.
 
-## What I'd change next (proposal: not applied)
+## Next
 
-**Fix 1 was applied:** the 2023 candidates and the held-out half. It didn't make (b) testable. The held-out half stays sealed. Running it now would use up the one clean look on a test that we already know can't score hits.
-
-1. **Replace hand-named candidates with every phrase that was new on arXiv in 2023.**
-   - Take every 2–3-word phrase in 2023 cs.RO and cs.LG titles that appeared fewer than 10 times in 2021–22.
-   - Keep the ones that recur at least a few times, so one-off phrases drop out.
-   - This is the same set of topics the weekly brief would have to search anyway. It contains future winners and duds in their real proportions, and nobody picks them.
-   - Cost: one bulk download of arXiv metadata (about 4 GB, the Kaggle snapshot or OAI-PMH) instead of a search API.
-2. **Split that list by hash the same way.** The dev half is used for checks, and the other half is run once at the end.
-3. **Add citations and lab papers once your keys are in `.env`.** Then re-run.
-
-If you'd rather not build phrase mining: on what's been measured, arXiv growth alone matches the full method. The arXiv-only baseline and the full method tied on all three test topics' lead times, within 4 weeks. A weekly script that lists the fastest-growing new arXiv phrases is the simple product that's left. Phrase mining would also be the first step of that script.
+1. **Open the held-out half once** (the command above).
+   - **If precision ≥ 50% there:** the method passes, and the weekly brief is worth building.
+   - **If it's below:** the method fails on clean data. The fallback is the simpler arXiv-growth script. On the dev half it scored 30%, so even that should be described honestly as "a list to skim", not "picks".
+2. **Citations and lab papers aren't in.** If your keys arrive after the held-out run, adding them is a new method. It would need a new held-out set: for example, phrases new in 2024, graded on 2025–26.
+3. **For your domain, run robotics separately.** Mine phrases from cs.RO alone, with a lower title bar and its own held-out half. This run was 90% AI/LLM topics.
 
 ## Reproduce
 
 ```bash
+uv run python -m bleedingedge.sources.arxiv_bulk  # bulk arXiv metadata, ~2.5 h the first time, resumable
+uv run python -m bleedingedge.mining              # mine candidates from it
 uv run python -m bleedingedge.backtest            # dev half
 uv run python -m bleedingedge.backtest --holdout  # held-out half: run once, at the end
 ```

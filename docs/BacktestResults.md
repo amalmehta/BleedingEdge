@@ -8,7 +8,7 @@ All thresholds are invented starting parameters from BleedingEdge.md.
 
 | Topic | First heating-up flag | Research crowd arrives | Lead | ≥ 8 weeks? | arXiv-only baseline lead | First HN story ≥50 pts |
 |---|---|---|---|---|---|---|
-| RL for LLM reasoning (GRPO / RLVR) | Dec 2024 (trend) | Apr 2025 | 16 wk | yes | 16 wk | Jan 2025 |
+| RL for LLM reasoning (GRPO / RLVR) | Dec 2024 (burst) | Apr 2025 | 16 wk | yes | 16 wk | Jan 2025 |
 | Diffusion policies | Jan 2024 (burst) | May 2024 | 16 wk | yes | 16 wk | — |
 | Vision-language-action models | Jun 2024 (trend) | May 2025 | 48 wk | yes | 52 wk | Dec 2024 |
 
@@ -28,18 +28,18 @@ Share of test topics where the signal on its own rose ≥ 8 weeks before the res
 | github | grpo_rlvr: —, diffusion_policy: Feb 2024, vla: Feb 2025 | 0.67 |
 | funding | grpo_rlvr: Feb 2024, diffusion_policy: —, vla: Jul 2021 | 0.67 |
 
-## (b) Precision on 2023 workshop-title candidates, flags in 2024
+## (b) Precision on candidates, flags in 2024
 
-From `data/Candidates2023.csv`: 97 candidates, split in half by hash. This is the **dev** half (40). 14 had their crowd arrive before 2023, so they could never be new in 2024; they are left out of the criterion and kept in the "tuned all candidates" line. Of the 26 judged, 0 had the crowd arrive in 2024–25, the most a perfect detector could hit.
+From `data/CandidatesMined2023.csv`: 88 candidates, split in half by hash. This is the **dev** half (52). 0 had their crowd arrive before 2023, so they could never be new in 2024; they are left out of the criterion and kept in the "tuned all candidates" line. Of the 52 judged, 5 had the crowd arrive in 2024–25, the most a perfect detector could hit.
 
 | Method | Flags (topic-windows) | Reached consensus in 12 months | Precision | Distinct topics flagged | Distinct topic precision |
 |---|---|---|---|---|---|
-| untuned | 3 | 0 | 0% | 3 | 0% |
-| tuned | 3 | 0 | 0% | 3 | 0% |
-| baseline arxiv only | 15 | 0 | 0% | 5 | 0% |
-| tuned all candidates | 7 | 0 | 0% | 5 | 0% |
+| untuned | 28 | 14 | 50% | 10 | 40% |
+| tuned | 29 | 15 | 52% | 10 | 40% |
+| baseline arxiv only | 77 | 23 | 30% | 19 | 21% |
+| tuned all candidates | 29 | 15 | 52% | 10 | 40% |
 
-**Criterion (b): fails** (needs precision ≥ 50% with tuned lead weights).
+**Criterion (b): passes** (needs precision ≥ 50% with tuned lead weights).
 
 ## Queries behind every count
 
