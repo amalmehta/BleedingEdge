@@ -48,3 +48,13 @@ def test_phrase_dates_match_title_or_abstract():
     d = mn.phrase_dates(ps, ["segment anything model"])
     assert d["segment anything model"] == [date(2024, 3, 1), date(2025, 3, 1)]
 
+
+def test_boilerplate_years_accents_and_old_fragments():
+    assert mn.words("Schrödinger Bridge") == ["schrodinger", "bridge"]
+    g = mn.ngrams(mn.words("Leveraging Large Language Models for SemEval 2023 Task"))
+    assert not any(x.startswith("leveraging") or x.endswith("large") or "2023" in x for x in g)
+    ps = [_p(2023, f"Retrieval augmented language agents part {i}") for i in range(10)]
+    ps += [_p(2022, "x", "language agents everywhere") for _ in range(150)]
+    got = {r["topic"] for r in mn.mine(ps)[0]}
+    assert "augmented language agents" not in got   # its half "language agents" was common in 2022
+    assert "retrieval augmented language" in got

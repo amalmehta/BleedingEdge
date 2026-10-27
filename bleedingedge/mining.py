@@ -35,6 +35,14 @@ towards toward is are be can do does how what when why which we our your its the
 new novel study analysis paper case towards beyond through across between than vs versus not no more less
 all any each""".split())
 
+# Title boilerplate: can't start a phrase ("leveraging large language ...") or end one ("reasoning in large ...").
+START_STOP = set("""leveraging unleashing evaluating evaluation enhancing improving exploring rethinking revisiting
+understanding scoping augmented empowering harnessing investigating assessing benchmarking prompting
+unlocking making applications learning framework network networks transformer transformers model models
+method approach data""".split())
+END_STOP = set("""large deep neural review survey efficient enhanced multi zero""".split())
+OLD_COMMON = 100    # a 3-word phrase whose 2-word half was this common in 2021–22 is a fragment of an old phrase
+
 # Phrases that overlap the 3 test topics, which are graded separately in (a).
 TEST_OVERLAP = re.compile(r"diffusion polic|vision.language.action|\bvla\b|verifiable reward|group relative|\bgrpo\b|\brlvr\b")
 
@@ -51,7 +59,9 @@ def ngrams(ws: list[str], ns=(2, 3)) -> set[str]:
     for n in ns:
         for i in range(len(ws) - n + 1):
             g = ws[i:i + n]
-            if g[0] in STOP or g[-1] in STOP or any(w.isdigit() for w in (g[0], g[-1])):
+            if g[0] in STOP or g[-1] in STOP or g[0] in START_STOP or g[-1] in END_STOP:
+                continue
+            if any(w.isdigit() and (len(w) == 4 or w in (g[0], g[-1])) for w in g):  # years, numbers at the edges
                 continue
             if any(len(w) < 2 for w in g):
                 continue
@@ -75,13 +85,15 @@ def mine(papers: list[dict]) -> tuple[list[dict], list[str]]:
             for c in p["cats"]:
                 cats_by[g][c] += 1
     pool = {g for g, n in title_df.items() if n >= MIN_TITLES}
+    halves = {h for g in pool if g.count(" ") == 2 for h in (g.rsplit(" ", 1)[0], g.split(" ", 1)[1])}
 
     prior = Counter()
     for p in papers:
         if _year(p) in (YEAR - 2, YEAR - 1):
-            for g in ngrams(words(p["title"] + " " + p["abstract"])) & pool:
+            for g in ngrams(words(p["title"] + " " + p["abstract"])) & (pool | halves):
                 prior[g] += 1
-    new = {g for g in pool if prior[g] < PRIOR_MAX}
+    new = {g for g in pool if prior[g] < PRIOR_MAX
+           and not (g.count(" ") == 2 and max(prior[g.rsplit(" ", 1)[0]], prior[g.split(" ", 1)[1]]) >= OLD_COMMON)}
 
     # A shorter phrase mostly seen inside a longer candidate is the same topic.
     keep = set(new)
