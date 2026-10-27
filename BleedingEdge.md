@@ -371,7 +371,7 @@ My guesses (decided without asking):
 - Brief format: a dated Markdown file in briefs/. An HTML page or an email may suit you better.
 - Runs as a Claude scheduled task on this Mac, Monday morning. The cost is your Claude plan usage. No paid APIs.
 - No studied/ignored list in v1, so topics may repeat. Possible later link to the researcher-pal knowledge graph.
-- No GitHub repo, README, icon, feedback tab or settings: it's a script, not an app. Ask before publishing.
+- Public GitHub repo, amalmehta/BleedingEdge (decided 2026-10-27, so others can read and reuse it). No icon, feedback tab or settings: it's a script, not an app.
 - Every threshold in DEFINITIONS AND DEFERRED (8-week lead, S ≥ 1, the volume floors, domain weights, precision ≥ 0.5) is my invented starting point. The backtest is the check.
 - Hacker News was the first stand-in for "the consensus". The backtest showed it is too sparse for RL/robotics (≤1 story ≥50 points per window), so consensus is now the research crowd arriving (see DEFINITIONS).
 - Backtest result (2026-10-26, docs/BACKTEST.md): FAIL. (a) passes 3/3 with 16–48 week leads, but in-sample, and arXiv alone does as well. (b) fails at 6% precision (arXiv-only 1%). Two causes: only 1 of 59 workshop candidates had its crowd arrive in 2024–25, so the test could barely score a hit; and 7 of 12 flagged topics were mature (crowd in 2021) but small, so "early" measures size, not newness. Weekly brief not started.
@@ -438,3 +438,4 @@ CHANGELOG:
 - 2026-10-26 — after the first backtest run: consensus = research crowd arrives (25% of peak arXiv volume), not HN; growth measured as trend + burst; funding a bonus only; GitHub searches name and description for full phrases (README leaked hindsight)
 - 2026-10-26 — backtest run on all 59 candidates: fails (precision 6%); results and proposed fixes in docs/BACKTEST.md; weekly brief on hold
 - 2026-10-27 — "early" now needs new as well as small (fewer than 10 papers two years earlier); candidates rebuilt from all 2023 RL/robotics/agents/tooling workshops, half held out; (b) still untestable (0 reachable hits in the dev half); proposed mining new arXiv phrases instead
+- 2026-10-27 — published as a public GitHub repo, amalmehta/BleedingEdge
