@@ -1,6 +1,12 @@
 # Backtest: would the method have spotted past trends early?
 
-**Verdict: fail, so don't run the weekly brief yet.** Criterion (a) passes, but it's in-sample, so it's weak evidence. Criterion (b) fails at 6% precision against a 50% bar. Part of that failure comes from the method, and part comes from a candidate list that can't test it. Details and the proposed fix are below.
+**Verdict: fail, so don't run the weekly brief yet.**
+
+- Criterion (a) passes, but it's in-sample, so it's weak evidence.
+- Criterion (b) failed twice, and both times the candidate list could barely score a hit:
+  - **First run (2026-10-26):** 6% precision against a 50% bar.
+  - **Second run (2026-10-27):** 0 of 3, after the newness fix and a new list of 2023 candidates.
+- The precision test needs a different source of candidates before it can say anything. See [the second run](#second-run-2023-candidates-and-a-newness-test).
 
 Run on 2026-10-26 over Jan 2021 – Dec 2025: 65 four-week windows, 3 test topics, 59 candidate topics. The signals were arXiv, new GitHub repos and funding rounds. Citations and lab papers were left out because they wait on API keys. Every count, query URL and chart is in [BacktestResults.md](BacktestResults.md), which is generated. Raw counts are in `data/backtest/Counts.csv`.
 
@@ -60,6 +66,44 @@ The single hit was cross-embodiment learning. It was flagged in Sep 2024 and the
 
 2. **The detector did flag the wrong things.** 7 of the 12 topics it flagged had their crowd arrive back in 2021. Examples are tactile sensing, legged locomotion and long-horizon planning. They count as "early" only because they stay small: fewer than 50 papers per 12 weeks. **The "early" rule measures size, not newness.** A small, mature topic with a noisy month looks the same as a new one. The test does get this part right, and it's a real flaw.
 
+## Second run: 2023 candidates and a newness test
+
+**What changed (2026-10-27):**
+
+1. **"Early" now also means new.** A topic must have had fewer than 10 papers in the same 12 weeks two years earlier. The 10 is invented.
+2. **New candidate list.** It holds every RL, robotics, agents and ML-tooling workshop at CoRL, RSS, ICRA, NeurIPS, ICML and ICLR 2023: 97 topics in [`data/Candidates2023.csv`](../data/Candidates2023.csv).
+   - They were picked by an inclusion rule, not by me.
+   - Search phrases are taken word for word from the 2023 titles and calls.
+3. **Held-out half.** The list is split in half by a hash of each name:
+   - **Dev half:** 40 topics, used here.
+   - **Held-out half:** 57 topics. It has not been fetched, so nobody has seen it yet.
+4. **Mature topics dropped from the score.** Candidates whose crowd arrived before 2023 are left out of (b).
+
+**Dev-half result:**
+
+| Method | Flags in 2024 | Crowd arrived within 12 months | Precision |
+|---|---|---|---|
+| Full method (tuned) | 3 | 0 | 0% |
+| arXiv only | 15 | 0 | 0% |
+| Full method, mature topics left in | 7 | 0 | 0% |
+
+**The newness test worked.** On the old list it cut flags from 16 to 5, and no small mature topic was flagged this time.
+
+**But the test still can't score a hit.** Here is how the 40 dev topics break down:
+
+| How the topic did | Topics |
+|---|---|
+| Crowd never arrived (fewer than 20 papers per 12 weeks at peak) | 24 |
+| Crowd arrived in 2021 | 14 |
+| Crowd arrived in 2023 | 2 |
+| Crowd arrived in 2024–25, the only years a 2024 flag could count | **0** |
+
+Half of the dev topics peak below 10 papers per 12 weeks. Workshop wording ("variable impedance learning and control", "construction robotics") is too narrow to ever draw a crowd.
+
+The 3 topics flagged were exactly these small niches, and none of them took off. They peaked at 18, 16 and 11 papers per 12 weeks. **So 0 of 3 is a true result, but it's 3 data points.**
+
+**What this says.** Workshop lists are the wrong place to find candidates. A workshop gets organised either after a topic is established or around a niche. Both lists, 156 topics in total, contained only 1 topic whose crowd arrived in 2024–25. That one was cross-embodiment learning, from the first list. A detector can't show precision on a list with almost no positives.
+
 ## Other findings
 
 - **README search leaks hindsight.** When GitHub search included README text, 61 "VLA" repos showed up as created in 2021, before the term existed, because README text is what the repo says today. That gave VLAs a fake 96-week lead. GitHub now searches only names and descriptions. Run `--with-readme` to reproduce the comparison; results go to `data/backtest/WithReadme/`.
@@ -73,19 +117,25 @@ The single hit was cross-embodiment learning. It was flagged in Sep 2024 and the
 - Deleted GitHub repos are missing. This biases older windows downward.
 - 3 test topics is a very small sample. One topic changing its result moves (a) a lot.
 
-## What I'd change (proposal: not applied)
+## What I'd change next (proposal: not applied)
 
-1. **Rebuild the candidate list so (b) can score a hit.** Use topics that were new in 2023, taken from 2023 sources as written then: arXiv listing titles, workshop calls and lab blog posts. That would put both winners and duds inside the window. Remove anything whose crowd arrived before 2023.
-2. **Add a newness test to "early".** For example, the topic's 12-week paper count was under 10 two years earlier. This is an invented number, and the backtest would check it. It would stop flags on small mature topics like tactile sensing.
+**Fix 1 was applied:** the 2023 candidates and the held-out half. It didn't make (b) testable. The held-out half stays sealed. Running it now would use up the one clean look on a test that we already know can't score hits.
+
+1. **Replace hand-named candidates with every phrase that was new on arXiv in 2023.**
+   - Take every 2–3-word phrase in 2023 cs.RO and cs.LG titles that appeared fewer than 10 times in 2021–22.
+   - Keep the ones that recur at least a few times, so one-off phrases drop out.
+   - This is the same set of topics the weekly brief would have to search anyway. It contains future winners and duds in their real proportions, and nobody picks them.
+   - Cost: one bulk download of arXiv metadata (about 4 GB, the Kaggle snapshot or OAI-PMH) instead of a search API.
+2. **Split that list by hash the same way.** The dev half is used for checks, and the other half is run once at the end.
 3. **Add citations and lab papers once your keys are in `.env`.** Then re-run.
-4. **Then judge (b) again, once.** If it still fails, the honest answer is that arXiv growth alone (the baseline) is as good as this gets. A simpler weekly script that lists the fastest-growing arXiv phrases may be the whole product.
 
-Before deciding, consider this: if the method only passes after a third redesign, (b) stops being an out-of-sample check too. One way to keep it honest is to set aside half the new candidates and look at them only once, at the end.
+If you'd rather not build phrase mining: on what's been measured, arXiv growth alone matches the full method. The arXiv-only baseline and the full method tied on all three test topics' lead times, within 4 weeks. A weekly script that lists the fastest-growing new arXiv phrases is the simple product that's left. Phrase mining would also be the first step of that script.
 
 ## Reproduce
 
 ```bash
-uv run python -m bleedingedge.backtest
+uv run python -m bleedingedge.backtest            # dev half
+uv run python -m bleedingedge.backtest --holdout  # held-out half: run once, at the end
 ```
 
 The cached API responses in `data/cache/` make re-runs free and identical. Delete that folder to refetch.

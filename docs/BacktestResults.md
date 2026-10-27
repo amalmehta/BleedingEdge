@@ -28,13 +28,16 @@ Share of test topics where the signal on its own rose ≥ 8 weeks before the res
 | github | grpo_rlvr: —, diffusion_policy: Feb 2024, vla: Feb 2025 | 0.67 |
 | funding | grpo_rlvr: Feb 2024, diffusion_policy: —, vla: Jul 2021 | 0.67 |
 
-## (b) Precision on workshop-title candidates, 2024
+## (b) Precision on 2023 workshop-title candidates, flags in 2024
+
+From `data/Candidates2023.csv`: 97 candidates, split in half by hash. This is the **dev** half (40). 14 had their crowd arrive before 2023, so they could never be new in 2024; they are left out of the criterion and kept in the "tuned all candidates" line. Of the 26 judged, 0 had the crowd arrive in 2024–25, the most a perfect detector could hit.
 
 | Method | Flags (topic-windows) | Reached consensus in 12 months | Precision | Distinct topics flagged | Distinct topic precision |
 |---|---|---|---|---|---|
-| untuned | 16 | 1 | 6% | 12 | 8% |
-| tuned | 16 | 1 | 6% | 12 | 8% |
-| baseline arxiv only | 77 | 1 | 1% | 28 | 4% |
+| untuned | 3 | 0 | 0% | 3 | 0% |
+| tuned | 3 | 0 | 0% | 3 | 0% |
+| baseline arxiv only | 15 | 0 | 0% | 5 | 0% |
+| tuned all candidates | 7 | 0 | 0% | 5 | 0% |
 
 **Criterion (b): fails** (needs precision ≥ 50% with tuned lead weights).
 

@@ -21,3 +21,5 @@
 9. "sure"
    → Started the backtest: design questions (window 2021–25, API keys, funding, candidates), design doc, fetchers, scoring.
    → First run exposed method flaws (HN too sparse, burst-only missed VLAs, acronym noise, funding zeros); you chose fixes. README search found to leak hindsight and dropped. Full run: (a) passes in-sample, (b) fails at 6%. Wrote docs/BACKTEST.md with proposed fixes, not applied.
+10. "Apply fixes 1 and 2: rebuild candidates from 2023 sources with a held-out half, and add the newness test to 'early'. Then re-run."
+   → Added the newness test; a subagent built 97 candidates from all 2023 workshop lists by rule; hash split, held-out half sealed. Dev-half precision 0 of 3, with no reachable hits. Proposed mining new arXiv phrases.
