@@ -1,0 +1,121 @@
+{
+  "window": [
+    "2021-01-04",
+    "2025-12-29"
+  ],
+  "signals": [
+    "arxiv",
+    "github",
+    "funding"
+  ],
+  "missing_signals": [
+    "citations",
+    "labs"
+  ],
+  "keys_present": {
+    "S2_API_KEY": false,
+    "OPENALEX_API_KEY": false
+  },
+  "lead": [
+    {
+      "key": "grpo_rlvr",
+      "topic": "RL for LLM reasoning (GRPO / RLVR)",
+      "heating_window": 52,
+      "mode": "trend",
+      "consensus_window": 56,
+      "hn_first_story_window": 53,
+      "lead_weeks": 16,
+      "passes": true
+    },
+    {
+      "key": "diffusion_policy",
+      "topic": "Diffusion policies",
+      "heating_window": 28,
+      "mode": "burst",
+      "consensus_window": 44,
+      "hn_first_story_window": null,
+      "lead_weeks": 64,
+      "passes": true
+    },
+    {
+      "key": "vla",
+      "topic": "Vision-language-action models",
+      "heating_window": 33,
+      "mode": "trend",
+      "consensus_window": 57,
+      "hn_first_story_window": 52,
+      "lead_weeks": 96,
+      "passes": true
+    }
+  ],
+  "lead_baseline": [
+    {
+      "key": "grpo_rlvr",
+      "topic": "RL for LLM reasoning (GRPO / RLVR)",
+      "heating_window": 52,
+      "mode": "burst",
+      "consensus_window": 56,
+      "hn_first_story_window": 53,
+      "lead_weeks": 16,
+      "passes": true
+    },
+    {
+      "key": "diffusion_policy",
+      "topic": "Diffusion policies",
+      "heating_window": 40,
+      "mode": "burst",
+      "consensus_window": 44,
+      "hn_first_story_window": null,
+      "lead_weeks": 16,
+      "passes": true
+    },
+    {
+      "key": "vla",
+      "topic": "Vision-language-action models",
+      "heating_window": 44,
+      "mode": "burst",
+      "consensus_window": 57,
+      "hn_first_story_window": 52,
+      "lead_weeks": 52,
+      "passes": true
+    }
+  ],
+  "crossings": {
+    "arxiv": {
+      "grpo_rlvr": 52,
+      "diffusion_policy": 40,
+      "vla": 44
+    },
+    "github": {
+      "grpo_rlvr": 51,
+      "diffusion_policy": 28,
+      "vla": 29
+    },
+    "funding": {
+      "grpo_rlvr": 41,
+      "diffusion_policy": null,
+      "vla": 7
+    }
+  },
+  "consensus": {
+    "grpo_rlvr": 56,
+    "diffusion_policy": 44,
+    "vla": 57
+  },
+  "lead_weights_raw": {
+    "arxiv": 1.0,
+    "github": 1.0,
+    "funding": 0.6666666666666666
+  },
+  "lead_weights": {
+    "arxiv": 1.0,
+    "github": 1.0,
+    "funding": 0.6666666666666666
+  },
+  "precision": {},
+  "passes": {
+    "a_lead": true,
+    "b_precision": false
+  },
+  "n_candidates": 0
+}

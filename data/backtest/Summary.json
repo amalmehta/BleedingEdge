@@ -1,0 +1,542 @@
+{
+  "window": [
+    "2021-01-04",
+    "2025-12-29"
+  ],
+  "signals": [
+    "arxiv",
+    "github",
+    "funding"
+  ],
+  "missing_signals": [
+    "citations",
+    "labs"
+  ],
+  "keys_present": {
+    "S2_API_KEY": false,
+    "OPENALEX_API_KEY": false
+  },
+  "lead": [
+    {
+      "key": "grpo_rlvr",
+      "topic": "RL for LLM reasoning (GRPO / RLVR)",
+      "heating_window": 52,
+      "mode": "trend",
+      "consensus_window": 56,
+      "hn_first_story_window": 53,
+      "lead_weeks": 16,
+      "passes": true
+    },
+    {
+      "key": "diffusion_policy",
+      "topic": "Diffusion policies",
+      "heating_window": 40,
+      "mode": "burst",
+      "consensus_window": 44,
+      "hn_first_story_window": null,
+      "lead_weeks": 16,
+      "passes": true
+    },
+    {
+      "key": "vla",
+      "topic": "Vision-language-action models",
+      "heating_window": 45,
+      "mode": "trend",
+      "consensus_window": 57,
+      "hn_first_story_window": 52,
+      "lead_weeks": 48,
+      "passes": true
+    }
+  ],
+  "lead_baseline": [
+    {
+      "key": "grpo_rlvr",
+      "topic": "RL for LLM reasoning (GRPO / RLVR)",
+      "heating_window": 52,
+      "mode": "burst",
+      "consensus_window": 56,
+      "hn_first_story_window": 53,
+      "lead_weeks": 16,
+      "passes": true
+    },
+    {
+      "key": "diffusion_policy",
+      "topic": "Diffusion policies",
+      "heating_window": 40,
+      "mode": "burst",
+      "consensus_window": 44,
+      "hn_first_story_window": null,
+      "lead_weeks": 16,
+      "passes": true
+    },
+    {
+      "key": "vla",
+      "topic": "Vision-language-action models",
+      "heating_window": 44,
+      "mode": "burst",
+      "consensus_window": 57,
+      "hn_first_story_window": 52,
+      "lead_weeks": 52,
+      "passes": true
+    }
+  ],
+  "crossings": {
+    "arxiv": {
+      "grpo_rlvr": 52,
+      "diffusion_policy": 40,
+      "vla": 44
+    },
+    "github": {
+      "grpo_rlvr": null,
+      "diffusion_policy": 41,
+      "vla": 54
+    },
+    "funding": {
+      "grpo_rlvr": 41,
+      "diffusion_policy": null,
+      "vla": 7
+    }
+  },
+  "consensus": {
+    "grpo_rlvr": 56,
+    "diffusion_policy": 44,
+    "vla": 57
+  },
+  "lead_weights_raw": {
+    "arxiv": 1.0,
+    "github": 0.6666666666666666,
+    "funding": 0.6666666666666666
+  },
+  "lead_weights": {
+    "arxiv": 1.0,
+    "github": 0.6666666666666666,
+    "funding": 0.6666666666666666
+  },
+  "precision": {
+    "untuned": {
+      "pairs": 16,
+      "hits": 1,
+      "precision": 0.0625,
+      "topics_flagged": 12,
+      "topics_hit": 1,
+      "topic_precision": 0.08333333333333333,
+      "per_window": [
+        {
+          "window_start": "2024-01-01",
+          "flagged": 0,
+          "hits": 0,
+          "topics": []
+        },
+        {
+          "window_start": "2024-01-29",
+          "flagged": 0,
+          "hits": 0,
+          "topics": []
+        },
+        {
+          "window_start": "2024-02-26",
+          "flagged": 4,
+          "hits": 0,
+          "topics": [
+            "learned_abstractions_and_long_horizon_planning",
+            "tactile_sensing_and_touch_processing",
+            "differentiable_simulation_and_optimization_for_robotics",
+            "learning_agile_legged_locomotion"
+          ]
+        },
+        {
+          "window_start": "2024-03-25",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "3d_scene_graphs_and_semantic_scene_representations_for_robots"
+          ]
+        },
+        {
+          "window_start": "2024-04-22",
+          "flagged": 0,
+          "hits": 0,
+          "topics": []
+        },
+        {
+          "window_start": "2024-05-20",
+          "flagged": 2,
+          "hits": 0,
+          "topics": [
+            "language_for_robot_learning",
+            "out_of_distribution_and_open_set_robustness_in_robotics"
+          ]
+        },
+        {
+          "window_start": "2024-06-17",
+          "flagged": 0,
+          "hits": 0,
+          "topics": []
+        },
+        {
+          "window_start": "2024-07-15",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "teleoperation_shared_autonomy_and_robot_avatars"
+          ]
+        },
+        {
+          "window_start": "2024-08-12",
+          "flagged": 0,
+          "hits": 0,
+          "topics": []
+        },
+        {
+          "window_start": "2024-09-09",
+          "flagged": 3,
+          "hits": 1,
+          "topics": [
+            "cross_embodiment_and_morphology_aware_robot_learning",
+            "learned_abstractions_and_long_horizon_planning",
+            "mobile_manipulation"
+          ]
+        },
+        {
+          "window_start": "2024-10-07",
+          "flagged": 3,
+          "hits": 0,
+          "topics": [
+            "goal_conditioned_reinforcement_learning",
+            "differentiable_simulation_and_optimization_for_robotics",
+            "out_of_distribution_and_open_set_robustness_in_robotics"
+          ]
+        },
+        {
+          "window_start": "2024-11-04",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "open_ended_learning_and_open_world_agents"
+          ]
+        },
+        {
+          "window_start": "2024-12-02",
+          "flagged": 0,
+          "hits": 0,
+          "topics": []
+        },
+        {
+          "window_start": "2024-12-30",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "cross_embodiment_and_morphology_aware_robot_learning"
+          ]
+        }
+      ]
+    },
+    "tuned": {
+      "pairs": 16,
+      "hits": 1,
+      "precision": 0.0625,
+      "topics_flagged": 12,
+      "topics_hit": 1,
+      "topic_precision": 0.08333333333333333,
+      "per_window": [
+        {
+          "window_start": "2024-01-01",
+          "flagged": 0,
+          "hits": 0,
+          "topics": []
+        },
+        {
+          "window_start": "2024-01-29",
+          "flagged": 0,
+          "hits": 0,
+          "topics": []
+        },
+        {
+          "window_start": "2024-02-26",
+          "flagged": 5,
+          "hits": 0,
+          "topics": [
+            "learned_abstractions_and_long_horizon_planning",
+            "differentiable_simulation_and_optimization_for_robotics",
+            "tactile_sensing_and_touch_processing",
+            "learning_agile_legged_locomotion",
+            "multi_robot_systems_and_aerial_swarms"
+          ]
+        },
+        {
+          "window_start": "2024-03-25",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "3d_scene_graphs_and_semantic_scene_representations_for_robots"
+          ]
+        },
+        {
+          "window_start": "2024-04-22",
+          "flagged": 0,
+          "hits": 0,
+          "topics": []
+        },
+        {
+          "window_start": "2024-05-20",
+          "flagged": 2,
+          "hits": 0,
+          "topics": [
+            "language_for_robot_learning",
+            "out_of_distribution_and_open_set_robustness_in_robotics"
+          ]
+        },
+        {
+          "window_start": "2024-06-17",
+          "flagged": 0,
+          "hits": 0,
+          "topics": []
+        },
+        {
+          "window_start": "2024-07-15",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "teleoperation_shared_autonomy_and_robot_avatars"
+          ]
+        },
+        {
+          "window_start": "2024-08-12",
+          "flagged": 0,
+          "hits": 0,
+          "topics": []
+        },
+        {
+          "window_start": "2024-09-09",
+          "flagged": 3,
+          "hits": 1,
+          "topics": [
+            "cross_embodiment_and_morphology_aware_robot_learning",
+            "mobile_manipulation",
+            "learned_abstractions_and_long_horizon_planning"
+          ]
+        },
+        {
+          "window_start": "2024-10-07",
+          "flagged": 3,
+          "hits": 0,
+          "topics": [
+            "goal_conditioned_reinforcement_learning",
+            "differentiable_simulation_and_optimization_for_robotics",
+            "out_of_distribution_and_open_set_robustness_in_robotics"
+          ]
+        },
+        {
+          "window_start": "2024-11-04",
+          "flagged": 0,
+          "hits": 0,
+          "topics": []
+        },
+        {
+          "window_start": "2024-12-02",
+          "flagged": 0,
+          "hits": 0,
+          "topics": []
+        },
+        {
+          "window_start": "2024-12-30",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "cross_embodiment_and_morphology_aware_robot_learning"
+          ]
+        }
+      ]
+    },
+    "baseline_arxiv_only": {
+      "pairs": 77,
+      "hits": 1,
+      "precision": 0.012987012987012988,
+      "topics_flagged": 28,
+      "topics_hit": 1,
+      "topic_precision": 0.03571428571428571,
+      "per_window": [
+        {
+          "window_start": "2024-01-01",
+          "flagged": 3,
+          "hits": 0,
+          "topics": [
+            "assistive_robotics",
+            "humanoid_whole_body_control_and_bimanual_manipulation",
+            "mobile_manipulation"
+          ]
+        },
+        {
+          "window_start": "2024-01-29",
+          "flagged": 8,
+          "hits": 0,
+          "topics": [
+            "humanoid_whole_body_control_and_bimanual_manipulation",
+            "tactile_sensing_and_touch_processing",
+            "assistive_robotics",
+            "game_theoretic_multi_agent_robot_interaction",
+            "environment_and_data_generation_for_robot_learning",
+            "ml_deployment_and_monitoring",
+            "gaussian_mixture_models_for_robot_autonomy",
+            "learned_abstractions_and_long_horizon_planning"
+          ]
+        },
+        {
+          "window_start": "2024-02-26",
+          "flagged": 10,
+          "hits": 0,
+          "topics": [
+            "differentiable_simulation_and_optimization_for_robotics",
+            "humanoid_whole_body_control_and_bimanual_manipulation",
+            "dexterous_manipulation_learning",
+            "sim_to_real_transfer",
+            "learning_agile_legged_locomotion",
+            "mobile_manipulation",
+            "tactile_sensing_and_touch_processing",
+            "multi_robot_systems_and_aerial_swarms",
+            "out_of_distribution_and_open_set_robustness_in_robotics",
+            "contact_rich_manipulation_and_variable_impedance"
+          ]
+        },
+        {
+          "window_start": "2024-03-25",
+          "flagged": 3,
+          "hits": 0,
+          "topics": [
+            "multi_robot_systems_and_aerial_swarms",
+            "3d_scene_graphs_and_semantic_scene_representations_for_robots",
+            "environment_and_data_generation_for_robot_learning"
+          ]
+        },
+        {
+          "window_start": "2024-04-22",
+          "flagged": 3,
+          "hits": 0,
+          "topics": [
+            "multi_robot_systems_and_aerial_swarms",
+            "contact_rich_manipulation_and_variable_impedance",
+            "tactile_sensing_and_touch_processing"
+          ]
+        },
+        {
+          "window_start": "2024-05-20",
+          "flagged": 4,
+          "hits": 0,
+          "topics": [
+            "contact_rich_manipulation_and_variable_impedance",
+            "language_for_robot_learning",
+            "out_of_distribution_and_open_set_robustness_in_robotics",
+            "open_ended_learning_and_open_world_agents"
+          ]
+        },
+        {
+          "window_start": "2024-06-17",
+          "flagged": 3,
+          "hits": 0,
+          "topics": [
+            "contact_rich_manipulation_and_variable_impedance",
+            "dexterous_manipulation_learning",
+            "game_theoretic_multi_agent_robot_interaction"
+          ]
+        },
+        {
+          "window_start": "2024-07-15",
+          "flagged": 4,
+          "hits": 0,
+          "topics": [
+            "contact_rich_manipulation_and_variable_impedance",
+            "teleoperation_shared_autonomy_and_robot_avatars",
+            "assistive_robotics",
+            "dexterous_manipulation_learning"
+          ]
+        },
+        {
+          "window_start": "2024-08-12",
+          "flagged": 2,
+          "hits": 0,
+          "topics": [
+            "assistive_robotics",
+            "contact_rich_manipulation_and_variable_impedance"
+          ]
+        },
+        {
+          "window_start": "2024-09-09",
+          "flagged": 10,
+          "hits": 1,
+          "topics": [
+            "mobile_manipulation",
+            "3d_scene_graphs_and_semantic_scene_representations_for_robots",
+            "learning_agile_legged_locomotion",
+            "learned_abstractions_and_long_horizon_planning",
+            "robotic_assembly_and_warehouse_manipulation",
+            "human_robot_collaboration_learning",
+            "cross_embodiment_and_morphology_aware_robot_learning",
+            "sim_to_real_transfer",
+            "multi_robot_systems_and_aerial_swarms",
+            "teleoperation_shared_autonomy_and_robot_avatars"
+          ]
+        },
+        {
+          "window_start": "2024-10-07",
+          "flagged": 10,
+          "hits": 0,
+          "topics": [
+            "language_and_reinforcement_learning",
+            "cross_embodiment_and_morphology_aware_robot_learning",
+            "goal_conditioned_reinforcement_learning",
+            "differentiable_simulation_and_optimization_for_robotics",
+            "out_of_distribution_and_open_set_robustness_in_robotics",
+            "mobile_manipulation",
+            "robotics_research_infrastructure_cloud_and_open_source_low_cost_robots",
+            "environment_and_data_generation_for_robot_learning",
+            "3d_scene_graphs_and_semantic_scene_representations_for_robots",
+            "tactile_sensing_and_touch_processing"
+          ]
+        },
+        {
+          "window_start": "2024-11-04",
+          "flagged": 7,
+          "hits": 0,
+          "topics": [
+            "cross_embodiment_and_morphology_aware_robot_learning",
+            "spectral_graph_theoretic_estimation_and_control",
+            "mobile_manipulation",
+            "language_and_reinforcement_learning",
+            "teleoperation_shared_autonomy_and_robot_avatars",
+            "tactile_sensing_and_touch_processing",
+            "dexterous_manipulation_learning"
+          ]
+        },
+        {
+          "window_start": "2024-12-02",
+          "flagged": 7,
+          "hits": 0,
+          "topics": [
+            "scaling_robot_learning_and_generalist_robot_policies",
+            "cross_embodiment_and_morphology_aware_robot_learning",
+            "mobile_manipulation",
+            "language_and_reinforcement_learning",
+            "differentiable_simulation_and_optimization_for_robotics",
+            "tactile_sensing_and_touch_processing",
+            "3d_scene_graphs_and_semantic_scene_representations_for_robots"
+          ]
+        },
+        {
+          "window_start": "2024-12-30",
+          "flagged": 3,
+          "hits": 0,
+          "topics": [
+            "cross_embodiment_and_morphology_aware_robot_learning",
+            "language_and_reinforcement_learning",
+            "tactile_sensing_and_touch_processing"
+          ]
+        }
+      ]
+    }
+  },
+  "passes": {
+    "a_lead": true,
+    "b_precision": false
+  },
+  "n_candidates": 59
+}

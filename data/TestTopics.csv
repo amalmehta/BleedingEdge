@@ -1,0 +1,4 @@
+key,topic,domain,arxiv_phrases,hn_phrases,github_phrases
+grpo_rlvr,RL for LLM reasoning (GRPO / RLVR),rl_robotics,group relative policy optimization|verifiable rewards|GRPO,GRPO|verifiable rewards|group relative policy optimization,GRPO|verifiable rewards
+diffusion_policy,Diffusion policies,rl_robotics,diffusion policy|diffusion policies,diffusion policy|diffusion policies,diffusion policy
+vla,Vision-language-action models,rl_robotics,vision-language-action|VLA model|VLA models,vision-language-action|VLA model|VLA models,vision-language-action|VLA model

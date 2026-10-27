@@ -1,0 +1,44 @@
+{
+ "exhaustive": {
+  "nbHits": true
+ },
+ "exhaustiveNbHits": true,
+ "hits": [
+  {
+   "objectID": "48639240",
+   "created_at": "2026-06-23T02:01:25Z",
+   "title": "VibeThinker: 3B param model that beats Opus 4.5 on reasoning with novel SFT+GRPO",
+   "points": 398
+  },
+  {
+   "objectID": "43674825",
+   "created_at": "2025-04-13T18:33:05Z",
+   "title": "Implementing DeepSeek R1's GRPO algorithm from scratch",
+   "points": 192
+  },
+  {
+   "objectID": "43284420",
+   "created_at": "2025-03-06T19:51:55Z",
+   "title": "Using GRPO to Beat o1, o3-mini and R1 at \u201cTemporal Clue\u201d",
+   "points": 199
+  }
+ ],
+ "hitsPerPage": 3,
+ "nbHits": 4,
+ "nbPages": 2,
+ "page": 0,
+ "params": "query=%22GRPO%22&tags=story&typoTolerance=false&restrictSearchableAttributes=title&numericFilters=points%3E%3D50&hitsPerPage=3&advancedSyntax=true&analyticsTags=backend",
+ "processingTimeMS": 2,
+ "processingTimingsMS": {
+  "_request": {
+   "queue": 1,
+   "roundTrip": 29
+  },
+  "fetch": {
+   "total": 1
+  },
+  "total": 2
+ },
+ "query": "\"GRPO\"",
+ "serverTimeMS": 4
+}

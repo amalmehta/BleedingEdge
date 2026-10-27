@@ -1,0 +1,20 @@
+# Secrets: bleedingedge/http.py reads API keys from .env
+.env
+.env.*
+
+# Rebuilt from pyproject.toml + uv.lock with `uv sync`
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# 699 MB of raw API responses; too big for git. Not reproducible
+# exactly (APIs change), so back it up separately.
+data/cache/
+
+# Run logs
+*.log
+
+# Tooling and OS clutter
+.claude/
+.DS_Store
