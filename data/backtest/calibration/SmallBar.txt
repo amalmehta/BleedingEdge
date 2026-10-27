@@ -1,0 +1,15 @@
+('imitation learning', 1912, 2197, 0.87)
+('model predictive control', 0, 3035, 0.0)
+('graph neural networks', 5786, 9363, 0.62)
+('offline reinforcement learning', 842, 944, 0.89)
+('motion planning', 1763, 2148, 0.82)
+('knowledge distillation', 2451, 4049, 0.61)
+('federated learning', 6031, 7497, 0.8)
+('domain adaptation', 2370, 4940, 0.48)
+('contrastive learning', 4282, 7109, 0.6)
+('neural radiance fields', 324, 1685, 0.19)
+('diffusion policy', 209, 372, 0.56)
+('verifiable rewards', 218, 461, 0.47)
+median ratio 0.61
+
+[exited with code 0]

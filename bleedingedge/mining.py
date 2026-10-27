@@ -23,6 +23,7 @@ from .windows import counts
 ROOT = Path(__file__).resolve().parent.parent
 OUT_CSV = ROOT / "data" / "CandidatesMined2023.csv"
 OUT_COUNTS = ROOT / "data" / "backtest" / "MinedArxivCounts.json"
+OUT_TOTALS = ROOT / "data" / "backtest" / "ArxivTotals.json"  # all harvested papers per window
 
 YEAR = 2023
 MIN_TITLES = 8      # invented: recurs enough to be a topic, not a one-off title
@@ -139,6 +140,7 @@ def main() -> None:
     OUT_COUNTS.parent.mkdir(parents=True, exist_ok=True)
     dates = phrase_dates(papers, [r["topic"] for r in rows])
     OUT_COUNTS.write_text(json.dumps({g: counts(ds) for g, ds in dates.items()}))
+    OUT_TOTALS.write_text(json.dumps(counts([date.fromisoformat(p["created"]) for p in papers])))
     print(json.dumps({"papers_by_year": dict(sorted(by_year.items())), "candidates": len(rows),
                       "dropped_test_overlap": dropped}, indent=1))
 

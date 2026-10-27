@@ -122,3 +122,17 @@ def test_early_needs_new_not_just_small():
     assert sc.early(new_small, k)
     assert not sc.early([0] * 41 + [40] * 3, 43)  # new but no longer small (120 in 12 weeks)
     assert not sc.is_new([0] * 20, 19)            # no data two years back: can't call it new
+
+
+def test_relative_growth_removes_overall_growth():
+    total = [round(1000 * 1.3 ** (k / 13)) for k in range(40)]   # whole arXiv, +30% a year
+    topic = [round(t / 100) for t in total]                      # a topic that only keeps pace
+    assert sc.trend(topic)[39] > 1.2
+    assert abs(sc.relative(sc.trend(topic), sc.trend(total))[39] - 1) < 0.05
+    assert sc.relative([None, 2.0], [1.0, None]) == [None, None]
+    assert sc.signal_crossing([1] * 13 + [5] * 27, 5, [100] * 13 + [500] * 27) is None  # grew with arXiv
+
+
+def test_small_bar_can_be_scaled():
+    c = [10] * 20  # 30 per 12 weeks
+    assert sc.still_small(c, 19) and not sc.still_small(c, 19, small_max=25)

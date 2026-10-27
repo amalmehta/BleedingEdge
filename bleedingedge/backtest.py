@@ -36,6 +36,12 @@ HORIZON = 13  # windows: "reaches consensus within 12 months"
 # data/Candidates2023.csv (2023 workshops), data/Candidates2022-24.csv.
 CANDIDATES = ROOT / "data" / "CandidatesMined2023.csv"
 MINED_COUNTS = OUT / "MinedArxivCounts.json"
+TOTALS = OUT / "ArxivTotals.json"  # every harvested paper per window, for relative growth
+# "Small" for topics counted from the bulk download, which only covers cs.RO/LG/AI/CL and
+# matches whole words, so it counts fewer papers than arXiv search does for the same phrase.
+# On 11 neutral phrases (neither test topics nor candidates) it counted a median 0.61 of what
+# search counts (2026-10-27), so the bar is scaled to 50 x 0.6.
+LOCAL_SMALL_MAX = 30
 CUTOFF = 2023  # a candidate whose crowd arrived before this year was never new in 2024
 
 
@@ -56,6 +62,10 @@ class Topic:
     sources: str = ""
     venue: str = ""
     local: bool = False  # arXiv counts from the bulk harvest, not the search API
+
+    @property
+    def small_max(self) -> float:
+        return LOCAL_SMALL_MAX if self.local else sc.SMALL_MAX
     counts: dict[str, list[int]] = field(default_factory=dict)
     gb: dict[str, list] = field(default_factory=dict)       # burst growth ratios
     gt: dict[str, list] = field(default_factory=dict)       # trend growth ratios
@@ -104,6 +114,10 @@ def fetch(t: Topic, log=print) -> None:
         t.counts["funding"] = counts(funding.dates(t.key, START, END))
     t.gb = {s: sc.growth(c) for s, c in t.counts.items()}
     t.gt = {s: sc.trend(c) for s, c in t.counts.items()}
+    # arXiv growth relative to all papers: the field's own ~30% a year isn't a topic heating up
+    total = _totals()
+    t.gb["arxiv"] = sc.relative(t.gb["arxiv"], sc.growth(total))
+    t.gt["arxiv"] = sc.relative(t.gt["arxiv"], sc.trend(total))
     t.rolled = {s: sc.rolling(c) for s, c in t.counts.items()}
 
 
@@ -115,6 +129,16 @@ def _mined_counts() -> dict[str, list[int]]:
     if _mined is None:
         _mined = json.loads(MINED_COUNTS.read_text())
     return _mined
+
+
+_total: list[int] | None = None
+
+
+def _totals() -> list[int]:
+    global _total
+    if _total is None:
+        _total = json.loads(TOTALS.read_text())
+    return _total
 
 
 def available_signals() -> list[str]:
@@ -136,7 +160,7 @@ def flags(t: Topic, lam: dict[str, float]) -> dict[str, list]:
                             sc.mode_score(t.gt, t.rolled, lam, w, k, "trend")) if v is not None]
         S.append(max(vals) if vals else None)
     heat = [b or tr for b, tr in zip(burst, trend)]
-    early = [h and sc.early(t.counts["arxiv"], k) for k, h in enumerate(heat)]
+    early = [h and sc.early(t.counts["arxiv"], k, t.small_max) for k, h in enumerate(heat)]
     return {"score": S, "burst": burst, "trend": trend, "heating": heat, "early": early,
             "consensus": sc.consensus_window(t.counts["arxiv"])}
 
@@ -148,7 +172,7 @@ def baseline_flags(t: Topic) -> dict[str, list]:
     burst = [gb[k] is not None and gb[k] >= sc.BURST["g"] and c[k] >= sc.BURST["volume"]["arxiv"] for k in range(n)]
     trend = [gt[k] is not None and gt[k] >= sc.TREND["g"] and r[k] >= sc.TREND["volume"]["arxiv"] for k in range(n)]
     heat = [b or tr for b, tr in zip(burst, trend)]
-    early = [h and sc.early(c, k) for k, h in enumerate(heat)]
+    early = [h and sc.early(c, k, t.small_max) for k, h in enumerate(heat)]
     S = [max([v for v in (gb[k], gt[k]) if v is not None], default=None) for k in range(n)]
     return {"score": S, "burst": burst, "trend": trend, "heating": heat, "early": early,
             "consensus": sc.consensus_window(c)}
@@ -219,7 +243,7 @@ def run(log=print, tests_only: bool = False, report: bool = True, holdout: bool 
 
     # lead weights from each signal's own crossing on the test topics
     cons = {t.key: fl_a[t.key]["consensus"] for t in tests}
-    crossings = {s: {t.key: sc.signal_crossing(t.counts[s], sc.SIGNAL_FLOOR[s])
+    crossings = {s: {t.key: sc.signal_crossing(t.counts[s], sc.SIGNAL_FLOOR[s], _totals() if s == "arxiv" else None)
                      for t in tests if s in t.counts} for s in sigs}
     lam_raw = sc.lead_weights(crossings, cons)
     tuned = {s: (1.0 if v is None else v) for s, v in lam_raw.items()}

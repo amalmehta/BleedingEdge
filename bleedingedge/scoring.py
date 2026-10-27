@@ -39,6 +39,12 @@ def growth(counts: list[int]) -> list[float | None]:
     return out
 
 
+def relative(gs: list[float | None], total: list[float | None]) -> list[float | None]:
+    """A topic's growth ratio divided by the same ratio for all papers, so arXiv's own growth
+    (~30% a year in these categories) doesn't count as the topic heating up."""
+    return [None if g is None or t is None else g / t for g, t in zip(gs, total)]
+
+
 def rolling(counts: list[int], span: int = 3) -> list[int]:
     """Sum of the last `span` windows (12 weeks for span 3), shorter at the start."""
     return [sum(counts[max(0, k - span + 1):k + 1]) for k in range(len(counts))]
@@ -87,9 +93,9 @@ def heating_up(gs, counts, lam, w, k, mode: str = "burst") -> bool:
     return rising >= MIN_RISING and volume
 
 
-def still_small(arxiv_counts: list[int], k: int) -> bool:
-    """Detector-side "early": fewer than SMALL_MAX papers in the last 12 weeks."""
-    return rolling(arxiv_counts)[k] < SMALL_MAX
+def still_small(arxiv_counts: list[int], k: int, small_max: float = SMALL_MAX) -> bool:
+    """Fewer than small_max papers in the last 12 weeks (SMALL_MAX is set for arXiv search counts)."""
+    return rolling(arxiv_counts)[k] < small_max
 
 
 def is_new(arxiv_counts: list[int], k: int) -> bool:
@@ -100,9 +106,9 @@ def is_new(arxiv_counts: list[int], k: int) -> bool:
     return j >= 2 and rolling(arxiv_counts)[j] < NEW_MAX
 
 
-def early(arxiv_counts: list[int], k: int) -> bool:
+def early(arxiv_counts: list[int], k: int, small_max: float = SMALL_MAX) -> bool:
     """Detector-side "early": still small and new. Uses only data up to window k."""
-    return still_small(arxiv_counts, k) and is_new(arxiv_counts, k)
+    return still_small(arxiv_counts, k, small_max) and is_new(arxiv_counts, k)
 
 
 def consensus_window(arxiv_counts: list[int]) -> int | None:
@@ -119,10 +125,12 @@ def first(flags: list[bool]) -> int | None:
     return next((k for k, f in enumerate(flags) if f), None)
 
 
-def signal_crossing(counts: list[int], floor: int) -> int | None:
+def signal_crossing(counts: list[int], floor: int, total: list[int] | None = None) -> int | None:
     """First window where one signal rises on its own: a burst (g >= 1.5 with >= floor in the
-    window) or a trend (g >= 2 with >= 3 x floor in 12 weeks)."""
+    window) or a trend (g >= 2 with >= 3 x floor in 12 weeks). With `total`, ratios are relative."""
     gb, gt, r = growth(counts), trend(counts), rolling(counts)
+    if total is not None:
+        gb, gt = relative(gb, growth(total)), relative(gt, trend(total))
     return first([
         (gb[k] is not None and gb[k] >= BURST["g"] and counts[k] >= floor)
         or (gt[k] is not None and gt[k] >= TREND["g"] and r[k] >= 3 * floor)
