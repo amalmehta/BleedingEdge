@@ -59,3 +59,17 @@ def test_funding_filters_topic_and_range(tmp_path):
     )
     assert funding.dates("vla", date(2021, 1, 4), date(2025, 12, 29), p) == [date(2024, 3, 12)]
     assert funding.dates("vla", date(2021, 1, 4), date(2025, 12, 29), tmp_path / "missing.csv") == []
+
+
+def test_arxiv_bulk_parse_keeps_categories_and_dates(monkeypatch):
+    from datetime import date
+    from bleedingedge.sources import arxiv_bulk
+    xml = (FIX / "oai_page.xml").read_text()
+    recs, token = arxiv_bulk.parse(xml)
+    assert recs == []  # all 3 were created before 2021
+    assert token and "skip" in token
+    monkeypatch.setattr(arxiv_bulk, "SINCE", date(2020, 1, 1))
+    recs, _ = arxiv_bulk.parse(xml)
+    # 2020-12-30 cs.LG paper kept; the cs.DM/math paper dropped by category
+    assert [r["id"] for r in recs] == ["1706.09520"]
+    assert recs[0]["created"] == "2020-12-30" and "  " not in recs[0]["title"]

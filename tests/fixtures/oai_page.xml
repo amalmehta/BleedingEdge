@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OAI-PMH xmlns="http://www.openarchives.org/OAI/2.0/" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd">
+    <responseDate>2026-10-27T17:21:28Z</responseDate>
+                <request verb="ListRecords" metadataPrefix="arXiv" from="2021-01-08" set="cs">http://oaipmh.arxiv.org/oai</request>
+
+
+    <ListRecords>
+<record>
+                <header>
+        <identifier>oai:arXiv.org:1004.2735</identifier>
+        <datestamp>2021-01-01</datestamp>
+            <setSpec>cs:cs:DM</setSpec>
+            <setSpec>math:math:CO</setSpec>
+    </header>
+
+            <metadata>
+                        <arXiv xmlns="http://arxiv.org/OAI/arXiv/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://arxiv.org/OAI/arXiv/ https://oaipmh.arxiv.org/OAI/arXiv.xsd">
+        <id>1004.2735</id>
+        <created>2010-04-15</created>
+            <updated>2021-01-01</updated>
+        <authors>
+                <author>
+                    <keyname>Erdős</keyname>
+                        <forenames>Péter L.</forenames>
+                </author>
+                <author>
+                    <keyname>Soukup</keyname>
+                        <forenames>Lajos</forenames>
+                </author>
+                <author>
+                    <keyname>Stoye</keyname>
+                        <forenames>Jens</forenames>
+                </author>
+        </authors>
+        <title>Balanced Vertices in Trees and a Simpler Algorithm to Compute the Genomic Distance</title>
+            <categories>cs.DM math.CO</categories>
+            <comments>6 pages, submitted</comments>
+            <msc-class>68R10, 05C05, 92D15</msc-class>
+            <doi>10.1016/j.aml.2010.08.021</doi>
+            <license>http://arxiv.org/licenses/nonexclusive-distrib/1.0/</license>
+            <abstract>This paper provides a short and transparent solution for the covering cost of white-grey trees which play a crucial role in the algorithm of Bergeron {\it et al.}\ to compute the rearrangement distance between two multichromosomal genomes in linear time ({\it Theor. Comput. Sci.}, 410:5300-5316, 2009). In the process it introduces a new {\em center} notion for trees, which seems to be interesting on its own.</abstract>
+    </arXiv>
+
+            </metadata>
+        </record>
+<record>
+                <header>
+        <identifier>oai:arXiv.org:1203.1257</identifier>
+        <datestamp>2021-01-01</datestamp>
+            <setSpec>math:math:CO</setSpec>
+            <setSpec>cs:cs:LO</setSpec>
+    </header>
+
+            <metadata>
+                        <arXiv xmlns="http://arxiv.org/OAI/arXiv/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://arxiv.org/OAI/arXiv/ https://oaipmh.arxiv.org/OAI/arXiv.xsd">
+        <id>1203.1257</id>
+        <created>2012-03-06</created>
+            <updated>2021-01-01</updated>
+        <authors>
+                <author>
+                    <keyname>Erdős</keyname>
+                        <forenames>Péter L.</forenames>
+                </author>
+                <author>
+                    <keyname>Tardif</keyname>
+                        <forenames>Claude</forenames>
+                </author>
+                <author>
+                    <keyname>Tardos</keyname>
+                        <forenames>Gábor</forenames>
+                </author>
+        </authors>
+        <title>On infinite-finite duality pairs of directed graphs</title>
+            <categories>math.CO cs.LO</categories>
+            <msc-class>05C60 (Primary), 68R10 (Secondary)</msc-class>
+            <doi>10.1007/s11083-012-9278-9</doi>
+            <license>http://arxiv.org/licenses/nonexclusive-distrib/1.0/</license>
+            <abstract>The (A,D) duality pairs play crucial role in the theory of general relational structures and in the Constraint Satisfaction Problem. The case where both classes are finite is fully characterized. The case when both side are infinite seems to be very complex. It is also known that no finite-infinite duality pair is possible if we make the additional restriction that both classes are antichains. In this paper (which is the first one of a series) we start the detailed study of the infinite-finite case.
+  Here we concentrate on directed graphs. We prove some elementary properties of the infinite-finite duality pairs, including lower and upper bounds on the size of D, and show that the elements of A must be equivalent to forests if A is an antichain. Then we construct instructive examples, where the elements of A are paths or trees. Note that the existence of infinite-finite antichain dualities was not previously known.</abstract>
+    </arXiv>
+
+            </metadata>
+        </record>
+<record>
+                <header>
+        <identifier>oai:arXiv.org:1706.09520</identifier>
+        <datestamp>2021-01-01</datestamp>
+            <setSpec>cs:cs:LG</setSpec>
+            <setSpec>cs:cs:AI</setSpec>
+            <setSpec>cs:cs:RO</setSpec>
+    </header>
+
+            <metadata>
+                        <arXiv xmlns="http://arxiv.org/OAI/arXiv/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://arxiv.org/OAI/arXiv/ https://oaipmh.arxiv.org/OAI/arXiv.xsd">
+        <id>1706.09520</id>
+        <created>2020-12-30</created>
+            <updated>2021-01-01</updated>
+        <authors>
+                <author>
+                    <keyname>Zhang</keyname>
+                        <forenames>Jingwei</forenames>
+                </author>
+                <author>
+                    <keyname>Tai</keyname>
+                        <forenames>Lei</forenames>
+                </author>
+                <author>
+                    <keyname>Liu</keyname>
+                        <forenames>Ming</forenames>
+                </author>
+                <author>
+                    <keyname>Boedecker</keyname>
+                        <forenames>Joschka</forenames>
+                </author>
+                <author>
+                    <keyname>Burgard</keyname>
+                        <forenames>Wolfram</forenames>
+                </author>
+        </authors>
+        <title>Neural SLAM: Learning to Explore with External Memory</title>
+            <categories>cs.LG cs.AI cs.RO</categories>
+            <comments>A video of our experiments can be found at: https://goo.gl/G2Vu5y</comments>
+            <license>http://arxiv.org/licenses/nonexclusive-distrib/1.0/</license>
+            <abstract>We present an approach for agents to learn representations of a global map from sensor data, to aid their exploration in new environments. To achieve this, we embed procedures mimicking that of traditional Simultaneous Localization and Mapping (SLAM) into the soft attention based addressing of external memory architectures, in which the external memory acts as an internal representation of the environment. This structure encourages the evolution of SLAM-like behaviors inside a completely differentiable deep neural network. We show that this approach can help reinforcement learning agents to successfully explore new environments where long-term memory is essential. We validate our approach in both challenging grid-world environments and preliminary Gazebo experiments. A video of our experiments can be found at: https://goo.gl/G2Vu5y.</abstract>
+    </arXiv>
+
+            </metadata>
+        </record>
+<resumptionToken expirationDate='2026-10-28T00:00:00Z'>verb%3DListRecords%26metadataPrefix%3DarXiv%26from%3D2021-01-08%26set%3Dcs%26skip%3D25</resumptionToken>
+</ListRecords>
+</OAI-PMH>
