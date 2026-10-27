@@ -1,0 +1,725 @@
+{
+  "window": [
+    "2021-01-04",
+    "2025-12-29"
+  ],
+  "signals": [
+    "arxiv",
+    "github",
+    "funding"
+  ],
+  "missing_signals": [
+    "citations",
+    "labs"
+  ],
+  "keys_present": {
+    "S2_API_KEY": false,
+    "OPENALEX_API_KEY": false
+  },
+  "lead": [
+    {
+      "key": "grpo_rlvr",
+      "topic": "RL for LLM reasoning (GRPO / RLVR)",
+      "heating_window": 52,
+      "mode": "burst",
+      "consensus_window": 56,
+      "hn_first_story_window": 53,
+      "lead_weeks": 16,
+      "passes": true
+    },
+    {
+      "key": "diffusion_policy",
+      "topic": "Diffusion policies",
+      "heating_window": 40,
+      "mode": "burst",
+      "consensus_window": 44,
+      "hn_first_story_window": null,
+      "lead_weeks": 16,
+      "passes": true
+    },
+    {
+      "key": "vla",
+      "topic": "Vision-language-action models",
+      "heating_window": 45,
+      "mode": "trend",
+      "consensus_window": 57,
+      "hn_first_story_window": 52,
+      "lead_weeks": 48,
+      "passes": true
+    }
+  ],
+  "lead_baseline": [
+    {
+      "key": "grpo_rlvr",
+      "topic": "RL for LLM reasoning (GRPO / RLVR)",
+      "heating_window": 52,
+      "mode": "burst",
+      "consensus_window": 56,
+      "hn_first_story_window": 53,
+      "lead_weeks": 16,
+      "passes": true
+    },
+    {
+      "key": "diffusion_policy",
+      "topic": "Diffusion policies",
+      "heating_window": 40,
+      "mode": "burst",
+      "consensus_window": 44,
+      "hn_first_story_window": null,
+      "lead_weeks": 16,
+      "passes": true
+    },
+    {
+      "key": "vla",
+      "topic": "Vision-language-action models",
+      "heating_window": 44,
+      "mode": "burst",
+      "consensus_window": 57,
+      "hn_first_story_window": 52,
+      "lead_weeks": 52,
+      "passes": true
+    }
+  ],
+  "crossings": {
+    "arxiv": {
+      "grpo_rlvr": 52,
+      "diffusion_policy": 40,
+      "vla": 44
+    },
+    "github": {
+      "grpo_rlvr": null,
+      "diffusion_policy": 41,
+      "vla": 54
+    },
+    "funding": {
+      "grpo_rlvr": 41,
+      "diffusion_policy": null,
+      "vla": 7
+    }
+  },
+  "consensus": {
+    "grpo_rlvr": 56,
+    "diffusion_policy": 44,
+    "vla": 57
+  },
+  "lead_weights_raw": {
+    "arxiv": 1.0,
+    "github": 0.6666666666666666,
+    "funding": 0.6666666666666666
+  },
+  "lead_weights": {
+    "arxiv": 1.0,
+    "github": 0.6666666666666666,
+    "funding": 0.6666666666666666
+  },
+  "precision": {
+    "untuned": {
+      "pairs": 27,
+      "hits": 12,
+      "precision": 0.4444444444444444,
+      "topics_flagged": 7,
+      "topics_hit": 3,
+      "topic_precision": 0.42857142857142855,
+      "per_window": [
+        {
+          "window_start": "2024-01-01",
+          "flagged": 5,
+          "hits": 1,
+          "topics": [
+            "segment_anything_model",
+            "gpt_models",
+            "foundational_models",
+            "large_vision_language",
+            "chain_of_thought"
+          ]
+        },
+        {
+          "window_start": "2024-01-29",
+          "flagged": 5,
+          "hits": 2,
+          "topics": [
+            "segment_anything_model",
+            "large_vision_language",
+            "foundational_models",
+            "prompt_optimization",
+            "gpt_models"
+          ]
+        },
+        {
+          "window_start": "2024-02-26",
+          "flagged": 4,
+          "hits": 2,
+          "topics": [
+            "segment_anything_model",
+            "prompt_optimization",
+            "large_vision_language",
+            "foundational_models"
+          ]
+        },
+        {
+          "window_start": "2024-03-25",
+          "flagged": 4,
+          "hits": 3,
+          "topics": [
+            "large_vision_language",
+            "prompt_optimization",
+            "foundational_models",
+            "hallucination_detection"
+          ]
+        },
+        {
+          "window_start": "2024-04-22",
+          "flagged": 3,
+          "hits": 3,
+          "topics": [
+            "large_vision_language",
+            "prompt_optimization",
+            "hallucination_detection"
+          ]
+        },
+        {
+          "window_start": "2024-05-20",
+          "flagged": 2,
+          "hits": 1,
+          "topics": [
+            "hallucination_detection",
+            "prompt_optimization"
+          ]
+        },
+        {
+          "window_start": "2024-06-17",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "hallucination_detection"
+          ]
+        },
+        {
+          "window_start": "2024-07-15",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "hallucination_detection"
+          ]
+        },
+        {
+          "window_start": "2024-08-12",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "hallucination_detection"
+          ]
+        },
+        {
+          "window_start": "2024-09-09",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "hallucination_detection"
+          ]
+        },
+        {
+          "window_start": "2024-10-07",
+          "flagged": 0,
+          "hits": 0,
+          "topics": []
+        },
+        {
+          "window_start": "2024-11-04",
+          "flagged": 0,
+          "hits": 0,
+          "topics": []
+        },
+        {
+          "window_start": "2024-12-02",
+          "flagged": 0,
+          "hits": 0,
+          "topics": []
+        },
+        {
+          "window_start": "2024-12-30",
+          "flagged": 0,
+          "hits": 0,
+          "topics": []
+        }
+      ]
+    },
+    "tuned": {
+      "pairs": 29,
+      "hits": 12,
+      "precision": 0.41379310344827586,
+      "topics_flagged": 7,
+      "topics_hit": 3,
+      "topic_precision": 0.42857142857142855,
+      "per_window": [
+        {
+          "window_start": "2024-01-01",
+          "flagged": 5,
+          "hits": 1,
+          "topics": [
+            "segment_anything_model",
+            "gpt_models",
+            "foundational_models",
+            "large_vision_language",
+            "chain_of_thought"
+          ]
+        },
+        {
+          "window_start": "2024-01-29",
+          "flagged": 5,
+          "hits": 2,
+          "topics": [
+            "segment_anything_model",
+            "large_vision_language",
+            "foundational_models",
+            "prompt_optimization",
+            "gpt_models"
+          ]
+        },
+        {
+          "window_start": "2024-02-26",
+          "flagged": 4,
+          "hits": 2,
+          "topics": [
+            "segment_anything_model",
+            "prompt_optimization",
+            "large_vision_language",
+            "foundational_models"
+          ]
+        },
+        {
+          "window_start": "2024-03-25",
+          "flagged": 4,
+          "hits": 3,
+          "topics": [
+            "large_vision_language",
+            "prompt_optimization",
+            "foundational_models",
+            "hallucination_detection"
+          ]
+        },
+        {
+          "window_start": "2024-04-22",
+          "flagged": 3,
+          "hits": 3,
+          "topics": [
+            "large_vision_language",
+            "prompt_optimization",
+            "hallucination_detection"
+          ]
+        },
+        {
+          "window_start": "2024-05-20",
+          "flagged": 3,
+          "hits": 1,
+          "topics": [
+            "hallucination_detection",
+            "prompt_optimization",
+            "foundational_models"
+          ]
+        },
+        {
+          "window_start": "2024-06-17",
+          "flagged": 2,
+          "hits": 0,
+          "topics": [
+            "hallucination_detection",
+            "prompt_optimization"
+          ]
+        },
+        {
+          "window_start": "2024-07-15",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "hallucination_detection"
+          ]
+        },
+        {
+          "window_start": "2024-08-12",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "hallucination_detection"
+          ]
+        },
+        {
+          "window_start": "2024-09-09",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "hallucination_detection"
+          ]
+        },
+        {
+          "window_start": "2024-10-07",
+          "flagged": 0,
+          "hits": 0,
+          "topics": []
+        },
+        {
+          "window_start": "2024-11-04",
+          "flagged": 0,
+          "hits": 0,
+          "topics": []
+        },
+        {
+          "window_start": "2024-12-02",
+          "flagged": 0,
+          "hits": 0,
+          "topics": []
+        },
+        {
+          "window_start": "2024-12-30",
+          "flagged": 0,
+          "hits": 0,
+          "topics": []
+        }
+      ]
+    },
+    "baseline_arxiv_only": {
+      "pairs": 91,
+      "hits": 14,
+      "precision": 0.15384615384615385,
+      "topics_flagged": 19,
+      "topics_hit": 3,
+      "topic_precision": 0.15789473684210525,
+      "per_window": [
+        {
+          "window_start": "2024-01-01",
+          "flagged": 5,
+          "hits": 1,
+          "topics": [
+            "gpt_models",
+            "segment_anything_model",
+            "large_vision_language",
+            "foundational_models",
+            "chain_of_thought"
+          ]
+        },
+        {
+          "window_start": "2024-01-29",
+          "flagged": 9,
+          "hits": 3,
+          "topics": [
+            "segment_anything_model",
+            "gpt_models",
+            "prompt_optimization",
+            "large_vision_language",
+            "ai_generated_content",
+            "large_generative",
+            "foundational_models",
+            "chain_of_thought",
+            "hallucination_detection"
+          ]
+        },
+        {
+          "window_start": "2024-02-26",
+          "flagged": 8,
+          "hits": 3,
+          "topics": [
+            "segment_anything_model",
+            "prompt_optimization",
+            "large_vision_language",
+            "red_teaming",
+            "gpt_models",
+            "foundational_models",
+            "hallucination_detection",
+            "chain_of_thought"
+          ]
+        },
+        {
+          "window_start": "2024-03-25",
+          "flagged": 10,
+          "hits": 3,
+          "topics": [
+            "prompt_optimization",
+            "red_teaming",
+            "large_vision_language",
+            "hallucination_detection",
+            "language_agents",
+            "semi_supervised_medical",
+            "segment_anything_model",
+            "foundational_models",
+            "prompt_generation",
+            "text_to_image_generative"
+          ]
+        },
+        {
+          "window_start": "2024-04-22",
+          "flagged": 9,
+          "hits": 3,
+          "topics": [
+            "prompt_optimization",
+            "large_vision_language",
+            "language_agents",
+            "prompt_generation",
+            "hallucination_detection",
+            "retrieval_augmented_language",
+            "foundational_models",
+            "gpt_models",
+            "segment_anything_model"
+          ]
+        },
+        {
+          "window_start": "2024-05-20",
+          "flagged": 7,
+          "hits": 1,
+          "topics": [
+            "language_agents",
+            "prompt_optimization",
+            "hallucination_detection",
+            "foundational_models",
+            "prompt_generation",
+            "large_generative",
+            "retrieval_augmented_language"
+          ]
+        },
+        {
+          "window_start": "2024-06-17",
+          "flagged": 6,
+          "hits": 0,
+          "topics": [
+            "hallucination_detection",
+            "language_agents",
+            "prompt_optimization",
+            "foundational_models",
+            "multimodal_language",
+            "prompt_generation"
+          ]
+        },
+        {
+          "window_start": "2024-07-15",
+          "flagged": 6,
+          "hits": 0,
+          "topics": [
+            "hallucination_detection",
+            "language_agents",
+            "prompt_optimization",
+            "red_teaming",
+            "long_term_time",
+            "multimodal_language"
+          ]
+        },
+        {
+          "window_start": "2024-08-12",
+          "flagged": 8,
+          "hits": 0,
+          "topics": [
+            "hallucination_detection",
+            "red_teaming",
+            "language_agents",
+            "prompt_optimization",
+            "prompt_generation",
+            "multimodal_language",
+            "long_term_time",
+            "foundational_models"
+          ]
+        },
+        {
+          "window_start": "2024-09-09",
+          "flagged": 9,
+          "hits": 0,
+          "topics": [
+            "language_agents",
+            "hallucination_detection",
+            "multimodal_language",
+            "prompt_optimization",
+            "retrieval_augmented_language",
+            "prompt_generation",
+            "red_teaming",
+            "foundational_models",
+            "long_term_time"
+          ]
+        },
+        {
+          "window_start": "2024-10-07",
+          "flagged": 6,
+          "hits": 0,
+          "topics": [
+            "prompt_optimization",
+            "intent_discovery",
+            "multimodal_language",
+            "language_agents",
+            "retrieval_augmented_language",
+            "ai_generated_content"
+          ]
+        },
+        {
+          "window_start": "2024-11-04",
+          "flagged": 0,
+          "hits": 0,
+          "topics": []
+        },
+        {
+          "window_start": "2024-12-02",
+          "flagged": 3,
+          "hits": 0,
+          "topics": [
+            "long_term_time",
+            "ai_generated_content",
+            "multimodal_language"
+          ]
+        },
+        {
+          "window_start": "2024-12-30",
+          "flagged": 5,
+          "hits": 0,
+          "topics": [
+            "generative_flow_networks",
+            "prompt_optimization",
+            "hallucination_detection",
+            "ai_generated_content",
+            "segment_anything_model"
+          ]
+        }
+      ]
+    },
+    "tuned_all_candidates": {
+      "pairs": 29,
+      "hits": 12,
+      "precision": 0.41379310344827586,
+      "topics_flagged": 7,
+      "topics_hit": 3,
+      "topic_precision": 0.42857142857142855,
+      "per_window": [
+        {
+          "window_start": "2024-01-01",
+          "flagged": 5,
+          "hits": 1,
+          "topics": [
+            "segment_anything_model",
+            "gpt_models",
+            "foundational_models",
+            "large_vision_language",
+            "chain_of_thought"
+          ]
+        },
+        {
+          "window_start": "2024-01-29",
+          "flagged": 5,
+          "hits": 2,
+          "topics": [
+            "segment_anything_model",
+            "large_vision_language",
+            "foundational_models",
+            "prompt_optimization",
+            "gpt_models"
+          ]
+        },
+        {
+          "window_start": "2024-02-26",
+          "flagged": 4,
+          "hits": 2,
+          "topics": [
+            "segment_anything_model",
+            "prompt_optimization",
+            "large_vision_language",
+            "foundational_models"
+          ]
+        },
+        {
+          "window_start": "2024-03-25",
+          "flagged": 4,
+          "hits": 3,
+          "topics": [
+            "large_vision_language",
+            "prompt_optimization",
+            "foundational_models",
+            "hallucination_detection"
+          ]
+        },
+        {
+          "window_start": "2024-04-22",
+          "flagged": 3,
+          "hits": 3,
+          "topics": [
+            "large_vision_language",
+            "prompt_optimization",
+            "hallucination_detection"
+          ]
+        },
+        {
+          "window_start": "2024-05-20",
+          "flagged": 3,
+          "hits": 1,
+          "topics": [
+            "hallucination_detection",
+            "prompt_optimization",
+            "foundational_models"
+          ]
+        },
+        {
+          "window_start": "2024-06-17",
+          "flagged": 2,
+          "hits": 0,
+          "topics": [
+            "hallucination_detection",
+            "prompt_optimization"
+          ]
+        },
+        {
+          "window_start": "2024-07-15",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "hallucination_detection"
+          ]
+        },
+        {
+          "window_start": "2024-08-12",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "hallucination_detection"
+          ]
+        },
+        {
+          "window_start": "2024-09-09",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "hallucination_detection"
+          ]
+        },
+        {
+          "window_start": "2024-10-07",
+          "flagged": 0,
+          "hits": 0,
+          "topics": []
+        },
+        {
+          "window_start": "2024-11-04",
+          "flagged": 0,
+          "hits": 0,
+          "topics": []
+        },
+        {
+          "window_start": "2024-12-02",
+          "flagged": 0,
+          "hits": 0,
+          "topics": []
+        },
+        {
+          "window_start": "2024-12-30",
+          "flagged": 0,
+          "hits": 0,
+          "topics": []
+        }
+      ]
+    }
+  },
+  "passes": {
+    "a_lead": true,
+    "b_precision": false
+  },
+  "candidates": {
+    "file": "CandidatesMined2023.csv",
+    "half": "holdout",
+    "total_both_halves": 88,
+    "in_this_half": 36,
+    "dropped_crowd_before_cutoff": 0,
+    "judged": 36,
+    "crowd_in_2024_25": 3
+  }
+}

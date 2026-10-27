@@ -23,7 +23,7 @@ flowchart LR
   SC -.later.-> WB[Weekly brief + data/Trends.csv]
 ```
 
-1. **Backtest** (built; failed (b) on 2026-10-26, see BACKTEST.md): fetch 2021–25 history, score it, measure the lead over the
+1. **Backtest** (built; held-out (b) failed at 41% on 2026-10-27, see BACKTEST.md): fetch 2021–25 history, score it, measure the lead over the
    consensus signal, set each signal's lead weight, write `docs/BACKTEST.md`.
 2. **Weekly brief** (only if the backtest passes): `prompts/WeeklyBrief.md` run by a Claude
    scheduled task. It reuses the same fetchers and scoring for the last 16 weeks and

@@ -29,3 +29,5 @@
    → Continued the harvest, mining and run.
 13. "Before opening the held-out half, apply the fixes we'd want in the final method: divide by total arXiv growth and lower the 'small' bar to fit local counts. Check them on the dev half only, then stop."
    → Relative arXiv growth; small bar 30 for bulk counts (calibrated at 0.61× on 11 neutral phrases). Dev half 52% (15/29) vs 30% arXiv-only, in-sample. Held-out half not opened.
+14. "Run the held-out half once with the method as it is now, and report pass or fail."
+   → FAIL: 41% (12/29) vs 50%; arXiv-only 15%; 3 of 3 winners caught. Method not changed after opening.

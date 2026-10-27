@@ -1,13 +1,17 @@
 # Backtest: would the method have spotted past trends early?
 
-**Verdict: both criteria now pass on the dev half, but only just, and only after tuning on it. The held-out half decides. Don't run the weekly brief until it has.**
+**Verdict: FAIL.** On the held-out half, opened once on 2026-10-27, criterion (b) scored **41% (12 of 29)** against the 50% bar.
 
-- Criterion (a) passes, but it's in-sample, so it's weak evidence.
-- Criterion (b) was 6%, then 0 of 3, then 41%. With the final two fixes it's **52% (15 of 29)**, just over the 50% bar. arXiv-only scored 30%.
-  - **Treat 52% as in-sample:** I chose the fixes after seeing the 41%.
-  - **One hit fewer and it fails:** 14 of 29 is 48%.
-  - **Counted by distinct topic, it's 40%:** 4 of 10.
-- See [the final fixes](#final-fixes-relative-growth-and-a-calibrated-small-bar). The held-out half (36 topics) is still sealed. It's the only clean test left.
+The method did catch every topic in that half that took off, and it beat arXiv-only by about 2.7×. The question now is whether a 4-in-10 hit rate is useful to you. That's for you to decide, not a pass. See [Held-out result](#held-out-result).
+
+| | Dev half (tuned on) | Held-out half (clean) |
+|---|---|---|
+| Precision, full method | 52% (15/29) | **41% (12/29)** |
+| Precision, arXiv only | 30% | 15% |
+| Topics that took off in 2024–25 that it caught | 4 of 5 | 3 of 3 |
+| Distinct flagged topics that hit | 4 of 10 | 3 of 7 |
+
+Criterion (a) passes, but it's in-sample, so it's weak evidence.
 
 Run on 2026-10-26 over Jan 2021 – Dec 2025: 65 four-week windows, 3 test topics, 59 candidate topics. The signals were arXiv, new GitHub repos and funding rounds. Citations and lab papers were left out because they wait on API keys. Every count, query URL and chart is in [BacktestResults.md](BacktestResults.md), which is generated. Raw counts are in `data/backtest/Counts.csv`.
 
@@ -145,6 +149,43 @@ The 3 topics flagged were exactly these small niches, and none of them took off.
 - **arXiv itself is growing.** It had about 30% more papers each year in these categories (39k in 2021, 91k in 2025). Every topic's growth ratio is inflated by that much. A fix would divide by total volume, but it isn't applied.
 - **I adjusted the mining rules twice before this run.** That included keeping hyphenated words whole and dropping title boilerplate like "leveraging large language". I did it after reading the 2023 candidate list, but before looking at any 2024–25 outcome.
 
+## Held-out result
+
+I ran this once, with the method frozen as it was after the final fixes:
+
+```bash
+uv run python -m bleedingedge.backtest --holdout
+```
+
+- The output is in `data/backtest/Holdout/`.
+- The 36 held-out topics had never been searched on GitHub or Hacker News or scored before this run.
+- This is the only clean number in this document. **(b): 41%, fail.**
+
+| Method | Flags in 2024 | Crowd arrived within 12 months | Precision | Topics that hit / flagged |
+|---|---|---|---|---|
+| Full method (tuned weights) | 29 | 12 | **41%** | 3 / 7 |
+| Full method (untuned, all weights 1) | 27 | 12 | 44% | 3 / 7 |
+| arXiv only | 91 | 14 | 15% | 3 / 19 |
+
+**What it got right:**
+
+- **It caught all 3 held-out topics whose crowd arrived in 2024–25:** hallucination detection, prompt optimisation, and large vision-language models. Across both halves it caught 7 of 8.
+- **Its flags beat chance by a wide margin.** Only 8 of the 88 mined candidates (9%) took off in 2024–25. Picking at random, about 1 in 11 flags would hit. The detector's flags hit about 4 in 10.
+- **The extra signals pay off on clean data.** Adding GitHub cut false flags from 91 to 29, compared with arXiv alone, and kept every hit.
+- **Lead weights from the test topics didn't help.** Tuned (41%) is no better than untuned (44%).
+
+**What it got wrong:**
+
+- **4 of the 7 flagged topics had already been crowded since 2023:** "foundational models", Segment Anything, "GPT models" and "chain of thought".
+- **The cause is that "early" asks whether a topic is small and new, but not whether its crowd already came and went.** A topic that peaked early and then settled can still look small.
+- **This is the obvious next fix, and I haven't made it.** Changing the method after opening the held-out half would make this test worthless. A fix needs fresh held-out data, for example phrases new in 2024, graded on 2025–26.
+
+**Before relying on these numbers:**
+
+- 29 flags from 7 topics is a small sample.
+- 33 of the 36 held-out topics are AI/LLM, not robotics.
+- Citation and lab-paper signals were never added.
+
 ## Final fixes: relative growth and a calibrated "small" bar
 
 These were decided 2026-10-27, before the held-out half was opened.
@@ -201,13 +242,19 @@ uv run python -m bleedingedge.backtest --holdout
 - Deleted GitHub repos are missing. This biases older windows downward.
 - 3 test topics is a very small sample. One topic changing its result moves (a) a lot.
 
-## Next
+## Next: your call
 
-1. **Open the held-out half once** (the command above).
-   - **If precision ≥ 50% there:** the method passes, and the weekly brief is worth building.
-   - **If it's below:** the method fails on clean data. The fallback is the simpler arXiv-growth script. On the dev half it scored 30%, so even that should be described honestly as "a list to skim", not "picks".
-2. **Citations and lab papers aren't in.** If your keys arrive after the held-out run, adding them is a new method. It would need a new held-out set: for example, phrases new in 2024, graded on 2025–26.
-3. **For your domain, run robotics separately.** Mine phrases from cs.RO alone, with a lower title bar and its own held-out half. This run was 90% AI/LLM topics.
+The spec says that if the backtest fails, you either change the method or stop before running it weekly. There are three honest options:
+
+1. **Stop.** No weekly brief.
+2. **Lower the bar on purpose, and record it as a change made after seeing the result.**
+   - Then run the 4-week trial with the brief stating its record plainly: "about 4 in 10 picks took off within a year, and it caught 7 of 8 winners".
+   - The trial's own test ("you act on at least 2 study picks") becomes the real check.
+3. **Fix the "already crowded" error and test again on new data.**
+   - Mine phrases new in 2024.
+   - Grade them on 2025–26, with a fresh held-out half.
+   - Add citations and lab papers if your keys are in by then.
+   - Run a separate cs.RO-only mine, since robotics is your domain and it was barely tested.
 
 ## Reproduce
 
