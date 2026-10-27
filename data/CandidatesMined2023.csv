@@ -1,4 +1,4 @@
-topic,arxiv_phrases,domain,first_year,titles_2023,prior_2021_22,source_urls
+topic,arxiv_phrases,domain,first_year,titles_in_year,prior_two_years,source_urls
 latent diffusion,latent diffusion,ai_tooling,2023,59,8,"arXiv OAI-PMH bulk metadata (cs.RO, cs.LG, cs.AI, cs.CL)"
 semeval-2023 task,semeval-2023 task,ai_tooling,2023,56,0,"arXiv OAI-PMH bulk metadata (cs.RO, cs.LG, cs.AI, cs.CL)"
 instruction tuning,instruction tuning,ai_tooling,2023,54,9,"arXiv OAI-PMH bulk metadata (cs.RO, cs.LG, cs.AI, cs.CL)"

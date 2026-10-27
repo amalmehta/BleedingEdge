@@ -66,7 +66,7 @@ def write_report(result: dict, tests, fl_a) -> None:
         _chart(t, fl_a[t.key], IMG / f"backtest-{t.key}.png")
 
     L = ["# Backtest Results (generated)", "",
-         f"Window {START:%d %b %Y} – {END:%d %b %Y}, 65 four-week windows. "
+         f"Window {START:%d %b %Y} – {END:%d %b %Y}, {len(windows())} four-week windows. "
          f"Signals used: {', '.join(result['signals'])}. "
          f"Not yet used (need API keys): {', '.join(result['missing_signals']) or 'none'}.", "",
          "All thresholds are invented starting parameters from BleedingEdge.md.", "",
@@ -93,14 +93,15 @@ def write_report(result: dict, tests, fl_a) -> None:
         rises = ", ".join(f"{k}: {_w(v)}" for k, v in by_topic.items())
         L.append(f"| {s} | {rises} | {'undetermined (default 1)' if raw is None else f'{raw:.2f}'} |")
 
-    L += ["", "## (b) Precision on candidates, flags in 2024", ""]
+    c = result.get("candidates", {})
+    L += ["", f"## (b) Precision on candidates, flags in {c.get('flags_judged_in', '')}", ""]
     if result["precision"]:
-        c = result["candidates"]
         L += [f"From `data/{c['file']}`: {c['total_both_halves']} candidates, split in half by hash. "
               f"This is the **{c['half']}** half ({c['in_this_half']}). {c['dropped_crowd_before_cutoff']} had their crowd "
-              f"arrive before 2023, so they could never be new in 2024; they are left out of the criterion and kept "
-              f"in the \"tuned all candidates\" line. Of the {c['judged']} judged, {c['crowd_in_2024_25']} had the crowd "
-              "arrive in 2024–25, the most a perfect detector could hit.", ""]
+              f"arrive before {c['mined_year']}, so they could never be new in {c['flags_judged_in']}; they are left out of the "
+              f"criterion and kept in the \"tuned all candidates\" line. Of the {c['judged']} judged, "
+              f"{c['crowd_in_judged_year_or_later']} had the crowd arrive in {c['flags_judged_in']} or later, "
+              "the most a perfect detector could hit.", ""]
         L += ["| Method | Flags (topic-windows) | Reached consensus in 12 months | Precision | Distinct topics flagged | Distinct topic precision |",
               "|---|---|---|---|---|---|"]
         for name, p in result["precision"].items():

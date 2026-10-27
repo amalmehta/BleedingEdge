@@ -242,6 +242,36 @@ uv run python -m bleedingedge.backtest --holdout
 - Deleted GitHub repos are missing. This biases older windows downward.
 - 3 test topics is a very small sample. One topic changing its result moves (a) a lot.
 
+## Round 2: phrases new in 2024, graded on 2025–26
+
+**Written 2026-10-27, before any 2024 result was seen.** Everything below is fixed before the run.
+
+**Changes to the method.** All were chosen on the spent 2023 set (dev and held-out combined, 88 topics).
+
+1. **Freshness.** A topic counts as "early" only within 9 four-week windows (36 weeks) of its first heating-up flag. After that, the detector has already told you.
+   - Most 2023 misses had been flagged in 2023 already, plateaued, and then got flagged again in 2024.
+   - On the 2023 set, the full method went from 47% to 70% and kept all 7 winners. arXiv-only went from 22% to 41%.
+   - Shorter settings scored higher but lost winners: 24 weeks gave 74%, but with 6 of 7 winners.
+   - An age-since-first-papers test was also tried. It changed nothing for the full method, so it was dropped.
+2. **Longer window grid.** The grid now runs to 5 Oct 2026: 75 windows instead of 65, so 2025 flags can be graded on 2025–26.
+   - This moves every topic's peak, so the 2023 numbers above would shift slightly if re-run. The 3 test topics are re-fetched to the new end date.
+3. **Everything else is unchanged:** relative arXiv growth, the "small" bar of 30 for downloaded counts, lead weights from the test topics, and the 50% bar.
+
+**Two runs.** Each is split by the same hash into dev and held-out halves:
+
+| Run | Candidates | Title bar | File |
+|---|---|---|---|
+| **All four categories** | 2–3-word phrases in ≥ 8 titles in 2024 and in < 10 papers in 2022–23 | 8 | `data/CandidatesMined2024.csv` |
+| **Robotics** | The same, but titles from cs.RO papers only | 8 × cs.RO's share of 2024 papers, at least 3 | `data/CandidatesMined2024RO.csv` |
+
+- Phrases are counted in all four categories in both runs.
+- Flags are judged in 2025. A hit means the crowd arrived within the next 12 months, which is data up to Oct 2026.
+- Flags from late 2025 get less than 12 months to be proven right. That makes this test stricter, not easier.
+
+**Order.** For each run, the dev half goes first, then the held-out half straight after. Nothing is changed in between, because the method was fixed on 2023 data.
+
+**Pass.** A run passes if the held-out half reaches ≥ 50% precision with tuned weights. The dev half is reported too.
+
 ## Next: your call
 
 The spec says that if the backtest fails, you either change the method or stop before running it weekly. There are three honest options:

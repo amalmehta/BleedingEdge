@@ -5,7 +5,7 @@ from bleedingedge.windows import END, N_WINDOWS, START, counts, window_index, wi
 
 def test_windows_cover_range_without_gaps():
     w = windows()
-    assert len(w) == N_WINDOWS == 65
+    assert len(w) == N_WINDOWS == 75 and END == date(2026, 10, 5)
     assert w[0][0] == START == date(2021, 1, 4) and w[-1][1] == END
     assert all(a[1] == b[0] for a, b in zip(w, w[1:]))
     assert START.weekday() == 0

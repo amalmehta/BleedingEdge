@@ -10,6 +10,7 @@ Two kinds of rise, flagged separately:
 import math
 
 YEAR = 13               # windows in a year
+FRESH_WINDOWS = 9       # a topic stays "early" for 36 weeks after its first heating-up flag (chosen on the 2023 set)
 
 # Leading signals averaged into the score. Funding is not averaged: a round adds a bonus,
 # and no round adds nothing, because rounds are rare.
@@ -109,6 +110,13 @@ def is_new(arxiv_counts: list[int], k: int) -> bool:
 def early(arxiv_counts: list[int], k: int, small_max: float = SMALL_MAX) -> bool:
     """Detector-side "early": still small and new. Uses only data up to window k."""
     return still_small(arxiv_counts, k, small_max) and is_new(arxiv_counts, k)
+
+
+def fresh(heating: list[bool], k: int) -> bool:
+    """Within FRESH_WINDOWS of the topic's first heating-up flag. After that the detector has
+    already told you, and re-flagging a topic that plateaued was the main error on 2023 phrases."""
+    f = first(heating[:k + 1])
+    return f is not None and k - f <= FRESH_WINDOWS
 
 
 def consensus_window(arxiv_counts: list[int]) -> int | None:

@@ -1,11 +1,14 @@
 """Candidate topics mined from arXiv titles, so nobody picks them.
 
-    uv run python -m bleedingedge.mining   # after the bulk harvest; writes data/CandidatesMined2023.csv
+    uv run python -m bleedingedge.mining              # phrases new in 2023 -> data/CandidatesMined2023.csv
+    uv run python -m bleedingedge.mining 2024         # phrases new in 2024
+    uv run python -m bleedingedge.mining 2024 --ro    # robotics only: cs.RO titles
 
-A candidate is a 2–3-word phrase that appears in at least MIN_TITLES 2023 titles (cs.RO, cs.LG,
-cs.AI, cs.CL) and in fewer than PRIOR_MAX 2021–22 papers (title or abstract). That is the set
-a detector running at the start of 2024 could see as "new", winners and duds alike.
-Only data up to the end of 2023 picks the candidates; 2024–25 is used only to count and grade.
+A candidate is a 2–3-word phrase that appears in at least MIN_TITLES titles in the year (cs.RO,
+cs.LG, cs.AI, cs.CL; cs.RO only with --ro) and in fewer than PRIOR_MAX papers (title or
+abstract, all four categories) in the two years before. That is the set a detector running at
+the start of the next year could see as "new", winners and duds alike. Only data up to the end
+of the year picks the candidates; later years are used only to count and grade.
 
 Phrases are matched on whole words; hyphenated compounds count as one word, so
 "vision-language-action" and "vision language action" are different phrases.
@@ -21,12 +24,10 @@ from pathlib import Path
 from .windows import counts
 
 ROOT = Path(__file__).resolve().parent.parent
-OUT_CSV = ROOT / "data" / "CandidatesMined2023.csv"
-OUT_COUNTS = ROOT / "data" / "backtest" / "MinedArxivCounts.json"
 OUT_TOTALS = ROOT / "data" / "backtest" / "ArxivTotals.json"  # all harvested papers per window
 
 YEAR = 2023
-MIN_TITLES = 8      # invented: recurs enough to be a topic, not a one-off title
+MIN_TITLES = 8      # invented: recurs enough to be a topic, not a one-off title (scaled down for --ro)
 PRIOR_MAX = 10      # invented: the same bar as the newness test in "early"
 SUBSUME = 0.8       # drop "segment anything" in favour of "segment anything model" if the longer one covers 80% of it
 
@@ -74,23 +75,34 @@ def _year(p: dict) -> int:
     return int(p["created"][:4])
 
 
-def mine(papers: list[dict]) -> tuple[list[dict], list[str]]:
+def outputs(year: int = YEAR, ro: bool = False) -> tuple[Path, Path]:
+    tag = f"{year}{'RO' if ro else ''}"
+    return ROOT / "data" / f"CandidatesMined{tag}.csv", ROOT / "data" / "backtest" / f"MinedArxivCounts{tag}.json"
+
+
+def ro_min_titles(papers: list[dict], year: int) -> int:
+    """MIN_TITLES scaled by cs.RO's share of the year's papers, at least 3: the same bar relative to volume."""
+    ys = [p for p in papers if _year(p) == year]
+    return max(3, round(MIN_TITLES * sum("cs.RO" in p["cats"] for p in ys) / len(ys)))
+
+
+def mine(papers: list[dict], year: int = YEAR, ro: bool = False, min_titles: int = MIN_TITLES) -> tuple[list[dict], list[str]]:
     """Returns (candidates, phrases dropped for overlapping the test topics)."""
     title_df = Counter()
     cats_by = defaultdict(Counter)
     for p in papers:
-        if _year(p) != YEAR:
+        if _year(p) != year or (ro and "cs.RO" not in p["cats"]):
             continue
         for g in ngrams(words(p["title"])):
             title_df[g] += 1
             for c in p["cats"]:
                 cats_by[g][c] += 1
-    pool = {g for g, n in title_df.items() if n >= MIN_TITLES}
+    pool = {g for g, n in title_df.items() if n >= min_titles}
     halves = {h for g in pool if g.count(" ") == 2 for h in (g.rsplit(" ", 1)[0], g.split(" ", 1)[1])}
 
     prior = Counter()
     for p in papers:
-        if _year(p) in (YEAR - 2, YEAR - 1):
+        if _year(p) in (year - 2, year - 1):
             for g in ngrams(words(p["title"] + " " + p["abstract"])) & (pool | halves):
                 prior[g] += 1
     new = {g for g in pool if prior[g] < PRIOR_MAX
@@ -108,10 +120,10 @@ def mine(papers: list[dict]) -> tuple[list[dict], list[str]]:
     rows = []
     for g in sorted(keep - set(dropped), key=lambda g: (-title_df[g], g)):
         n = title_df[g]
-        robot = cats_by[g]["cs.RO"] / n >= 0.3 or re.search(r"\b(robot|reinforcement|policy|policies|manipulation)", g)
+        robot = ro or cats_by[g]["cs.RO"] / n >= 0.3 or re.search(r"\b(robot|reinforcement|policy|policies|manipulation)", g)
         rows.append({"topic": g, "arxiv_phrases": g, "domain": "rl_robotics" if robot else "ai_tooling",
-                     "first_year": YEAR, "titles_2023": n, "prior_2021_22": prior[g],
-                     "source_urls": "arXiv OAI-PMH bulk metadata (cs.RO, cs.LG, cs.AI, cs.CL)"})
+                     "first_year": year, "titles_in_year": n, "prior_two_years": prior[g],
+                     "source_urls": f"arXiv OAI-PMH bulk metadata ({'cs.RO titles' if ro else 'cs.RO, cs.LG, cs.AI, cs.CL'})"})
     return rows, dropped
 
 
@@ -128,22 +140,27 @@ def phrase_dates(papers: list[dict], phrases: list[str]) -> dict[str, list[date]
     return out
 
 
-def main() -> None:
+def main(year: int = YEAR, ro: bool = False) -> None:
     from .sources import arxiv_bulk
     papers = arxiv_bulk.papers()
-    rows, dropped = mine(papers)
+    min_titles = ro_min_titles(papers, year) if ro else MIN_TITLES
+    rows, dropped = mine(papers, year, ro, min_titles)
     by_year = Counter(_year(p) for p in papers)
-    with OUT_CSV.open("w", newline="") as f:
+    out_csv, out_counts = outputs(year, ro)
+    with out_csv.open("w", newline="") as f:
         w = csv.DictWriter(f, fieldnames=list(rows[0]))
         w.writeheader()
         w.writerows(rows)
-    OUT_COUNTS.parent.mkdir(parents=True, exist_ok=True)
+    out_counts.parent.mkdir(parents=True, exist_ok=True)
     dates = phrase_dates(papers, [r["topic"] for r in rows])
-    OUT_COUNTS.write_text(json.dumps({g: counts(ds) for g, ds in dates.items()}))
+    out_counts.write_text(json.dumps({g: counts(ds) for g, ds in dates.items()}))
     OUT_TOTALS.write_text(json.dumps(counts([date.fromisoformat(p["created"]) for p in papers])))
-    print(json.dumps({"papers_by_year": dict(sorted(by_year.items())), "candidates": len(rows),
+    print(json.dumps({"year": year, "ro": ro, "min_titles": min_titles,
+                      "papers_by_year": dict(sorted(by_year.items())), "candidates": len(rows),
                       "dropped_test_overlap": dropped}, indent=1))
 
 
 if __name__ == "__main__":
-    main()
+    import sys
+    args = [a for a in sys.argv[1:] if not a.startswith("--")]
+    main(int(args[0]) if args else YEAR, "--ro" in sys.argv)

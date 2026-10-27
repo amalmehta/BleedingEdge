@@ -7,8 +7,9 @@
 
 Two checks, kept separate so the test topics don't grade themselves:
   (a) lead on the 3 test topics, with every lead weight at its default of 1 (untuned);
-  (b) precision on candidate topics during 2024, with lead weights set from (a). Candidates are
-      2–3-word phrases new on arXiv in 2023 (bleedingedge/mining.py), so nobody picks them.
+  (b) precision on candidate topics during YEAR + 1, with lead weights set from (a). Candidates are
+      2–3-word phrases new on arXiv in YEAR (bleedingedge/mining.py), so nobody picks them.
+      --year 2024 uses phrases new in 2024 (flags judged in 2025); --ro uses cs.RO phrases.
       The candidates are split in half by a hash of their name. Normal runs fetch and score only
       the dev half; the held-out half is fetched only with --holdout, so it is seen once.
 A baseline (arXiv growth alone) runs through the same checks.
@@ -32,17 +33,31 @@ ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "data" / "backtest"
 TOP_N = 10
 HORIZON = 13  # windows: "reaches consensus within 12 months"
-# Mined from 2023 arXiv titles (bleedingedge/mining.py). Earlier hand-named lists:
+# Candidates mined from arXiv titles of YEAR (bleedingedge/mining.py); flags are judged in
+# YEAR + 1. Set from the command line (--year, --ro). Earlier hand-named lists:
 # data/Candidates2023.csv (2023 workshops), data/Candidates2022-24.csv.
-CANDIDATES = ROOT / "data" / "CandidatesMined2023.csv"
-MINED_COUNTS = OUT / "MinedArxivCounts.json"
+YEAR = 2023
+RO = False
+
+
+def _tag() -> str:
+    return f"{YEAR}{'RO' if RO else ''}"
+
+
+def candidates_file() -> Path:
+    return ROOT / "data" / f"CandidatesMined{_tag()}.csv"
+
+
+def mined_counts_file() -> Path:
+    return ROOT / "data" / "backtest" / f"MinedArxivCounts{_tag()}.json"
+
+
 TOTALS = OUT / "ArxivTotals.json"  # every harvested paper per window, for relative growth
 # "Small" for topics counted from the bulk download, which only covers cs.RO/LG/AI/CL and
 # matches whole words, so it counts fewer papers than arXiv search does for the same phrase.
 # On 11 neutral phrases (neither test topics nor candidates) it counted a median 0.61 of what
 # search counts (2026-10-27), so the bar is scaled to 50 x 0.6.
 LOCAL_SMALL_MAX = 30
-CUTOFF = 2023  # a candidate whose crowd arrived before this year was never new in 2024
 
 
 def held_out(key: str) -> bool:
@@ -91,12 +106,12 @@ def load_topics() -> list[Topic]:
         for r in csv.DictReader(f):
             topics.append(Topic(r["key"], r["topic"], r["domain"], _split(r["arxiv_phrases"]),
                                 _split(r["hn_phrases"]), _full_phrases(_split(r["github_phrases"])), True))
-    if CANDIDATES.exists():
-        with CANDIDATES.open(newline="") as f:
+    if candidates_file().exists():
+        with candidates_file().open(newline="") as f:
             for r in csv.DictReader(f):
                 ph = _split(r["arxiv_phrases"])
                 topics.append(Topic(_slug(r["topic"]), r["topic"], r["domain"].strip(), ph, ph, _full_phrases(ph),
-                                    False, r.get("source_urls", ""), r.get("venue", ""), "titles_2023" in r))
+                                    False, r.get("source_urls", ""), r.get("venue", ""), any(k.startswith("titles_") for k in r)))
     return topics
 
 
@@ -127,7 +142,7 @@ _mined: dict | None = None
 def _mined_counts() -> dict[str, list[int]]:
     global _mined
     if _mined is None:
-        _mined = json.loads(MINED_COUNTS.read_text())
+        _mined = json.loads(mined_counts_file().read_text())
     return _mined
 
 
@@ -160,7 +175,7 @@ def flags(t: Topic, lam: dict[str, float]) -> dict[str, list]:
                             sc.mode_score(t.gt, t.rolled, lam, w, k, "trend")) if v is not None]
         S.append(max(vals) if vals else None)
     heat = [b or tr for b, tr in zip(burst, trend)]
-    early = [h and sc.early(t.counts["arxiv"], k, t.small_max) for k, h in enumerate(heat)]
+    early = [h and sc.early(t.counts["arxiv"], k, t.small_max) and sc.fresh(heat, k) for k, h in enumerate(heat)]
     return {"score": S, "burst": burst, "trend": trend, "heating": heat, "early": early,
             "consensus": sc.consensus_window(t.counts["arxiv"])}
 
@@ -172,7 +187,7 @@ def baseline_flags(t: Topic) -> dict[str, list]:
     burst = [gb[k] is not None and gb[k] >= sc.BURST["g"] and c[k] >= sc.BURST["volume"]["arxiv"] for k in range(n)]
     trend = [gt[k] is not None and gt[k] >= sc.TREND["g"] and r[k] >= sc.TREND["volume"]["arxiv"] for k in range(n)]
     heat = [b or tr for b, tr in zip(burst, trend)]
-    early = [h and sc.early(c, k, t.small_max) for k, h in enumerate(heat)]
+    early = [h and sc.early(c, k, t.small_max) and sc.fresh(heat, k) for k, h in enumerate(heat)]
     S = [max([v for v in (gb[k], gt[k]) if v is not None], default=None) for k in range(n)]
     return {"score": S, "burst": burst, "trend": trend, "heating": heat, "early": early,
             "consensus": sc.consensus_window(c)}
@@ -192,7 +207,7 @@ def lead_check(topics: list[Topic], fl: dict[str, dict]) -> list[dict]:
     return rows
 
 
-def precision(topics: list[Topic], fl: dict[str, dict], year: int = 2024) -> dict:
+def precision(topics: list[Topic], fl: dict[str, dict], year: int) -> dict:
     """Of the top-N early flags in each window of `year`, the share whose research crowd arrives
     within the next 12 months (not before the flag). Pooled over topic-window pairs, and over topics."""
     wins = windows()
@@ -248,19 +263,20 @@ def run(log=print, tests_only: bool = False, report: bool = True, holdout: bool 
     lam_raw = sc.lead_weights(crossings, cons)
     tuned = {s: (1.0 if v is None else v) for s, v in lam_raw.items()}
 
-    # (b) precision on candidates in 2024, untuned, tuned and baseline
-    # Candidates whose crowd arrived before CUTOFF can't be hits; they are dropped from the
+    # (b) precision on candidates in YEAR + 1, untuned, tuned and baseline
+    # Candidates whose crowd arrived before YEAR can't be hits; they are dropped from the
     # criterion, and kept in a stricter "all candidates" line for comparison.
-    cutoff_k = next(k for k, (ws, _) in enumerate(windows()) if ws.year >= CUTOFF)
+    judge = YEAR + 1
+    cutoff_k = next(k for k, (ws, _) in enumerate(windows()) if ws.year >= YEAR)
     crowd = {t.key: sc.consensus_window(t.counts["arxiv"]) for t in cands}
     judged = [t for t in cands if crowd[t.key] is None or crowd[t.key] >= cutoff_k]
-    reachable = sum(1 for t in judged if crowd[t.key] is not None and windows()[crowd[t.key]][0].year >= 2024)
+    reachable = sum(1 for t in judged if crowd[t.key] is not None and windows()[crowd[t.key]][0].year >= judge)
     prec = {}
     if cands:
-        prec["untuned"] = precision(judged, {t.key: flags(t, untuned) for t in judged})
-        prec["tuned"] = precision(judged, {t.key: flags(t, tuned) for t in judged})
-        prec["baseline_arxiv_only"] = precision(judged, {t.key: baseline_flags(t) for t in judged})
-        prec["tuned_all_candidates"] = precision(cands, {t.key: flags(t, tuned) for t in cands})
+        prec["untuned"] = precision(judged, {t.key: flags(t, untuned) for t in judged}, judge)
+        prec["tuned"] = precision(judged, {t.key: flags(t, tuned) for t in judged}, judge)
+        prec["baseline_arxiv_only"] = precision(judged, {t.key: baseline_flags(t) for t in judged}, judge)
+        prec["tuned_all_candidates"] = precision(cands, {t.key: flags(t, tuned) for t in cands}, judge)
     lead_base = lead_check(tests, {t.key: baseline_flags(t) for t in tests})
 
     passes_a = sum(r["passes"] for r in lead) >= 2
@@ -275,10 +291,10 @@ def run(log=print, tests_only: bool = False, report: bool = True, holdout: bool 
         "lead_weights_raw": lam_raw, "lead_weights": tuned,
         "precision": prec,
         "passes": {"a_lead": passes_a, "b_precision": p is not None and p >= 0.5},
-        "candidates": {"file": CANDIDATES.name, "half": "holdout" if holdout else "dev",
+        "candidates": {"file": candidates_file().name, "mined_year": YEAR, "flags_judged_in": judge, "half": "holdout" if holdout else "dev",
                        "total_both_halves": n_all, "in_this_half": len(cands),
                        "dropped_crowd_before_cutoff": len(cands) - len(judged), "judged": len(judged),
-                       "crowd_in_2024_25": reachable},
+                       "crowd_in_judged_year_or_later": reachable},
     }
     OUT.mkdir(parents=True, exist_ok=True)
     _write_counts(topics)
@@ -307,8 +323,14 @@ if __name__ == "__main__":
     if "--with-readme" in sys.argv:  # README check: also search GitHub READMEs
         github.FIELDS = "name,description,readme"
         OUT = OUT / "WithReadme"
+    if "--year" in sys.argv:
+        YEAR = int(sys.argv[sys.argv.index("--year") + 1])
+    RO = "--ro" in sys.argv
+    if YEAR != 2023 or RO:
+        OUT = OUT / f"Run{_tag()}"
     if "--holdout" in sys.argv:
         OUT = OUT / "Holdout"
-    r = run(tests_only="--tests-only" in sys.argv, report="--with-readme" not in sys.argv and "--holdout" not in sys.argv,
+    r = run(tests_only="--tests-only" in sys.argv,
+            report="--with-readme" not in sys.argv and "--holdout" not in sys.argv and OUT == ROOT / "data" / "backtest",
             holdout="--holdout" in sys.argv)
     print(json.dumps({k: r[k] for k in ("lead", "lead_weights", "passes")}, indent=2, default=str))

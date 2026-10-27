@@ -136,3 +136,11 @@ def test_relative_growth_removes_overall_growth():
 def test_small_bar_can_be_scaled():
     c = [10] * 20  # 30 per 12 weeks
     assert sc.still_small(c, 19) and not sc.still_small(c, 19, small_max=25)
+
+
+def test_fresh_expires_after_first_flag():
+    heat = [False] * 5 + [True] * 20
+    assert not sc.fresh(heat, 4)
+    assert sc.fresh(heat, 5) and sc.fresh(heat, 5 + sc.FRESH_WINDOWS)
+    assert not sc.fresh(heat, 6 + sc.FRESH_WINDOWS)
+    assert not sc.fresh([False] * 10, 9)
