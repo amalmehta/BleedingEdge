@@ -7,12 +7,13 @@ cs.AI, cs.CL) and in fewer than PRIOR_MAX 2021–22 papers (title or abstract). 
 a detector running at the start of 2024 could see as "new", winners and duds alike.
 Only data up to the end of 2023 picks the candidates; 2024–25 is used only to count and grade.
 
-Phrases are matched on words, with hyphens split, so "vision-language-action" and
-"vision language action" count as the same phrase ("in-context" stays whole).
+Phrases are matched on whole words; hyphenated compounds count as one word, so
+"vision-language-action" and "vision language action" are different phrases.
 """
 import csv
 import json
 import re
+import unicodedata
 from collections import Counter, defaultdict
 from datetime import date
 from pathlib import Path
@@ -35,17 +36,14 @@ new novel study analysis paper case towards beyond through across between than v
 all any each""".split())
 
 # Phrases that overlap the 3 test topics, which are graded separately in (a).
-TEST_OVERLAP = re.compile(r"diffusion polic|vision language action|\bvla\b|verifiable reward|group relative|\bgrpo\b|\brlvr\b")
+TEST_OVERLAP = re.compile(r"diffusion polic|vision.language.action|\bvla\b|verifiable reward|group relative|\bgrpo\b|\brlvr\b")
 
 
 def words(text: str) -> list[str]:
-    """Lowercase words with hyphens split, except compounds with a stopword part
-    ("in-context" stays one word, so it can start a phrase)."""
-    out = []
-    for tok in re.findall(r"[a-z0-9]+(?:-[a-z0-9]+)*", text.lower()):
-        parts = tok.split("-")
-        out.extend([tok] if len(parts) > 1 and any(x in STOP for x in parts) else parts)
-    return out
+    """Lowercase ASCII words; hyphenated compounds stay whole ("few-shot", "fine-tuning"),
+    because splitting them made fragments like "shot detection" and "robust fine"."""
+    text = unicodedata.normalize("NFKD", text).encode("ascii", "ignore").decode()
+    return re.findall(r"[a-z0-9]+(?:-[a-z0-9]+)*", text.lower())
 
 
 def ngrams(ws: list[str], ns=(2, 3)) -> set[str]:

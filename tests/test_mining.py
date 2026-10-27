@@ -8,9 +8,9 @@ def _p(y, title, abstract="", cats=("cs.LG",)):
 
 
 def test_words_split_hyphens_and_ngrams_skip_stopwords():
-    assert mn.words("Vision-Language-Action Models!") == ["vision", "language", "action", "models"]
-    g = mn.ngrams(mn.words("towards in-context learning for robots"))
-    assert "in-context learning" in g and mn.words("in-context") == ["in-context"]
+    assert mn.words("Vision-Language-Action Models!") == ["vision-language-action", "models"]
+    g = mn.ngrams(mn.words("towards in-context learning for few-shot robots"))
+    assert "in-context learning" in g and "few-shot robots" in g and "shot robots" not in g
     assert not any(x.startswith("towards") or x.endswith(" for") for x in g)
 
 
@@ -44,6 +44,7 @@ def test_mine_ignores_future_papers_when_choosing():
 
 
 def test_phrase_dates_match_title_or_abstract():
-    ps = [_p(2024, "x", "uses segment-anything model"), _p(2025, "Segment Anything Model v2"), _p(2024, "other")]
+    ps = [_p(2024, "x", "uses the Segment Anything model"), _p(2025, "Segment Anything Model v2"), _p(2024, "other")]
     d = mn.phrase_dates(ps, ["segment anything model"])
     assert d["segment anything model"] == [date(2024, 3, 1), date(2025, 3, 1)]
+
