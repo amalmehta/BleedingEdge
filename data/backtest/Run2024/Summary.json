@@ -114,67 +114,67 @@
   },
   "precision": {
     "untuned": {
-      "pairs": 27,
-      "hits": 6,
-      "precision": 0.2222222222222222,
-      "topics_flagged": 18,
-      "topics_hit": 5,
-      "topic_precision": 0.2777777777777778,
+      "pairs": 31,
+      "hits": 7,
+      "precision": 0.22580645161290322,
+      "topics_flagged": 14,
+      "topics_hit": 3,
+      "topic_precision": 0.21428571428571427,
       "per_window": [
         {
           "window_start": "2025-01-27",
-          "flagged": 7,
+          "flagged": 5,
           "hits": 3,
           "topics": [
-            "kolmogorov_arnold_network",
-            "sparse_autoencoders",
-            "multimodal_ai",
-            "diffusion_transformers",
-            "llm_serving",
-            "reward_modeling",
-            "web_agents"
+            "agentic_ai",
+            "multi_agent_llm",
+            "kv_cache_compression",
+            "frontier_ai",
+            "diffusion_transformers"
           ]
         },
         {
           "window_start": "2025-02-24",
-          "flagged": 3,
-          "hits": 1,
+          "flagged": 5,
+          "hits": 2,
           "topics": [
-            "multimodal_ai",
-            "diffusion_transformers",
-            "llm_based_multi_agent"
+            "agentic_ai",
+            "multi_agent_llm",
+            "frontier_ai",
+            "llm_based_multi_agent",
+            "detection_leveraging"
           ]
         },
         {
           "window_start": "2025-03-24",
-          "flagged": 3,
-          "hits": 0,
+          "flagged": 4,
+          "hits": 1,
           "topics": [
-            "multimodal_ai",
+            "frontier_ai",
+            "multi_agent_llm",
             "llm_based_multi_agent",
             "deepfake_audio"
           ]
         },
         {
           "window_start": "2025-04-21",
-          "flagged": 3,
+          "flagged": 4,
           "hits": 1,
           "topics": [
+            "frontier_ai",
+            "multi_agent_llm",
             "series_foundation",
-            "federated_fine_tuning",
-            "mitigating_hallucinations"
+            "federated_fine_tuning"
           ]
         },
         {
           "window_start": "2025-05-19",
-          "flagged": 5,
-          "hits": 1,
+          "flagged": 3,
+          "hits": 0,
           "topics": [
-            "token_pruning",
-            "mitigating_hallucinations",
-            "prompt_injection_attacks",
-            "series_foundation",
-            "hallucination_mitigation"
+            "federated_fine_tuning",
+            "multi_agent_llm",
+            "frontier_ai"
           ]
         },
         {
@@ -182,8 +182,8 @@
           "flagged": 2,
           "hits": 0,
           "topics": [
-            "token_pruning",
-            "hallucination_mitigation"
+            "hierarchical_multi_agent",
+            "federated_fine_tuning"
           ]
         },
         {
@@ -191,33 +191,40 @@
           "flagged": 1,
           "hits": 0,
           "topics": [
-            "token_pruning"
+            "hierarchical_multi_agent"
           ]
         },
         {
           "window_start": "2025-08-11",
-          "flagged": 0,
+          "flagged": 1,
           "hits": 0,
-          "topics": []
+          "topics": [
+            "llm_hallucination"
+          ]
         },
         {
           "window_start": "2025-09-08",
-          "flagged": 0,
+          "flagged": 2,
           "hits": 0,
-          "topics": []
+          "topics": [
+            "audio_language_models",
+            "hierarchical_multi_agent"
+          ]
         },
         {
           "window_start": "2025-10-06",
-          "flagged": 0,
+          "flagged": 1,
           "hits": 0,
-          "topics": []
+          "topics": [
+            "hierarchical_multi_agent"
+          ]
         },
         {
           "window_start": "2025-11-03",
           "flagged": 1,
           "hits": 0,
           "topics": [
-            "medical_vision_language"
+            "hierarchical_multi_agent"
           ]
         },
         {
@@ -225,7 +232,7 @@
           "flagged": 1,
           "hits": 0,
           "topics": [
-            "eu_ai_act"
+            "hierarchical_multi_agent"
           ]
         },
         {
@@ -233,289 +240,290 @@
           "flagged": 1,
           "hits": 0,
           "topics": [
-            "context_compression"
+            "generative_ai_based"
           ]
         }
       ]
     },
     "tuned": {
-      "pairs": 22,
-      "hits": 5,
-      "precision": 0.22727272727272727,
-      "topics_flagged": 16,
-      "topics_hit": 4,
-      "topic_precision": 0.25,
+      "pairs": 32,
+      "hits": 7,
+      "precision": 0.21875,
+      "topics_flagged": 14,
+      "topics_hit": 3,
+      "topic_precision": 0.21428571428571427,
       "per_window": [
         {
           "window_start": "2025-01-27",
-          "flagged": 6,
+          "flagged": 5,
           "hits": 3,
           "topics": [
-            "kolmogorov_arnold_network",
-            "sparse_autoencoders",
-            "llm_serving",
-            "diffusion_transformers",
-            "multimodal_ai",
-            "web_agents"
+            "agentic_ai",
+            "multi_agent_llm",
+            "kv_cache_compression",
+            "frontier_ai",
+            "diffusion_transformers"
           ]
         },
         {
           "window_start": "2025-02-24",
-          "flagged": 3,
-          "hits": 0,
+          "flagged": 5,
+          "hits": 2,
           "topics": [
-            "multimodal_ai",
-            "diffusion_transformers",
-            "kv_cache_compression"
+            "agentic_ai",
+            "multi_agent_llm",
+            "frontier_ai",
+            "llm_based_multi_agent",
+            "detection_leveraging"
           ]
         },
         {
           "window_start": "2025-03-24",
-          "flagged": 2,
-          "hits": 0,
+          "flagged": 4,
+          "hits": 1,
           "topics": [
-            "multimodal_ai",
-            "llm_based_multi_agent"
+            "frontier_ai",
+            "multi_agent_llm",
+            "llm_based_multi_agent",
+            "deepfake_audio"
           ]
         },
         {
           "window_start": "2025-04-21",
-          "flagged": 1,
+          "flagged": 4,
           "hits": 1,
           "topics": [
-            "series_foundation"
+            "frontier_ai",
+            "series_foundation",
+            "multi_agent_llm",
+            "federated_fine_tuning"
           ]
         },
         {
           "window_start": "2025-05-19",
-          "flagged": 5,
-          "hits": 1,
+          "flagged": 4,
+          "hits": 0,
           "topics": [
-            "token_pruning",
-            "series_foundation",
-            "mitigating_hallucinations",
-            "prompt_injection_attacks",
-            "hallucination_mitigation"
+            "federated_fine_tuning",
+            "multi_agent_llm",
+            "frontier_ai",
+            "series_foundation"
           ]
         },
         {
           "window_start": "2025-06-16",
-          "flagged": 3,
+          "flagged": 2,
           "hits": 0,
           "topics": [
-            "token_pruning",
-            "hallucination_mitigation",
-            "efficient_multi_task"
+            "hierarchical_multi_agent",
+            "federated_fine_tuning"
           ]
         },
         {
           "window_start": "2025-07-14",
-          "flagged": 0,
+          "flagged": 1,
           "hits": 0,
-          "topics": []
+          "topics": [
+            "hierarchical_multi_agent"
+          ]
         },
         {
           "window_start": "2025-08-11",
-          "flagged": 0,
+          "flagged": 1,
           "hits": 0,
-          "topics": []
+          "topics": [
+            "llm_hallucination"
+          ]
         },
         {
           "window_start": "2025-09-08",
-          "flagged": 0,
+          "flagged": 1,
           "hits": 0,
-          "topics": []
+          "topics": [
+            "audio_language_models"
+          ]
         },
         {
           "window_start": "2025-10-06",
-          "flagged": 0,
+          "flagged": 1,
           "hits": 0,
-          "topics": []
+          "topics": [
+            "hierarchical_multi_agent"
+          ]
         },
         {
           "window_start": "2025-11-03",
           "flagged": 1,
           "hits": 0,
           "topics": [
-            "medical_vision_language"
+            "hierarchical_multi_agent"
           ]
         },
         {
           "window_start": "2025-12-01",
-          "flagged": 0,
-          "hits": 0,
-          "topics": []
-        },
-        {
-          "window_start": "2025-12-29",
           "flagged": 1,
           "hits": 0,
           "topics": [
-            "context_compression"
+            "hierarchical_multi_agent"
+          ]
+        },
+        {
+          "window_start": "2025-12-29",
+          "flagged": 2,
+          "hits": 0,
+          "topics": [
+            "audio_language_models",
+            "generative_ai_based"
           ]
         }
       ]
     },
     "baseline_arxiv_only": {
-      "pairs": 79,
-      "hits": 12,
-      "precision": 0.1518987341772152,
-      "topics_flagged": 30,
-      "topics_hit": 4,
-      "topic_precision": 0.13333333333333333,
+      "pairs": 67,
+      "hits": 6,
+      "precision": 0.08955223880597014,
+      "topics_flagged": 25,
+      "topics_hit": 3,
+      "topic_precision": 0.12,
       "per_window": [
         {
           "window_start": "2025-01-27",
           "flagged": 10,
-          "hits": 3,
+          "hits": 2,
           "topics": [
             "kolmogorov_arnold_network",
-            "llm_serving",
-            "sparse_autoencoders",
             "series_foundation",
-            "diffusion_priors",
+            "frontier_ai",
+            "agentic_ai",
+            "kv_cache_compression",
+            "vision_mamba",
             "diffusion_transformers",
-            "knowledge_conflicts",
-            "multimodal_ai",
-            "reward_modeling",
-            "jailbreak_attack"
+            "diffusion_priors",
+            "graph_foundation",
+            "llm_hallucination"
           ]
         },
         {
           "window_start": "2025-02-24",
-          "flagged": 10,
-          "hits": 3,
-          "topics": [
-            "kolmogorov_arnold_network",
-            "multimodal_ai",
-            "series_foundation",
-            "large_vision_language_model",
-            "prompt_compression",
-            "diffusion_priors",
-            "language_model_driven",
-            "llm_based_multi_agent",
-            "llm_serving",
-            "graph_foundation"
-          ]
-        },
-        {
-          "window_start": "2025-03-24",
-          "flagged": 10,
+          "flagged": 7,
           "hits": 2,
           "topics": [
             "series_foundation",
-            "kolmogorov_arnold_network",
-            "multimodal_ai",
-            "vision_mamba",
+            "agentic_ai",
+            "multi_agent_llm",
+            "frontier_ai",
             "llm_based_multi_agent",
-            "diffusion_priors",
-            "token_pruning",
-            "prompt_injection_attacks",
-            "graph_foundation",
-            "llm_serving"
-          ]
-        },
-        {
-          "window_start": "2025-04-21",
-          "flagged": 10,
-          "hits": 1,
-          "topics": [
-            "series_foundation",
-            "graph_foundation",
-            "token_pruning",
-            "hallucination_mitigation",
-            "prompt_injection_attacks",
-            "llm_based_multi_agent",
-            "web_agents",
-            "federated_fine_tuning",
-            "knowledge_conflicts",
-            "efficient_llm_inference"
-          ]
-        },
-        {
-          "window_start": "2025-05-19",
-          "flagged": 10,
-          "hits": 1,
-          "topics": [
-            "series_foundation",
-            "against_jailbreak_attacks",
-            "hallucination_mitigation",
-            "llm_based_multi_agent",
-            "graph_foundation",
-            "token_pruning",
-            "prompt_injection_attacks",
-            "knowledge_conflicts",
-            "web_agents",
-            "eu_ai_act"
-          ]
-        },
-        {
-          "window_start": "2025-06-16",
-          "flagged": 9,
-          "hits": 1,
-          "topics": [
-            "series_foundation",
-            "token_pruning",
-            "hallucination_mitigation",
-            "web_agents",
-            "llm_based_multi_agent",
-            "knowledge_conflicts",
-            "prompt_injection_attacks",
-            "against_jailbreak_attacks",
-            "graph_foundation"
-          ]
-        },
-        {
-          "window_start": "2025-07-14",
-          "flagged": 7,
-          "hits": 1,
-          "topics": [
-            "series_foundation",
-            "efficient_compression",
-            "hallucination_mitigation",
-            "retrieval_benchmark",
-            "large_vision_language_model",
-            "against_jailbreak_attacks",
-            "token_pruning"
-          ]
-        },
-        {
-          "window_start": "2025-08-11",
-          "flagged": 2,
-          "hits": 0,
-          "topics": [
-            "federated_fine_tuning",
-            "weather_models"
-          ]
-        },
-        {
-          "window_start": "2025-09-08",
-          "flagged": 2,
-          "hits": 0,
-          "topics": [
-            "diffusion_priors",
+            "long_video_understanding",
             "hallucination_mitigation"
           ]
         },
         {
-          "window_start": "2025-10-06",
-          "flagged": 5,
-          "hits": 0,
+          "window_start": "2025-03-24",
+          "flagged": 8,
+          "hits": 1,
           "topics": [
-            "text_to_sql_generation",
-            "diffusion_priors",
-            "token_pruning",
+            "series_foundation",
+            "multi_agent_llm",
+            "frontier_ai",
+            "llm_based_multi_agent",
+            "vision_mamba",
+            "rectified_flow",
             "efficient_llm_inference",
             "hallucination_mitigation"
           ]
         },
         {
-          "window_start": "2025-11-03",
+          "window_start": "2025-04-21",
+          "flagged": 6,
+          "hits": 1,
+          "topics": [
+            "series_foundation",
+            "multi_agent_llm",
+            "frontier_ai",
+            "hallucination_mitigation",
+            "federated_fine_tuning",
+            "rectified_flow"
+          ]
+        },
+        {
+          "window_start": "2025-05-19",
+          "flagged": 10,
+          "hits": 0,
+          "topics": [
+            "series_foundation",
+            "audio_language_models",
+            "multi_agent_llm",
+            "federated_fine_tuning",
+            "frontier_ai",
+            "hallucination_mitigation",
+            "diffusion_distillation",
+            "efficient_llm_inference",
+            "hierarchical_multi_agent",
+            "graph_foundation"
+          ]
+        },
+        {
+          "window_start": "2025-06-16",
+          "flagged": 5,
+          "hits": 0,
+          "topics": [
+            "audio_language_models",
+            "hierarchical_multi_agent",
+            "federated_fine_tuning",
+            "frontier_ai",
+            "accelerating_diffusion"
+          ]
+        },
+        {
+          "window_start": "2025-07-14",
+          "flagged": 5,
+          "hits": 0,
+          "topics": [
+            "hierarchical_multi_agent",
+            "audio_language_models",
+            "accelerating_diffusion",
+            "frontier_ai",
+            "long_video_understanding"
+          ]
+        },
+        {
+          "window_start": "2025-08-11",
           "flagged": 2,
           "hits": 0,
           "topics": [
-            "medical_vision_language",
-            "token_pruning"
+            "hierarchical_multi_agent",
+            "frontier_ai"
+          ]
+        },
+        {
+          "window_start": "2025-09-08",
+          "flagged": 3,
+          "hits": 0,
+          "topics": [
+            "audio_language_models",
+            "hierarchical_multi_agent",
+            "ai_foundation"
+          ]
+        },
+        {
+          "window_start": "2025-10-06",
+          "flagged": 3,
+          "hits": 0,
+          "topics": [
+            "hierarchical_multi_agent",
+            "audio_language_models",
+            "multimodal_agents"
+          ]
+        },
+        {
+          "window_start": "2025-11-03",
+          "flagged": 4,
+          "hits": 0,
+          "topics": [
+            "hierarchical_multi_agent",
+            "ai_generated_image",
+            "audio_language_models",
+            "ai_foundation"
           ]
         },
         {
@@ -523,133 +531,150 @@
           "flagged": 1,
           "hits": 0,
           "topics": [
-            "efficient_llm_inference"
+            "hierarchical_multi_agent"
           ]
         },
         {
           "window_start": "2025-12-29",
-          "flagged": 1,
+          "flagged": 3,
           "hits": 0,
           "topics": [
-            "leaf_disease"
+            "audio_language_models",
+            "leaf_disease",
+            "hierarchical_multi_agent"
           ]
         }
       ]
     },
     "tuned_all_candidates": {
-      "pairs": 22,
-      "hits": 5,
-      "precision": 0.22727272727272727,
-      "topics_flagged": 16,
-      "topics_hit": 4,
-      "topic_precision": 0.25,
+      "pairs": 32,
+      "hits": 7,
+      "precision": 0.21875,
+      "topics_flagged": 14,
+      "topics_hit": 3,
+      "topic_precision": 0.21428571428571427,
       "per_window": [
         {
           "window_start": "2025-01-27",
-          "flagged": 6,
+          "flagged": 5,
           "hits": 3,
           "topics": [
-            "kolmogorov_arnold_network",
-            "sparse_autoencoders",
-            "llm_serving",
-            "diffusion_transformers",
-            "multimodal_ai",
-            "web_agents"
+            "agentic_ai",
+            "multi_agent_llm",
+            "kv_cache_compression",
+            "frontier_ai",
+            "diffusion_transformers"
           ]
         },
         {
           "window_start": "2025-02-24",
-          "flagged": 3,
-          "hits": 0,
+          "flagged": 5,
+          "hits": 2,
           "topics": [
-            "multimodal_ai",
-            "diffusion_transformers",
-            "kv_cache_compression"
+            "agentic_ai",
+            "multi_agent_llm",
+            "frontier_ai",
+            "llm_based_multi_agent",
+            "detection_leveraging"
           ]
         },
         {
           "window_start": "2025-03-24",
-          "flagged": 2,
-          "hits": 0,
+          "flagged": 4,
+          "hits": 1,
           "topics": [
-            "multimodal_ai",
-            "llm_based_multi_agent"
+            "frontier_ai",
+            "multi_agent_llm",
+            "llm_based_multi_agent",
+            "deepfake_audio"
           ]
         },
         {
           "window_start": "2025-04-21",
-          "flagged": 1,
+          "flagged": 4,
           "hits": 1,
           "topics": [
-            "series_foundation"
+            "frontier_ai",
+            "series_foundation",
+            "multi_agent_llm",
+            "federated_fine_tuning"
           ]
         },
         {
           "window_start": "2025-05-19",
-          "flagged": 5,
-          "hits": 1,
+          "flagged": 4,
+          "hits": 0,
           "topics": [
-            "token_pruning",
-            "series_foundation",
-            "mitigating_hallucinations",
-            "prompt_injection_attacks",
-            "hallucination_mitigation"
+            "federated_fine_tuning",
+            "multi_agent_llm",
+            "frontier_ai",
+            "series_foundation"
           ]
         },
         {
           "window_start": "2025-06-16",
-          "flagged": 3,
+          "flagged": 2,
           "hits": 0,
           "topics": [
-            "token_pruning",
-            "hallucination_mitigation",
-            "efficient_multi_task"
+            "hierarchical_multi_agent",
+            "federated_fine_tuning"
           ]
         },
         {
           "window_start": "2025-07-14",
-          "flagged": 0,
+          "flagged": 1,
           "hits": 0,
-          "topics": []
+          "topics": [
+            "hierarchical_multi_agent"
+          ]
         },
         {
           "window_start": "2025-08-11",
-          "flagged": 0,
+          "flagged": 1,
           "hits": 0,
-          "topics": []
+          "topics": [
+            "llm_hallucination"
+          ]
         },
         {
           "window_start": "2025-09-08",
-          "flagged": 0,
+          "flagged": 1,
           "hits": 0,
-          "topics": []
+          "topics": [
+            "audio_language_models"
+          ]
         },
         {
           "window_start": "2025-10-06",
-          "flagged": 0,
+          "flagged": 1,
           "hits": 0,
-          "topics": []
+          "topics": [
+            "hierarchical_multi_agent"
+          ]
         },
         {
           "window_start": "2025-11-03",
           "flagged": 1,
           "hits": 0,
           "topics": [
-            "medical_vision_language"
+            "hierarchical_multi_agent"
           ]
         },
         {
           "window_start": "2025-12-01",
-          "flagged": 0,
-          "hits": 0,
-          "topics": []
-        },
-        {
-          "window_start": "2025-12-29",
           "flagged": 1,
           "hits": 0,
           "topics": [
-            "context_compression"
+            "hierarchical_multi_agent"
+          ]
+        },
+        {
+          "window_start": "2025-12-29",
+          "flagged": 2,
+          "hits": 0,
+          "topics": [
+            "audio_language_models",
+            "generative_ai_based"
           ]
         }
       ]
@@ -664,10 +689,10 @@
     "mined_year": 2024,
     "flags_judged_in": 2025,
     "half": "dev",
-    "total_both_halves": 174,
-    "in_this_half": 80,
+    "total_both_halves": 184,
+    "in_this_half": 91,
     "dropped_crowd_before_cutoff": 0,
-    "judged": 80,
-    "crowd_in_judged_year_or_later": 10
+    "judged": 91,
+    "crowd_in_judged_year_or_later": 8
   }
 }

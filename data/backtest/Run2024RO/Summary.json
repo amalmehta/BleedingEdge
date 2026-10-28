@@ -1,0 +1,547 @@
+{
+  "window": [
+    "2021-01-04",
+    "2026-10-05"
+  ],
+  "signals": [
+    "arxiv",
+    "github",
+    "funding"
+  ],
+  "missing_signals": [
+    "citations",
+    "labs"
+  ],
+  "keys_present": {
+    "S2_API_KEY": false,
+    "OPENALEX_API_KEY": false
+  },
+  "lead": [
+    {
+      "key": "grpo_rlvr",
+      "topic": "RL for LLM reasoning (GRPO / RLVR)",
+      "heating_window": 52,
+      "mode": "burst",
+      "consensus_window": 57,
+      "hn_first_story_window": 53,
+      "lead_weeks": 20,
+      "passes": true
+    },
+    {
+      "key": "diffusion_policy",
+      "topic": "Diffusion policies",
+      "heating_window": 40,
+      "mode": "burst",
+      "consensus_window": 45,
+      "hn_first_story_window": null,
+      "lead_weeks": 20,
+      "passes": true
+    },
+    {
+      "key": "vla",
+      "topic": "Vision-language-action models",
+      "heating_window": 45,
+      "mode": "trend",
+      "consensus_window": 62,
+      "hn_first_story_window": 52,
+      "lead_weeks": 68,
+      "passes": true
+    }
+  ],
+  "lead_baseline": [
+    {
+      "key": "grpo_rlvr",
+      "topic": "RL for LLM reasoning (GRPO / RLVR)",
+      "heating_window": 52,
+      "mode": "burst",
+      "consensus_window": 57,
+      "hn_first_story_window": 53,
+      "lead_weeks": 20,
+      "passes": true
+    },
+    {
+      "key": "diffusion_policy",
+      "topic": "Diffusion policies",
+      "heating_window": 40,
+      "mode": "burst",
+      "consensus_window": 45,
+      "hn_first_story_window": null,
+      "lead_weeks": 20,
+      "passes": true
+    },
+    {
+      "key": "vla",
+      "topic": "Vision-language-action models",
+      "heating_window": 44,
+      "mode": "burst",
+      "consensus_window": 62,
+      "hn_first_story_window": 52,
+      "lead_weeks": 72,
+      "passes": true
+    }
+  ],
+  "crossings": {
+    "arxiv": {
+      "grpo_rlvr": 52,
+      "diffusion_policy": 40,
+      "vla": 44
+    },
+    "github": {
+      "grpo_rlvr": 68,
+      "diffusion_policy": 41,
+      "vla": 54
+    },
+    "funding": {
+      "grpo_rlvr": 41,
+      "diffusion_policy": null,
+      "vla": 7
+    }
+  },
+  "consensus": {
+    "grpo_rlvr": 57,
+    "diffusion_policy": 45,
+    "vla": 62
+  },
+  "lead_weights_raw": {
+    "arxiv": 1.0,
+    "github": 0.6666666666666666,
+    "funding": 0.6666666666666666
+  },
+  "lead_weights": {
+    "arxiv": 1.0,
+    "github": 0.6666666666666666,
+    "funding": 0.6666666666666666
+  },
+  "precision": {
+    "untuned": {
+      "pairs": 7,
+      "hits": 0,
+      "precision": 0.0,
+      "topics_flagged": 7,
+      "topics_hit": 0,
+      "topic_precision": 0.0,
+      "per_window": [
+        {
+          "window_start": "2025-01-27",
+          "flagged": 0,
+          "hits": 0,
+          "topics": []
+        },
+        {
+          "window_start": "2025-02-24",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "optimizing_design"
+          ]
+        },
+        {
+          "window_start": "2025-03-24",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "dexterous_hands"
+          ]
+        },
+        {
+          "window_start": "2025-04-21",
+          "flagged": 0,
+          "hits": 0,
+          "topics": []
+        },
+        {
+          "window_start": "2025-05-19",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "humanoid_control"
+          ]
+        },
+        {
+          "window_start": "2025-06-16",
+          "flagged": 0,
+          "hits": 0,
+          "topics": []
+        },
+        {
+          "window_start": "2025-07-14",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "platform_for_autonomous"
+          ]
+        },
+        {
+          "window_start": "2025-08-11",
+          "flagged": 0,
+          "hits": 0,
+          "topics": []
+        },
+        {
+          "window_start": "2025-09-08",
+          "flagged": 0,
+          "hits": 0,
+          "topics": []
+        },
+        {
+          "window_start": "2025-10-06",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "terrain_classification"
+          ]
+        },
+        {
+          "window_start": "2025-11-03",
+          "flagged": 0,
+          "hits": 0,
+          "topics": []
+        },
+        {
+          "window_start": "2025-12-01",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "3d_robotic"
+          ]
+        },
+        {
+          "window_start": "2025-12-29",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "microphone_arrays"
+          ]
+        }
+      ]
+    },
+    "tuned": {
+      "pairs": 8,
+      "hits": 0,
+      "precision": 0.0,
+      "topics_flagged": 8,
+      "topics_hit": 0,
+      "topic_precision": 0.0,
+      "per_window": [
+        {
+          "window_start": "2025-01-27",
+          "flagged": 0,
+          "hits": 0,
+          "topics": []
+        },
+        {
+          "window_start": "2025-02-24",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "optimizing_design"
+          ]
+        },
+        {
+          "window_start": "2025-03-24",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "dexterous_hands"
+          ]
+        },
+        {
+          "window_start": "2025-04-21",
+          "flagged": 0,
+          "hits": 0,
+          "topics": []
+        },
+        {
+          "window_start": "2025-05-19",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "humanoid_control"
+          ]
+        },
+        {
+          "window_start": "2025-06-16",
+          "flagged": 0,
+          "hits": 0,
+          "topics": []
+        },
+        {
+          "window_start": "2025-07-14",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "platform_for_autonomous"
+          ]
+        },
+        {
+          "window_start": "2025-08-11",
+          "flagged": 0,
+          "hits": 0,
+          "topics": []
+        },
+        {
+          "window_start": "2025-09-08",
+          "flagged": 0,
+          "hits": 0,
+          "topics": []
+        },
+        {
+          "window_start": "2025-10-06",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "terrain_classification"
+          ]
+        },
+        {
+          "window_start": "2025-11-03",
+          "flagged": 0,
+          "hits": 0,
+          "topics": []
+        },
+        {
+          "window_start": "2025-12-01",
+          "flagged": 2,
+          "hits": 0,
+          "topics": [
+            "3d_robotic",
+            "generalist_robot"
+          ]
+        },
+        {
+          "window_start": "2025-12-29",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "microphone_arrays"
+          ]
+        }
+      ]
+    },
+    "baseline_arxiv_only": {
+      "pairs": 11,
+      "hits": 0,
+      "precision": 0.0,
+      "topics_flagged": 4,
+      "topics_hit": 0,
+      "topic_precision": 0.0,
+      "per_window": [
+        {
+          "window_start": "2025-01-27",
+          "flagged": 0,
+          "hits": 0,
+          "topics": []
+        },
+        {
+          "window_start": "2025-02-24",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "dexterous_hands"
+          ]
+        },
+        {
+          "window_start": "2025-03-24",
+          "flagged": 2,
+          "hits": 0,
+          "topics": [
+            "generalist_robot",
+            "dexterous_hands"
+          ]
+        },
+        {
+          "window_start": "2025-04-21",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "generalist_robot"
+          ]
+        },
+        {
+          "window_start": "2025-05-19",
+          "flagged": 2,
+          "hits": 0,
+          "topics": [
+            "generalist_robot",
+            "humanoid_control"
+          ]
+        },
+        {
+          "window_start": "2025-06-16",
+          "flagged": 2,
+          "hits": 0,
+          "topics": [
+            "generalist_robot",
+            "humanoid_control"
+          ]
+        },
+        {
+          "window_start": "2025-07-14",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "graph_enabling"
+          ]
+        },
+        {
+          "window_start": "2025-08-11",
+          "flagged": 0,
+          "hits": 0,
+          "topics": []
+        },
+        {
+          "window_start": "2025-09-08",
+          "flagged": 0,
+          "hits": 0,
+          "topics": []
+        },
+        {
+          "window_start": "2025-10-06",
+          "flagged": 0,
+          "hits": 0,
+          "topics": []
+        },
+        {
+          "window_start": "2025-11-03",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "humanoid_control"
+          ]
+        },
+        {
+          "window_start": "2025-12-01",
+          "flagged": 0,
+          "hits": 0,
+          "topics": []
+        },
+        {
+          "window_start": "2025-12-29",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "humanoid_control"
+          ]
+        }
+      ]
+    },
+    "tuned_all_candidates": {
+      "pairs": 8,
+      "hits": 0,
+      "precision": 0.0,
+      "topics_flagged": 8,
+      "topics_hit": 0,
+      "topic_precision": 0.0,
+      "per_window": [
+        {
+          "window_start": "2025-01-27",
+          "flagged": 0,
+          "hits": 0,
+          "topics": []
+        },
+        {
+          "window_start": "2025-02-24",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "optimizing_design"
+          ]
+        },
+        {
+          "window_start": "2025-03-24",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "dexterous_hands"
+          ]
+        },
+        {
+          "window_start": "2025-04-21",
+          "flagged": 0,
+          "hits": 0,
+          "topics": []
+        },
+        {
+          "window_start": "2025-05-19",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "humanoid_control"
+          ]
+        },
+        {
+          "window_start": "2025-06-16",
+          "flagged": 0,
+          "hits": 0,
+          "topics": []
+        },
+        {
+          "window_start": "2025-07-14",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "platform_for_autonomous"
+          ]
+        },
+        {
+          "window_start": "2025-08-11",
+          "flagged": 0,
+          "hits": 0,
+          "topics": []
+        },
+        {
+          "window_start": "2025-09-08",
+          "flagged": 0,
+          "hits": 0,
+          "topics": []
+        },
+        {
+          "window_start": "2025-10-06",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "terrain_classification"
+          ]
+        },
+        {
+          "window_start": "2025-11-03",
+          "flagged": 0,
+          "hits": 0,
+          "topics": []
+        },
+        {
+          "window_start": "2025-12-01",
+          "flagged": 2,
+          "hits": 0,
+          "topics": [
+            "3d_robotic",
+            "generalist_robot"
+          ]
+        },
+        {
+          "window_start": "2025-12-29",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "microphone_arrays"
+          ]
+        }
+      ]
+    }
+  },
+  "passes": {
+    "a_lead": true,
+    "b_precision": false
+  },
+  "candidates": {
+    "file": "CandidatesMined2024RO.csv",
+    "mined_year": 2024,
+    "flags_judged_in": 2025,
+    "half": "dev",
+    "total_both_halves": 491,
+    "in_this_half": 253,
+    "dropped_crowd_before_cutoff": 0,
+    "judged": 253,
+    "crowd_in_judged_year_or_later": 2
+  }
+}

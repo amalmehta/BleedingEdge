@@ -1,19 +1,21 @@
 # Backtest: would the method have spotted past trends early?
 
-**Verdict: FAIL.** On the held-out half, opened once on 2026-10-27, criterion (b) scored **41% (12 of 29)** against the 50% bar.
+**Verdict: FAIL.** Every precision test failed the 50% bar. After a data bug was fixed (below), the robotics record is **1 of 19 flagged topics took off**. That is close to what picking at random would find.
 
-The method did catch every topic in that half that took off, and it beat arXiv-only by about 2.7×. The question now is whether a 4-in-10 hit rate is useful to you. That's for you to decide, not a pass. See [Held-out result](#held-out-result).
+> **Correction, 2026-10-27.** arXiv's OAI server reports `<created>` as a *later* version's date for revised papers. About 30% of harvested papers sat in the wrong month or year; for example, a May 2016 paper was dated Jan 2021. Every count made from the bulk download was affected: candidate mining, newness, the totals and phrase counts. The 3 test topics were not affected, because they use arXiv search.
+>
+> The fix takes the first-version month from the arXiv id (`arxiv_bulk.first_version`). Round 2 was re-run on corrected data with the method unchanged; see [Round 2 results](#round-2-results). Round 1 (2023 phrases) was **not** re-run. Its numbers below were computed on misdated data, so treat them as unreliable.
 
-| | Dev half (tuned on) | Held-out half (clean) |
+| Round 2, corrected | All categories, held-out | Robotics, dev + held-out |
 |---|---|---|
-| Precision, full method | 52% (15/29) | **41% (12/29)** |
-| Precision, arXiv only | 30% | 15% |
-| Topics that took off in 2024–25 that it caught | 4 of 5 | 3 of 3 |
-| Distinct flagged topics that hit | 4 of 10 | 3 of 7 |
+| Flagged topics that took off | 1 of 14 (7%) | **1 of 19 (5%)** |
+| Share of all candidates that took off (picking at random) | 6 of 93 (6%) | 6 of 491 (1%) |
+| Precision by window, full method | 3% (1/31) | 7% (2/30) |
+| Winners caught | 1 of 6 | 1 of 6 |
 
 Criterion (a) passes, but it's in-sample, so it's weak evidence.
 
-Run on 2026-10-26 over Jan 2021 – Dec 2025: 65 four-week windows, 3 test topics, 59 candidate topics. The signals were arXiv, new GitHub repos and funding rounds. Citations and lab papers were left out because they wait on API keys. Every count, query URL and chart is in [BacktestResults.md](BacktestResults.md), which is generated. Raw counts are in `data/backtest/Counts.csv`.
+Round 1 ran on 2026-10-26 over Jan 2021 – Dec 2025 (65 four-week windows). Round 2 ran on 2026-10-27 over Jan 2021 – Oct 2026 (75 windows; outputs in `data/backtest/Run2024*/`). Round 1 used, 3 test topics, 59 candidate topics. The signals were arXiv, new GitHub repos and funding rounds. Citations and lab papers were left out because they wait on API keys. Every count, query URL and chart is in [BacktestResults.md](BacktestResults.md), which is generated. Raw counts are in `data/backtest/Counts.csv`.
 
 ## The question
 
@@ -272,19 +274,43 @@ uv run python -m bleedingedge.backtest --holdout
 
 **Pass.** A run passes if the held-out half reaches ≥ 50% precision with tuned weights. The dev half is reported too.
 
+## Round 2 results
+
+**Run 2026-10-27, as pre-registered above, then re-run the same day on corrected dates.** The method was not changed between or after runs. The corrected run replaces the first one. Both fail.
+
+| Corrected data | All, dev | All, held-out | Robotics, dev | Robotics, held-out |
+|---|---|---|---|---|
+| Candidates in the half | 91 | 93 | 253 | 238 |
+| Took off in 2025–26 (base rate) | 8 (9%) | 6 (6%) | 2 (1%) | 4 (2%) |
+| Precision by window, full method (tuned) | 22% (7/32) | **3% (1/31)** | 0% (0/8) | **9% (2/22)** |
+| Precision by window, arXiv only | 9% | 16% | 0% | 8% |
+| Flagged topics that took off | 3 of 14 | 1 of 14 | 0 of 8 | 1 of 11 |
+| Winners caught | 3 of 8 | 1 of 6 | 0 of 2 | 1 of 4 |
+
+**The first run, on misdated data** (kept in `data/backtest/Misdated/`): robotics held-out scored 45% (9/20), with 4 of 15 topics across both halves; all categories held-out scored 6%. **Most of the robotics result came from the date bug.**
+
+**What this says, plainly:**
+1. **Robotics: indistinguishable from chance.**
+   - One flagged topic took off out of 19 ("physically grounded", again flagged in 8 windows running).
+   - At a 1% base rate, picking 19 at random would land at least one winner about 1 time in 5 (an estimate: 1 − 0.99¹⁹ ≈ 17–21%). One hit is not evidence that the method works.
+2. **All categories: held-out 3%, worse than arXiv alone (16%) and below random (6%).** The dev half's 22% didn't carry over.
+3. **Criterion (a) still passes** on the 3 test topics, at 20 / 20 / 68 weeks. It is in-sample and unaffected by the bug.
+
+**Known biases** (direction estimated, not measured):
+- Late-2025 flags had less than 12 months to be proven right, which pushes precision down a little.
+- Some phrases are fragments ("platform for autonomous", "system for robotic"). They count, because an automatic miner produces them.
+- Dates estimated from arXiv ids are accurate to within the month. That is finer than the 4-week windows can resolve.
+
 ## Next: your call
 
-The spec says that if the backtest fails, you either change the method or stop before running it weekly. There are three honest options:
+On 2026-10-27 you chose a robotics-only 4-week trial, with the brief stating its record and the bar recorded as lowered after seeing the results. That choice rested on the record "4 of 15 topics took off".
 
-1. **Stop.** No weekly brief.
-2. **Lower the bar on purpose, and record it as a change made after seeing the result.**
-   - Then run the 4-week trial with the brief stating its record plainly: "about 4 in 10 picks took off within a year, and it caught 7 of 8 winners".
-   - The trial's own test ("you act on at least 2 study picks") becomes the real check.
-3. **Fix the "already crowded" error and test again on new data.**
-   - Mine phrases new in 2024.
-   - Grade them on 2025–26, with a fresh held-out half.
-   - Add citations and lab papers if your keys are in by then.
-   - Run a separate cs.RO-only mine, since robotics is your domain and it was barely tested.
+Corrected, the record is 1 of 19, which is about chance. The trial is built (`bleedingedge/brief.py`, `prompts/WeeklyBrief.md`) and the week 1 draft exists. No study pick has been written yet, because the premise changed.
+
+1. **Stop.** The backtest has now failed three times on clean data.
+2. **Run the trial anyway, as a test of the format, not the detector.** The brief already states "1 of 19" plainly.
+   - What the trial can still tell you: whether a weekly, small, firm study pick gets you to act. You said acting, not spotting, was the problem with diffusion policies and coding agents.
+   - Picks would then be roughly as good as a well-read guess.
 
 ## Reproduce
 
@@ -293,6 +319,8 @@ uv run python -m bleedingedge.sources.arxiv_bulk  # bulk arXiv metadata, ~2.5 h 
 uv run python -m bleedingedge.mining              # mine candidates from it
 uv run python -m bleedingedge.backtest            # dev half
 uv run python -m bleedingedge.backtest --holdout  # held-out half: run once, at the end
+uv run python -m bleedingedge.mining 2024 --ro    # round 2: phrases new in 2024 (drop --ro for all categories)
+uv run python -m bleedingedge.backtest --year 2024 --ro [--holdout]
 ```
 
 The cached API responses in `data/cache/` make re-runs free and identical. Delete that folder to refetch.

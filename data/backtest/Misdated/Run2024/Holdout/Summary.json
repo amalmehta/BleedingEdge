@@ -1,0 +1,652 @@
+{
+  "window": [
+    "2021-01-04",
+    "2026-10-05"
+  ],
+  "signals": [
+    "arxiv",
+    "github",
+    "funding"
+  ],
+  "missing_signals": [
+    "citations",
+    "labs"
+  ],
+  "keys_present": {
+    "S2_API_KEY": false,
+    "OPENALEX_API_KEY": false
+  },
+  "lead": [
+    {
+      "key": "grpo_rlvr",
+      "topic": "RL for LLM reasoning (GRPO / RLVR)",
+      "heating_window": 52,
+      "mode": "burst",
+      "consensus_window": 57,
+      "hn_first_story_window": 53,
+      "lead_weeks": 20,
+      "passes": true
+    },
+    {
+      "key": "diffusion_policy",
+      "topic": "Diffusion policies",
+      "heating_window": 40,
+      "mode": "burst",
+      "consensus_window": 45,
+      "hn_first_story_window": null,
+      "lead_weeks": 20,
+      "passes": true
+    },
+    {
+      "key": "vla",
+      "topic": "Vision-language-action models",
+      "heating_window": 45,
+      "mode": "trend",
+      "consensus_window": 62,
+      "hn_first_story_window": 52,
+      "lead_weeks": 68,
+      "passes": true
+    }
+  ],
+  "lead_baseline": [
+    {
+      "key": "grpo_rlvr",
+      "topic": "RL for LLM reasoning (GRPO / RLVR)",
+      "heating_window": 52,
+      "mode": "burst",
+      "consensus_window": 57,
+      "hn_first_story_window": 53,
+      "lead_weeks": 20,
+      "passes": true
+    },
+    {
+      "key": "diffusion_policy",
+      "topic": "Diffusion policies",
+      "heating_window": 40,
+      "mode": "burst",
+      "consensus_window": 45,
+      "hn_first_story_window": null,
+      "lead_weeks": 20,
+      "passes": true
+    },
+    {
+      "key": "vla",
+      "topic": "Vision-language-action models",
+      "heating_window": 44,
+      "mode": "burst",
+      "consensus_window": 62,
+      "hn_first_story_window": 52,
+      "lead_weeks": 72,
+      "passes": true
+    }
+  ],
+  "crossings": {
+    "arxiv": {
+      "grpo_rlvr": 52,
+      "diffusion_policy": 40,
+      "vla": 44
+    },
+    "github": {
+      "grpo_rlvr": 68,
+      "diffusion_policy": 41,
+      "vla": 54
+    },
+    "funding": {
+      "grpo_rlvr": 41,
+      "diffusion_policy": null,
+      "vla": 7
+    }
+  },
+  "consensus": {
+    "grpo_rlvr": 57,
+    "diffusion_policy": 45,
+    "vla": 62
+  },
+  "lead_weights_raw": {
+    "arxiv": 1.0,
+    "github": 0.6666666666666666,
+    "funding": 0.6666666666666666
+  },
+  "lead_weights": {
+    "arxiv": 1.0,
+    "github": 0.6666666666666666,
+    "funding": 0.6666666666666666
+  },
+  "precision": {
+    "untuned": {
+      "pairs": 19,
+      "hits": 2,
+      "precision": 0.10526315789473684,
+      "topics_flagged": 10,
+      "topics_hit": 2,
+      "topic_precision": 0.2,
+      "per_window": [
+        {
+          "window_start": "2025-01-27",
+          "flagged": 2,
+          "hits": 1,
+          "topics": [
+            "long_context_llms",
+            "diffusion_transformer"
+          ]
+        },
+        {
+          "window_start": "2025-02-24",
+          "flagged": 3,
+          "hits": 0,
+          "topics": [
+            "long_context_llms",
+            "visual_foundation",
+            "long_context_language"
+          ]
+        },
+        {
+          "window_start": "2025-03-24",
+          "flagged": 2,
+          "hits": 0,
+          "topics": [
+            "open_language",
+            "bimanual_manipulation"
+          ]
+        },
+        {
+          "window_start": "2025-04-21",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "long_context_language"
+          ]
+        },
+        {
+          "window_start": "2025-05-19",
+          "flagged": 3,
+          "hits": 1,
+          "topics": [
+            "bimanual_manipulation",
+            "layer_pruning",
+            "temporal_grounding"
+          ]
+        },
+        {
+          "window_start": "2025-06-16",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "bimanual_manipulation"
+          ]
+        },
+        {
+          "window_start": "2025-07-14",
+          "flagged": 2,
+          "hits": 0,
+          "topics": [
+            "temporal_grounding",
+            "benchmark_for_multimodal"
+          ]
+        },
+        {
+          "window_start": "2025-08-11",
+          "flagged": 0,
+          "hits": 0,
+          "topics": []
+        },
+        {
+          "window_start": "2025-09-08",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "multi_agent_debate"
+          ]
+        },
+        {
+          "window_start": "2025-10-06",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "multi_agent_debate"
+          ]
+        },
+        {
+          "window_start": "2025-11-03",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "multi_agent_debate"
+          ]
+        },
+        {
+          "window_start": "2025-12-01",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "multi_agent_debate"
+          ]
+        },
+        {
+          "window_start": "2025-12-29",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "multi_agent_debate"
+          ]
+        }
+      ]
+    },
+    "tuned": {
+      "pairs": 17,
+      "hits": 1,
+      "precision": 0.058823529411764705,
+      "topics_flagged": 9,
+      "topics_hit": 1,
+      "topic_precision": 0.1111111111111111,
+      "per_window": [
+        {
+          "window_start": "2025-01-27",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "long_context_llms"
+          ]
+        },
+        {
+          "window_start": "2025-02-24",
+          "flagged": 2,
+          "hits": 0,
+          "topics": [
+            "long_context_llms",
+            "visual_foundation"
+          ]
+        },
+        {
+          "window_start": "2025-03-24",
+          "flagged": 2,
+          "hits": 0,
+          "topics": [
+            "open_language",
+            "bimanual_manipulation"
+          ]
+        },
+        {
+          "window_start": "2025-04-21",
+          "flagged": 0,
+          "hits": 0,
+          "topics": []
+        },
+        {
+          "window_start": "2025-05-19",
+          "flagged": 4,
+          "hits": 1,
+          "topics": [
+            "bimanual_manipulation",
+            "demonstration_selection",
+            "layer_pruning",
+            "temporal_grounding"
+          ]
+        },
+        {
+          "window_start": "2025-06-16",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "bimanual_manipulation"
+          ]
+        },
+        {
+          "window_start": "2025-07-14",
+          "flagged": 2,
+          "hits": 0,
+          "topics": [
+            "temporal_grounding",
+            "benchmark_for_multimodal"
+          ]
+        },
+        {
+          "window_start": "2025-08-11",
+          "flagged": 0,
+          "hits": 0,
+          "topics": []
+        },
+        {
+          "window_start": "2025-09-08",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "multi_agent_debate"
+          ]
+        },
+        {
+          "window_start": "2025-10-06",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "multi_agent_debate"
+          ]
+        },
+        {
+          "window_start": "2025-11-03",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "multi_agent_debate"
+          ]
+        },
+        {
+          "window_start": "2025-12-01",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "multi_agent_debate"
+          ]
+        },
+        {
+          "window_start": "2025-12-29",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "multi_agent_debate"
+          ]
+        }
+      ]
+    },
+    "baseline_arxiv_only": {
+      "pairs": 69,
+      "hits": 5,
+      "precision": 0.07246376811594203,
+      "topics_flagged": 32,
+      "topics_hit": 5,
+      "topic_precision": 0.15625,
+      "per_window": [
+        {
+          "window_start": "2025-01-27",
+          "flagged": 10,
+          "hits": 2,
+          "topics": [
+            "long_context_llms",
+            "musculoskeletal_humanoids",
+            "selective_state",
+            "diffusion_transformer",
+            "llm_safety",
+            "reasoning_in_llms",
+            "jailbreak_prompts",
+            "llm_framework",
+            "contrastive_decoding",
+            "function_calling"
+          ]
+        },
+        {
+          "window_start": "2025-02-24",
+          "flagged": 10,
+          "hits": 0,
+          "topics": [
+            "long_context_llms",
+            "visuomotor_policy",
+            "detecting_ai_generated",
+            "reasoning_in_llms",
+            "diffusion_bridge",
+            "generalized_category_discovery",
+            "tool_learning",
+            "path_integral_control",
+            "long_context_language",
+            "function_calling"
+          ]
+        },
+        {
+          "window_start": "2025-03-24",
+          "flagged": 7,
+          "hits": 0,
+          "topics": [
+            "long_context_llms",
+            "long_context_language",
+            "detecting_ai_generated",
+            "context_retrieval",
+            "generation_benchmark",
+            "function_calling",
+            "bimanual_manipulation"
+          ]
+        },
+        {
+          "window_start": "2025-04-21",
+          "flagged": 7,
+          "hits": 0,
+          "topics": [
+            "function_calling",
+            "long_context_llms",
+            "long_context_language",
+            "bimanual_manipulation",
+            "generation_benchmark",
+            "detecting_ai_generated",
+            "diffusion_bridge"
+          ]
+        },
+        {
+          "window_start": "2025-05-19",
+          "flagged": 10,
+          "hits": 2,
+          "topics": [
+            "demonstration_selection",
+            "bimanual_manipulation",
+            "layer_pruning",
+            "multi_agent_debate",
+            "long_context_llms",
+            "function_calling",
+            "tool_learning",
+            "reasoning_of_llms",
+            "temporal_grounding",
+            "jailbreak_prompts"
+          ]
+        },
+        {
+          "window_start": "2025-06-16",
+          "flagged": 4,
+          "hits": 0,
+          "topics": [
+            "bimanual_manipulation",
+            "demonstration_selection",
+            "generation_benchmark",
+            "visuomotor_policy"
+          ]
+        },
+        {
+          "window_start": "2025-07-14",
+          "flagged": 8,
+          "hits": 0,
+          "topics": [
+            "gaussian_splatting_slam",
+            "benchmark_for_multimodal",
+            "mitigating_hallucination",
+            "demonstration_selection",
+            "visuomotor_policy",
+            "system_for_automated",
+            "temporal_grounding",
+            "traditional_chinese_medicine"
+          ]
+        },
+        {
+          "window_start": "2025-08-11",
+          "flagged": 0,
+          "hits": 0,
+          "topics": []
+        },
+        {
+          "window_start": "2025-09-08",
+          "flagged": 4,
+          "hits": 1,
+          "topics": [
+            "multi_agent_debate",
+            "diffusion_guidance",
+            "before_you",
+            "long_context_language"
+          ]
+        },
+        {
+          "window_start": "2025-10-06",
+          "flagged": 3,
+          "hits": 0,
+          "topics": [
+            "multi_agent_debate",
+            "temporal_grounding",
+            "layer_pruning"
+          ]
+        },
+        {
+          "window_start": "2025-11-03",
+          "flagged": 4,
+          "hits": 0,
+          "topics": [
+            "multi_agent_debate",
+            "demonstration_selection",
+            "diffusion_bridge",
+            "before_you"
+          ]
+        },
+        {
+          "window_start": "2025-12-01",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "multi_agent_debate"
+          ]
+        },
+        {
+          "window_start": "2025-12-29",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "multi_agent_debate"
+          ]
+        }
+      ]
+    },
+    "tuned_all_candidates": {
+      "pairs": 17,
+      "hits": 1,
+      "precision": 0.058823529411764705,
+      "topics_flagged": 9,
+      "topics_hit": 1,
+      "topic_precision": 0.1111111111111111,
+      "per_window": [
+        {
+          "window_start": "2025-01-27",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "long_context_llms"
+          ]
+        },
+        {
+          "window_start": "2025-02-24",
+          "flagged": 2,
+          "hits": 0,
+          "topics": [
+            "long_context_llms",
+            "visual_foundation"
+          ]
+        },
+        {
+          "window_start": "2025-03-24",
+          "flagged": 2,
+          "hits": 0,
+          "topics": [
+            "open_language",
+            "bimanual_manipulation"
+          ]
+        },
+        {
+          "window_start": "2025-04-21",
+          "flagged": 0,
+          "hits": 0,
+          "topics": []
+        },
+        {
+          "window_start": "2025-05-19",
+          "flagged": 4,
+          "hits": 1,
+          "topics": [
+            "bimanual_manipulation",
+            "demonstration_selection",
+            "layer_pruning",
+            "temporal_grounding"
+          ]
+        },
+        {
+          "window_start": "2025-06-16",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "bimanual_manipulation"
+          ]
+        },
+        {
+          "window_start": "2025-07-14",
+          "flagged": 2,
+          "hits": 0,
+          "topics": [
+            "temporal_grounding",
+            "benchmark_for_multimodal"
+          ]
+        },
+        {
+          "window_start": "2025-08-11",
+          "flagged": 0,
+          "hits": 0,
+          "topics": []
+        },
+        {
+          "window_start": "2025-09-08",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "multi_agent_debate"
+          ]
+        },
+        {
+          "window_start": "2025-10-06",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "multi_agent_debate"
+          ]
+        },
+        {
+          "window_start": "2025-11-03",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "multi_agent_debate"
+          ]
+        },
+        {
+          "window_start": "2025-12-01",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "multi_agent_debate"
+          ]
+        },
+        {
+          "window_start": "2025-12-29",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "multi_agent_debate"
+          ]
+        }
+      ]
+    }
+  },
+  "passes": {
+    "a_lead": true,
+    "b_precision": false
+  },
+  "candidates": {
+    "file": "CandidatesMined2024.csv",
+    "mined_year": 2024,
+    "flags_judged_in": 2025,
+    "half": "holdout",
+    "total_both_halves": 174,
+    "in_this_half": 94,
+    "dropped_crowd_before_cutoff": 0,
+    "judged": 94,
+    "crowd_in_judged_year_or_later": 12
+  }
+}

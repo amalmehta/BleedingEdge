@@ -1,0 +1,701 @@
+{
+  "window": [
+    "2021-01-04",
+    "2026-10-05"
+  ],
+  "signals": [
+    "arxiv",
+    "github",
+    "funding"
+  ],
+  "missing_signals": [
+    "citations",
+    "labs"
+  ],
+  "keys_present": {
+    "S2_API_KEY": false,
+    "OPENALEX_API_KEY": false
+  },
+  "lead": [
+    {
+      "key": "grpo_rlvr",
+      "topic": "RL for LLM reasoning (GRPO / RLVR)",
+      "heating_window": 52,
+      "mode": "burst",
+      "consensus_window": 57,
+      "hn_first_story_window": 53,
+      "lead_weeks": 20,
+      "passes": true
+    },
+    {
+      "key": "diffusion_policy",
+      "topic": "Diffusion policies",
+      "heating_window": 40,
+      "mode": "burst",
+      "consensus_window": 45,
+      "hn_first_story_window": null,
+      "lead_weeks": 20,
+      "passes": true
+    },
+    {
+      "key": "vla",
+      "topic": "Vision-language-action models",
+      "heating_window": 45,
+      "mode": "trend",
+      "consensus_window": 62,
+      "hn_first_story_window": 52,
+      "lead_weeks": 68,
+      "passes": true
+    }
+  ],
+  "lead_baseline": [
+    {
+      "key": "grpo_rlvr",
+      "topic": "RL for LLM reasoning (GRPO / RLVR)",
+      "heating_window": 52,
+      "mode": "burst",
+      "consensus_window": 57,
+      "hn_first_story_window": 53,
+      "lead_weeks": 20,
+      "passes": true
+    },
+    {
+      "key": "diffusion_policy",
+      "topic": "Diffusion policies",
+      "heating_window": 40,
+      "mode": "burst",
+      "consensus_window": 45,
+      "hn_first_story_window": null,
+      "lead_weeks": 20,
+      "passes": true
+    },
+    {
+      "key": "vla",
+      "topic": "Vision-language-action models",
+      "heating_window": 44,
+      "mode": "burst",
+      "consensus_window": 62,
+      "hn_first_story_window": 52,
+      "lead_weeks": 72,
+      "passes": true
+    }
+  ],
+  "crossings": {
+    "arxiv": {
+      "grpo_rlvr": 52,
+      "diffusion_policy": 40,
+      "vla": 44
+    },
+    "github": {
+      "grpo_rlvr": 68,
+      "diffusion_policy": 41,
+      "vla": 54
+    },
+    "funding": {
+      "grpo_rlvr": 41,
+      "diffusion_policy": null,
+      "vla": 7
+    }
+  },
+  "consensus": {
+    "grpo_rlvr": 57,
+    "diffusion_policy": 45,
+    "vla": 62
+  },
+  "lead_weights_raw": {
+    "arxiv": 1.0,
+    "github": 0.6666666666666666,
+    "funding": 0.6666666666666666
+  },
+  "lead_weights": {
+    "arxiv": 1.0,
+    "github": 0.6666666666666666,
+    "funding": 0.6666666666666666
+  },
+  "precision": {
+    "untuned": {
+      "pairs": 30,
+      "hits": 1,
+      "precision": 0.03333333333333333,
+      "topics_flagged": 14,
+      "topics_hit": 1,
+      "topic_precision": 0.07142857142857142,
+      "per_window": [
+        {
+          "window_start": "2025-01-27",
+          "flagged": 3,
+          "hits": 0,
+          "topics": [
+            "long_context_llms",
+            "llm_generated_code",
+            "inference_scaling"
+          ]
+        },
+        {
+          "window_start": "2025-02-24",
+          "flagged": 4,
+          "hits": 0,
+          "topics": [
+            "inference_scaling",
+            "long_context_llms",
+            "llm_unlearning",
+            "long_context_language"
+          ]
+        },
+        {
+          "window_start": "2025-03-24",
+          "flagged": 4,
+          "hits": 0,
+          "topics": [
+            "gui_agents",
+            "inference_scaling",
+            "llm_unlearning",
+            "open_language"
+          ]
+        },
+        {
+          "window_start": "2025-04-21",
+          "flagged": 3,
+          "hits": 0,
+          "topics": [
+            "gui_agents",
+            "inference_scaling",
+            "medical_vision"
+          ]
+        },
+        {
+          "window_start": "2025-05-19",
+          "flagged": 4,
+          "hits": 0,
+          "topics": [
+            "inference_scaling",
+            "benchmark_for_multimodal",
+            "temporal_grounding",
+            "layer_pruning"
+          ]
+        },
+        {
+          "window_start": "2025-06-16",
+          "flagged": 3,
+          "hits": 0,
+          "topics": [
+            "inference_scaling",
+            "temporal_grounding",
+            "3d_diffusion"
+          ]
+        },
+        {
+          "window_start": "2025-07-14",
+          "flagged": 3,
+          "hits": 0,
+          "topics": [
+            "temporal_grounding",
+            "inference_scaling",
+            "benchmark_for_multimodal"
+          ]
+        },
+        {
+          "window_start": "2025-08-11",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "gui_agents"
+          ]
+        },
+        {
+          "window_start": "2025-09-08",
+          "flagged": 1,
+          "hits": 1,
+          "topics": [
+            "activation_steering"
+          ]
+        },
+        {
+          "window_start": "2025-10-06",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "activation_steering"
+          ]
+        },
+        {
+          "window_start": "2025-11-03",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "activation_steering"
+          ]
+        },
+        {
+          "window_start": "2025-12-01",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "activation_steering"
+          ]
+        },
+        {
+          "window_start": "2025-12-29",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "multi_agent_debate"
+          ]
+        }
+      ]
+    },
+    "tuned": {
+      "pairs": 31,
+      "hits": 1,
+      "precision": 0.03225806451612903,
+      "topics_flagged": 14,
+      "topics_hit": 1,
+      "topic_precision": 0.07142857142857142,
+      "per_window": [
+        {
+          "window_start": "2025-01-27",
+          "flagged": 4,
+          "hits": 0,
+          "topics": [
+            "long_context_llms",
+            "llm_generated_code",
+            "inference_scaling",
+            "reasoning_in_llms"
+          ]
+        },
+        {
+          "window_start": "2025-02-24",
+          "flagged": 3,
+          "hits": 0,
+          "topics": [
+            "inference_scaling",
+            "llm_unlearning",
+            "long_context_llms"
+          ]
+        },
+        {
+          "window_start": "2025-03-24",
+          "flagged": 4,
+          "hits": 0,
+          "topics": [
+            "inference_scaling",
+            "gui_agents",
+            "llm_unlearning",
+            "open_language"
+          ]
+        },
+        {
+          "window_start": "2025-04-21",
+          "flagged": 4,
+          "hits": 0,
+          "topics": [
+            "gui_agents",
+            "inference_scaling",
+            "llm_unlearning",
+            "medical_vision"
+          ]
+        },
+        {
+          "window_start": "2025-05-19",
+          "flagged": 4,
+          "hits": 0,
+          "topics": [
+            "inference_scaling",
+            "benchmark_for_multimodal",
+            "temporal_grounding",
+            "layer_pruning"
+          ]
+        },
+        {
+          "window_start": "2025-06-16",
+          "flagged": 3,
+          "hits": 0,
+          "topics": [
+            "inference_scaling",
+            "temporal_grounding",
+            "3d_diffusion"
+          ]
+        },
+        {
+          "window_start": "2025-07-14",
+          "flagged": 3,
+          "hits": 0,
+          "topics": [
+            "temporal_grounding",
+            "inference_scaling",
+            "benchmark_for_multimodal"
+          ]
+        },
+        {
+          "window_start": "2025-08-11",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "gui_agents"
+          ]
+        },
+        {
+          "window_start": "2025-09-08",
+          "flagged": 1,
+          "hits": 1,
+          "topics": [
+            "activation_steering"
+          ]
+        },
+        {
+          "window_start": "2025-10-06",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "activation_steering"
+          ]
+        },
+        {
+          "window_start": "2025-11-03",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "activation_steering"
+          ]
+        },
+        {
+          "window_start": "2025-12-01",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "activation_steering"
+          ]
+        },
+        {
+          "window_start": "2025-12-29",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "multi_agent_debate"
+          ]
+        }
+      ]
+    },
+    "baseline_arxiv_only": {
+      "pairs": 74,
+      "hits": 12,
+      "precision": 0.16216216216216217,
+      "topics_flagged": 30,
+      "topics_hit": 4,
+      "topic_precision": 0.13333333333333333,
+      "per_window": [
+        {
+          "window_start": "2025-01-27",
+          "flagged": 9,
+          "hits": 2,
+          "topics": [
+            "long_context_llms",
+            "llm_generated_code",
+            "inference_scaling",
+            "musculoskeletal_humanoids",
+            "llm_generation",
+            "llm_unlearning",
+            "gui_agents",
+            "diffusion_bridge",
+            "multi_agent_debate"
+          ]
+        },
+        {
+          "window_start": "2025-02-24",
+          "flagged": 9,
+          "hits": 3,
+          "topics": [
+            "inference_scaling",
+            "llm_unlearning",
+            "audio_language",
+            "long_context_llms",
+            "path_integral_control",
+            "activation_steering",
+            "gui_agents",
+            "function_calling",
+            "long_context_language"
+          ]
+        },
+        {
+          "window_start": "2025-03-24",
+          "flagged": 6,
+          "hits": 1,
+          "topics": [
+            "inference_scaling",
+            "llm_unlearning",
+            "gui_agents",
+            "activation_steering",
+            "llm_embeddings",
+            "advancing_multimodal"
+          ]
+        },
+        {
+          "window_start": "2025-04-21",
+          "flagged": 8,
+          "hits": 1,
+          "topics": [
+            "inference_scaling",
+            "gui_agents",
+            "llm_unlearning",
+            "activation_steering",
+            "audio_language",
+            "llm_embeddings",
+            "function_calling",
+            "task_arithmetic"
+          ]
+        },
+        {
+          "window_start": "2025-05-19",
+          "flagged": 10,
+          "hits": 1,
+          "topics": [
+            "inference_scaling",
+            "temporal_grounding",
+            "note_generation",
+            "multi_agent_debate",
+            "demonstration_selection",
+            "benchmark_for_multimodal",
+            "system_for_automated",
+            "llm_unlearning",
+            "knowledge_unlearning",
+            "activation_steering"
+          ]
+        },
+        {
+          "window_start": "2025-06-16",
+          "flagged": 8,
+          "hits": 1,
+          "topics": [
+            "inference_scaling",
+            "temporal_grounding",
+            "advancing_multimodal",
+            "3d_diffusion",
+            "multi_agent_approach",
+            "benchmark_for_multimodal",
+            "activation_steering",
+            "llm_unlearning"
+          ]
+        },
+        {
+          "window_start": "2025-07-14",
+          "flagged": 7,
+          "hits": 1,
+          "topics": [
+            "temporal_grounding",
+            "table_understanding",
+            "benchmark_for_multimodal",
+            "activation_steering",
+            "advancing_multimodal",
+            "mitigating_hallucination",
+            "llm_unlearning"
+          ]
+        },
+        {
+          "window_start": "2025-08-11",
+          "flagged": 4,
+          "hits": 1,
+          "topics": [
+            "table_understanding",
+            "gui_agents",
+            "activation_steering",
+            "system_for_automated"
+          ]
+        },
+        {
+          "window_start": "2025-09-08",
+          "flagged": 5,
+          "hits": 1,
+          "topics": [
+            "activation_steering",
+            "table_understanding",
+            "system_for_automated",
+            "multi_agent_debate",
+            "benchmark_for_multimodal"
+          ]
+        },
+        {
+          "window_start": "2025-10-06",
+          "flagged": 4,
+          "hits": 0,
+          "topics": [
+            "activation_steering",
+            "advancing_multimodal",
+            "multi_agent_debate",
+            "llm_unlearning"
+          ]
+        },
+        {
+          "window_start": "2025-11-03",
+          "flagged": 2,
+          "hits": 0,
+          "topics": [
+            "activation_steering",
+            "efficient_diffusion"
+          ]
+        },
+        {
+          "window_start": "2025-12-01",
+          "flagged": 0,
+          "hits": 0,
+          "topics": []
+        },
+        {
+          "window_start": "2025-12-29",
+          "flagged": 2,
+          "hits": 0,
+          "topics": [
+            "attention_framework",
+            "pluralistic_alignment"
+          ]
+        }
+      ]
+    },
+    "tuned_all_candidates": {
+      "pairs": 31,
+      "hits": 1,
+      "precision": 0.03225806451612903,
+      "topics_flagged": 14,
+      "topics_hit": 1,
+      "topic_precision": 0.07142857142857142,
+      "per_window": [
+        {
+          "window_start": "2025-01-27",
+          "flagged": 4,
+          "hits": 0,
+          "topics": [
+            "long_context_llms",
+            "llm_generated_code",
+            "inference_scaling",
+            "reasoning_in_llms"
+          ]
+        },
+        {
+          "window_start": "2025-02-24",
+          "flagged": 3,
+          "hits": 0,
+          "topics": [
+            "inference_scaling",
+            "llm_unlearning",
+            "long_context_llms"
+          ]
+        },
+        {
+          "window_start": "2025-03-24",
+          "flagged": 4,
+          "hits": 0,
+          "topics": [
+            "inference_scaling",
+            "gui_agents",
+            "llm_unlearning",
+            "open_language"
+          ]
+        },
+        {
+          "window_start": "2025-04-21",
+          "flagged": 4,
+          "hits": 0,
+          "topics": [
+            "gui_agents",
+            "inference_scaling",
+            "llm_unlearning",
+            "medical_vision"
+          ]
+        },
+        {
+          "window_start": "2025-05-19",
+          "flagged": 4,
+          "hits": 0,
+          "topics": [
+            "inference_scaling",
+            "benchmark_for_multimodal",
+            "temporal_grounding",
+            "layer_pruning"
+          ]
+        },
+        {
+          "window_start": "2025-06-16",
+          "flagged": 3,
+          "hits": 0,
+          "topics": [
+            "inference_scaling",
+            "temporal_grounding",
+            "3d_diffusion"
+          ]
+        },
+        {
+          "window_start": "2025-07-14",
+          "flagged": 3,
+          "hits": 0,
+          "topics": [
+            "temporal_grounding",
+            "inference_scaling",
+            "benchmark_for_multimodal"
+          ]
+        },
+        {
+          "window_start": "2025-08-11",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "gui_agents"
+          ]
+        },
+        {
+          "window_start": "2025-09-08",
+          "flagged": 1,
+          "hits": 1,
+          "topics": [
+            "activation_steering"
+          ]
+        },
+        {
+          "window_start": "2025-10-06",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "activation_steering"
+          ]
+        },
+        {
+          "window_start": "2025-11-03",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "activation_steering"
+          ]
+        },
+        {
+          "window_start": "2025-12-01",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "activation_steering"
+          ]
+        },
+        {
+          "window_start": "2025-12-29",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "multi_agent_debate"
+          ]
+        }
+      ]
+    }
+  },
+  "passes": {
+    "a_lead": true,
+    "b_precision": false
+  },
+  "candidates": {
+    "file": "CandidatesMined2024.csv",
+    "mined_year": 2024,
+    "flags_judged_in": 2025,
+    "half": "holdout",
+    "total_both_halves": 184,
+    "in_this_half": 93,
+    "dropped_crowd_before_cutoff": 0,
+    "judged": 93,
+    "crowd_in_judged_year_or_later": 6
+  }
+}

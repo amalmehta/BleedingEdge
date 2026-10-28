@@ -1,0 +1,642 @@
+{
+  "window": [
+    "2021-01-04",
+    "2026-10-05"
+  ],
+  "signals": [
+    "arxiv",
+    "github",
+    "funding"
+  ],
+  "missing_signals": [
+    "citations",
+    "labs"
+  ],
+  "keys_present": {
+    "S2_API_KEY": false,
+    "OPENALEX_API_KEY": false
+  },
+  "lead": [
+    {
+      "key": "grpo_rlvr",
+      "topic": "RL for LLM reasoning (GRPO / RLVR)",
+      "heating_window": 52,
+      "mode": "burst",
+      "consensus_window": 57,
+      "hn_first_story_window": 53,
+      "lead_weeks": 20,
+      "passes": true
+    },
+    {
+      "key": "diffusion_policy",
+      "topic": "Diffusion policies",
+      "heating_window": 40,
+      "mode": "burst",
+      "consensus_window": 45,
+      "hn_first_story_window": null,
+      "lead_weeks": 20,
+      "passes": true
+    },
+    {
+      "key": "vla",
+      "topic": "Vision-language-action models",
+      "heating_window": 45,
+      "mode": "trend",
+      "consensus_window": 62,
+      "hn_first_story_window": 52,
+      "lead_weeks": 68,
+      "passes": true
+    }
+  ],
+  "lead_baseline": [
+    {
+      "key": "grpo_rlvr",
+      "topic": "RL for LLM reasoning (GRPO / RLVR)",
+      "heating_window": 52,
+      "mode": "burst",
+      "consensus_window": 57,
+      "hn_first_story_window": 53,
+      "lead_weeks": 20,
+      "passes": true
+    },
+    {
+      "key": "diffusion_policy",
+      "topic": "Diffusion policies",
+      "heating_window": 40,
+      "mode": "burst",
+      "consensus_window": 45,
+      "hn_first_story_window": null,
+      "lead_weeks": 20,
+      "passes": true
+    },
+    {
+      "key": "vla",
+      "topic": "Vision-language-action models",
+      "heating_window": 44,
+      "mode": "burst",
+      "consensus_window": 62,
+      "hn_first_story_window": 52,
+      "lead_weeks": 72,
+      "passes": true
+    }
+  ],
+  "crossings": {
+    "arxiv": {
+      "grpo_rlvr": 52,
+      "diffusion_policy": 40,
+      "vla": 44
+    },
+    "github": {
+      "grpo_rlvr": 68,
+      "diffusion_policy": 41,
+      "vla": 54
+    },
+    "funding": {
+      "grpo_rlvr": 41,
+      "diffusion_policy": null,
+      "vla": 7
+    }
+  },
+  "consensus": {
+    "grpo_rlvr": 57,
+    "diffusion_policy": 45,
+    "vla": 62
+  },
+  "lead_weights_raw": {
+    "arxiv": 1.0,
+    "github": 0.6666666666666666,
+    "funding": 0.6666666666666666
+  },
+  "lead_weights": {
+    "arxiv": 1.0,
+    "github": 0.6666666666666666,
+    "funding": 0.6666666666666666
+  },
+  "precision": {
+    "untuned": {
+      "pairs": 20,
+      "hits": 9,
+      "precision": 0.45,
+      "topics_flagged": 7,
+      "topics_hit": 2,
+      "topic_precision": 0.2857142857142857,
+      "per_window": [
+        {
+          "window_start": "2025-01-27",
+          "flagged": 0,
+          "hits": 0,
+          "topics": []
+        },
+        {
+          "window_start": "2025-02-24",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "visual_foundation"
+          ]
+        },
+        {
+          "window_start": "2025-03-24",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "bimanual_manipulation"
+          ]
+        },
+        {
+          "window_start": "2025-04-21",
+          "flagged": 2,
+          "hits": 1,
+          "topics": [
+            "physically_grounded",
+            "navigation_in_dynamic"
+          ]
+        },
+        {
+          "window_start": "2025-05-19",
+          "flagged": 3,
+          "hits": 2,
+          "topics": [
+            "bimanual_manipulation",
+            "physically_grounded",
+            "visuomotor_policies"
+          ]
+        },
+        {
+          "window_start": "2025-06-16",
+          "flagged": 2,
+          "hits": 1,
+          "topics": [
+            "physically_grounded",
+            "bimanual_manipulation"
+          ]
+        },
+        {
+          "window_start": "2025-07-14",
+          "flagged": 1,
+          "hits": 1,
+          "topics": [
+            "physically_grounded"
+          ]
+        },
+        {
+          "window_start": "2025-08-11",
+          "flagged": 1,
+          "hits": 1,
+          "topics": [
+            "physically_grounded"
+          ]
+        },
+        {
+          "window_start": "2025-09-08",
+          "flagged": 3,
+          "hits": 1,
+          "topics": [
+            "navigation_in_dynamic",
+            "visuomotor_policies",
+            "physically_grounded"
+          ]
+        },
+        {
+          "window_start": "2025-10-06",
+          "flagged": 1,
+          "hits": 1,
+          "topics": [
+            "physically_grounded"
+          ]
+        },
+        {
+          "window_start": "2025-11-03",
+          "flagged": 2,
+          "hits": 1,
+          "topics": [
+            "physically_grounded",
+            "fault_tolerant"
+          ]
+        },
+        {
+          "window_start": "2025-12-01",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "physically_grounded"
+          ]
+        },
+        {
+          "window_start": "2025-12-29",
+          "flagged": 2,
+          "hits": 0,
+          "topics": [
+            "physically_grounded",
+            "system_for_robotic"
+          ]
+        }
+      ]
+    },
+    "tuned": {
+      "pairs": 20,
+      "hits": 9,
+      "precision": 0.45,
+      "topics_flagged": 7,
+      "topics_hit": 2,
+      "topic_precision": 0.2857142857142857,
+      "per_window": [
+        {
+          "window_start": "2025-01-27",
+          "flagged": 0,
+          "hits": 0,
+          "topics": []
+        },
+        {
+          "window_start": "2025-02-24",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "visual_foundation"
+          ]
+        },
+        {
+          "window_start": "2025-03-24",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "bimanual_manipulation"
+          ]
+        },
+        {
+          "window_start": "2025-04-21",
+          "flagged": 1,
+          "hits": 1,
+          "topics": [
+            "physically_grounded"
+          ]
+        },
+        {
+          "window_start": "2025-05-19",
+          "flagged": 3,
+          "hits": 2,
+          "topics": [
+            "bimanual_manipulation",
+            "physically_grounded",
+            "visuomotor_policies"
+          ]
+        },
+        {
+          "window_start": "2025-06-16",
+          "flagged": 2,
+          "hits": 1,
+          "topics": [
+            "physically_grounded",
+            "bimanual_manipulation"
+          ]
+        },
+        {
+          "window_start": "2025-07-14",
+          "flagged": 1,
+          "hits": 1,
+          "topics": [
+            "physically_grounded"
+          ]
+        },
+        {
+          "window_start": "2025-08-11",
+          "flagged": 2,
+          "hits": 1,
+          "topics": [
+            "physically_grounded",
+            "navigation_in_dynamic"
+          ]
+        },
+        {
+          "window_start": "2025-09-08",
+          "flagged": 3,
+          "hits": 1,
+          "topics": [
+            "navigation_in_dynamic",
+            "visuomotor_policies",
+            "physically_grounded"
+          ]
+        },
+        {
+          "window_start": "2025-10-06",
+          "flagged": 1,
+          "hits": 1,
+          "topics": [
+            "physically_grounded"
+          ]
+        },
+        {
+          "window_start": "2025-11-03",
+          "flagged": 2,
+          "hits": 1,
+          "topics": [
+            "physically_grounded",
+            "fault_tolerant"
+          ]
+        },
+        {
+          "window_start": "2025-12-01",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "physically_grounded"
+          ]
+        },
+        {
+          "window_start": "2025-12-29",
+          "flagged": 2,
+          "hits": 0,
+          "topics": [
+            "physically_grounded",
+            "system_for_robotic"
+          ]
+        }
+      ]
+    },
+    "baseline_arxiv_only": {
+      "pairs": 49,
+      "hits": 11,
+      "precision": 0.22448979591836735,
+      "topics_flagged": 14,
+      "topics_hit": 3,
+      "topic_precision": 0.21428571428571427,
+      "per_window": [
+        {
+          "window_start": "2025-01-27",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "musculoskeletal_humanoids"
+          ]
+        },
+        {
+          "window_start": "2025-02-24",
+          "flagged": 4,
+          "hits": 0,
+          "topics": [
+            "visuomotor_policy",
+            "path_integral_control",
+            "navigation_in_dynamic",
+            "visual_foundation"
+          ]
+        },
+        {
+          "window_start": "2025-03-24",
+          "flagged": 2,
+          "hits": 0,
+          "topics": [
+            "navigation_in_dynamic",
+            "bimanual_manipulation"
+          ]
+        },
+        {
+          "window_start": "2025-04-21",
+          "flagged": 4,
+          "hits": 2,
+          "topics": [
+            "navigation_in_dynamic",
+            "physically_grounded",
+            "visuomotor_policies",
+            "bimanual_manipulation"
+          ]
+        },
+        {
+          "window_start": "2025-05-19",
+          "flagged": 4,
+          "hits": 2,
+          "topics": [
+            "navigation_in_dynamic",
+            "bimanual_manipulation",
+            "physically_grounded",
+            "visuomotor_policies"
+          ]
+        },
+        {
+          "window_start": "2025-06-16",
+          "flagged": 5,
+          "hits": 1,
+          "topics": [
+            "physically_grounded",
+            "bimanual_manipulation",
+            "navigation_in_dynamic",
+            "visuomotor_policies",
+            "visuomotor_policy"
+          ]
+        },
+        {
+          "window_start": "2025-07-14",
+          "flagged": 6,
+          "hits": 2,
+          "topics": [
+            "physically_grounded",
+            "gaussian_splatting_slam",
+            "navigation_in_dynamic",
+            "action_chunking",
+            "visuomotor_policy",
+            "visuomotor_policies"
+          ]
+        },
+        {
+          "window_start": "2025-08-11",
+          "flagged": 3,
+          "hits": 1,
+          "topics": [
+            "physically_grounded",
+            "navigation_in_dynamic",
+            "visuomotor_policies"
+          ]
+        },
+        {
+          "window_start": "2025-09-08",
+          "flagged": 7,
+          "hits": 1,
+          "topics": [
+            "navigation_in_dynamic",
+            "robust_robotic",
+            "physically_grounded",
+            "visuomotor_policies",
+            "action_chunking",
+            "long_horizon_robotic",
+            "generative_world"
+          ]
+        },
+        {
+          "window_start": "2025-10-06",
+          "flagged": 5,
+          "hits": 1,
+          "topics": [
+            "robots_in_complex",
+            "physically_grounded",
+            "navigation_in_dynamic",
+            "action_chunking",
+            "visuomotor_policies"
+          ]
+        },
+        {
+          "window_start": "2025-11-03",
+          "flagged": 4,
+          "hits": 1,
+          "topics": [
+            "physically_grounded",
+            "long_horizon_robotic",
+            "robots_in_complex",
+            "navigation_in_dynamic"
+          ]
+        },
+        {
+          "window_start": "2025-12-01",
+          "flagged": 2,
+          "hits": 0,
+          "topics": [
+            "physically_grounded",
+            "generative_world"
+          ]
+        },
+        {
+          "window_start": "2025-12-29",
+          "flagged": 2,
+          "hits": 0,
+          "topics": [
+            "generative_world",
+            "physically_grounded"
+          ]
+        }
+      ]
+    },
+    "tuned_all_candidates": {
+      "pairs": 20,
+      "hits": 9,
+      "precision": 0.45,
+      "topics_flagged": 7,
+      "topics_hit": 2,
+      "topic_precision": 0.2857142857142857,
+      "per_window": [
+        {
+          "window_start": "2025-01-27",
+          "flagged": 0,
+          "hits": 0,
+          "topics": []
+        },
+        {
+          "window_start": "2025-02-24",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "visual_foundation"
+          ]
+        },
+        {
+          "window_start": "2025-03-24",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "bimanual_manipulation"
+          ]
+        },
+        {
+          "window_start": "2025-04-21",
+          "flagged": 1,
+          "hits": 1,
+          "topics": [
+            "physically_grounded"
+          ]
+        },
+        {
+          "window_start": "2025-05-19",
+          "flagged": 3,
+          "hits": 2,
+          "topics": [
+            "bimanual_manipulation",
+            "physically_grounded",
+            "visuomotor_policies"
+          ]
+        },
+        {
+          "window_start": "2025-06-16",
+          "flagged": 2,
+          "hits": 1,
+          "topics": [
+            "physically_grounded",
+            "bimanual_manipulation"
+          ]
+        },
+        {
+          "window_start": "2025-07-14",
+          "flagged": 1,
+          "hits": 1,
+          "topics": [
+            "physically_grounded"
+          ]
+        },
+        {
+          "window_start": "2025-08-11",
+          "flagged": 2,
+          "hits": 1,
+          "topics": [
+            "physically_grounded",
+            "navigation_in_dynamic"
+          ]
+        },
+        {
+          "window_start": "2025-09-08",
+          "flagged": 3,
+          "hits": 1,
+          "topics": [
+            "navigation_in_dynamic",
+            "visuomotor_policies",
+            "physically_grounded"
+          ]
+        },
+        {
+          "window_start": "2025-10-06",
+          "flagged": 1,
+          "hits": 1,
+          "topics": [
+            "physically_grounded"
+          ]
+        },
+        {
+          "window_start": "2025-11-03",
+          "flagged": 2,
+          "hits": 1,
+          "topics": [
+            "physically_grounded",
+            "fault_tolerant"
+          ]
+        },
+        {
+          "window_start": "2025-12-01",
+          "flagged": 1,
+          "hits": 0,
+          "topics": [
+            "physically_grounded"
+          ]
+        },
+        {
+          "window_start": "2025-12-29",
+          "flagged": 2,
+          "hits": 0,
+          "topics": [
+            "physically_grounded",
+            "system_for_robotic"
+          ]
+        }
+      ]
+    }
+  },
+  "passes": {
+    "a_lead": true,
+    "b_precision": false
+  },
+  "candidates": {
+    "file": "CandidatesMined2024RO.csv",
+    "mined_year": 2024,
+    "flags_judged_in": 2025,
+    "half": "holdout",
+    "total_both_halves": 468,
+    "in_this_half": 220,
+    "dropped_crowd_before_cutoff": 0,
+    "judged": 220,
+    "crowd_in_judged_year_or_later": 6
+  }
+}

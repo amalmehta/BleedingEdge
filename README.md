@@ -2,7 +2,7 @@
 
 A personal research radar: it looks for AI research topics that are heating up before everyone else notices, and backtests the method on 2021–25 history before trusting it.
 
-**Status:** only the backtest is built, and it **fails**. It flags known topics 16–48 weeks early, but just 6% of its 2024 flags turned into real trends (the bar is 50%). See [why](docs/BACKTEST.md).
+**Status:** the backtest **fails**. It flags known topics 20–68 weeks early, but on held-out data almost none of its flags turned into real trends: 1 of 19 for robotics, about what picking at random gives. The bar was half. A 4-week robotics-only trial runs from 27 Oct 2026 as a test of the format (does a firm weekly pick get acted on), not of the detector. See [why](docs/BACKTEST.md).
 
 ![Vision-language-action models: papers, new repos, funding rounds and Hacker News stories per 4-week window. The first flag (blue line, Jun 2024) comes 48 weeks before the research crowd arrives (red line, May 2025).](docs/img/backtest-vla.png)
 
