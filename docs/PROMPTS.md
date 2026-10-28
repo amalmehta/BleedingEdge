@@ -31,3 +31,9 @@
    → Relative arXiv growth; small bar 30 for bulk counts (calibrated at 0.61× on 11 neutral phrases). Dev half 52% (15/29) vs 30% arXiv-only, in-sample. Held-out half not opened.
 14. "Run the held-out half once with the method as it is now, and report pass or fail."
    → FAIL: 41% (12/29) vs 50%; arXiv-only 15%; 3 of 3 winners caught. Method not changed after opening.
+15. "Fix the 'already crowded' error and test again on phrases new in 2024, graded on 2025–26, with a fresh held-out half and a separate cs.RO run."
+   → Freshness rule (early only within 9 windows of the first flag), chosen on the spent 2023 set; grid extended to 75 windows; mined 174 phrases (all categories) and 468 (cs.RO); pre-registered, then ran dev and held-out with no changes. FAIL on both: held-out 6% (all categories, below the 13% random rate) and 45% (robotics, 7 of 9 hits from one phrase).
+16. "Run the 4-week trial on cs.RO only, with the brief stating its back-test record plainly, and record this as a bar lowered after seeing results."
+   → Recorded the lowered bar in the spec; built bleedingedge/brief.py, prompts/WeeklyBrief.md, docs/TrialReview.md, weekly arXiv top-up. While checking week 1, found ~30% of bulk arXiv papers misdated (OAI `created` = a later version); fixed from the arXiv id and re-ran round 2 unchanged: robotics record fell from 4 of 15 to 1 of 19 (about chance). Week 1 draft written, study pick held for your decision; scheduled task creation was denied by the permission check.
+17. "Run the trial anyway as a test of the format, not the detector: write the week 1 study pick and set up the Monday task (I'll approve it)."
+   → Week 1 pick: robot foundation, first step arXiv 2610.20750 (a causal analysis of VLA internals). Fixed the prompt's falsifier: 20 papers was already met at flag time, so it is now 4× today's count, the backtest's hit rule. Recorded the pick in data/Picks.csv and TrialReview; created the Monday 08:00 task.
