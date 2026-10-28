@@ -86,6 +86,29 @@ def harvest(log=print) -> None:
     log(f"done: {state['page']} pages")
 
 
+def update(log=print) -> None:
+    """Weekly top-up: records changed since the last harvest or update, into upd*.jsonl.gz files.
+    One day of overlap; duplicates are dropped by papers()."""
+    state = json.loads(STATE.read_text())
+    since = date.fromisoformat(state.get("updated") or date.fromtimestamp(STATE.stat().st_mtime).isoformat())
+    since -= timedelta(days=1)
+    today = date.today()
+    url = f"{BASE}?verb=ListRecords&metadataPrefix=arXiv&set=cs&from={since:%Y-%m-%d}"
+    page = n = 0
+    while url:
+        recs, token = parse(_get(url))
+        with gzip.open(DIR / f"upd{today:%Y%m%d}_{page:04d}.jsonl.gz", "wt") as f:
+            for r in recs:
+                f.write(json.dumps(r) + "\n")
+        n += len(recs)
+        page += 1
+        url = f"{BASE}?verb=ListRecords&resumptionToken={quote(token, safe='')}" if token else None
+        if url:
+            time.sleep(DELAY)
+    STATE.write_text(json.dumps(state | {"updated": today.isoformat()}))
+    log(f"update from {since}: {n} records in {page} pages")
+
+
 def first_version(pid: str, created: str, seq_max: dict[str, int]) -> date | None:
     """Date of the first version. oaipmh.arxiv.org reports <created> as a later version's date
     for revised papers (1605.05195 shows 2021-01-02), which put ~30% of records in the wrong

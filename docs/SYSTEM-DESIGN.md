@@ -23,7 +23,7 @@ flowchart LR
   SC -.later.-> WB[Weekly brief + data/Trends.csv]
 ```
 
-1. **Backtest** (built; held-out (b) failed at 41% on 2026-10-27, see BACKTEST.md): fetch 2021–25 history, score it, measure the lead over the
+1. **Backtest** (built; fails. Round 2, on corrected dates: 3% held-out for all categories; robotics 1 of 19 flagged topics took off. See BACKTEST.md): fetch 2021–25 history, score it, measure the lead over the
    consensus signal, set each signal's lead weight, write `docs/BACKTEST.md`.
 2. **Weekly brief** (only if the backtest passes): `prompts/WeeklyBrief.md` run by a Claude
    scheduled task. It reuses the same fetchers and scoring for the last 16 weeks and
@@ -88,6 +88,17 @@ phrase instead of one per window: about 3 calls instead of 65.
   2021, 91k in 2025), so a raw ratio calls every topic "heating up". Totals come from the bulk download.
 - **"Small" depends on how papers were counted.** The bulk download counts ~0.6× what arXiv search does for
   the same phrase (`bleedingedge/calibrate.py`), so mined topics use 30 papers per 12 weeks, not 50.
+- **"Early" expires.** A topic is early only within 9 windows (36 weeks) of its first heating-up flag
+  (`scoring.fresh`). Without this, topics that had plateaued kept getting flagged.
+- **Backtests by year.** `backtest --year Y [--ro] [--holdout]` mines phrases new in year Y and judges flags in
+  Y+1. The window grid runs to Oct 2026 (75 windows), so 2025 flags have up to 12 months to be graded.
+- **First-version dates come from the arXiv id.** oaipmh.arxiv.org gives a later version's date as
+  `<created>` for revised papers (~30% of records). `arxiv_bulk.first_version` keeps `<created>` when it
+  falls in the id's month and otherwise estimates the day from the id's sequence number.
+- **The weekly brief reuses the backtest code unchanged** (`bleedingedge/brief.py`): phrases new in last
+  year from cs.RO titles, 4-week windows ending on the run date, GitHub fetched only for topics whose
+  arXiv count is rising (heating up needs 2 rising signals). The study pick is written by the weekly task
+  (`prompts/WeeklyBrief.md`); the track record is read from the round-2 result files, so it can't drift.
 - **Funding adds a bonus, never a drag.** Rounds are rare, so averaging their zeros pulled every
   score toward "no change".
 - **Stdlib HTTP, matplotlib for charts, pytest.** Boring, proven tools, with few dependencies.

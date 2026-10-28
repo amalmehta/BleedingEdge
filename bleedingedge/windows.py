@@ -27,11 +27,12 @@ def window_index(d: date) -> int | None:
     return (d - START).days // WINDOW_DAYS
 
 
-def counts(dates: list[date]) -> list[int]:
-    """Number of dates falling in each window; dates outside the range are dropped."""
-    out = [0] * N_WINDOWS
+def counts(dates: list[date], start: date = START, n: int = N_WINDOWS) -> list[int]:
+    """Number of dates falling in each window; dates outside the range are dropped.
+    `start` and `n` move the grid (the weekly brief uses windows ending on the run date)."""
+    out = [0] * n
     for d in dates:
-        k = window_index(d)
-        if k is not None:
+        k = (d - start).days // WINDOW_DAYS
+        if 0 <= k < n:
             out[k] += 1
     return out
