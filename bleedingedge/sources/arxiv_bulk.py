@@ -15,7 +15,7 @@ import time
 import urllib.error
 import urllib.request
 import xml.etree.ElementTree as ET
-from datetime import date
+from datetime import date, timedelta
 from pathlib import Path
 from urllib.parse import quote
 
@@ -86,15 +86,46 @@ def harvest(log=print) -> None:
     log(f"done: {state['page']} pages")
 
 
+def first_version(pid: str, created: str, seq_max: dict[str, int]) -> date | None:
+    """Date of the first version. oaipmh.arxiv.org reports <created> as a later version's date
+    for revised papers (1605.05195 shows 2021-01-02), which put ~30% of records in the wrong
+    month or year. A new-style id (YYMM.NNNNN) fixes the month of the first version; when
+    <created> isn't in that month (or the next, for late submissions), the day is estimated from
+    the id's sequence number, since ids are given out in order through the month. None for
+    old-style ids (cs/0601001), which all predate SINCE."""
+    m = re.fullmatch(r"(\d{2})(\d{2})\.(\d{4,5})", pid)
+    if not m:
+        return None
+    y, mo, seq = 2000 + int(m[1]), int(m[2]), int(m[3])
+    c = date.fromisoformat(created)
+    if (c.year * 12 + c.month) - (y * 12 + mo) in (0, 1):
+        return c
+    start = date(y, mo, 1)
+    days = ((start + timedelta(days=32)).replace(day=1) - start).days
+    return start + timedelta(days=int((days - 1) * min(1.0, seq / seq_max[m[1] + m[2]])))
+
+
 def papers() -> list[dict]:
-    """Every harvested paper, deduplicated by id (a revised paper can appear twice)."""
+    """Every harvested paper created since SINCE, deduplicated by id (a revised paper can appear
+    twice), with "created" corrected to the first version's date (see first_version).
+    Files sort page* before upd*, so the newest copy of a record wins."""
     seen: dict[str, dict] = {}
-    for p in sorted(DIR.glob("page*.jsonl.gz")):
+    for p in sorted(DIR.glob("*.jsonl.gz")):
         with gzip.open(p, "rt") as f:
             for line in f:
                 r = json.loads(line)
                 seen[r["id"]] = r
-    return list(seen.values())
+    seq_max: dict[str, int] = {}
+    for pid in seen:
+        if re.fullmatch(r"\d{4}\.\d{4,5}", pid):
+            ym, n = pid.split(".")
+            seq_max[ym] = max(seq_max.get(ym, 0), int(n))
+    out = []
+    for r in seen.values():
+        d = first_version(r["id"], r["created"], seq_max)
+        if d is not None and d >= SINCE:
+            out.append(r | {"created": d.isoformat()})
+    return out
 
 
 if __name__ == "__main__":

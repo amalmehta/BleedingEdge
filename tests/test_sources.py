@@ -73,3 +73,14 @@ def test_arxiv_bulk_parse_keeps_categories_and_dates(monkeypatch):
     # 2020-12-30 cs.LG paper kept; the cs.DM/math paper dropped by category
     assert [r["id"] for r in recs] == ["1706.09520"]
     assert recs[0]["created"] == "2020-12-30" and "  " not in recs[0]["title"]
+
+
+def test_first_version_date_comes_from_the_id_when_created_is_a_revision():
+    from datetime import date
+    from bleedingedge.sources.arxiv_bulk import first_version
+    seq = {"2607": 40000, "2610": 40000}
+    assert first_version("2610.12345", "2026-10-09", seq) == date(2026, 10, 9)    # created is v1: kept
+    assert first_version("2610.39000", "2026-11-01", seq) == date(2026, 11, 1)    # late submission, next month: kept
+    assert first_version("2607.06988", "2026-10-23", seq) == date(2026, 7, 6)     # revision date: estimated from the id
+    assert first_version("2607.40000", "2026-10-23", seq) == date(2026, 7, 31)
+    assert first_version("cs/0601001", "2021-03-01", seq) is None
