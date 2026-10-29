@@ -37,6 +37,7 @@ N = 40              # windows of history: enough for the trend (1 year) and newn
 SHOW = 5            # items per section ("readable in 15 minutes")
 SHORTLIST = 3       # candidates offered to the weekly task for the study pick
 NO_REPEAT = 3       # a pick can't repeat any of the last 3
+PICK_START, PICK_END = "<!-- pick:start -->", "<!-- pick:end -->"  # the weekly task writes between these
 
 def record() -> str:
     """The backtest record, read from the round-2 robotics results (both halves; the method was
@@ -199,7 +200,7 @@ def render(day: date, week: int, recs: list[dict], ex: dict, start: date, shortl
     L = [f"# Robotics brief, {day:%-d %b %Y}", "",
          f"Week {week} of 4 of the trial. Robotics only (phrases from cs.RO titles).", "",
          f"> **Track record, read first.** {record()}", "",
-         "## Study this next", "", "<!-- pick:start -->",
+         "## Study this next", "", PICK_START,
          "_Not written yet. The weekly task writes this section from the shortlist below "
          "(prompts/WeeklyBrief.md)._", ""]
     for r in shortlist:
@@ -209,7 +210,7 @@ def render(day: date, week: int, recs: list[dict], ex: dict, start: date, shortl
         L.append(f"- Left out as repeats of recent picks: {', '.join(skipped)}")
     if not shortlist:
         L.append("- No early robotics topic this week. Say so; don't force a pick.")
-    L += ["<!-- pick:end -->", "", "## Early / speculative", "",
+    L += [PICK_END, "", "## Early / speculative", "",
           "Confidence for every row: **low** (see the track record above). "
           "Score = weighted log₂ growth of papers and new repos (1 = doubling). Ratios are relative to arXiv's own growth.", ""]
     L += [head] + [_row(r, start, day) for r in early] if early else ["None this week."]
@@ -234,6 +235,18 @@ def render(day: date, week: int, recs: list[dict], ex: dict, start: date, shortl
     return "\n".join(L) + "\n"
 
 
+def keep_pick(old: str, new: str) -> str:
+    """`new` with the pick section taken from `old`, so a re-run doesn't erase a pick the weekly
+    task already wrote. Kept only once written: a draft still holding the placeholder is replaced."""
+    if PICK_START not in old or PICK_END not in old:
+        return new
+    pick = old.split(PICK_START, 1)[1].split(PICK_END, 1)[0]
+    if "_Not written yet." in pick:
+        return new
+    head, rest = new.split(PICK_START, 1)
+    return head + PICK_START + pick + PICK_END + rest.split(PICK_END, 1)[1]
+
+
 def main(day: date, update: bool = True, log=print) -> Path:
     if update:
         arxiv_bulk.update(log)
@@ -255,7 +268,8 @@ def main(day: date, update: bool = True, log=print) -> Path:
         img = f"img/{day}.png"
     week = 1 + sum(1 for p in BRIEFS.glob("20*.md") if TRIAL_START.isoformat() <= p.stem < day.isoformat())
     out = BRIEFS / f"{day}.md"
-    out.write_text(render(day, week, recs, ex, start, shortlist, skipped, img))
+    text = render(day, week, recs, ex, start, shortlist, skipped, img)
+    out.write_text(keep_pick(out.read_text(), text) if out.exists() else text)
     append_trends(day, recs)
     (DATA / f"{day}.json").write_text(json.dumps({
         "date": day.isoformat(), "week": week, "grid_start": start.isoformat(), "candidates": len(recs),

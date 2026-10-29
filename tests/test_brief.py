@@ -54,3 +54,30 @@ def test_brief_flags_a_new_bursting_phrase_and_skips_recent_picks(tmp_path, monk
     assert "Left out as repeats of recent picks: magnetic skin gripper" in pick
     assert "No early robotics topic this week" in pick
     assert len(list(csv.DictReader((tmp_path / "Trends.csv").open()))) == len(rows)  # re-run replaced its day
+
+
+def test_rerun_keeps_a_written_pick_and_refreshes_the_rest(tmp_path, monkeypatch):
+    for name in ("BRIEFS", "DATA"):
+        monkeypatch.setattr(brief, name, tmp_path / name.lower())
+    monkeypatch.setattr(brief, "TRENDS", tmp_path / "Trends.csv")
+    monkeypatch.setattr(brief, "PICKS", tmp_path / "Picks.csv")
+    monkeypatch.setattr(brief.arxiv_bulk, "papers", _corpus)
+    monkeypatch.setattr(brief.github, "dates", lambda phrases, start, end: [])
+
+    out = brief.main(DAY, update=False, log=lambda *_: None)
+    draft = out.read_text()
+    pick = "**Pick: magnetic skin gripper.** Written by the weekly task."
+    written = draft.split(brief.PICK_START)[0] + brief.PICK_START + "\n" + pick + "\n" + brief.PICK_END \
+        + draft.split(brief.PICK_END)[1].replace("## Early / speculative", "## Early / speculative (stale)")
+    out.write_text(written)
+
+    text = brief.main(DAY, update=False, log=lambda *_: None).read_text()
+    assert pick in text and "_Not written yet." not in text
+    assert "(stale)" not in text  # everything outside the markers is regenerated
+
+
+def test_keep_pick_replaces_an_unwritten_draft():
+    new = f"a\n{brief.PICK_START}\nnew shortlist\n{brief.PICK_END}\nb\n"
+    old = f"x\n{brief.PICK_START}\n_Not written yet._ old shortlist\n{brief.PICK_END}\ny\n"
+    assert brief.keep_pick(old, new) == new
+    assert brief.keep_pick("no markers", new) == new
