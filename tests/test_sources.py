@@ -84,3 +84,30 @@ def test_first_version_date_comes_from_the_id_when_created_is_a_revision():
     assert first_version("2607.06988", "2026-10-23", seq) == date(2026, 7, 6)     # revision date: estimated from the id
     assert first_version("2607.40000", "2026-10-23", seq) == date(2026, 7, 31)
     assert first_version("cs/0601001", "2021-03-01", seq) is None
+
+
+def test_incomplete_github_results_are_retried_and_never_cached(tmp_path, monkeypatch):
+    import io
+    from bleedingedge import http
+    monkeypatch.setattr(http, "CACHE", tmp_path)
+    monkeypatch.setattr(http, "_headers", lambda host: {})
+    monkeypatch.setattr(http.time, "sleep", lambda s: None)
+    partial = '{"total_count": 0, "incomplete_results": true, "items": []}'
+    full = '{"total_count": 3, "incomplete_results": false, "items": []}'
+    bodies = [partial, full]
+    monkeypatch.setattr(http.urllib.request, "urlopen", lambda req, timeout: io.BytesIO(bodies.pop(0).encode()))
+    url = "https://api.github.com/search/repositories?q=x"
+
+    assert http.get_text(url) == full  # the partial one was retried
+    assert http._cache_path(url).read_text() == full
+
+    # A partial response cached before this fix is refetched, not trusted.
+    http._cache_path(url).write_text(partial)
+    bodies[:] = [full]
+    assert http.get_text(url) == full
+
+    # Still partial after every retry: returned for this run, left out of the cache.
+    http._cache_path(url).unlink()
+    bodies[:] = [partial] * 2
+    assert http.get_text(url, retries=2) == partial
+    assert not http._cache_path(url).exists()
