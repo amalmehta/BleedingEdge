@@ -81,3 +81,9 @@ def test_keep_pick_replaces_an_unwritten_draft():
     old = f"x\n{brief.PICK_START}\n_Not written yet._ old shortlist\n{brief.PICK_END}\ny\n"
     assert brief.keep_pick(old, new) == new
     assert brief.keep_pick("no markers", new) == new
+
+
+def test_render_labels_ratios_and_reads_the_all_categories_figure():
+    text = brief.render(DAY, 1, [], {}, DAY, [], [], None)
+    assert "repo ratios are raw GitHub counts" in text
+    assert "scored about random in the backtest (on held-out phrases, 1 of 14 flagged topics took off, 7%, against 6% at random)" in text

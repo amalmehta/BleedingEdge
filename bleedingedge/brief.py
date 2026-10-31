@@ -31,6 +31,7 @@ DATA = ROOT / "data" / "briefs"
 TRENDS = ROOT / "data" / "Trends.csv"
 PICKS = ROOT / "data" / "Picks.csv"
 LEAD_FROM = ROOT / "data" / "backtest" / "Run2024RO" / "Summary.json"  # lead weights as backtested
+ALL_CATEGORIES = ROOT / "data" / "backtest" / "Run2024" / "Holdout" / "Summary.json"
 
 TRIAL_START = date(2026, 10, 27)
 N = 40              # windows of history: enough for the trend (1 year) and newness (2 years) checks
@@ -55,6 +56,16 @@ def record() -> str:
             "That failed the 50% bar set before testing. This trial runs on a bar lowered after seeing that result, "
             f"so treat every flag below as roughly a 1-in-{round(flagged / hit) if hit else '∞'} bet. "
             "[Details](../docs/BACKTEST.md#round-2-results)")
+
+
+def all_categories() -> str:
+    """The held-out result on all four categories, read from the results like record()."""
+    d = json.loads(ALL_CATEGORIES.read_text())
+    hit, flagged = d["precision"]["tuned"]["topics_hit"], d["precision"]["tuned"]["topics_flagged"]
+    took_off, judged = d["candidates"]["crowd_in_judged_year_or_later"], d["candidates"]["judged"]
+    return ("Across all four categories the method scored about random in the backtest "
+            f"(on held-out phrases, {hit} of {flagged} flagged topics took off, {hit / flagged:.0%}, "
+            f"against {took_off / judged:.0%} at random), ")
 
 
 def grid(day: date) -> tuple[date, list[tuple[date, date]]]:
@@ -212,7 +223,7 @@ def render(day: date, week: int, recs: list[dict], ex: dict, start: date, shortl
         L.append("- No early robotics topic this week. Say so; don't force a pick.")
     L += [PICK_END, "", "## Early / speculative", "",
           "Confidence for every row: **low** (see the track record above). "
-          "Score = weighted log₂ growth of papers and new repos (1 = doubling). Ratios are relative to arXiv's own growth.", ""]
+          "Score = weighted log₂ growth of papers and new repos (1 = doubling). Paper ratios are relative to arXiv's own growth; repo ratios are raw GitHub counts.", ""]
     L += [head] + [_row(r, start, day) for r in early] if early else ["None this week."]
     if img and early:
         L += ["", f"![4-week paper counts for this week's early topics]({img})"]
@@ -221,7 +232,7 @@ def render(day: date, week: int, recs: list[dict], ex: dict, start: date, shortl
     L += [head] + [_row(r, start, day) for r in consensus] if consensus else ["None this week."]
     L += ["", "## Not covered in this trial", "",
           "Tools rising and fading, companies heating up, AI tooling and the wider field. "
-          "Outside robotics the method scored below random in the backtest (6% on held-out phrases), "
+          + all_categories() +
           "so this trial leaves them out rather than print flags known to be noise.", "",
           "## How this was made", "",
           f"- Candidates: {len(recs)} two- and three-word phrases in cs.RO titles in {day.year - 1} that were rare in the two years before "

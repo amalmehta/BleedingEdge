@@ -37,3 +37,14 @@
    → Recorded the lowered bar in the spec; built bleedingedge/brief.py, prompts/WeeklyBrief.md, docs/TrialReview.md, weekly arXiv top-up. While checking week 1, found ~30% of bulk arXiv papers misdated (OAI `created` = a later version); fixed from the arXiv id and re-ran round 2 unchanged: robotics record fell from 4 of 15 to 1 of 19 (about chance). Week 1 draft written, study pick held for your decision; scheduled task creation was denied by the permission check.
 17. "Run the trial anyway as a test of the format, not the detector: write the week 1 study pick and set up the Monday task (I'll approve it)."
    → Week 1 pick: robot foundation, first step arXiv 2610.20750 (a causal analysis of VLA internals). Fixed the prompt's falsifier: 20 papers was already met at flag time, so it is now 4× today's count, the backtest's hit rule. Recorded the pick in data/Picks.csv and TrialReview; created the Monday 08:00 task.
+
+## 2026-10-29 / 30 — Housekeeping and a project review
+
+1. "Review the uncommitted changes, commit them in sensible commits with clear messages, and push. Don't commit secrets or build output."
+   → One commit (0c24034): the shared shortcuts list and the pointer to it. Pushed to main.
+2. "6,7,8"
+   → Listed 6 things to cut, 7 to add and 8 to improve, ranked. Nothing built until you pick.
+3. "Fix improvements 1 and 2 now: label the repo ratio correctly and read the below-random figure from the results file. Don't change the scoring."
+   → Corrected the repo ratio label; the all-categories figure now comes from Run2024/Holdout/Summary.json (3%, was a stale 6%); corrected the same text in the week 1 brief; added a test. A check of mine started a real brief run by accident: stopped before scoring, it only topped up the arXiv cache.
+4. "Change the all-categories wording to say the result is about random, giving the by-topic figure (1 of 14, 7%, against 6% at random), in the brief and the docs that say below random."
+   → Changed the brief generator, the week 1 brief, docs/BACKTEST.md and the spec. Left the dated log of the first, misdated run as written.

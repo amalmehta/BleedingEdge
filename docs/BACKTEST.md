@@ -293,7 +293,7 @@ uv run python -m bleedingedge.backtest --holdout
 1. **Robotics: indistinguishable from chance.**
    - One flagged topic took off out of 19 ("physically grounded", again flagged in 8 windows running).
    - At a 1% base rate, picking 19 at random would land at least one winner about 1 time in 5 (an estimate: 1 − 0.99¹⁹ ≈ 17–21%). One hit is not evidence that the method works.
-2. **All categories: held-out 3%, worse than arXiv alone (16%) and below random (6%).** The dev half's 22% didn't carry over.
+2. **All categories: about random.** On held-out phrases, 1 of 14 flagged topics took off (7%), against 6% at random. By window, the method scored 3%, worse than arXiv alone (16%). The dev half's 22% didn't carry over.
 3. **Criterion (a) still passes** on the 3 test topics, at 20 / 20 / 68 weeks. It is in-sample and unaffected by the bug.
 
 **Known biases** (direction estimated, not measured):
