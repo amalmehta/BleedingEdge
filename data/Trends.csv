@@ -577,3 +577,581 @@ date,topic,domain,arxiv_4w,arxiv_12w,g_burst_arxiv,g_trend_arxiv,github_4w,githu
 2026-10-27,wheeled bipedal,rl_robotics,1,1,1.231,0.653,,,,,,False,False
 2026-10-27,work zone,rl_robotics,1,1,0.924,0.326,,,,,,False,False
 2026-10-27,zero-shot vision-and-language navigation,rl_robotics,0,6,0.185,1.523,,,,,,False,False
+2026-11-02,latent world,rl_robotics,44,109,1.244,18.045,30,70,1.5,71.0,4.964,True,False
+2026-11-02,video world,rl_robotics,22,51,1.148,17.061,36,87,1.521,17.6,4.111,True,False
+2026-11-02,robot foundation,rl_robotics,14,27,1.721,18.373,19,35,2.143,9.0,3.788,True,True
+2026-11-02,physical ai,rl_robotics,16,47,0.848,5.249,729,1357,2.36,27.714,3.352,True,False
+2026-11-02,action chunks,rl_robotics,41,114,1.015,9.432,23,64,1.263,10.833,3.318,True,False
+2026-11-02,hip exoskeleton,rl_robotics,3,7,1.148,5.249,1,6,0.667,7.0,2.558,False,False
+2026-11-02,action learning,rl_robotics,16,31,1.774,20.998,48,188,0.71,0.822,2.522,False,False
+2026-11-02,long-horizon embodied,rl_robotics,8,15,1.148,5.249,3,10,1.2,5.5,2.419,True,True
+2026-11-02,embodied manipulation,rl_robotics,11,24,1.312,3.281,5,10,1.5,11.0,2.412,True,True
+2026-11-02,policies learn,rl_robotics,11,22,1.53,3.773,2,6,1.0,7.0,2.272,True,True
+2026-11-02,trajectory evaluation,rl_robotics,8,18,1.291,2.078,16,49,1.02,16.667,2.257,True,True
+2026-11-02,latent actions,rl_robotics,14,28,1.721,3.806,10,19,2.062,6.667,2.252,True,False
+2026-11-02,residual reinforcement,rl_robotics,5,21,0.656,3.609,7,13,1.846,7.0,2.234,True,True
+2026-11-02,atomic skills,rl_robotics,7,12,1.669,1.422,12,25,1.773,26.0,2.185,False,False
+2026-11-02,humanoid loco-manipulation,rl_robotics,22,44,1.76,3.691,12,22,3.0,5.75,2.14,True,False
+2026-11-02,humanoid manipulation,rl_robotics,5,12,1.148,2.843,7,12,2.667,6.5,1.985,True,True
+2026-11-02,closed-loop driving,rl_robotics,5,18,0.81,6.234,2,5,1.0,2.0,1.984,True,True
+2026-11-02,diffusion planning,rl_robotics,5,11,1.377,7.874,1,4,1.0,1.25,1.915,False,False
+2026-11-02,feed-forward 3d,rl_robotics,5,14,0.918,3.281,9,22,1.304,4.6,1.909,True,True
+2026-11-02,embodied perception,rl_robotics,4,12,0.956,2.843,3,10,0.8,5.5,1.888,True,True
+2026-11-02,physical intelligence,rl_robotics,6,15,0.893,2.625,13,48,1.0,6.125,1.881,True,True
+2026-11-02,egocentric human,rl_robotics,18,34,1.896,3.281,6,12,2.333,4.333,1.875,True,False
+2026-11-02,avoidance for autonomous,rl_robotics,1,1,1.53,1.312,4,33,0.455,17.0,1.87,False,False
+2026-11-02,autonomous uav navigation,rl_robotics,1,4,0.765,3.281,4,16,0.714,4.25,1.863,False,False
+2026-11-02,embodied world,rl_robotics,7,12,1.669,2.843,2,14,0.474,5.0,1.833,True,True
+2026-11-02,action tokenization,rl_robotics,4,10,0.956,2.406,10,24,1.375,6.25,1.818,True,True
+2026-11-02,bimanual dexterous,rl_robotics,8,19,1.476,4.374,0,4,0.333,2.5,1.806,True,True
+2026-11-02,policy steering,rl_robotics,4,9,1.435,3.281,4,6,2.5,3.5,1.751,False,False
+2026-11-02,flow policies,rl_robotics,13,24,1.89,4.101,4,9,1.071,2.5,1.75,True,True
+2026-11-02,grounded robot,rl_robotics,2,4,1.148,3.281,23,54,1.469,3.438,1.741,True,True
+2026-11-02,contact-rich robotic,rl_robotics,3,14,0.612,2.461,5,8,2.0,4.5,1.647,True,True
+2026-11-02,benchmark for robotic,rl_robotics,2,7,0.765,2.625,3,7,1.2,4.0,1.635,False,False
+2026-11-02,fall recovery,rl_robotics,3,5,1.53,1.969,6,17,1.4,6.0,1.62,False,False
+2026-11-02,estimation for robotic,rl_robotics,1,1,1.53,1.312,2,10,0.75,11.0,1.619,False,False
+2026-11-02,surface inspection,rl_robotics,1,1,1.53,1.312,13,31,1.615,10.667,1.601,False,False
+2026-11-02,control for safe,rl_robotics,2,3,0.984,2.625,4,20,0.75,3.5,1.558,False,False
+2026-11-02,reasoning for autonomous,rl_robotics,1,6,0.51,4.593,1,2,1.5,1.5,1.554,False,False
+2026-11-02,predictive safety,rl_robotics,2,8,0.626,2.953,5,28,0.462,2.9,1.552,False,False
+2026-11-02,generative robot,rl_robotics,4,14,0.883,2.461,2,6,1.125,3.5,1.502,False,False
+2026-11-02,lidar place,rl_robotics,1,3,0.918,2.625,2,5,1.125,3.0,1.469,False,False
+2026-11-02,space robots,rl_robotics,5,10,1.721,2.406,19,34,2.5,3.182,1.428,False,False
+2026-11-02,guide dog,rl_robotics,1,3,0.765,2.625,7,18,1.143,2.714,1.412,False,False
+2026-11-02,generalist robot policies,rl_robotics,15,28,1.749,2.379,1,5,0.75,3.0,1.384,False,False
+2026-11-02,lifelong robot,rl_robotics,3,4,2.295,1.64,3,4,2.4,5.0,1.357,False,False
+2026-11-02,representations for robot,rl_robotics,3,6,1.53,2.297,0,2,0.6,3.0,1.354,False,False
+2026-11-02,disturbance rejection control,rl_robotics,2,2,2.295,0.984,4,6,3.0,3.5,1.353,False,False
+2026-11-02,generalizable dexterous,rl_robotics,3,4,2.295,0.82,2,2,3.0,1.0,1.353,False,False
+2026-11-02,forward-looking sonar,rl_robotics,0,6,0.255,4.593,1,2,0.857,1.0,1.32,False,False
+2026-11-02,whole-body loco-manipulation,rl_robotics,6,13,1.607,1.531,2,4,1.8,5.0,1.297,False,False
+2026-11-02,behavior foundation,rl_robotics,5,6,2.754,1.531,3,4,2.0,1.25,1.277,True,True
+2026-11-02,sampling-based mpc,rl_robotics,2,6,0.861,2.297,2,4,1.8,2.5,1.248,False,False
+2026-11-02,humanoid motion,rl_robotics,15,22,2.623,1.677,12,43,1.026,4.0,1.247,False,False
+2026-11-02,radar-inertial odometry,rl_robotics,2,3,1.721,2.625,1,1,2.0,2.0,1.235,False,False
+2026-11-02,manipulation platform,rl_robotics,1,3,0.918,2.625,5,11,1.636,2.0,1.235,False,False
+2026-11-02,versatile humanoid,rl_robotics,3,3,3.06,0.656,1,2,1.5,1.0,1.202,False,False
+2026-11-02,reactive robot,rl_robotics,2,2,2.295,0.984,4,8,2.143,3.0,1.159,False,False
+2026-11-02,physics-based character,rl_robotics,1,4,0.656,3.281,1,5,0.857,1.2,1.134,False,False
+2026-11-02,semantic gaussian,rl_robotics,3,5,1.53,1.969,0,4,0.429,2.5,1.115,False,False
+2026-11-02,longitudinal control,rl_robotics,2,2,2.295,0.984,4,19,0.682,6.667,1.081,False,False
+2026-11-02,differentiable dynamics,rl_robotics,3,7,1.312,2.625,1,2,1.5,1.5,1.069,False,False
+2026-11-02,lifelong multi-agent,rl_robotics,1,3,0.574,2.625,1,2,1.5,1.5,1.069,False,False
+2026-11-02,safety-critical scenario generation,rl_robotics,0,4,0.287,3.281,0,0,0.75,1.0,1.028,False,False
+2026-11-02,time-varying control,rl_robotics,0,4,0.328,3.281,0,0,1.0,1.0,1.028,False,False
+2026-11-02,garment manipulation,rl_robotics,1,1,1.53,0.437,2,2,3.0,3.0,1.002,False,False
+2026-11-02,semi-static environments,rl_robotics,3,3,3.06,0.656,0,0,1.0,1.0,0.968,False,False
+2026-11-02,image-goal navigation,rl_robotics,3,8,1.148,2.953,0,2,0.429,1.0,0.937,False,False
+2026-11-02,space robotic,rl_robotics,3,4,1.836,1.094,19,42,1.875,2.048,0.889,False,False
+2026-11-02,active slam,rl_robotics,1,1,1.53,1.312,1,11,0.4,3.0,0.869,False,False
+2026-11-02,uav landing,rl_robotics,2,2,2.295,0.984,4,22,0.556,4.6,0.867,False,False
+2026-11-02,multimodal robot,rl_robotics,3,3,1.53,0.656,12,21,2.294,7.333,0.847,False,False
+2026-11-02,tracking for autonomous,rl_robotics,1,1,1.53,0.656,5,8,2.25,1.286,0.836,False,False
+2026-11-02,decentralized safe,rl_robotics,1,3,0.918,2.625,1,1,2.0,1.0,0.835,False,False
+2026-11-02,functional grasping,rl_robotics,1,3,0.918,2.625,0,0,1.0,1.0,0.835,False,False
+2026-11-02,zero-shot object-goal navigation,rl_robotics,1,3,0.765,2.625,0,0,1.0,1.0,0.835,False,False
+2026-11-02,wheeled bipedal,rl_robotics,1,1,1.53,0.656,6,14,1.312,7.5,0.798,False,False
+2026-11-02,navigation foundation,rl_robotics,3,4,1.836,0.656,1,2,1.5,1.5,0.76,False,False
+2026-11-02,dual control,rl_robotics,1,1,1.53,0.437,28,53,1.933,4.154,0.749,False,False
+2026-11-02,lane keeping assist,rl_robotics,1,1,1.53,1.312,6,9,1.909,2.0,0.741,False,False
+2026-11-02,target defense,rl_robotics,1,1,1.53,0.656,12,26,1.857,2.7,0.725,False,False
+2026-11-02,language action models,rl_robotics,3,4,1.836,1.094,53,136,1.409,2.854,0.724,False,False
+2026-11-02,robotic action,rl_robotics,3,4,1.836,0.82,14,45,1.071,4.6,0.709,False,False
+2026-11-02,payload estimation,rl_robotics,1,1,1.53,0.656,2,4,1.8,2.5,0.707,False,False
+2026-11-02,lidar-camera calibration,rl_robotics,2,2,2.295,1.969,1,10,0.5,1.222,0.702,False,False
+2026-11-02,policy refinement,rl_robotics,8,14,1.721,1.406,1,5,0.75,2.0,0.695,False,False
+2026-11-02,planning with dynamic,rl_robotics,1,1,1.53,1.312,3,7,1.714,1.6,0.679,False,False
+2026-11-02,fusion for 3d,rl_robotics,1,1,1.53,0.437,7,15,1.714,4.0,0.679,False,False
+2026-11-02,manipulation interface,rl_robotics,8,13,2.582,1.531,1,4,0.75,1.667,0.664,False,False
+2026-11-02,reflective objects,rl_robotics,1,1,1.53,1.312,0,1,0.6,2.0,0.635,False,False
+2026-11-02,physics-based character control,rl_robotics,1,4,0.656,3.281,0,0,1.0,0.5,0.628,False,False
+2026-11-02,navigation among,rl_robotics,5,10,1.721,1.444,1,4,0.857,1.667,0.613,False,False
+2026-11-02,embodied visual,rl_robotics,5,6,2.754,1.531,0,2,0.5,1.5,0.603,False,False
+2026-11-02,control for humanoid,rl_robotics,1,1,1.53,0.437,1,2,1.5,1.0,0.602,False,False
+2026-11-02,motion adaptation,rl_robotics,1,1,1.53,0.656,1,2,1.5,3.0,0.602,False,False
+2026-11-02,expressive motion,rl_robotics,2,2,1.721,0.394,9,24,1.25,8.333,0.599,False,False
+2026-11-02,navigation integrating,rl_robotics,3,3,3.06,1.312,2,15,0.45,1.778,0.567,False,False
+2026-11-02,supernumerary robotic,rl_robotics,2,2,2.295,0.984,0,1,0.75,1.0,0.553,False,False
+2026-11-02,map compression,rl_robotics,1,1,1.53,0.656,1,2,1.2,0.75,0.473,False,False
+2026-11-02,cross-embodiment dexterous,rl_robotics,3,4,1.53,0.82,1,3,1.2,1.333,0.473,False,False
+2026-11-02,cooperative aerial,rl_robotics,2,2,1.721,0.394,2,6,1.0,7.0,0.47,False,False
+2026-11-02,agile humanoid,rl_robotics,2,3,1.721,2.625,0,0,0.75,0.5,0.435,False,False
+2026-11-02,gaussian mapping,rl_robotics,2,2,1.721,0.656,1,3,0.857,4.0,0.435,False,False
+2026-11-02,monocular visual-inertial,rl_robotics,2,2,2.295,0.492,0,0,0.6,1.0,0.424,False,False
+2026-11-02,visible light communication,rl_robotics,2,2,2.295,0.656,4,16,0.6,2.833,0.424,False,False
+2026-11-02,human reactions,rl_robotics,2,3,1.721,0.875,3,10,0.923,0.917,0.424,False,False
+2026-11-02,safety-critical scenario,rl_robotics,0,5,0.23,3.937,0,0,0.5,0.25,0.386,False,False
+2026-11-02,koopman model predictive,rl_robotics,1,1,1.53,0.437,0,0,1.0,1.0,0.368,False,False
+2026-11-02,locomotion over challenging,rl_robotics,1,1,1.53,0.437,0,0,1.0,1.0,0.368,False,False
+2026-11-02,multi-object grasping,rl_robotics,1,1,1.53,0.437,0,0,1.0,0.5,0.368,False,False
+2026-11-02,open-world embodied,rl_robotics,1,1,1.53,1.312,0,0,1.0,1.0,0.368,False,False
+2026-11-02,safe and performant,rl_robotics,1,1,1.53,0.656,0,0,1.0,1.0,0.368,False,False
+2026-11-02,safety of embodied,rl_robotics,1,1,1.53,1.312,0,0,1.0,1.0,0.368,False,False
+2026-11-02,among movable obstacles,rl_robotics,3,5,1.836,1.312,0,0,0.75,0.5,0.36,False,False
+2026-11-02,generative simulation,rl_robotics,4,7,1.639,1.75,1,3,0.857,0.8,0.356,False,False
+2026-11-02,collective perception,rl_robotics,1,1,1.53,0.656,0,2,0.6,3.0,0.269,False,False
+2026-11-02,underactuated robots,rl_robotics,1,1,1.53,0.656,0,5,0.375,3.0,0.269,False,False
+2026-11-02,image goal navigation,rl_robotics,1,1,1.53,1.312,0,2,0.429,1.0,0.235,False,False
+2026-11-02,spatiotemporal calibration,rl_robotics,1,1,1.53,0.328,0,1,0.75,2.0,0.202,False,False
+2026-11-02,supernumerary robotic limbs,rl_robotics,1,1,1.53,0.656,0,1,0.75,1.0,0.202,False,False
+2026-11-02,hybrid perception,rl_robotics,1,1,1.53,0.437,0,1,0.6,2.0,0.073,False,False
+2026-11-02,prescribed performance control,rl_robotics,1,1,1.53,0.656,0,0,0.6,1.0,0.073,False,False
+2026-11-02,adaptive diffusion,rl_robotics,3,6,1.53,0.656,2,10,0.6,0.917,0.073,False,False
+2026-11-02,robotic limbs,rl_robotics,1,1,1.53,0.437,0,3,0.5,1.333,-0.032,False,False
+2026-11-02,satellite attitude,rl_robotics,1,1,1.53,0.437,2,11,0.474,1.2,-0.063,False,False
+2026-11-02,musculoskeletal model,rl_robotics,1,1,1.53,0.328,1,8,0.462,3.0,-0.078,False,False
+2026-11-02,satellite attitude control,rl_robotics,1,1,1.53,0.656,0,3,0.333,0.8,-0.266,False,False
+2026-11-02,humanoid whole-body,rl_robotics,10,28,1.052,1.903,,,,,,False,False
+2026-11-02,language action,rl_robotics,14,34,1.275,1.914,,,,,,False,False
+2026-11-02,generalizable robot,rl_robotics,1,7,0.353,0.875,,,,,,False,False
+2026-11-02,humanoid whole-body control,rl_robotics,3,10,0.765,1.444,,,,,,False,False
+2026-11-02,reinforcement fine-tuning,rl_robotics,2,21,0.237,0.451,,,,,,False,False
+2026-11-02,whole-body manipulation,rl_robotics,4,13,0.883,0.919,,,,,,False,False
+2026-11-02,control for aerial,rl_robotics,0,0,0.765,0.164,,,,,,False,False
+2026-11-02,control for robust,rl_robotics,0,1,0.574,0.219,,,,,,False,False
+2026-11-02,fusion for autonomous,rl_robotics,0,0,0.574,0.656,,,,,,False,False
+2026-11-02,fusion for robust,rl_robotics,2,5,0.689,0.492,,,,,,False,False
+2026-11-02,soft growing,rl_robotics,0,2,0.383,0.656,,,,,,False,False
+2026-11-02,gaussian slam,rl_robotics,1,2,1.148,0.984,,,,,,False,False
+2026-11-02,generation for robot,rl_robotics,2,4,1.377,1.64,,,,,,False,False
+2026-11-02,guided reinforcement,rl_robotics,0,2,0.459,0.179,,,,,,False,False
+2026-11-02,language action model,rl_robotics,1,3,0.918,0.875,,,,,,False,False
+2026-11-02,lidar localization,rl_robotics,0,0,0.765,0.219,,,,,,False,False
+2026-11-02,locomotion learning,rl_robotics,1,3,0.918,0.656,,,,,,False,False
+2026-11-02,on-ramp merging,rl_robotics,0,0,0.765,0.328,,,,,,False,False
+2026-11-02,robotic imitation,rl_robotics,1,3,0.765,0.437,,,,,,False,False
+2026-11-02,robotic reinforcement,rl_robotics,1,2,1.148,1.969,,,,,,False,False
+2026-11-02,robust humanoid,rl_robotics,2,5,0.861,1.312,,,,,,False,False
+2026-11-02,semantic navigation,rl_robotics,0,8,0.153,1.476,,,,,,False,False
+2026-11-02,spatiotemporal tubes,rl_robotics,0,1,0.574,0.437,,,,,,False,False
+2026-11-02,stewart platform,rl_robotics,1,2,0.918,0.328,,,,,,False,False
+2026-11-02,visual-inertial navigation,rl_robotics,0,1,0.574,0.187,,,,,,False,False
+2026-11-02,active matter,rl_robotics,0,2,0.459,0.394,,,,,,False,False
+2026-11-02,affordance reasoning,rl_robotics,0,0,0.765,0.656,,,,,,False,False
+2026-11-02,bidirectional motion,rl_robotics,0,0,0.765,0.219,,,,,,False,False
+2026-11-02,bimanual mobile,rl_robotics,0,1,0.383,0.328,,,,,,False,False
+2026-11-02,control for quadruped,rl_robotics,0,0,0.765,0.164,,,,,,False,False
+2026-11-02,cooperative manipulation,rl_robotics,1,4,0.765,0.82,,,,,,False,False
+2026-11-02,dexterous teleoperation,rl_robotics,2,2,1.377,0.656,,,,,,False,False
+2026-11-02,dynamic quadrupedal,rl_robotics,0,0,0.459,0.219,,,,,,False,False
+2026-11-02,embodied cognition,rl_robotics,0,1,0.383,0.328,,,,,,False,False
+2026-11-02,embodied systems,rl_robotics,10,19,1.485,1.875,,,,,,False,False
+2026-11-02,functions for safe,rl_robotics,0,2,0.383,0.984,,,,,,False,False
+2026-11-02,general robot,rl_robotics,2,5,0.861,0.656,,,,,,False,False
+2026-11-02,guidance and control,rl_robotics,0,3,0.383,0.656,,,,,,False,False
+2026-11-02,learning-based dynamic,rl_robotics,0,3,0.328,0.875,,,,,,False,False
+2026-11-02,localization for autonomous,rl_robotics,0,0,0.765,0.656,,,,,,False,False
+2026-11-02,multi-robot control,rl_robotics,1,3,0.918,1.312,,,,,,False,False
+2026-11-02,navigation for autonomous,rl_robotics,0,1,0.574,0.328,,,,,,False,False
+2026-11-02,observer design,rl_robotics,0,1,0.574,0.437,,,,,,False,False
+2026-11-02,off-road autonomous,rl_robotics,1,3,0.918,0.875,,,,,,False,False
+2026-11-02,policy for robotic,rl_robotics,1,4,0.765,0.82,,,,,,False,False
+2026-11-02,quadrotor navigation,rl_robotics,3,5,1.312,0.787,,,,,,False,False
+2026-11-02,robotic policy,rl_robotics,2,5,1.148,0.656,,,,,,False,False
+2026-11-02,robust visuomotor,rl_robotics,0,3,0.383,0.656,,,,,,False,False
+2026-11-02,scalable multi-robot,rl_robotics,1,1,0.918,0.656,,,,,,False,False
+2026-11-02,scalable robot,rl_robotics,4,11,0.82,1.575,,,,,,False,False
+2026-11-02,source seeking,rl_robotics,0,2,0.459,0.328,,,,,,False,False
+2026-11-02,team description,rl_robotics,0,0,0.765,0.656,,,,,,False,False
+2026-11-02,urban autonomous,rl_robotics,0,2,0.383,0.656,,,,,,False,False
+2026-11-02,vlm reasoning,rl_robotics,5,16,0.599,1.115,,,,,,False,False
+2026-11-02,whole-body humanoid,rl_robotics,4,8,1.275,0.984,,,,,,False,False
+2026-11-02,world foundation,rl_robotics,2,4,0.984,1.64,,,,,,False,False
+2026-11-02,2d gaussian,rl_robotics,2,6,0.861,0.766,,,,,,False,False
+2026-11-02,3d vision-language,rl_robotics,1,2,0.918,0.492,,,,,,False,False
+2026-11-02,4d gaussian,rl_robotics,1,6,0.574,0.919,,,,,,False,False
+2026-11-02,4d world,rl_robotics,1,1,1.148,0.262,,,,,,False,False
+2026-11-02,action diffusion,rl_robotics,2,5,0.984,0.984,,,,,,False,False
+2026-11-02,active tactile,rl_robotics,0,0,0.765,0.219,,,,,,False,False
+2026-11-02,adaptive navigation,rl_robotics,0,1,0.459,0.262,,,,,,False,False
+2026-11-02,affordance grounding,rl_robotics,2,7,0.861,1.75,,,,,,False,False
+2026-11-02,autonomous surface vehicle,rl_robotics,0,2,0.328,0.492,,,,,,False,False
+2026-11-02,bridging simulation,rl_robotics,0,0,0.574,0.219,,,,,,False,False
+2026-11-02,cable-driven parallel robots,rl_robotics,0,0,0.459,0.328,,,,,,False,False
+2026-11-02,category-level object,rl_robotics,0,1,0.574,0.328,,,,,,False,False
+2026-11-02,character control,rl_robotics,1,4,0.656,1.64,,,,,,False,False
+2026-11-02,contact sensing,rl_robotics,3,4,1.312,1.094,,,,,,False,False
+2026-11-02,control for bipedal,rl_robotics,0,0,0.765,0.219,,,,,,False,False
+2026-11-02,control for quadrotor,rl_robotics,0,2,0.459,0.984,,,,,,False,False
+2026-11-02,control for robot,rl_robotics,0,1,0.574,0.656,,,,,,False,False
+2026-11-02,control in legged,rl_robotics,0,0,0.765,0.219,,,,,,False,False
+2026-11-02,control of underactuated,rl_robotics,0,1,0.459,1.312,,,,,,False,False
+2026-11-02,control via end-to-end,rl_robotics,0,0,0.765,0.164,,,,,,False,False
+2026-11-02,control with online,rl_robotics,0,1,0.574,0.328,,,,,,False,False
+2026-11-02,cross-embodiment manipulation,rl_robotics,1,2,0.918,0.984,,,,,,False,False
+2026-11-02,curtain wall installation,rl_robotics,0,0,0.765,0.328,,,,,,False,False
+2026-11-02,demonstration generation,rl_robotics,4,10,1.275,1.203,,,,,,False,False
+2026-11-02,dexterous grasp generation,rl_robotics,2,5,0.984,1.969,,,,,,False,False
+2026-11-02,diffusion planner,rl_robotics,4,9,1.275,0.547,,,,,,False,False
+2026-11-02,drone landing,rl_robotics,0,0,0.574,0.328,,,,,,False,False
+2026-11-02,dynamic targets,rl_robotics,0,1,0.459,0.262,,,,,,False,False
+2026-11-02,efficient embodied,rl_robotics,2,6,0.765,0.656,,,,,,False,False
+2026-11-02,embodied foundation,rl_robotics,5,12,1.148,1.422,,,,,,False,False
+2026-11-02,embodied robotic,rl_robotics,2,3,1.377,0.656,,,,,,False,False
+2026-11-02,end-to-end imitation,rl_robotics,0,1,0.574,0.328,,,,,,False,False
+2026-11-02,end-to-end planning,rl_robotics,2,7,0.689,0.75,,,,,,False,False
+2026-11-02,event-based visual,rl_robotics,0,2,0.459,0.492,,,,,,False,False
+2026-11-02,fine-grained robotic,rl_robotics,0,4,0.328,1.64,,,,,,False,False
+2026-11-02,flight planning,rl_robotics,0,2,0.383,0.492,,,,,,False,False
+2026-11-02,forecasting for autonomous,rl_robotics,0,0,0.765,0.656,,,,,,False,False
+2026-11-02,fuzzy control,rl_robotics,1,2,0.918,0.984,,,,,,False,False
+2026-11-02,general motion,rl_robotics,2,4,0.861,0.469,,,,,,False,False
+2026-11-02,generalizable bimanual,rl_robotics,0,1,0.574,0.437,,,,,,False,False
+2026-11-02,generalization in robotic,rl_robotics,1,5,0.51,1.312,,,,,,False,False
+2026-11-02,generative visual,rl_robotics,2,7,0.861,1.312,,,,,,False,False
+2026-11-02,graphs of convex,rl_robotics,0,3,0.287,1.312,,,,,,False,False
+2026-11-02,grasp pose detection,rl_robotics,0,0,0.574,0.328,,,,,,False,False
+2026-11-02,ground penetrating,rl_robotics,0,0,0.765,0.656,,,,,,False,False
+2026-11-02,guiding vector fields,rl_robotics,0,2,0.459,1.969,,,,,,False,False
+2026-11-02,hand exoskeleton,rl_robotics,0,0,0.765,0.328,,,,,,False,False
+2026-11-02,interactive autonomous,rl_robotics,0,1,0.574,0.437,,,,,,False,False
+2026-11-02,interactive motion,rl_robotics,1,2,0.765,0.219,,,,,,False,False
+2026-11-02,interactive navigation,rl_robotics,2,5,0.984,1.969,,,,,,False,False
+2026-11-02,kinodynamic planning,rl_robotics,1,3,0.765,0.656,,,,,,False,False
+2026-11-02,lidar-camera extrinsic calibration,rl_robotics,0,1,0.574,1.312,,,,,,False,False
+2026-11-02,linear quadratic gaussian,rl_robotics,0,0,0.574,0.656,,,,,,False,False
+2026-11-02,low-cost open-source,rl_robotics,2,4,0.984,1.64,,,,,,False,False
+2026-11-02,magnetic soft,rl_robotics,0,0,0.765,0.328,,,,,,False,False
+2026-11-02,maneuver planning,rl_robotics,0,1,0.574,0.437,,,,,,False,False
+2026-11-02,manipulation of articulated,rl_robotics,1,3,0.918,0.656,,,,,,False,False
+2026-11-02,matching policy,rl_robotics,0,2,0.459,0.492,,,,,,False,False
+2026-11-02,matrix lie groups,rl_robotics,1,2,1.148,0.984,,,,,,False,False
+2026-11-02,multi-modal robot,rl_robotics,0,1,0.459,0.437,,,,,,False,False
+2026-11-02,natural humanoid,rl_robotics,0,1,0.574,0.656,,,,,,False,False
+2026-11-02,navigation among movable,rl_robotics,2,4,1.377,1.64,,,,,,False,False
+2026-11-02,object transport,rl_robotics,1,8,0.459,1.181,,,,,,False,False
+2026-11-02,one-shot imitation,rl_robotics,0,2,0.459,0.656,,,,,,False,False
+2026-11-02,online hd map,rl_robotics,0,1,0.459,1.312,,,,,,False,False
+2026-11-02,parallel mechanism,rl_robotics,1,2,0.918,0.656,,,,,,False,False
+2026-11-02,policy for robust,rl_robotics,0,2,0.383,0.984,,,,,,False,False
+2026-11-02,posture manipulation,rl_robotics,0,0,0.765,0.328,,,,,,False,False
+2026-11-02,prescribed performance,rl_robotics,2,3,1.377,0.875,,,,,,False,False
+2026-11-02,real-time obstacle,rl_robotics,0,1,0.574,0.262,,,,,,False,False
+2026-11-02,reasoning for vision-language,rl_robotics,0,0,0.765,0.328,,,,,,False,False
+2026-11-02,reasoning in vision-language,rl_robotics,3,7,1.312,0.328,,,,,,False,False
+2026-11-02,robot generalization,rl_robotics,1,2,1.148,0.984,,,,,,False,False
+2026-11-02,robot-assisted dressing,rl_robotics,1,2,0.918,0.656,,,,,,False,False
+2026-11-02,robot-assisted feeding,rl_robotics,0,1,0.574,0.656,,,,,,False,False
+2026-11-02,robotic fish,rl_robotics,0,3,0.328,1.312,,,,,,False,False
+2026-11-02,robotic garment,rl_robotics,0,1,0.574,1.312,,,,,,False,False
+2026-11-02,robotic wrist,rl_robotics,0,0,0.765,0.328,,,,,,False,False
+2026-11-02,robots in public,rl_robotics,2,3,1.377,0.875,,,,,,False,False
+2026-11-02,safe mobile,rl_robotics,0,0,0.765,0.656,,,,,,False,False
+2026-11-02,safe robotic,rl_robotics,1,5,0.656,1.312,,,,,,False,False
+2026-11-02,sampling for robot,rl_robotics,0,0,0.765,0.219,,,,,,False,False
+2026-11-02,self-adaptive grasping,rl_robotics,0,0,0.765,0.131,,,,,,False,False
+2026-11-02,shape memory,rl_robotics,0,1,0.459,0.437,,,,,,False,False
+2026-11-02,shape morphing,rl_robotics,0,1,0.574,0.328,,,,,,False,False
+2026-11-02,skills for humanoid,rl_robotics,0,2,0.459,0.656,,,,,,False,False
+2026-11-02,slam for dynamic,rl_robotics,0,0,0.765,0.219,,,,,,False,False
+2026-11-02,socially-aware robot,rl_robotics,0,0,0.765,0.164,,,,,,False,False
+2026-11-02,soft continuum robots,rl_robotics,0,1,0.459,0.437,,,,,,False,False
+2026-11-02,tabletop rearrangement,rl_robotics,0,0,0.765,0.219,,,,,,False,False
+2026-11-02,tactile robotics,rl_robotics,0,0,0.765,0.219,,,,,,False,False
+2026-11-02,trajectory predictors,rl_robotics,0,4,0.328,1.64,,,,,,False,False
+2026-11-02,uav control,rl_robotics,0,3,0.255,0.437,,,,,,False,False
+2026-11-02,underwater navigation,rl_robotics,3,7,1.312,1.75,,,,,,False,False
+2026-11-02,unified world,rl_robotics,4,7,1.435,1.75,,,,,,False,False
+2026-11-02,virtual fixtures,rl_robotics,0,1,0.574,0.656,,,,,,False,False
+2026-11-02,vision-based drone,rl_robotics,0,0,0.765,0.219,,,,,,False,False
+2026-11-02,visual servoing control,rl_robotics,0,0,0.765,0.219,,,,,,False,False
+2026-11-02,visuomotor diffusion,rl_robotics,0,1,0.574,0.656,,,,,,False,False
+2026-11-02,3-d environments,rl_robotics,0,1,0.574,1.312,,,,,,False,False
+2026-11-02,4d world modeling,rl_robotics,0,0,0.765,0.328,,,,,,False,False
+2026-11-02,accurate drone landing,rl_robotics,0,0,0.765,0.328,,,,,,False,False
+2026-11-02,active mapping,rl_robotics,2,5,1.148,1.969,,,,,,False,False
+2026-11-02,adaptive koopman,rl_robotics,0,0,0.765,0.656,,,,,,False,False
+2026-11-02,adaptive multi-robot,rl_robotics,0,1,0.574,1.312,,,,,,False,False
+2026-11-02,adaptive planner,rl_robotics,0,0,0.765,0.219,,,,,,False,False
+2026-11-02,adaptive robots,rl_robotics,0,0,0.765,0.219,,,,,,False,False
+2026-11-02,adaptive tracking control,rl_robotics,0,1,0.574,1.312,,,,,,False,False
+2026-11-02,adaptive trajectory,rl_robotics,2,5,0.861,0.492,,,,,,False,False
+2026-11-02,adversarial motion priors,rl_robotics,3,6,1.312,0.919,,,,,,False,False
+2026-11-02,aerial robot systems,rl_robotics,0,0,0.765,0.328,,,,,,False,False
+2026-11-02,agentic uavs,rl_robotics,0,0,0.765,0.328,,,,,,False,False
+2026-11-02,agile uav,rl_robotics,1,2,0.918,0.656,,,,,,False,False
+2026-11-02,algorithm for unknown,rl_robotics,0,1,0.574,0.656,,,,,,False,False
+2026-11-02,analytic concepts,rl_robotics,0,0,0.574,0.328,,,,,,False,False
+2026-11-02,anthropomorphic hand,rl_robotics,1,4,0.656,0.82,,,,,,False,False
+2026-11-02,automated parking,rl_robotics,0,2,0.459,0.656,,,,,,False,False
+2026-11-02,automotive lidar,rl_robotics,0,0,0.765,0.656,,,,,,False,False
+2026-11-02,autonomous drone navigation,rl_robotics,0,0,0.765,0.328,,,,,,False,False
+2026-11-02,autonomy framework,rl_robotics,0,2,0.328,0.656,,,,,,False,False
+2026-11-02,avoidance of uav,rl_robotics,0,0,0.765,0.328,,,,,,False,False
+2026-11-02,base placement,rl_robotics,1,2,0.918,0.656,,,,,,False,False
+2026-11-02,benchmark for autonomous,rl_robotics,2,4,0.984,1.094,,,,,,False,False
+2026-11-02,bilateral control,rl_robotics,0,1,0.574,0.328,,,,,,False,False
+2026-11-02,bilateral control-based imitation,rl_robotics,0,1,0.574,0.656,,,,,,False,False
+2026-11-02,bipedal navigation,rl_robotics,0,0,0.765,0.219,,,,,,False,False
+2026-11-02,bridging reasoning,rl_robotics,1,2,0.918,0.492,,,,,,False,False
+2026-11-02,bridging the sim-to-real,rl_robotics,2,4,0.861,0.82,,,,,,False,False
+2026-11-02,cable-driven robotic,rl_robotics,0,0,0.765,0.328,,,,,,False,False
+2026-11-02,cable-suspended payload,rl_robotics,1,2,1.148,0.492,,,,,,False,False
+2026-11-02,camera dataset,rl_robotics,0,0,0.765,0.328,,,,,,False,False
+2026-11-02,chunking with transformers,rl_robotics,3,12,0.706,1.422,,,,,,False,False
+2026-11-02,climbing robot,rl_robotics,0,1,0.574,0.328,,,,,,False,False
+2026-11-02,cloning policies,rl_robotics,0,1,0.574,0.328,,,,,,False,False
+2026-11-02,collision prediction,rl_robotics,0,0,0.459,0.328,,,,,,False,False
+2026-11-02,collision risk estimation,rl_robotics,0,0,0.765,0.656,,,,,,False,False
+2026-11-02,compact 3d,rl_robotics,1,5,0.656,0.492,,,,,,False,False
+2026-11-02,compliant robot,rl_robotics,1,2,0.918,0.656,,,,,,False,False
+2026-11-02,construction robot,rl_robotics,0,0,0.765,0.656,,,,,,False,False
+2026-11-02,construction robots,rl_robotics,2,5,0.984,1.969,,,,,,False,False
+2026-11-02,contact manifold,rl_robotics,0,1,0.574,1.312,,,,,,False,False
+2026-11-02,control application,rl_robotics,1,2,1.148,0.656,,,,,,False,False
+2026-11-02,control for cooperative,rl_robotics,0,2,0.459,0.984,,,,,,False,False
+2026-11-02,control for dexterous,rl_robotics,0,0,0.765,0.328,,,,,,False,False
+2026-11-02,control of deformable,rl_robotics,1,2,0.918,0.984,,,,,,False,False
+2026-11-02,control of multi-agent,rl_robotics,0,1,0.574,0.656,,,,,,False,False
+2026-11-02,control of unknown,rl_robotics,0,0,0.765,0.219,,,,,,False,False
+2026-11-02,cooperative collision,rl_robotics,0,0,0.765,0.656,,,,,,False,False
+2026-11-02,cooperative trajectory,rl_robotics,1,2,1.148,0.984,,,,,,False,False
+2026-11-02,coordinated multi-robot,rl_robotics,0,0,0.574,0.164,,,,,,False,False
+2026-11-02,cross-embodiment learning,rl_robotics,3,7,1.312,0.875,,,,,,False,False
+2026-11-02,cross-embodiment robotic,rl_robotics,0,0,0.765,0.656,,,,,,False,False
+2026-11-02,dataset for mobile,rl_robotics,0,0,0.765,0.328,,,,,,False,False
+2026-11-02,dataset for robot,rl_robotics,0,0,0.765,0.656,,,,,,False,False
+2026-11-02,deep koopman,rl_robotics,0,3,0.383,0.875,,,,,,False,False
+2026-11-02,demonstration synthesis,rl_robotics,0,2,0.459,0.656,,,,,,False,False
+2026-11-02,diffusion for autonomous,rl_robotics,0,0,0.765,0.328,,,,,,False,False
+2026-11-02,digital twin-based,rl_robotics,1,5,0.574,0.656,,,,,,False,False
+2026-11-02,discrete differential,rl_robotics,0,2,0.383,0.984,,,,,,False,False
+2026-11-02,distributed robotic,rl_robotics,0,4,0.287,1.094,,,,,,False,False
+2026-11-02,driving via online,rl_robotics,0,0,0.765,0.656,,,,,,False,False
+2026-11-02,driving with multimodal,rl_robotics,0,0,0.765,0.328,,,,,,False,False
+2026-11-02,drone localization,rl_robotics,0,0,0.765,0.328,,,,,,False,False
+2026-11-02,dynamic trajectory,rl_robotics,0,4,0.287,0.469,,,,,,False,False
+2026-11-02,efficient visuomotor,rl_robotics,0,0,0.765,0.328,,,,,,False,False
+2026-11-02,embodied mobile,rl_robotics,0,1,0.574,0.656,,,,,,False,False
+2026-11-02,embodied multi-agent,rl_robotics,2,4,0.984,1.094,,,,,,False,False
+2026-11-02,embodied planning,rl_robotics,3,10,0.706,0.902,,,,,,False,False
+2026-11-02,enhanced robotic,rl_robotics,0,1,0.574,0.656,,,,,,False,False
+2026-11-02,enhanced uav,rl_robotics,0,0,0.765,0.219,,,,,,False,False
+2026-11-02,equivariant policy,rl_robotics,1,1,1.148,0.328,,,,,,False,False
+2026-11-02,equivariant reinforcement,rl_robotics,0,1,0.574,1.312,,,,,,False,False
+2026-11-02,ergodic coverage,rl_robotics,0,0,0.459,0.328,,,,,,False,False
+2026-11-02,ergodic exploration,rl_robotics,0,0,0.574,0.656,,,,,,False,False
+2026-11-02,estimation for dynamic,rl_robotics,0,0,0.765,0.328,,,,,,False,False
+2026-11-02,euler-lagrange systems,rl_robotics,0,1,0.574,0.437,,,,,,False,False
+2026-11-02,exoskeleton assistance,rl_robotics,1,6,0.459,1.531,,,,,,False,False
+2026-11-02,exoskeleton control,rl_robotics,2,7,0.861,1.75,,,,,,False,False
+2026-11-02,extended object,rl_robotics,0,0,0.765,0.656,,,,,,False,False
+2026-11-02,feedback teleoperation,rl_robotics,0,0,0.765,0.219,,,,,,False,False
+2026-11-02,field optimization,rl_robotics,0,0,0.765,0.219,,,,,,False,False
+2026-11-02,fields for robot,rl_robotics,0,0,0.765,0.656,,,,,,False,False
+2026-11-02,fixed-wing uavs,rl_robotics,0,0,0.459,0.219,,,,,,False,False
+2026-11-02,flying humanoid,rl_robotics,0,1,0.574,0.656,,,,,,False,False
+2026-11-02,forestry crane,rl_robotics,1,1,1.148,1.312,,,,,,False,False
+2026-11-02,foundation policy,rl_robotics,0,2,0.383,0.656,,,,,,False,False
+2026-11-02,gap in autonomous,rl_robotics,0,1,0.574,0.437,,,,,,False,False
+2026-11-02,gaussian splat,rl_robotics,0,1,0.574,0.187,,,,,,False,False
+2026-11-02,general dexterous grasping,rl_robotics,0,0,0.765,0.656,,,,,,False,False
+2026-11-02,general motion tracking,rl_robotics,1,3,0.765,1.312,,,,,,False,False
+2026-11-02,general objects,rl_robotics,0,0,0.765,0.219,,,,,,False,False
+2026-11-02,generalizable embodied,rl_robotics,1,5,0.51,1.312,,,,,,False,False
+2026-11-02,generalization in robot,rl_robotics,1,4,0.765,1.64,,,,,,False,False
+2026-11-02,generation for robotic,rl_robotics,0,0,0.574,0.328,,,,,,False,False
+2026-11-02,generative robotic,rl_robotics,1,2,1.148,0.984,,,,,,False,False
+2026-11-02,generative trajectory,rl_robotics,3,9,0.835,1.64,,,,,,False,False
+2026-11-02,geometry-aware gaussian,rl_robotics,0,0,0.765,0.656,,,,,,False,False
+2026-11-02,goal-oriented navigation,rl_robotics,1,3,0.918,1.312,,,,,,False,False
+2026-11-02,graph-based path,rl_robotics,0,0,0.574,0.131,,,,,,False,False
+2026-11-02,grasp diffusion,rl_robotics,0,1,0.459,0.437,,,,,,False,False
+2026-11-02,grasping in clutter,rl_robotics,1,2,1.148,1.969,,,,,,False,False
+2026-11-02,ground penetrating radar,rl_robotics,0,0,0.765,0.656,,,,,,False,False
+2026-11-02,grounded vision-language,rl_robotics,1,3,0.765,1.312,,,,,,False,False
+2026-11-02,hand manipulation,rl_robotics,2,4,0.984,1.094,,,,,,False,False
+2026-11-02,haptic display,rl_robotics,0,1,0.574,1.312,,,,,,False,False
+2026-11-02,haptic interaction,rl_robotics,1,2,0.918,1.969,,,,,,False,False
+2026-11-02,harvesting robots,rl_robotics,0,0,0.765,0.219,,,,,,False,False
+2026-11-02,hd mapping,rl_robotics,0,1,0.574,1.312,,,,,,False,False
+2026-11-02,high-order control,rl_robotics,0,4,0.287,1.094,,,,,,False,False
+2026-11-02,highway on-ramp merging,rl_robotics,0,0,0.765,0.656,,,,,,False,False
+2026-11-02,human action segmentation,rl_robotics,0,0,0.765,0.656,,,,,,False,False
+2026-11-02,human musculoskeletal,rl_robotics,0,2,0.459,0.492,,,,,,False,False
+2026-11-02,human-to-robot skill transfer,rl_robotics,1,3,0.918,0.875,,,,,,False,False
+2026-11-02,humanoid policy,rl_robotics,3,5,1.02,1.969,,,,,,False,False
+2026-11-02,humanoid soccer,rl_robotics,1,5,0.574,1.312,,,,,,False,False
+2026-11-02,humanoid whole-body loco-manipulation,rl_robotics,1,2,1.148,0.656,,,,,,False,False
+2026-11-02,images for robotic,rl_robotics,0,0,0.765,0.328,,,,,,False,False
+2026-11-02,imitation of human,rl_robotics,0,2,0.459,1.969,,,,,,False,False
+2026-11-02,implicit mapping,rl_robotics,1,1,1.148,0.437,,,,,,False,False
+2026-11-02,imu fusion,rl_robotics,1,2,1.148,1.969,,,,,,False,False
+2026-11-02,in-context imitation,rl_robotics,1,5,0.574,1.969,,,,,,False,False
+2026-11-02,independent steering,rl_robotics,0,1,0.574,0.262,,,,,,False,False
+2026-11-02,inertial parameter,rl_robotics,0,1,0.459,0.437,,,,,,False,False
+2026-11-02,ins dvl,rl_robotics,0,0,0.765,0.656,,,,,,False,False
+2026-11-02,inspection planning,rl_robotics,0,1,0.574,0.328,,,,,,False,False
+2026-11-02,instrument pose,rl_robotics,0,1,0.574,0.656,,,,,,False,False
+2026-11-02,intelligent uav,rl_robotics,0,0,0.765,0.656,,,,,,False,False
+2026-11-02,interactive simulation,rl_robotics,1,4,0.574,0.469,,,,,,False,False
+2026-11-02,iterative policy,rl_robotics,3,8,0.918,1.969,,,,,,False,False
+2026-11-02,laboratory automation,rl_robotics,3,5,1.312,1.312,,,,,,False,False
+2026-11-02,language conditioned,rl_robotics,1,2,0.918,0.984,,,,,,False,False
+2026-11-02,language guided,rl_robotics,0,1,0.459,0.262,,,,,,False,False
+2026-11-02,latent safety filters,rl_robotics,0,3,0.328,0.875,,,,,,False,False
+2026-11-02,layered control,rl_robotics,0,1,0.574,0.437,,,,,,False,False
+2026-11-02,legged manipulators,rl_robotics,0,0,0.765,0.219,,,,,,False,False
+2026-11-02,lidar global localization,rl_robotics,0,0,0.765,0.328,,,,,,False,False
+2026-11-02,lidar loop closure,rl_robotics,0,0,0.765,0.656,,,,,,False,False
+2026-11-02,lidar scanning,rl_robotics,1,2,1.148,0.328,,,,,,False,False
+2026-11-02,lidar sequences,rl_robotics,0,1,0.459,0.656,,,,,,False,False
+2026-11-02,logic tasks,rl_robotics,1,2,0.918,0.246,,,,,,False,False
+2026-11-02,magnetic levitation,rl_robotics,0,1,0.574,0.656,,,,,,False,False
+2026-11-02,manipulation and thrust,rl_robotics,0,0,0.765,0.328,,,,,,False,False
+2026-11-02,manipulation from human,rl_robotics,2,7,0.861,1.312,,,,,,False,False
+2026-11-02,manipulation with vision-language,rl_robotics,0,0,0.765,0.656,,,,,,False,False
+2026-11-02,manipulator systems,rl_robotics,0,2,0.459,0.394,,,,,,False,False
+2026-11-02,marine exploration,rl_robotics,0,1,0.574,0.328,,,,,,False,False
+2026-11-02,marine robotics,rl_robotics,0,3,0.328,0.656,,,,,,False,False
+2026-11-02,marine robots,rl_robotics,0,1,0.459,0.656,,,,,,False,False
+2026-11-02,merging control,rl_robotics,0,0,0.765,0.328,,,,,,False,False
+2026-11-02,modular aerial robot,rl_robotics,0,0,0.765,0.328,,,,,,False,False
+2026-11-02,motion cueing,rl_robotics,0,0,0.765,0.328,,,,,,False,False
+2026-11-02,motion fields,rl_robotics,0,1,0.574,0.656,,,,,,False,False
+2026-11-02,motion policy,rl_robotics,0,0,0.765,0.164,,,,,,False,False
+2026-11-02,multi-agent autonomous,rl_robotics,0,1,0.459,0.328,,,,,,False,False
+2026-11-02,multi-agent cooperative perception,rl_robotics,0,0,0.765,0.656,,,,,,False,False
+2026-11-02,multi-modal localization,rl_robotics,0,0,0.765,0.656,,,,,,False,False
+2026-11-02,multi-modal motion,rl_robotics,0,1,0.574,0.437,,,,,,False,False
+2026-11-02,multi-robot collision,rl_robotics,0,0,0.765,0.219,,,,,,False,False
+2026-11-02,multi-robot cooperation,rl_robotics,0,1,0.574,0.656,,,,,,False,False
+2026-11-02,multi-robot disassembly,rl_robotics,0,0,0.574,0.164,,,,,,False,False
+2026-11-02,multi-rotor aerial,rl_robotics,0,0,0.765,0.328,,,,,,False,False
+2026-11-02,multi-uav cooperative,rl_robotics,0,0,0.765,0.328,,,,,,False,False
+2026-11-02,multimodal robotic,rl_robotics,1,1,1.148,0.656,,,,,,False,False
+2026-11-02,navigation for mobile,rl_robotics,0,1,0.574,1.312,,,,,,False,False
+2026-11-02,navigation for uavs,rl_robotics,0,0,0.765,0.656,,,,,,False,False
+2026-11-02,navigation in urban,rl_robotics,0,0,0.765,0.328,,,,,,False,False
+2026-11-02,navigation maps,rl_robotics,1,2,1.148,0.656,,,,,,False,False
+2026-11-02,navigation with gaussian,rl_robotics,0,0,0.765,0.328,,,,,,False,False
+2026-11-02,navigation with hierarchical,rl_robotics,0,0,0.574,0.328,,,,,,False,False
+2026-11-02,never too,rl_robotics,0,0,0.574,0.328,,,,,,False,False
+2026-11-02,nonprehensile manipulation,rl_robotics,0,3,0.383,1.312,,,,,,False,False
+2026-11-02,object slam,rl_robotics,0,0,0.574,0.328,,,,,,False,False
+2026-11-02,object-centric motion,rl_robotics,0,2,0.459,1.969,,,,,,False,False
+2026-11-02,objects using 3d,rl_robotics,0,0,0.765,0.656,,,,,,False,False
+2026-11-02,odometry fusion,rl_robotics,0,0,0.765,0.219,,,,,,False,False
+2026-11-02,optimal multi-agent,rl_robotics,0,0,0.765,0.219,,,,,,False,False
+2026-11-02,optimization for multi-robot,rl_robotics,0,1,0.459,0.328,,,,,,False,False
+2026-11-02,optimization for uav,rl_robotics,0,0,0.765,0.656,,,,,,False,False
+2026-11-02,optimized path,rl_robotics,0,2,0.459,0.656,,,,,,False,False
+2026-11-02,optimizing robot,rl_robotics,0,1,0.574,0.656,,,,,,False,False
+2026-11-02,parallel kinematic,rl_robotics,0,0,0.765,0.164,,,,,,False,False
+2026-11-02,parallel mechanisms,rl_robotics,0,1,0.574,0.437,,,,,,False,False
+2026-11-02,payload manipulation,rl_robotics,0,1,0.574,0.328,,,,,,False,False
+2026-11-02,payload transportation,rl_robotics,1,1,0.918,0.328,,,,,,False,False
+2026-11-02,perception-aware planning,rl_robotics,0,0,0.765,0.328,,,,,,False,False
+2026-11-02,perception-aware trajectory,rl_robotics,0,0,0.765,0.656,,,,,,False,False
+2026-11-02,perceptive humanoid locomotion,rl_robotics,2,4,1.377,1.64,,,,,,False,False
+2026-11-02,perceptive locomotion,rl_robotics,3,7,1.02,1.312,,,,,,False,False
+2026-11-02,personalized driving,rl_robotics,0,0,0.765,0.328,,,,,,False,False
+2026-11-02,physical human-robot collaborative,rl_robotics,0,0,0.765,0.328,,,,,,False,False
+2026-11-02,pinching and self-adaptive,rl_robotics,0,0,0.765,0.164,,,,,,False,False
+2026-11-02,place solution,rl_robotics,0,2,0.459,0.656,,,,,,False,False
+2026-11-02,planetary navigation,rl_robotics,0,0,0.765,0.219,,,,,,False,False
+2026-11-02,planning for multi-robot,rl_robotics,1,2,1.148,0.984,,,,,,False,False
+2026-11-02,planning for robot,rl_robotics,2,4,1.148,1.094,,,,,,False,False
+2026-11-02,planning for tabletop,rl_robotics,0,0,0.765,0.328,,,,,,False,False
+2026-11-02,planning in precision,rl_robotics,0,1,0.574,1.312,,,,,,False,False
+2026-11-02,planning with reinforcement,rl_robotics,0,0,0.765,0.328,,,,,,False,False
+2026-11-02,pointing gestures,rl_robotics,0,0,0.765,0.164,,,,,,False,False
+2026-11-02,predictive control-based,rl_robotics,0,1,0.574,0.437,,,,,,False,False
+2026-11-02,probabilistic collision,rl_robotics,0,1,0.574,0.656,,,,,,False,False
+2026-11-02,product-process-resource asset,rl_robotics,0,0,0.765,0.219,,,,,,False,False
+2026-11-02,quadrotor trajectory,rl_robotics,1,1,1.148,0.656,,,,,,False,False
+2026-11-02,robot failure,rl_robotics,1,3,0.918,0.875,,,,,,False,False
+2026-11-02,robot leg,rl_robotics,0,0,0.765,0.328,,,,,,False,False
+2026-11-02,robot person following,rl_robotics,0,0,0.765,0.219,,,,,,False,False
+2026-11-02,robot reinforcement,rl_robotics,2,5,0.984,1.969,,,,,,False,False
+2026-11-02,robot skill learning,rl_robotics,1,3,0.918,1.312,,,,,,False,False
+2026-11-02,robot soccer,rl_robotics,0,0,0.765,0.131,,,,,,False,False
+2026-11-02,robot social navigation,rl_robotics,0,1,0.459,0.437,,,,,,False,False
+2026-11-02,robot visual,rl_robotics,1,3,0.918,1.312,,,,,,False,False
+2026-11-02,robotic finger,rl_robotics,1,2,0.918,0.656,,,,,,False,False
+2026-11-02,robotic guide,rl_robotics,0,2,0.383,1.969,,,,,,False,False
+2026-11-02,robotic insertion,rl_robotics,1,8,0.417,1.969,,,,,,False,False
+2026-11-02,robotic surface,rl_robotics,0,1,0.459,1.312,,,,,,False,False
+2026-11-02,robotic-assisted surgery,rl_robotics,0,0,0.765,0.656,,,,,,False,False
+2026-11-02,robust autonomy,rl_robotics,0,1,0.574,0.262,,,,,,False,False
+2026-11-02,robust dexterous,rl_robotics,2,4,1.377,1.094,,,,,,False,False
+2026-11-02,robust end-to-end autonomous,rl_robotics,0,1,0.574,1.312,,,,,,False,False
+2026-11-02,robust long-horizon,rl_robotics,0,7,0.153,0.656,,,,,,False,False
+2026-11-02,robust nonlinear,rl_robotics,1,2,1.148,0.492,,,,,,False,False
+2026-11-02,robust underwater,rl_robotics,1,3,0.918,1.312,,,,,,False,False
+2026-11-02,safety validation,rl_robotics,1,4,0.656,1.094,,,,,,False,False
+2026-11-02,safety-critical driving,rl_robotics,1,5,0.51,1.969,,,,,,False,False
+2026-11-02,safety-critical traffic,rl_robotics,0,3,0.383,1.312,,,,,,False,False
+2026-11-02,scenario understanding,rl_robotics,0,0,0.765,0.131,,,,,,False,False
+2026-11-02,scene flow estimation,rl_robotics,0,1,0.459,0.656,,,,,,False,False
+2026-11-02,scene interaction,rl_robotics,1,2,0.918,0.656,,,,,,False,False
+2026-11-02,search and tracking,rl_robotics,0,0,0.765,0.328,,,,,,False,False
+2026-11-02,self-driving laboratory,rl_robotics,0,1,0.383,0.262,,,,,,False,False
+2026-11-02,self-supervised reinforcement,rl_robotics,1,2,1.148,0.656,,,,,,False,False
+2026-11-02,semantic exploration,rl_robotics,2,5,0.984,0.984,,,,,,False,False
+2026-11-02,semantic keypoints,rl_robotics,1,2,1.148,0.656,,,,,,False,False
+2026-11-02,sense of agency,rl_robotics,0,1,0.459,0.437,,,,,,False,False
+2026-11-02,sensor for robotic,rl_robotics,0,1,0.574,1.312,,,,,,False,False
+2026-11-02,sim-to-real reinforcement,rl_robotics,3,7,1.148,1.05,,,,,,False,False
+2026-11-02,simulation for autonomous,rl_robotics,0,2,0.459,0.984,,,,,,False,False
+2026-11-02,single human video,rl_robotics,1,3,0.918,0.875,,,,,,False,False
+2026-11-02,sistemas autonomos,rl_robotics,0,0,0.765,0.328,,,,,,False,False
+2026-11-02,slam benchmarking,rl_robotics,0,0,0.765,0.328,,,,,,False,False
+2026-11-02,slam with 3d,rl_robotics,0,1,0.574,0.437,,,,,,False,False
+2026-11-02,smoothing and mapping,rl_robotics,0,1,0.574,0.656,,,,,,False,False
+2026-11-02,socially compliant navigation,rl_robotics,1,2,0.918,1.969,,,,,,False,False
+2026-11-02,soft exoskeleton,rl_robotics,0,0,0.765,0.219,,,,,,False,False
+2026-11-02,soft finger,rl_robotics,0,1,0.574,0.437,,,,,,False,False
+2026-11-02,soft growing robots,rl_robotics,0,1,0.459,0.656,,,,,,False,False
+2026-11-02,sonar data,rl_robotics,1,4,0.765,0.656,,,,,,False,False
+2026-11-02,space manipulators,rl_robotics,1,3,0.918,0.875,,,,,,False,False
+2026-11-02,spatio-temporal scene,rl_robotics,0,0,0.765,0.219,,,,,,False,False
+2026-11-02,stereo visual,rl_robotics,0,2,0.459,0.984,,,,,,False,False
+2026-11-02,strawberry harvesting,rl_robotics,1,1,0.918,1.312,,,,,,False,False
+2026-11-02,stroke survivors,rl_robotics,0,2,0.287,0.492,,,,,,False,False
+2026-11-02,surface fitting,rl_robotics,0,1,0.574,1.312,,,,,,False,False
+2026-11-02,swarm behaviors,rl_robotics,1,2,0.918,0.492,,,,,,False,False
+2026-11-02,system for adaptive,rl_robotics,0,0,0.765,0.328,,,,,,False,False
+2026-11-02,system for robot,rl_robotics,0,2,0.459,0.984,,,,,,False,False
+2026-11-02,system with force,rl_robotics,0,0,0.765,0.328,,,,,,False,False
+2026-11-02,tactile control,rl_robotics,0,0,0.765,0.328,,,,,,False,False
+2026-11-02,tactile gesture recognition,rl_robotics,0,0,0.765,0.328,,,,,,False,False
+2026-11-02,tactile representation,rl_robotics,6,12,1.148,1.706,,,,,,False,False
+2026-11-02,target encirclement,rl_robotics,0,0,0.765,0.219,,,,,,False,False
+2026-11-02,temporal reach-avoid-stay,rl_robotics,0,0,0.574,0.656,,,,,,False,False
+2026-11-02,tendon-driven continuum robots,rl_robotics,1,7,0.459,1.75,,,,,,False,False
+2026-11-02,terrain reconstruction,rl_robotics,1,2,1.148,0.984,,,,,,False,False
+2026-11-02,terrain-adaptive locomotion,rl_robotics,1,3,0.918,1.312,,,,,,False,False
+2026-11-02,test-time scaling,rl_robotics,48,113,1.236,0.486,,,,,,False,False
+2026-11-02,thrust vectoring,rl_robotics,1,2,1.148,0.984,,,,,,False,False
+2026-11-02,time-of-flight sensors,rl_robotics,0,3,0.287,0.875,,,,,,False,False
+2026-11-02,topology reasoning,rl_robotics,0,0,0.765,0.328,,,,,,False,False
+2026-11-02,trajectory entropy,rl_robotics,0,0,0.765,0.328,,,,,,False,False
+2026-11-02,trajectory synthesis,rl_robotics,2,12,0.405,0.853,,,,,,False,False
+2026-11-02,transfer in reinforcement,rl_robotics,0,0,0.765,0.328,,,,,,False,False
+2026-11-02,uav search,rl_robotics,0,1,0.459,1.312,,,,,,False,False
+2026-11-02,uncertain dynamic,rl_robotics,0,1,0.574,0.656,,,,,,False,False
+2026-11-02,uncertainty-aware planning,rl_robotics,0,3,0.287,1.312,,,,,,False,False
+2026-11-02,underground environments,rl_robotics,0,2,0.459,0.492,,,,,,False,False
+2026-11-02,underwater manipulation,rl_robotics,1,3,0.918,1.312,,,,,,False,False
+2026-11-02,underwater soft,rl_robotics,0,0,0.765,0.328,,,,,,False,False
+2026-11-02,unified motion,rl_robotics,2,5,0.861,1.312,,,,,,False,False
+2026-11-02,vectorized online,rl_robotics,0,0,0.765,0.328,,,,,,False,False
+2026-11-02,venus flytrap,rl_robotics,0,0,0.765,0.328,,,,,,False,False
+2026-11-02,vibration suppression,rl_robotics,0,1,0.574,0.656,,,,,,False,False
+2026-11-02,view perception,rl_robotics,0,0,0.765,0.328,,,,,,False,False
+2026-11-02,vision-based dexterous,rl_robotics,0,0,0.765,0.656,,,,,,False,False
+2026-11-02,vision-language guided,rl_robotics,0,0,0.574,0.656,,,,,,False,False
+2026-11-02,visual chain-of-thought,rl_robotics,0,4,0.328,0.656,,,,,,False,False
+2026-11-02,visual drone,rl_robotics,0,0,0.765,0.656,,,,,,False,False
+2026-11-02,visual generalization,rl_robotics,0,1,0.574,0.437,,,,,,False,False
+2026-11-02,visual pose,rl_robotics,2,4,1.148,1.094,,,,,,False,False
+2026-11-02,visual-language-action model,rl_robotics,0,0,0.765,0.656,,,,,,False,False
+2026-11-02,visuomotor learning,rl_robotics,0,5,0.255,0.984,,,,,,False,False
+2026-11-02,vr teleoperation,rl_robotics,3,12,0.706,1.706,,,,,,False,False
+2026-11-02,wall climbing,rl_robotics,0,1,0.574,0.328,,,,,,False,False
+2026-11-02,waypoint prediction,rl_robotics,1,1,1.148,0.262,,,,,,False,False
+2026-11-02,work zone,rl_robotics,1,1,1.148,0.437,,,,,,False,False
+2026-11-02,zero-shot robotic,rl_robotics,0,3,0.383,0.875,,,,,,False,False
+2026-11-02,zero-shot vision-and-language navigation,rl_robotics,1,7,0.459,1.05,,,,,,False,False
