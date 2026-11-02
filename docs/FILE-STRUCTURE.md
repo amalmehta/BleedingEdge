@@ -31,6 +31,7 @@ BleedingEdge/
 │   ├── Candidates2023.csv   Earlier precision-check topics, from 2023 workshops
 │   ├── Candidates2022-24.csv  The first candidate list, kept for comparison
 │   ├── Funding.csv          Announced funding rounds, each with a source URL
+│   ├── Opportunities.csv    Opportunities the brief listed
 │   ├── backtest/            Generated: Counts.csv, Summary.json, MinedArxivCounts.json, WithReadme/ comparison
 │   └── cache/               Not in git: raw API responses, about 1 GB
 │
@@ -61,4 +62,5 @@ hand-made inputs, each row citing its source.
 | `.env` | Holds API keys | Create it yourself (see [INSTRUCTIONS.md](INSTRUCTIONS.md)) |
 | `data/cache/` | About 1 GB, and APIs change, so it can't be rebuilt exactly | Run the backtest to refetch; back it up separately |
 | `.venv/` | Rebuilt from the lock file | `uv sync` |
+| `data/private/Applications.csv` | What you applied to; the repo is public | It can't be rebuilt; back it up yourself |
 | `*.log` | Run logs | Written by long runs |

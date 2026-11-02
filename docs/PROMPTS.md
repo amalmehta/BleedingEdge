@@ -48,3 +48,8 @@
    → Corrected the repo ratio label; the all-categories figure now comes from Run2024/Holdout/Summary.json (3%, was a stale 6%); corrected the same text in the week 1 brief; added a test. A check of mine started a real brief run by accident: stopped before scoring, it only topped up the arXiv cache.
 4. "Change the all-categories wording to say the result is about random, giving the by-topic figure (1 of 14, 7%, against 6% at random), in the brief and the docs that say below random."
    → Changed the brief generator, the week 1 brief, docs/BACKTEST.md and the spec. Left the dated log of the first, misdated run as written.
+
+## 2026-11-01 — Opportunities to apply to
+
+1. "this should also include opportunities useful to apply to"
+   → Asked about types, placement, filter and kill test. You chose all four types, a short section from tomorrow's brief, work that fits and is open now, and removal if nothing is applied to in 8 weeks. Added the section, instructions, log file and tests; tested on sample data only.

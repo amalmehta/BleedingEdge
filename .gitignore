@@ -2,6 +2,9 @@
 .env
 .env.*
 
+# Which opportunities you applied to: this repo is public, so these stay on this Mac
+data/private/
+
 # Rebuilt from pyproject.toml + uv.lock with `uv sync`
 .venv/
 __pycache__/

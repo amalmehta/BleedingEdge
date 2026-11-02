@@ -9,7 +9,7 @@ exactly as backtested (phrases new in 2024, flagged during 2025). Phrases that o
 this year wait until next year's list, as they did in the backtest.
 
 Windows are 4 weeks long and end on the run date, so each weekly brief sees a fresh last
-window. Writes briefs/YYYY-MM-DD.md (the study pick is left for the weekly task to write),
+window. Writes briefs/YYYY-MM-DD.md (the study pick and opportunities are left for the weekly task to write),
 briefs/img/YYYY-MM-DD.png, data/briefs/YYYY-MM-DD.json and rows in data/Trends.csv.
 """
 import csv
@@ -39,6 +39,8 @@ SHOW = 5            # items per section ("readable in 15 minutes")
 SHORTLIST = 3       # candidates offered to the weekly task for the study pick
 NO_REPEAT = 3       # a pick can't repeat any of the last 3
 PICK_START, PICK_END = "<!-- pick:start -->", "<!-- pick:end -->"  # the weekly task writes between these
+OPPS_START, OPPS_END = "<!-- opportunities:start -->", "<!-- opportunities:end -->"  # and between these
+OPPS_DRAFT = "_No opportunities written yet. The weekly task writes this section (prompts/WeeklyBrief.md)._"
 
 def record() -> str:
     """The backtest record, read from the round-2 robotics results (both halves; the method was
@@ -221,7 +223,8 @@ def render(day: date, week: int, recs: list[dict], ex: dict, start: date, shortl
         L.append(f"- Left out as repeats of recent picks: {', '.join(skipped)}")
     if not shortlist:
         L.append("- No early robotics topic this week. Say so; don't force a pick.")
-    L += [PICK_END, "", "## Early / speculative", "",
+    L += [PICK_END, "", "## Opportunities to apply to", "", OPPS_START, OPPS_DRAFT, OPPS_END,
+          "", "## Early / speculative", "",
           "Confidence for every row: **low** (see the track record above). "
           "Score = weighted log₂ growth of papers and new repos (1 = doubling). Paper ratios are relative to arXiv's own growth; repo ratios are raw GitHub counts.", ""]
     L += [head] + [_row(r, start, day) for r in early] if early else ["None this week."]
@@ -247,15 +250,17 @@ def render(day: date, week: int, recs: list[dict], ex: dict, start: date, shortl
 
 
 def keep_pick(old: str, new: str) -> str:
-    """`new` with the pick section taken from `old`, so a re-run doesn't erase a pick the weekly
+    """`new` with the written sections taken from `old`, so a re-run doesn't erase what the weekly
     task already wrote. Kept only once written: a draft still holding the placeholder is replaced."""
-    if PICK_START not in old or PICK_END not in old:
-        return new
-    pick = old.split(PICK_START, 1)[1].split(PICK_END, 1)[0]
-    if "_Not written yet." in pick:
-        return new
-    head, rest = new.split(PICK_START, 1)
-    return head + PICK_START + pick + PICK_END + rest.split(PICK_END, 1)[1]
+    for start, end, draft in ((PICK_START, PICK_END, "_Not written yet."), (OPPS_START, OPPS_END, OPPS_DRAFT)):
+        if start not in old or end not in old:
+            continue
+        kept = old.split(start, 1)[1].split(end, 1)[0]
+        if draft in kept:
+            continue
+        head, rest = new.split(start, 1)
+        new = head + start + kept + end + rest.split(end, 1)[1]
+    return new
 
 
 def main(day: date, update: bool = True, log=print) -> Path:

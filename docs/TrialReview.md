@@ -14,9 +14,15 @@ So this is a test of the format, not the detector: does a small, firm weekly pic
 |---|---|---|---|---|
 | [2026-10-27](../briefs/2026-10-27.md) | robot foundation (first step: [arXiv 2610.20750](https://arxiv.org/abs/2610.20750)) |  |  | "robot foundation" is close to "VLA", a test topic the miner filters out. The filter missed the synonym. |
 
+**Format change (2026-11-01):** from week 2, briefs also list up to 3 opportunities to apply to. Week 1 didn't, so weeks 1 and 2–4 aren't the same format. Keep that in mind when judging the picks.
+
 ## After the 4th brief
 
 - Picks acted on: _ of 4. Success means 2 or more.
 - Did the picks you rated 4–5 match the ones you acted on? If yes, future picks are ranked by score and your rating together. If no, the rating is dropped.
 - What was noise: flags that were fragments or obviously old topics.
 - The call: keep, change, stop, or build an app. If fewer than 2 picks were acted on, the default is **stop**.
+
+## Opportunities: review on 28 Dec 2026
+
+Add a row to `data/private/Applications.csv` each time you apply. That file is gitignored because this repo is public, so it stays on this Mac. If you've applied to nothing the brief listed by 28 Dec 2026 (8 weeks from the first list), remove the section. This test was set before the first list.

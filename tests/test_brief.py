@@ -87,3 +87,21 @@ def test_render_labels_ratios_and_reads_the_all_categories_figure():
     text = brief.render(DAY, 1, [], {}, DAY, [], [], None)
     assert "repo ratios are raw GitHub counts" in text
     assert "scored about random in the backtest (on held-out phrases, 1 of 14 flagged topics took off, 7%, against 6% at random)" in text
+
+
+def test_opportunities_slot_sits_below_the_pick_and_survives_a_rerun():
+    draft = brief.render(DAY, 2, [], {}, DAY, [], [], None)
+    assert draft.index(brief.PICK_END) < draft.index(brief.OPPS_START) < draft.index("## Early / speculative")
+    assert brief.keep_pick(draft, draft) == draft  # unwritten drafts stay replaceable
+
+    line = "- Fellowship: [Sample Residency](https://example.org), deadline 2026-12-01, checked 2026-11-02"
+    written = draft.replace(brief.OPPS_DRAFT, line)
+    kept = brief.keep_pick(written, draft)
+    assert line in kept and brief.OPPS_DRAFT not in kept
+    assert "_Not written yet." in kept  # the unwritten pick is still replaceable
+
+
+def test_keep_pick_handles_a_brief_from_before_opportunities():
+    old = f"a\n{brief.PICK_START}\nwritten pick\n{brief.PICK_END}\nb\n"
+    kept = brief.keep_pick(old, brief.render(DAY, 2, [], {}, DAY, [], [], None))
+    assert "written pick" in kept and brief.OPPS_DRAFT in kept
