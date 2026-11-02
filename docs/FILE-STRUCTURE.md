@@ -17,6 +17,7 @@ BleedingEdge/
 │   ├── windows.py           Splits 2021–25 into 4-week windows starting on Mondays
 │   ├── http.py              GET with a disk cache, per-host delays, retries; reads .env keys
 │   ├── report.py            Writes docs/BacktestResults.md and the charts
+│   ├── notify.py            The Monday desktop notification and missed-brief alert
 │   ├── mining.py            Mines 2023's new arXiv phrases into a candidate list
 │   └── sources/             One module per signal, each returning matching item dates
 │       ├── arxiv.py         arXiv search API: paper dates per phrase

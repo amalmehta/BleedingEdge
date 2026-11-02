@@ -53,3 +53,7 @@
 
 1. "this should also include opportunities useful to apply to"
    → Asked about types, placement, filter and kill test. You chose all four types, a short section from tomorrow's brief, work that fits and is open now, and removal if nothing is applied to in 8 weeks. Added the section, instructions, log file and tests; tested on sample data only.
+2. "0, 5, 15"
+   → Listed 5 things to add and 15 to improve, ranked, and no cuts. Nothing built until you pick.
+3. "Build both"
+   → Added bleedingedge/notify.py, called at the end of the weekly task and again by an 11:00 Monday check; moved application records to gitignored data/private/Applications.csv.

@@ -99,6 +99,7 @@ phrase instead of one per window: about 3 calls instead of 65.
   year from cs.RO titles, 4-week windows ending on the run date, GitHub fetched only for topics whose
   arXiv count is rising (heating up needs 2 rising signals). The study pick is written by the weekly task
   (`prompts/WeeklyBrief.md`); the track record is read from the round-2 result files, so it can't drift. The same task lists up to 3 opportunities to apply to from official pages (logged in `data/Opportunities.csv`); they come from web search, not the detector, so they carry no backtest record. What you applied to is kept in gitignored `data/private/`, because the repo is public.
+- **Notifications come from a small script, not the model** (`bleedingedge/notify.py`). It reads the brief, picks and trial review, and sends a macOS notification. A stalled run can't report itself, so a second Monday task runs `--only-if-missing` at 11:00. Neither can fire while the app is closed or the Mac is off; they run on the next launch.
 - **Funding adds a bonus, never a drag.** Rounds are rare, so averaging their zeros pulled every
   score toward "no change".
 - **Stdlib HTTP, matplotlib for charts, pytest.** Boring, proven tools, with few dependencies.

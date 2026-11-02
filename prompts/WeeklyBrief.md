@@ -8,14 +8,14 @@ This file is the instruction set for the weekly scheduled task. It's under versi
 
 1. **Check the trial isn't over.** Count the brief files in `briefs/` (named `YYYY-MM-DD.md`) dated 2026-10-27 or later.
    - If there are already 4, write no brief. Say the trial is done and that `docs/TrialReview.md` needs filling in.
-   - Then, if today is before 2026-12-28, still do steps 5 and 6, writing the section to `briefs/opportunities/YYYY-MM-DD.md`. Then do step 9.
+   - Then, if today is before 2026-12-28, still do steps 5 and 6, writing the section to `briefs/opportunities/YYYY-MM-DD.md`. Then do steps 9 and 10.
 2. **Generate the data and the draft.** Run this from the project root:
    ```bash
    uv run python -m bleedingedge.brief
    ```
    - It tops up arXiv, scores this year's candidate list, and writes `briefs/YYYY-MM-DD.md`, `briefs/img/YYYY-MM-DD.png`, `data/briefs/YYYY-MM-DD.json` and rows in `data/Trends.csv`.
    - It takes about 10–30 minutes, mostly GitHub searches.
-   - If it fails, write nothing by hand. Report the error.
+   - If it fails, write nothing by hand. Report the error and do step 10.
 3. **Write the study pick.** Replace the text between `<!-- pick:start -->` and `<!-- pick:end -->`, and keep the markers.
    - **Choose:** the highest-scoring shortlist topic that has a concrete way in, meaning a paper you can read end to end, or a repo with code you can run.
      - The shortlist and its recent papers are in `data/briefs/YYYY-MM-DD.json`. Read the abstracts of the listed papers (arxiv.org/abs links) before choosing.
@@ -47,6 +47,8 @@ This file is the instruction set for the weekly scheduled task. It's under versi
    - No section has more than 5 items, and opportunities have at most 3.
    - Nothing gives buy, sell or hold advice.
 9. **Report** in 3 lines: the pick, how many topics were early and how many opportunities were listed, and anything odd. That includes zero candidates, an error, or a number that looks wrong.
+
+10. **Notify the user.** Run `uv run python -m bleedingedge.notify`. Always do this last, even if an earlier step failed, because it's how the user hears about a failure. A failed notification goes in your report.
 
 ## Don't
 
