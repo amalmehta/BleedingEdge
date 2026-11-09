@@ -14,6 +14,7 @@ So this is a test of the format, not the detector: does a small, firm weekly pic
 |---|---|---|---|---|
 | [2026-10-27](../briefs/2026-10-27.md) | robot foundation (first step: [arXiv 2610.20750](https://arxiv.org/abs/2610.20750)) |  |  | "robot foundation" is close to "VLA", a test topic the miner filters out. The filter missed the synonym. |
 | [2026-11-02](../briefs/2026-11-02.md) | long-horizon embodied (first step: [arXiv 2610.30043](https://arxiv.org/abs/2610.30043)) |  |  |  |
+| [2026-11-09](../briefs/2026-11-09.md) | embodied manipulation (first step: [arXiv 2611.01112](https://arxiv.org/abs/2611.01112)) |  |  |  |
 
 **Format change (2026-11-01):** from week 2, briefs also list up to 3 opportunities to apply to. Week 1 didn't, so weeks 1 and 2–4 aren't the same format. Keep that in mind when judging the picks.
 
