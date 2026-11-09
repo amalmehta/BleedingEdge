@@ -42,6 +42,14 @@ META-INSTRUCTIONS:
  widget's notes or my own answer. Keep the message around it to a sentence or
  two.>
 
+<Double-check every suggestion before giving it: fixes, next steps, designs,
+ recommended answers in the question widget, all of it. Test it against the
+ real thing (read the code, run it, look it up) rather than trusting memory or
+ your first idea. Confirm it isn't already done, that it solves the actual
+ problem, that it fits how the project works and that it won't break something
+ else, then look for the strongest reason it's wrong. Fix or drop what fails,
+ and say plainly what you couldn't verify rather than presenting it as checked.>
+
 <Explain so I learn the skill, not just the answer. Write explanations that
  anyone with a basic grounding in software, machine learning, neuroscience or
  psychology could follow: name the underlying idea in plain words, give an
@@ -60,6 +68,11 @@ META-INSTRUCTIONS:
  the page in the browser, or run it on a real sample, so I'm looking at what was
  just built, before carrying on. Say in a line or two what to try.>
 
+<After every push to GitHub, open the latest result: launch the newest build
+ of what was just pushed (quit any older copy first) or open its page, so what
+ I see matches GitHub. With nothing to run, open the pull request or the repo
+ page on GitHub instead.>
+
 <Fully test on sample data before asking me to test on real data. Make a
  realistic sample set (fixtures, generated records, a demo mode) that covers
  the normal case, the edge cases and the ways it can fail; run every feature
@@ -72,10 +85,16 @@ META-INSTRUCTIONS:
  merged. Check for leftovers before calling it done (unpushed commits, stray
  worktrees, uncommitted changes) and push or report each one.>
 
-<Always in scope, no proposal needed: when it goes on GitHub, a README that is
- easy to read at a glance — a line on what it is, then clear visuals
- (screenshots, a diagram or a chart), then links. Everything else goes in
- linked files: docs/INSTRUCTIONS.md (setup, run, use),
+<Always in scope, no proposal needed: when it goes on GitHub, a README sized
+ to the kind of project. For a product, app or tool, keep it succinct and easy
+ to read at a glance — a line on what it is, then clear visuals (screenshots, a
+ diagram or a chart), then links. For research, make it detailed and in-depth,
+ since the README is the write-up people read: the question and why it
+ matters, the method, the setup and data, results with figures and numbers
+ against baselines, what didn't work and the limits, how to reproduce it (one
+ command) and references; still lead with the result and keep sections easy
+ to scan. Either way, setup and the rest go in linked files:
+ docs/INSTRUCTIONS.md (setup, run, use),
  docs/SYSTEM-DESIGN.md (see below) and docs/FILE-STRUCTURE.md (what's where). If what you're
  building is an application rather than a script, also a small unobtrusive feedback tab, and a settings
  button or tab (⌘, on the Mac) that gathers its preferences in one place.>
@@ -97,6 +116,13 @@ META-INSTRUCTIONS:
  vague term a threshold, formula or done criterion, and list what's left for
  later.>
 
+<Put ease of use and readability first; this is a priority, not polish, and
+ it wins when it conflicts with adding more. Simple but effective: the main
+ task takes the fewest steps, every screen reads at a glance (a clear order,
+ short lines, quiet labels, room between groups) and long text starts short
+ with the rest a click away. When a screen feels dense, cut or fold what
+ isn't needed right now before adding anything.>
+
 <Keep the interface clean but never barren: a warm, light palette with
  accents used on purpose, and dark mode checked on every component. Give every
  screen something to look at and a next step: real or sample content rather
@@ -116,6 +142,28 @@ META-INSTRUCTIONS:
  lists lazy and scrolling fluid, and debounce work that follows typing.
  Profile the slowest interactions before calling it done, and add smoothness
  to the manual review checklist.>
+
+<Give every app an opening animation: a short, smooth reveal as it launches
+ (the icon or mark springing in, then the first screen easing into place),
+ about a second at most, once per launch, never blocking input, and a plain
+ fade when Reduce Motion is on.>
+
+<Put privacy, security and auth first in anything people use; this is a
+ priority, not polish, and it wins when it conflicts with convenience. Collect
+ only the data the app needs, keep it on the device when that works, and say
+ plainly in the app what's stored, where, and who can see it, with a way to
+ export and delete it. Nothing personal goes to logs, analytics, URLs or a third
+ party without asking. Encrypt in transit (HTTPS only) and at rest for anything
+ sensitive; keep secrets and tokens in the Keychain or the server's secret
+ store, never in code, the repo or plain files. Prefer proven sign-in (Sign in
+ with Apple, passkeys, magic links, OAuth) over home-made passwords; check
+ permissions on the server for every request, not only in the UI; expire
+ sessions and limit login attempts. Treat every input as untrusted (validate,
+ parameterize queries, escape output), ask for OS permissions only when needed
+ and say why, and keep dependencies few and current. Before calling it done,
+ walk through how someone could read, change or delete data that isn't theirs,
+ fix what you find, record the threat model in docs/SYSTEM-DESIGN.md, and add
+ privacy and security to the manual review checklist.>
 
 <Make equations easy to read. Typeset them properly (KaTeX or MathJax on the
  web, a native math renderer in apps, LaTeX in papers), never as raw LaTeX or
@@ -168,6 +216,17 @@ META-INSTRUCTIONS:
  exploration separate from confirmation; and report negative results and
  limits as plainly as wins.>
 
+<When anything is measured (progress, quality, success, usage), pick the
+ metric with the most signal per unit of noise: one that moves only when the
+ real outcome does and can't be raised cheaply without it. Prefer outcomes over
+ activity (what got done, used or kept, not files touched, commits or lines
+ typed), and what lasted over what was produced (code still there later,
+ people who come back). Leave out machinery: generated, vendored, data and lock
+ files, and whitespace or formatting. Before adopting one, say how it could be
+ gamed or fooled and how it would look if work were busy but going nowhere,
+ check it on a case whose answer you know, and pair a volume number with a
+ quality one.>
+
 <Think ten steps ahead before starting. Sketch the design and an outline of
  the whole build: the pieces, the order to build them in, the data each one
  needs, and where it's heading after this version. Then trace the next ten
@@ -175,6 +234,14 @@ META-INSTRUCTIONS:
  a rework, and pick the design now that keeps those later steps easy. Put the
  outline in docs/SYSTEM-DESIGN.md before writing code, but build only what's
  in scope today.>
+
+<Go broad and deep first, then broad again (briefly), then prioritize depth,
+ in research, design and debugging alike. Start wide: map the options, prior
+ work and ways it could be done, and dig deep into the most promising few
+ until you know how each really works and where it breaks. Then widen once
+ more, briefly, for what that pass missed: an approach nobody named, a cheaper
+ path, a reason to change course. From then on, go deep: commit to the best
+ path and take it all the way down rather than spreading thin.>
 
 <Use sub-agents when they help. Hand them independent pieces that can run in
  parallel (separate projects, files or research questions), wide searches or
@@ -272,6 +339,22 @@ META-INSTRUCTIONS:
  ~/.claude/CLAUDE.md and apply on their own — nothing to repeat here.>
 
 <Keep the changelog at the bottom current.>
+
+<Before building, list the lessons from this spec that apply and how you will act on each. At the end, note which you followed.>
+
+<When the project's kind is unclear, such as whether it is a tool or written content, ask before building.>
+
+<Before building, settle the deliverable's form, target platforms and minimum versions, packaging and signing, and hosting. When the brief conflicts with standing defaults, ask which wins.>
+
+<Before any paid API call, settle who pays, a spending cap, test versus live mode and where keys live, and keep a mock mode so the build runs without spending.>
+
+<When the look, concept or UI direction is open, show two or three concrete mockups or concepts to pick from before building. Never redesign existing UI without asking.>
+
+<Ask early for real sample inputs and working credentials, and check against the live API, model or tool as soon as one path works. When none exist, say so rather than inventing them silently.>
+
+<Before building, write down done criteria with concrete thresholds or formulas for every vague term, plus a list of what is explicitly deferred, and confirm both with me.>
+
+<Before building anything that judges, scores or generates content, decide with me whether an AI model or deterministic rules produce it, weighing cost, explainability and reproducibility, and which model is the default.>
 
 CONTEXT:
 
@@ -460,3 +543,4 @@ CHANGELOG:
 - 2026-10-28 — your call: trial runs anyway, as a test of the format, not the detector. Week 1 pick: robot foundation (first step arXiv 2610.20750). The "prove it wrong" test in the weekly prompt was fixed before week 1: "reach 20 papers" was already met by early topics, so it is now "pass 4× today's 12-week count", the backtest's hit rule. Monday task set up
 - 2026-11-01 — your call: added opportunities to apply to, a short section in each brief from week 2, with an 8-week kill test (review 2026-12-28); weeks 1 and 2–4 of the trial now differ in format
 - 2026-11-02 — your call: added the Monday notification and missed-brief alert; moved application records to gitignored data/private/ because the repo is public
+- 2026-11-09 — updated the meta-instructions to the current meta doc
