@@ -57,3 +57,12 @@
    → Listed 5 things to add and 15 to improve, ranked, and no cuts. Nothing built until you pick.
 3. "Build both"
    → Added bleedingedge/notify.py, called at the end of the weekly task and again by an 11:00 Monday check; moved application records to gitignored data/private/Applications.csv.
+
+## 2026-11-16 / 18 — Week 4 commit, a project review and the pick ledger
+
+1. "Review the uncommitted changes, commit them in sensible commits with clear messages, and push. Don't commit secrets or build output."
+   → One commit (b2edcc3): the week 4 brief, study pick, opportunities, trends and trial review row. Pushed to main.
+2. "0, 5, 10"
+   → Listed 5 things to add and 10 to improve, ranked, and no cuts. The trial's 4 briefs are out and the review is still blank. Nothing built until you pick.
+3. "Add 1 and 2"
+   → The Monday notification now says the trial review is due until it's filled in. Added bleedingedge/ledger.py, which grades every pick against its own test in data/Picks.csv; the weekly task runs it each Monday, including after the trial.

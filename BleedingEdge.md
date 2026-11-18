@@ -372,6 +372,7 @@ DELIVERABLES:
 - data/Trends.csv — one row per topic per week (domain, indicator values, score), appended by each run, with a small trend chart for the top movers in each brief.
 - Opportunities to apply to (added 2026-11-01), in each brief below the study pick: at most 3 fellowships, residencies, jobs, grants, compute or hardware credits, workshops or summer schools. Each fits RL or robotics research engineering, is shown open on its official page with a deadline at least 14 days away (or a job listed as open with no stated deadline), and doesn't rule you out as far as the page shows. Logged in data/Opportunities.csv; what you applied to goes in gitignored data/private/Applications.csv, because this repo is public. Not scored by the detector and never applied to for you. Kill test: if you've applied to nothing it listed by 2026-12-28 (8 weeks), remove it. It continues in briefs/opportunities/ if the trial's briefs end first.
 - A Monday desktop notification (added 2026-11-02, bleedingedge/notify.py): this week's pick, new opportunities and the oldest unmarked pick's question, or an alert if the brief isn't finished. A second task checks again at 11:00.
+- data/Picks.csv as a pick ledger (added 2026-11-18, bleedingedge/ledger.py): each pick's bar (max(20, 4 × its 12-week bulk count when picked)), due date (a year later), peak count so far and status ("took off", "didn't take off", "open"), graded every Monday by script from the same bulk arXiv download. The weekly task never writes the grade.
 - docs/TrialReview.md — after 4 briefs: which study picks you acted on (success = at least 2), what was noise, and the call: keep, change, stop, or build an app.
 - docs/SYSTEM-DESIGN.md — architecture (Mermaid), sources, indicators and scoring, data files, known limits.
 - docs/PROMPTS.md — prompt log for every session.
@@ -547,3 +548,4 @@ CHANGELOG:
 - 2026-11-01 — your call: added opportunities to apply to, a short section in each brief from week 2, with an 8-week kill test (review 2026-12-28); weeks 1 and 2–4 of the trial now differ in format
 - 2026-11-02 — your call: added the Monday notification and missed-brief alert; moved application records to gitignored data/private/ because the repo is public
 - 2026-11-09 — updated the meta-instructions to the current meta doc
+- 2026-11-18 — your call: added the pick ledger (each pick graded against its own "prove it wrong" test every Monday) and a trial-over reminder in the Monday notification until the review is filled in

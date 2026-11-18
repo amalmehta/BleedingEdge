@@ -17,7 +17,8 @@ BleedingEdge/
 │   ├── windows.py           Splits 2021–25 into 4-week windows starting on Mondays
 │   ├── http.py              GET with a disk cache, per-host delays, retries; reads .env keys
 │   ├── report.py            Writes docs/BacktestResults.md and the charts
-│   ├── notify.py            The Monday desktop notification and missed-brief alert
+│   ├── notify.py            The Monday desktop notification, missed-brief alert and review reminder
+│   ├── ledger.py            Grades each study pick against the test its brief wrote down
 │   ├── mining.py            Mines 2023's new arXiv phrases into a candidate list
 │   └── sources/             One module per signal, each returning matching item dates
 │       ├── arxiv.py         arXiv search API: paper dates per phrase
@@ -33,6 +34,7 @@ BleedingEdge/
 │   ├── Candidates2022-24.csv  The first candidate list, kept for comparison
 │   ├── Funding.csv          Announced funding rounds, each with a source URL
 │   ├── Opportunities.csv    Opportunities the brief listed
+│   ├── Picks.csv            The study picks, each with its bar, due date and grade (ledger.py fills these)
 │   ├── backtest/            Generated: Counts.csv, Summary.json, MinedArxivCounts.json, WithReadme/ comparison
 │   └── cache/               Not in git: raw API responses, about 1 GB
 │

@@ -1,5 +1,5 @@
-date,topic,first_step
-2026-10-27,robot foundation,https://arxiv.org/abs/2610.20750
-2026-11-02,long-horizon embodied,https://arxiv.org/abs/2610.30043
-2026-11-09,embodied manipulation,https://arxiv.org/abs/2611.01112
-2026-11-16,physical intelligence,https://arxiv.org/abs/2611.12286
+date,topic,first_step,papers_12w,bar,due,peak_12w,peak_on,status,checked_on
+2026-10-27,robot foundation,https://arxiv.org/abs/2610.20750,24,96,2027-10-27,33,2026-11-07,open,2026-11-18
+2026-11-02,long-horizon embodied,https://arxiv.org/abs/2610.30043,15,60,2027-11-02,16,2026-11-03,open,2026-11-18
+2026-11-09,embodied manipulation,https://arxiv.org/abs/2611.01112,24,96,2027-11-09,25,2026-11-11,open,2026-11-18
+2026-11-16,physical intelligence,https://arxiv.org/abs/2611.12286,19,76,2027-11-16,19,2026-11-16,open,2026-11-18

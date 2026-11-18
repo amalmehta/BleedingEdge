@@ -24,6 +24,7 @@ So this is a test of the format, not the detector: does a small, firm weekly pic
 - Picks acted on: _ of 4. Success means 2 or more.
 - Did the picks you rated 4–5 match the ones you acted on? If yes, future picks are ranked by score and your rating together. If no, the rating is dropped.
 - What was noise: flags that were fragments or obviously old topics.
+- Each pick's own test ("never passes N by a year later") is graded every Monday in `data/Picks.csv` (status column). Most stay "open" for a year, so this checks the detector later, not the format now.
 - The call: keep, change, stop, or build an app. If fewer than 2 picks were acted on, the default is **stop**.
 
 ## Opportunities: review on 28 Dec 2026

@@ -99,7 +99,8 @@ phrase instead of one per window: about 3 calls instead of 65.
   year from cs.RO titles, 4-week windows ending on the run date, GitHub fetched only for topics whose
   arXiv count is rising (heating up needs 2 rising signals). The study pick is written by the weekly task
   (`prompts/WeeklyBrief.md`); the track record is read from the round-2 result files, so it can't drift. The same task lists up to 3 opportunities to apply to from official pages (logged in `data/Opportunities.csv`); they come from web search, not the detector, so they carry no backtest record. What you applied to is kept in gitignored `data/private/`, because the repo is public.
-- **Notifications come from a small script, not the model** (`bleedingedge/notify.py`). It reads the brief, picks and trial review, and sends a macOS notification. A stalled run can't report itself, so a second Monday task runs `--only-if-missing` at 11:00. Neither can fire while the app is closed or the Mac is off; they run on the next launch.
+- **Notifications come from a small script, not the model** (`bleedingedge/notify.py`). It reads the brief, picks and trial review, and sends a macOS notification. A stalled run can't report itself, so a second Monday task runs `--only-if-missing` at 11:00. Neither can fire while the app is closed or the Mac is off; they run on the next launch. Once the trial's 4 briefs are out, the Monday notification also says the review is due, until its "Picks acted on" line is filled in.
+- **Picks are graded by a script against the test each brief wrote down** (`bleedingedge/ledger.py`). Each pick says it's wrong if its 12-week bulk paper count never passes max(20, 4 × its count when picked) within a year. The ledger reads that count from the pick day's row in `data/Trends.csv`, so it can't drift from the brief. It then counts the phrase in the same bulk download every Monday and writes the peak and a status ("took off", "didn't take off", "open") into `data/Picks.csv`. The weekly task only appends date, topic and first step, so the model never writes a grade. A daily rolling count is used rather than the brief's 4-week grid, so a peak between two Mondays isn't missed. Late-announced papers keep their own dates, so a past day's count can rise slightly after the fact.
 - **Funding adds a bonus, never a drag.** Rounds are rare, so averaging their zeros pulled every
   score toward "no change".
 - **Stdlib HTTP, matplotlib for charts, pytest.** Boring, proven tools, with few dependencies.
@@ -112,6 +113,8 @@ phrase instead of one per window: about 3 calls instead of 65.
 - `tests/test_sources.py`: each parser runs on a saved real response in `tests/fixtures/`, with
   no network, including empty results and pagination.
 - `tests/test_windows.py`: window edges and dates outside the range.
+- `tests/test_notify.py`: the missed-brief alert, the weekly question, and the trial-over review reminder (waits for the 4th brief, stops once the review is filled in, never sent by the 11:00 check).
+- `tests/test_ledger.py`: the bar read from Trends.csv (and the floor of 20), "open" at exactly the bar, "took off" once past it, a peak after the due date not counting, a pick missing from Trends.csv flagged rather than guessed, and rows the weekly task appends with only 3 fields.
 
 Run: `uv run pytest`.
 

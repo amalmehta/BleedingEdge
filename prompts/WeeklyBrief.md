@@ -8,7 +8,8 @@ This file is the instruction set for the weekly scheduled task. It's under versi
 
 1. **Check the trial isn't over.** Count the brief files in `briefs/` (named `YYYY-MM-DD.md`) dated 2026-10-27 or later.
    - If there are already 4, write no brief. Say the trial is done and that `docs/TrialReview.md` needs filling in.
-   - Then, if today is before 2026-12-28, still do steps 5 and 6, writing the section to `briefs/opportunities/YYYY-MM-DD.md`. Then do steps 9 and 10.
+   - Then, if today is before 2026-12-28, still do steps 5 and 6, writing the section to `briefs/opportunities/YYYY-MM-DD.md`.
+   - Then do step 4b with the arXiv top-up (leave off `--no-update`), because no brief run has topped it up. Then do steps 9 and 10.
 2. **Generate the data and the draft.** Run this from the project root:
    ```bash
    uv run python -m bleedingedge.brief
@@ -28,7 +29,9 @@ This file is the instruction set for the weekly scheduled task. It's under versi
      - **What would prove it wrong:** "Its 12-week paper count (bulk) never passes N by DATE + 1 year", where N is the larger of 20 and 4 × the "Papers, 12 wk" figure in the table. This is the backtest's hit test: the crowd arrives when the 12-week count reaches 25% of its peak (with the peak at 20 or more), so the flag was early only if the peak ends up more than 4 times today's count.
      - **First step, about 2 hours:** one paper to work through with researcher-pal, or one repo to clone and run, linked, with what you should have at the end.
      - Every claim gets a link. Web search is allowed for context, such as a lab page or a code release. Cite what you use, and never invent a paper, repo or number.
-4. **Record the pick.** Append `date,topic,first_step_url` to `data/Picks.csv`, creating it with that header if it's missing. This stops the pick from repeating in the next 3 briefs.
+4. **Record the pick.** Append `date,topic,first_step_url` to `data/Picks.csv`, creating it with the header `date,topic,first_step` if it's missing. Leave the other columns empty: step 4b fills them. This stops the pick from repeating in the next 3 briefs.
+
+   **4b. Grade the picks.** Run `uv run python -m bleedingedge.ledger --no-update` (step 2 already topped up arXiv). It fills each pick's bar and due date from `data/Trends.csv` and grades every pick against the test its brief wrote down: "took off", "didn't take off" or "open". Never edit those columns by hand. Put any pick whose status changed since last week, or that says "no data", in your report.
 5. **Write the opportunities.** Replace the text between `<!-- opportunities:start -->` and `<!-- opportunities:end -->`, and keep the markers.
    - **Types:** research fellowships and residencies; jobs at labs and companies; grants and compute or hardware credits; workshops and summer schools.
    - **An opportunity qualifies only if all of these hold:**
@@ -46,7 +49,7 @@ This file is the instruction set for the weekly scheduled task. It's under versi
    - The track-record paragraph is intact.
    - No section has more than 5 items, and opportunities have at most 3.
    - Nothing gives buy, sell or hold advice.
-9. **Report** in 3 lines: the pick, how many topics were early and how many opportunities were listed, and anything odd. That includes zero candidates, an error, or a number that looks wrong.
+9. **Report** in 3 lines: the pick, how many topics were early and how many opportunities were listed, any change in the pick ledger, and anything odd. That includes zero candidates, an error, or a number that looks wrong.
 
 10. **Notify the user.** Run `uv run python -m bleedingedge.notify`. Always do this last, even if an earlier step failed, because it's how the user hears about a failure. A failed notification goes in your report.
 
