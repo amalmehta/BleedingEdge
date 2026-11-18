@@ -87,6 +87,48 @@ def test_after_the_trial_it_expects_the_opportunities_file_then_nothing(paths):
     assert notify.expected(date(2026, 12, 28)) is None and notify.message(date(2026, 12, 28)) is None
 
 
+def _trial_over(paths, review_done=False):
+    for d in ("2026-11-02", "2026-11-09", "2026-11-16"):
+        (paths / "briefs" / f"{d}.md").write_text(WRITTEN)
+    with (paths / "Picks.csv").open("a", newline="") as f:
+        csv.writer(f).writerows([["2026-11-02", "b", "x"], ["2026-11-09", "c", "x"], ["2026-11-16", "d", "x"]])
+    review = paths / "TrialReview.md"
+    review.write_text(review.read_text().replace("|  |  | a note", "| 3 | n | a note")
+                      + ("- Picks acted on: 1 of 4." if review_done else "- Picks acted on: _ of 4. Success means 2 or more.\n"))
+
+
+def test_review_reminder_waits_for_the_fourth_brief(paths):
+    (paths / "TrialReview.md").write_text((paths / "TrialReview.md").read_text() + "- Picks acted on: _ of 4.\n")
+    assert notify.review_reminder(date(2026, 11, 16)) == ""
+
+
+def test_trial_over_says_the_review_is_due_with_the_opportunities(paths):
+    _trial_over(paths)
+    later = date(2026, 11, 23)
+    (paths / "briefs" / "opportunities").mkdir()
+    (paths / "briefs" / "opportunities" / f"{later}.md").write_text("None this week\n")
+    msg = notify.message(later)
+    assert msg.startswith("Weekly opportunities are ready") and "Trial over: 1 of 4 picks marked." in msg
+
+
+def test_review_reminder_also_rides_on_a_missing_alert_and_outlasts_the_opportunities(paths):
+    _trial_over(paths)
+    assert "Trial over" in notify.message(date(2026, 11, 23)) and "No finished brief" in notify.message(date(2026, 11, 23))
+    assert notify.message(date(2027, 1, 4)).startswith("Trial over: 1 of 4")
+
+
+def test_a_filled_in_review_stops_the_reminder(paths):
+    _trial_over(paths, review_done=True)
+    assert notify.message(date(2027, 1, 4)) is None
+
+
+def test_the_later_check_stays_silent_about_the_review(paths, monkeypatch):
+    sent = _sent(monkeypatch)
+    _trial_over(paths)
+    notify.main(date(2027, 1, 4), only_if_missing=True)
+    assert sent == []
+
+
 def test_send_passes_text_as_an_argument(monkeypatch):
     calls = []
     monkeypatch.setattr(notify.subprocess, "run", lambda cmd, check: calls.append(cmd))

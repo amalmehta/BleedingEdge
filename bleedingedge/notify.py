@@ -1,5 +1,6 @@
 """The Monday desktop notification: this week's pick and last week's question, or an alert that
-the weekly brief didn't finish.
+the weekly brief didn't finish. Once the trial's 4 briefs are out, it also says the trial review is
+due, every Monday until its result line is filled in.
 
     uv run python -m bleedingedge.notify                    # end of the weekly task, even after a failure
     uv run python -m bleedingedge.notify --only-if-missing  # the later check: silent if the brief finished
@@ -21,6 +22,7 @@ OPPS_ONLY = br.BRIEFS / "opportunities"     # the task's output once the trial's
 OPPS_END = date(2026, 12, 28)               # the opportunities review date
 TRIAL_BRIEFS = 4
 ACT_DAYS = 14                               # a pick counts as acted on within 14 days of its brief
+REVIEW_OPEN = "Picks acted on: _ of 4"      # the review's result line, until the user fills it in
 
 
 def expected(day: date):
@@ -68,17 +70,31 @@ def last_pick_question(day: date) -> str:
     return ""
 
 
+def review_reminder(day: date) -> str:
+    """Once the trial's briefs are all out, a nudge until the review's result line is filled in."""
+    done = sum(1 for p in br.BRIEFS.glob("20*.md") if br.TRIAL_START.isoformat() <= p.stem < day.isoformat())
+    if done < TRIAL_BRIEFS or not REVIEW.exists() or REVIEW_OPEN not in REVIEW.read_text():
+        return ""
+    acted = acted_cells()
+    trial = [r["date"] for r in _rows(br.PICKS) if r["date"] >= br.TRIAL_START.isoformat()][:TRIAL_BRIEFS]
+    marked = sum(1 for d in trial if acted.get(d))
+    return (f"Trial over: {marked} of {len(trial)} picks marked. "
+            "Fill in TrialReview and make the call: keep, change or stop.")
+
+
 def message(day: date) -> str | None:
     """What to tell the user today, or None if nothing is due."""
     path = expected(day)
+    review = review_reminder(day)
     if path is None:
-        return None
+        return review or None
     if not finished(path):
-        return f"No finished brief for {day:%-d %b} yet. Open the weekly brief task's latest run to see why."
+        missing = f"No finished brief for {day:%-d %b} yet. Open the weekly brief task's latest run to see why."
+        return " ".join(p for p in (missing, review) if p)
     opps = sum(r["date"] == day.isoformat() for r in _rows(OPPORTUNITIES))
     listed = f"{opps} new {'opportunity' if opps == 1 else 'opportunities'}."
     if path.parent == OPPS_ONLY:
-        return f"Weekly opportunities are ready: {listed}"
+        return " ".join(p for p in (f"Weekly opportunities are ready: {listed}", review) if p)
     pick = next((r["topic"] for r in _rows(br.PICKS) if r["date"] == day.isoformat()), None)
     parts = [f"Pick: {pick}." if pick else "No pick this week.", listed, last_pick_question(day)]
     return " ".join(p for p in parts if p)
@@ -93,7 +109,7 @@ def send(text: str) -> None:
 
 def main(day: date, only_if_missing: bool = False, dry_run: bool = False) -> None:
     path = expected(day)
-    if only_if_missing and (path is None or finished(path)):
+    if only_if_missing and (path is None or finished(path)):  # the 11:00 check: only a missing brief
         return
     text = message(day)
     if text is None:
