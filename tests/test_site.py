@@ -87,3 +87,13 @@ def test_fragments_are_left_out_unless_picked(paths, monkeypatch):
     monkeypatch.setattr(daily, "FRAGMENTS", paths / "Fragments.csv")
     topics = [r["topic"] for r in site.build()["topics"]]
     assert "big crowd" not in topics and "small new" in topics      # a pick always stays
+
+
+def test_explainers_ride_along_with_their_topic(paths, monkeypatch):
+    monkeypatch.setattr(brief, "ROOT", paths)
+    (paths / "data").mkdir()
+    (paths / "data" / "Explainers.json").write_text(json.dumps({"small new": {
+        "what": "W", "why": "Y", "sources": [{"url": "https://arxiv.org/abs/1", "title": "t"}]}}))
+    t = {r["topic"]: r for r in site.build()["topics"]}
+    assert (t["small new"]["plain_what"], t["small new"]["plain_why"]) == ("W", "Y")
+    assert t["small new"]["plain_sources"][0]["title"] == "t" and t["big crowd"]["plain_what"] == ""

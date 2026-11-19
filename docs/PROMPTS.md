@@ -84,3 +84,5 @@
    → New layout: a one-line summary first, then today's step, deadlines, your pick's papers and other early topics, each paper a linked title with a date line; quiet footer. Previewed, not sent.
 12. "*so should the website"
    → Fragments left off the site; older and not-new topics fold under "Show more"; one line explains ★ and the score; plainer picks-table headings. Uploaded; recheck runs when the page is next opened.
+13. "there should be an agent specifically workign to improive this daily. set up a loop and a harness" / "we want even the everyday person to get hooked, not just folks in the field (but dont reduce qulaity at all)"
+   → Asked who, what it may change, how to judge and who writes explainers. Built bleedingedge/harness.py (8 checks), docs/IMPROVE.md (rules, backlog, log), explainers on the site, and a 9:00 daily improver task that opens one PR a day and ships what you merge. Friends' visits can't be counted on this page type.

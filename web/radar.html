@@ -43,6 +43,10 @@
 .br-chart svg text { fill: var(--cds-text-secondary); font-size: 11px; font-family: var(--font-anthropic-sans); }
 .br-tip { position: absolute; pointer-events: none; background: var(--cds-surface-popover); border: 1px solid var(--cds-border); box-shadow: var(--cds-shadow-popover); border-radius: var(--cds-radius); padding: 4px 8px; font-size: var(--cds-font-size-caption); white-space: nowrap; }
 .br-links { display: flex; flex-wrap: wrap; gap: var(--cds-gap-md); font-size: var(--cds-font-size-caption); margin: 0; }
+.br-plain { display: grid; gap: var(--cds-gap-xs); max-width: 65ch; }
+.br-plain p { margin: 0; }
+.br-plain-label { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.br-sources { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
 .br-scores { margin: 0; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); font-variant-numeric: tabular-nums; }
 .br-tablewrap { overflow-x: auto; }
 .br-table { width: 100%; border-collapse: collapse; font-size: var(--cds-font-size-caption); font-variant-numeric: tabular-nums; }
@@ -85,6 +89,7 @@
           <span class="br-tag" data-draw="sel-status" data-source="topics" data-field="status">—</span>
           <span class="br-tag" data-draw="sel-picked">—</span>
         </div>
+        <div class="br-plain" id="plain" data-draw="plain" data-source="topics"></div>
         <div class="br-stats">
           <div class="br-stat"><span class="br-stat-label">Score</span><span class="br-stat-value" data-draw="st-score" data-source="topics" data-field="score">—</span></div>
           <div class="br-stat"><span class="br-stat-label">Papers, last 12 weeks</span><span class="br-stat-value" data-draw="st-papers" data-source="topics" data-field="papers_12w">—</span></div>
@@ -317,6 +322,42 @@
       el.textContent = label;
     });
   }
+  dash.draw('plain', (el) => {
+    const r = window.brSelected();
+    el.replaceChildren();
+    el.hidden = !(r && r.plain_what);
+    if (!r || !r.plain_what) return;
+    el.dataset.where = 'topic=' + enc(r.topic);
+    const add = (label, text, field) => {
+      const l = document.createElement('span');
+      l.className = 'br-plain-label';
+      l.textContent = label;
+      const p = document.createElement('p');
+      p.dataset.source = 'topics';
+      p.dataset.field = field;
+      p.dataset.where = 'topic=' + enc(r.topic);
+      p.textContent = text;
+      el.append(l, p);
+    };
+    add('In plain words', r.plain_what, 'plain_what');
+    if (r.plain_why) add('Why it might matter to you', r.plain_why, 'plain_why');
+    const srcs = Array.isArray(r.plain_sources) ? r.plain_sources : [];
+    if (srcs.length) {
+      const s = document.createElement('p');
+      s.className = 'br-sources';
+      s.append('Sources: ');
+      srcs.forEach((x, i) => {
+        if (i) s.append(' · ');
+        const a = document.createElement('a');
+        a.href = x.url;
+        a.target = '_blank';
+        a.rel = 'noopener';
+        a.textContent = x.title || x.url;
+        s.appendChild(a);
+      });
+      el.appendChild(s);
+    }
+  });
   link('sel-papers-link', 'papers_link', 'Read the papers on arXiv');
   link('sel-repos-link', 'repos_link', 'See the new repos on GitHub');
 

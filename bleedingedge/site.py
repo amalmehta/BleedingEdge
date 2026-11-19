@@ -5,7 +5,8 @@
 The page (a private claude.ai dashboard) draws everything from these files, so every number on it
 can be traced back here and from here to the repo's data:
 
-  topics.json   one row per topic flagged in any brief (heating or early), with its latest numbers;
+  topics.json   one row per topic flagged in any brief (heating or early), with its latest numbers and
+                its plain-language explainer, if written (data/Explainers.json);
                 phrases in data/Fragments.csv are left out
   series.json   papers and new repos per 4-week window, about 3 years, from the latest brief that
                 flagged the topic (only flagged topics have this history saved)
@@ -76,6 +77,8 @@ def build() -> dict[str, list[dict]]:
         return {"topics": [], "series": [], "scores": [], "picks": [], "record": record()}
     latest = bs[-1]["date"]
     picked = {p["topic"]: p["date"] for p in picks()}
+    ex_path = br.ROOT / "data" / "Explainers.json"
+    explained = json.loads(ex_path.read_text()) if ex_path.exists() else {}
     seen: dict[str, tuple[dict, dict]] = {}          # topic -> (its latest record, that brief)
     from .daily import fragments                     # imported here: daily imports this module
     skip = fragments() - set(picked)                 # data/Fragments.csv: phrases that aren't topics
@@ -95,6 +98,8 @@ def build() -> dict[str, list[dict]]:
             "papers_12w": papers, "repos_12w": repos,
             "papers_vs_year_ago": _num(r.get("g_trend_arxiv")), "repos_vs_year_ago": _num(r.get("g_trend_github")),
             "first_flagged": r.get("first_flag") or "", "picked_on": picked.get(g, ""),
+            "plain_what": explained.get(g, {}).get("what", ""), "plain_why": explained.get(g, {}).get("why", ""),
+            "plain_sources": explained.get(g, {}).get("sources", []),
             "papers_link": br.arxiv_search_url(g),
             "repos_link": br.github_search_url(g, day - timedelta(days=3 * WINDOW_DAYS), day)})
         start = date.fromisoformat(b["grid_start"])
@@ -123,7 +128,7 @@ def build() -> dict[str, list[dict]]:
 def write(out: Path = OUT) -> dict[str, Path]:
     out.mkdir(parents=True, exist_ok=True)
     code = Path(__file__).read_text()
-    inputs = {"topics": "data/briefs/*.json, data/Picks.csv", "series": "data/briefs/*.json",
+    inputs = {"topics": "data/briefs/*.json, data/Picks.csv, data/Explainers.json", "series": "data/briefs/*.json",
               "scores": "data/Trends.csv", "picks": "data/Picks.csv, briefs/*.md",
               "record": "data/backtest/Run2024RO/Summary.json, data/backtest/Run2024RO/Holdout/Summary.json"}
     paths = {}

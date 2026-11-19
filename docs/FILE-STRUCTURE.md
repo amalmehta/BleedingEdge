@@ -21,6 +21,7 @@ BleedingEdge/
 │   ├── ledger.py            Grades each study pick against the test its brief wrote down
 │   ├── site.py              Builds the website's data files (site/, not in git)
 │   ├── daily.py             Composes the daily email (sent by a scheduled task through Gmail)
+│   ├── harness.py           Hard checks every improver change must pass
 │   ├── mining.py            Mines 2023's new arXiv phrases into a candidate list
 │   └── sources/             One module per signal, each returning matching item dates
 │       ├── arxiv.py         arXiv search API: paper dates per phrase
@@ -39,7 +40,8 @@ BleedingEdge/
 │   ├── Candidates2022-24.csv  The first candidate list, kept for comparison
 │   ├── Funding.csv          Announced funding rounds, each with a source URL
 │   ├── Opportunities.csv    Opportunities the brief listed
-│   ├── Fragments.csv        Mined phrases that aren't topics, skipped by the daily email
+│   ├── Fragments.csv        Mined phrases that aren't topics, skipped by the email and site
+│   ├── Explainers.json      Plain-language, cited explainers per topic (written by the improver)
 │   ├── steps/               Each pick's first step in four Tue–Fri pieces, for the daily email
 │   ├── Picks.csv            The study picks, each with its bar, due date and grade (ledger.py fills these)
 │   ├── backtest/            Generated: Counts.csv, Summary.json, MinedArxivCounts.json, WithReadme/ comparison
@@ -51,6 +53,7 @@ BleedingEdge/
 │   ├── SYSTEM-DESIGN.md     Architecture, components, data, decisions and trade-offs
 │   ├── BACKTEST.md          The backtest's verdict, misses and proposed fixes (by hand)
 │   ├── BacktestResults.md   Every count, query and chart (generated)
+│   ├── IMPROVE.md           The daily improver's rules, backlog and log
 │   ├── PROMPTS.md           Log of the requests that shaped the project
 │   └── img/                 Backtest charts, one per test topic (generated)
 │
