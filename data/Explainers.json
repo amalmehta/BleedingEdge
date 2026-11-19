@@ -1,1 +1,59 @@
-{}
+{
+  "physical intelligence": {
+    "what": "Physical intelligence is the skill of acting well in the real world: seeing, moving and handling things. Researchers want robots that follow plain-language instructions and can do many jobs with one shared AI program. Some papers take separate programs, each trained for one job, and combine them into one. Others test robots by the same rules in many real places. Some use math models of walking machines to study why bendy joints, like a soft ankle, may make control easier.",
+    "why": "A robot in a home or shop will meet tasks and rooms nobody planned for. A large test at many real sites found that every robot program still struggled to finish open-ended tasks well. The program that did best in one setting often fell behind in another. So researchers are working on better robot programs and on fairer ways to test them.",
+    "sources": [
+      {
+        "url": "https://arxiv.org/abs/2611.12286",
+        "title": "VLA-MOPD: On-Policy Distillation for Multi-Task VLA Policy Consolidation"
+      },
+      {
+        "url": "https://arxiv.org/abs/2611.02497",
+        "title": "RoboColosseum: Evaluating Physical Intelligence at Scale In-The-Wild"
+      },
+      {
+        "url": "https://arxiv.org/abs/2611.13779",
+        "title": "Softness is something you also need! Why compliance helps control"
+      }
+    ],
+    "written": "2026-11-19"
+  },
+  "embodied manipulation": {
+    "what": "Embodied means the AI has a body that acts in the world. Embodied manipulation is a robot using its own hands or grippers to pick up, move and use objects. Researchers are teaching robots to work out which part of an object does a job, such as which part you hold or press. Others let the robot picture what the scene should look like next before it moves.",
+    "why": "Many robot programs act only on what they see in this moment. They lose track of things that have moved out of view, like a drawer they already opened. That makes chores with several steps hard. Researchers are trying to give robots a memory of what they have done and a better sense of which part of an object to use, so they can get further through longer tasks.",
+    "sources": [
+      {
+        "url": "https://arxiv.org/abs/2611.07896",
+        "title": "AffordJEV: Affordance Grounding by Confirming Candidate Regions"
+      },
+      {
+        "url": "https://arxiv.org/abs/2610.39528",
+        "title": "PRIME W0: Physical Priors from World Models for Embodied Manipulation"
+      },
+      {
+        "url": "https://arxiv.org/abs/2611.00734",
+        "title": "MOST: Memory of Object States and Task Progress for Long-Horizon Mobile Manipulation"
+      }
+    ],
+    "written": "2026-11-19"
+  },
+  "long-horizon embodied": {
+    "what": "Long-horizon tasks are jobs with many steps, some lasting minutes rather than seconds. The horizon is how far ahead the job stretches. The helper might be a robot, or a simulated one on a computer. Researchers test what happens when a more urgent request interrupts a task halfway, and whether the helper can then pick up where it left off.",
+    "why": "Real help rarely comes as one quick action. A robot that loses its place, or can't cope with being interrupted, is hard to rely on. Some researchers also build computer models of how people guess someone else's goal by watching what they do. They suggest robots that work with people should reason about plans in a similar way, to better tell what a person is trying to do.",
+    "sources": [
+      {
+        "url": "https://arxiv.org/abs/2611.00734",
+        "title": "MOST: Memory of Object States and Task Progress for Long-Horizon Mobile Manipulation"
+      },
+      {
+        "url": "https://arxiv.org/abs/2610.35576",
+        "title": "Preemptive Instruction Following with Resumption"
+      },
+      {
+        "url": "https://arxiv.org/abs/2611.13669",
+        "title": "A computational framework for understanding embodied plans"
+      }
+    ],
+    "written": "2026-11-19"
+  }
+}
