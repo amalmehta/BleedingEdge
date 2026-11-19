@@ -82,3 +82,5 @@
    → Ran the daily task once: sent "BleedingEdge, 19 Nov: 9 new papers". Opened the site; its check found overlapping year labels on the repos chart, fixed, now passes.
 11. "email should be a bit easier to rea"
    → New layout: a one-line summary first, then today's step, deadlines, your pick's papers and other early topics, each paper a linked title with a date line; quiet footer. Previewed, not sent.
+12. "*so should the website"
+   → Fragments left off the site; older and not-new topics fold under "Show more"; one line explains ★ and the score; plainer picks-table headings. Uploaded; recheck runs when the page is next opened.

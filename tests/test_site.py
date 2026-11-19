@@ -79,3 +79,11 @@ def test_written_files_carry_their_code_and_inputs(paths, tmp_path):
 def test_record_matches_the_brief(paths):
     r = site.record()[0]
     assert f"**{r['took_off']} of {r['flagged']} flagged topics" in brief.record()
+
+
+def test_fragments_are_left_out_unless_picked(paths, monkeypatch):
+    from bleedingedge import daily
+    (paths / "Fragments.csv").write_text("phrase,added,reason\nbig crowd,2026-11-19,x\nsmall new,2026-11-19,x\n")
+    monkeypatch.setattr(daily, "FRAGMENTS", paths / "Fragments.csv")
+    topics = [r["topic"] for r in site.build()["topics"]]
+    assert "big crowd" not in topics and "small new" in topics      # a pick always stays

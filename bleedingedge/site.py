@@ -5,7 +5,8 @@
 The page (a private claude.ai dashboard) draws everything from these files, so every number on it
 can be traced back here and from here to the repo's data:
 
-  topics.json   one row per topic flagged in any brief (heating or early), with its latest numbers
+  topics.json   one row per topic flagged in any brief (heating or early), with its latest numbers;
+                phrases in data/Fragments.csv are left out
   series.json   papers and new repos per 4-week window, about 3 years, from the latest brief that
                 flagged the topic (only flagged topics have this history saved)
   scores.json   each covered topic's score in every brief since 27 Oct 2026 (data/Trends.csv)
@@ -76,9 +77,12 @@ def build() -> dict[str, list[dict]]:
     latest = bs[-1]["date"]
     picked = {p["topic"]: p["date"] for p in picks()}
     seen: dict[str, tuple[dict, dict]] = {}          # topic -> (its latest record, that brief)
+    from .daily import fragments                     # imported here: daily imports this module
+    skip = fragments() - set(picked)                 # data/Fragments.csv: phrases that aren't topics
     for b in bs:
         for r in b.get("heating", []) + b.get("early", []):
-            seen[r["topic"]] = (r, b)
+            if r["topic"] not in skip:
+                seen[r["topic"]] = (r, b)
     topics, series = [], []
     for g, (r, b) in sorted(seen.items(), key=lambda kv: (kv[1][1]["date"] != latest, -(kv[1][0].get("score") or 0))):
         day = date.fromisoformat(b["date"])

@@ -26,6 +26,8 @@
 .br-item-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .br-item-score { text-align: right; font-variant-numeric: tabular-nums; color: var(--color-fg-muted); }
 .br-group { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); padding: 8px 8px 2px; }
+.br-more > summary { cursor: pointer; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); padding: 8px; list-style-position: inside; }
+.br-more[open] > summary { padding-bottom: 2px; }
 .br-detail { display: grid; gap: var(--cds-gap-md); min-width: 0; }
 .br-detail-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--cds-gap-sm); }
 .br-sel { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-heading); margin: 0; }
@@ -74,7 +76,7 @@
 
   <section class="br-section" id="history" aria-labelledby="history-h">
     <h2 class="br-h2" id="history-h">Topic history</h2>
-    <p class="br-help">Choose a topic to see its papers and new repos per 4 weeks over about three years. Covers every topic a brief has flagged, plus every pick.</p>
+    <p class="br-help">Choose a topic to see about three years of its papers and new repos. The number beside each topic is this week's score; ★ marks a past pick.</p>
     <div class="br-explore">
       <nav class="br-list" id="topic-list" data-draw="list" data-source="topics series" aria-label="Topics"></nav>
       <div class="br-detail" id="topic-detail">
@@ -106,12 +108,12 @@
 
   <section class="br-section" id="picks-section" aria-labelledby="picks-h">
     <h2 class="br-h2" id="picks-h">Every pick and its test</h2>
-    <p class="br-help">A pick "took off" if its 12-week paper count passes its bar within a year, the backtest's own test. Graded every Monday. Your marks save as you change them and only you see them.</p>
+    <p class="br-help">Each pick is right if its papers per 12 weeks pass the "must pass" number within a year of the pick. Graded every Monday. Your marks save as you change them, and only you see them.</p>
     <p class="br-help br-bad" id="unsaved" hidden>That wasn't saved. Try again.</p>
     <div class="br-tablewrap">
       <table class="br-table" data-source="picks" data-row-key="date">
         <thead><tr>
-          <th data-field="date">Picked</th><th data-field="topic">Topic</th><th data-field="peak_12w">Highest 12-wk count</th><th data-field="bar">Bar</th><th data-field="status">Status</th><th data-source="marks" data-field="taste">Taste (1–5)</th><th data-source="marks" data-field="acted">Spent 2+ hours</th>
+          <th data-field="date">Picked</th><th data-field="topic">Topic</th><th data-field="peak_12w">Highest so far</th><th data-field="bar">Must pass</th><th data-field="status">Status</th><th data-source="marks" data-field="taste">Taste (1–5)</th><th data-source="marks" data-field="acted">Spent 2+ hours</th>
         </tr></thead>
         <tbody data-draw="picks-rows"></tbody>
       </table>
@@ -236,13 +238,28 @@
     if (!t.length) { el.textContent = '—'; return; }
     const sel = window.brSelected();
     const byTopic = d3.group(s, (r) => r.topic);
+    const extra = groups.slice(2).reduce((k, [st]) => k + t.filter((r) => r.status === st).length, 0);
+    let more = null;
     for (const [status, label] of groups) {
       const members = t.filter((r) => r.status === status);
       if (!members.length) continue;
+      let parent = el;
+      if (groups.findIndex((g) => g[0] === status) >= 2) {
+        if (!more) {
+          more = document.createElement('details');
+          more.className = 'br-more';
+          more.open = !!(sel && !['Early', 'Consensus'].includes(sel.status));
+          const sm = document.createElement('summary');
+          sm.textContent = `Show ${extra} more`;
+          more.appendChild(sm);
+          el.appendChild(more);
+        }
+        parent = more;
+      }
       const h = document.createElement('div');
       h.className = 'br-group';
       h.textContent = label;
-      el.appendChild(h);
+      parent.appendChild(h);
       for (const r of members) {
         const b = document.createElement('button');
         b.type = 'button';
@@ -264,7 +281,7 @@
         sc.textContent = r.score === null ? '—' : num(r.score).toFixed(1);
         b.append(name, svg.node(), sc);
         b.addEventListener('click', () => dash.setParams({ topic: r.topic }));
-        el.appendChild(b);
+        parent.appendChild(b);
       }
     }
   });
