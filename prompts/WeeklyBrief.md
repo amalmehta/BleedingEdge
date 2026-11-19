@@ -32,6 +32,11 @@ This file is the instruction set for the weekly scheduled task. It's under versi
 4. **Record the pick.** Append `date,topic,first_step_url` to `data/Picks.csv`, creating it with the header `date,topic,first_step` if it's missing. Leave the other columns empty: step 4b fills them. This stops the pick from repeating in the next 3 briefs.
 
    **4b. Grade the picks.** Run `uv run python -m bleedingedge.ledger --no-update` (step 2 already topped up arXiv). It fills each pick's bar and due date from `data/Trends.csv` and grades every pick against the test its brief wrote down: "took off", "didn't take off" or "open". Never edit those columns by hand. Put any pick whose status changed since last week, or that says "no data", in your report.
+   **4c. Split the first step for the daily email.** Write `data/steps/YYYY-MM-DD.json` (the brief's date) as `{"pick": "<topic>", "first_step": "<url>", "pieces": {"<Tue date>": "...", "<Wed date>": "...", "<Thu date>": "...", "<Fri date>": "..."}}`, using the four dates after this Monday.
+   - Each piece is about 30 minutes of the 2-hour first step, in order, so the four together are the whole step. One or two plain sentences each: what to do and what to have at the end, such as "Read sections 1–2 of arXiv 2611.12286 and write down, in two lines, what the teacher supervises at each flow-matching step."
+   - Base them on the paper or repo itself (read its abstract and section headings first). Never invent a section, figure or result. If you can't open it, write the pieces from the brief's own first-step text and say so in your report.
+   - No pick this week means no file.
+
 5. **Write the opportunities.** Replace the text between `<!-- opportunities:start -->` and `<!-- opportunities:end -->`, and keep the markers.
    - **Types:** research fellowships and residencies; jobs at labs and companies; grants and compute or hardware credits; workshops and summer schools.
    - **An opportunity qualifies only if all of these hold:**

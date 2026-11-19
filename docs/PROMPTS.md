@@ -76,3 +76,5 @@
    → Showed three mockups from real data. You chose the topic explorer with a pick card on top, flagged topics and picks only, the six proposed done criteria, and "today's step" Tue–Fri only. Recorded in the spec; nothing built yet.
 8. "Build the site" / "*and email"
    → Built BleedingEdge Radar on the Data page type: bleedingedge/site.py writes five data files, web/radar.html draws the explorer, pick card and pick table, and your four acted-on marks are seeded. The Monday task now rebuilds and uploads the files. The daily email comes next.
+9. "Build the email"
+   → Added bleedingedge/daily.py and a 7:30 daily task that sends through Gmail to you, only when there are new papers, a Tue–Fri step or a deadline 14/7/3/1 days out. A real run found "policies learn" pulling in 24 unrelated papers, so added data/Fragments.csv. Nothing sent yet.

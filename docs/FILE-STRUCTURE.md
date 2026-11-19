@@ -20,6 +20,7 @@ BleedingEdge/
 │   ├── notify.py            The Monday desktop notification, missed-brief alert and review reminder
 │   ├── ledger.py            Grades each study pick against the test its brief wrote down
 │   ├── site.py              Builds the website's data files (site/, not in git)
+│   ├── daily.py             Composes the daily email (sent by a scheduled task through Gmail)
 │   ├── mining.py            Mines 2023's new arXiv phrases into a candidate list
 │   └── sources/             One module per signal, each returning matching item dates
 │       ├── arxiv.py         arXiv search API: paper dates per phrase
@@ -38,6 +39,8 @@ BleedingEdge/
 │   ├── Candidates2022-24.csv  The first candidate list, kept for comparison
 │   ├── Funding.csv          Announced funding rounds, each with a source URL
 │   ├── Opportunities.csv    Opportunities the brief listed
+│   ├── Fragments.csv        Mined phrases that aren't topics, skipped by the daily email
+│   ├── steps/               Each pick's first step in four Tue–Fri pieces, for the daily email
 │   ├── Picks.csv            The study picks, each with its bar, due date and grade (ledger.py fills these)
 │   ├── backtest/            Generated: Counts.csv, Summary.json, MinedArxivCounts.json, WithReadme/ comparison
 │   └── cache/               Not in git: raw API responses, about 1 GB
