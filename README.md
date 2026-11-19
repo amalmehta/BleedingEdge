@@ -14,3 +14,7 @@ A personal research radar: it looks for AI research topics that are heating up b
 - **Results:** [What the backtest found](docs/BACKTEST.md) · [Every count, query and chart](docs/BacktestResults.md)
 - **How it works:** [System design](docs/SYSTEM-DESIGN.md) · [What's where](docs/FILE-STRUCTURE.md)
 - **The spec:** [BleedingEdge.md](BleedingEdge.md)
+
+## How it was built
+
+How this was built and how it works, with diagrams: [docs/HOW-IT-WAS-BUILT.md](docs/HOW-IT-WAS-BUILT.md)
