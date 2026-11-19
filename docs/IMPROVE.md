@@ -77,3 +77,4 @@ Add ideas here; the improver takes the top one when no explainer is due.
 ## Log
 
 - 2026-11-19: improver set up (harness, explainers, this file). No runs yet.
+- 2026-11-19: improve/2026-11-19. Explainers for this week's pick (physical intelligence) and the two top early topics (embodied manipulation, long-horizon embodied). Reviewers: titles like "embodied" and "long-horizon" still lose non-technical readers, so a plainer display name per topic is worth trying.
