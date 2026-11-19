@@ -348,7 +348,11 @@
         .attr('x1', m.l).attr('x2', W - m.r).attr('y1', y).attr('y2', y).style('stroke', 'var(--cds-chart-grid)');
       svg.append('g').selectAll('text').data(yTicks).join('text')
         .attr('x', m.l - 6).attr('y', (d) => y(d) + 4).attr('text-anchor', 'end').text((d) => d);
-      const years = data.filter((d, i) => i === 0 || d.window_end.slice(0, 4) !== data[i - 1].window_end.slice(0, 4));
+      const starts = data.filter((d, i) => i === 0 || d.window_end.slice(0, 4) !== data[i - 1].window_end.slice(0, 4));
+      const years = [];
+      for (const d of starts.slice().reverse()) {
+        if (!years.length || x(years[years.length - 1].window_end) - x(d.window_end) >= 40) years.push(d);
+      }
       svg.append('g').selectAll('text').data(years).join('text')
         .attr('x', (d) => x(d.window_end)).attr('y', H - 4).text((d) => d.window_end.slice(0, 4));
       const bars = svg.append('g').selectAll('rect').data(data).join('rect')

@@ -76,7 +76,7 @@ def test_deadline_reminders_only_on_14_7_3_1_days(paths):
 def test_new_papers_once_and_only_after_a_send(paths):
     f = fetch_map({"flow policies": feed(("2611.00001", "A flow paper"), ("2611.00002", "Another"))})
     e = daily.compose(SAT, "", f)
-    assert e["send"] and "2 new papers" in e["subject"] and "(this week's pick)" in e["text"]
+    assert e["send"] and "2 new papers" in e["subject"] and "YOUR PICK: FLOW POLICIES" in e["text"]
     assert daily.compose(SAT, "", f)["send"]          # not sent yet, so still new
     daily.mark_sent()
     assert daily.compose(SAT, "", f)["send"] is False

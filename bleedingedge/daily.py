@@ -129,6 +129,69 @@ def deadlines(day: date) -> list[dict]:
     return out
 
 
+# Email layout: one narrow column, a one-line summary first, then the step, deadlines and papers,
+# each paper a linked title with a quiet date line under it. Inline styles only: Gmail drops <style>.
+INK, MUTED, LINE, ACCENT = "#1f1f1d", "#6b6a66", "#e4e2dc", "#2f5d8a"
+BOX = f"max-width:600px;margin:0 auto;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:15px;line-height:1.5;color:{INK}"
+H = f"font-size:13px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:{MUTED};margin:28px 0 8px"
+
+
+def _short(d: str) -> str:
+    return f"{date.fromisoformat(d):%-d %b}"
+
+
+def render(day, pick, papers, step, due, site, caveat, parts) -> tuple[str, str]:
+    e = html.escape
+    T = [f"BleedingEdge, {day:%A %-d %B}", " · ".join(parts), ""]
+    Hh = [f'<div style="{BOX}">',
+          f'<p style="margin:0;font-size:13px;color:{MUTED}">BleedingEdge · {day:%A %-d %B}</p>',
+          f'<p style="margin:4px 0 0;font-size:18px">{e(" · ".join(parts).capitalize())}</p>']
+    if step:
+        T += ["TODAY'S STEP, ABOUT 30 MINUTES", f"{pick['topic'].capitalize()}: {step}", ""]
+        Hh += [f'<p style="{H}">Today\'s step · about 30 minutes</p>',
+               f'<div style="border-left:3px solid {ACCENT};padding:4px 0 4px 14px">'
+               f'<p style="margin:0;color:{MUTED};font-size:13px">{e(pick["topic"].capitalize())}</p>'
+               f'<p style="margin:2px 0 0">{e(step)}</p></div>']
+    if due:
+        T += ["DEADLINES"] + [f"{r['name']}: closes {_short(r['deadline'])}, in {r['days']} day{'s' if r['days'] != 1 else ''}\n  {r['url']}" for r in due] + [""]
+        Hh += [f'<p style="{H}">Deadlines</p>'] + [
+            f'<p style="margin:0 0 10px"><a href="{e(r["url"])}" style="color:{ACCENT};text-decoration:none">{e(r["name"])}</a>'
+            f'<br><span style="color:{MUTED};font-size:13px">Closes {_short(r["deadline"])}, in {r["days"]} day{"s" if r["days"] != 1 else ""}</span></p>'
+            for r in due]
+    groups = []
+    if pick and pick["topic"] in papers:
+        groups.append((f"Your pick: {pick['topic']}", {pick["topic"]: papers[pick["topic"]]}))
+    rest = {k: v for k, v in papers.items() if not (pick and k == pick["topic"])}
+    if rest:
+        groups.append(("Other early topics", rest))
+    for title, topics in groups:
+        T += [title.upper()]
+        Hh += [f'<p style="{H}">{e(title)}</p>']
+        for phrase, ps in topics.items():
+            more = len(ps) - PER_TOPIC
+            if title == "Other early topics":
+                T += [f"{phrase.capitalize()}"]
+                Hh += [f'<p style="margin:14px 0 6px;font-weight:600">{e(phrase.capitalize())}</p>']
+            for p in ps[:PER_TOPIC]:
+                T += [f"- {p['title']}\n  {_short(p['submitted'])} · {p['url']}"]
+                Hh += [f'<p style="margin:0 0 10px"><a href="{p["url"]}" style="color:{ACCENT};text-decoration:none">{e(p["title"])}</a>'
+                       f'<br><span style="color:{MUTED};font-size:13px">{_short(p["submitted"])} · arXiv {p["id"]}</span></p>']
+            if more > 0:
+                T += [f"  and {more} more"]
+                Hh += [f'<p style="margin:0 0 10px;color:{MUTED};font-size:13px">and {more} more</p>']
+        T += [""]
+    T += ["", "Papers: submitted in the last 7 days, title or abstract matches, never emailed before."]
+    if site:
+        T += [f"Trend history and your picks: {site}"]
+    T += [caveat]
+    Hh += [f'<div style="margin-top:32px;padding-top:12px;border-top:1px solid {LINE};font-size:13px;color:{MUTED}">',
+           "<p style=\"margin:0 0 6px\">Papers: submitted in the last 7 days, title or abstract matches, never emailed before.</p>"]
+    if site:
+        Hh += [f'<p style="margin:0 0 6px"><a href="{e(site)}" style="color:{ACCENT}">Trend history and your picks</a></p>']
+    Hh += [f'<p style="margin:0">{e(caveat)}</p></div></div>']
+    return "\n".join(T), "\n".join(Hh)
+
+
 def compose(day: date, site: str = "", fetch=get_text) -> dict:
     pick = latest_pick(day)
     papers = new_papers(day, fetch)
@@ -136,40 +199,16 @@ def compose(day: date, site: str = "", fetch=get_text) -> dict:
     due = deadlines(day)
     n = sum(len(v) for v in papers.values())
     send = bool(n or step or due)
-    parts = ([f"{n} new paper{'s' if n != 1 else ''}"] if n else []) + (["today's step"] if step else []) \
-        + ([f"{len(due)} deadline{'s' if len(due) != 1 else ''}"] if due else [])
+    plural = lambda k, w: f"{k} {w}{'s' if k != 1 else ''}"
+    parts = ([plural(n, "new paper")] if n else []) + (["today's step"] if step else []) \
+        + ([plural(len(due), "deadline")] if due else [])
     subject = f"BleedingEdge, {day:%-d %b}: " + ", ".join(parts) if send else ""
-    text, h = [], []
-    if step:
-        text += ["Today's step (about 30 minutes)", f"{pick['topic']}: {step}", ""]
-        h += [f"<h3>Today's step (about 30 minutes)</h3><p><b>{html.escape(pick['topic'])}</b>: {html.escape(step)}</p>"]
-    if papers:
-        text += ["New papers, submitted in the last 7 days"]
-        h += ["<h3>New papers, submitted in the last 7 days</h3>"]
-        for phrase, ps in papers.items():
-            label = phrase + (" (this week's pick)" if pick and phrase == pick["topic"] else "")
-            more = len(ps) - PER_TOPIC
-            text += [f"{label}:"] + [f"- {p['title']} ({p['submitted']}) {p['url']}" for p in ps[:PER_TOPIC]] \
-                + ([f"- and {more} more"] if more > 0 else [])
-            h += [f"<p><b>{html.escape(label)}</b></p><ul>"
-                  + "".join(f'<li><a href="{p["url"]}">{html.escape(p["title"])}</a> ({p["submitted"]})</li>' for p in ps[:PER_TOPIC])
-                  + (f"<li>and {more} more</li>" if more > 0 else "") + "</ul>"]
-        text += [""]
-    if due:
-        text += ["Deadlines coming up"] + [f"- {r['name']}: {r['deadline']} ({r['days']} days) {r['url']}" for r in due] + [""]
-        h += ["<h3>Deadlines coming up</h3><ul>" + "".join(
-            f'<li><a href="{html.escape(r["url"])}">{html.escape(r["name"])}</a>: {r["deadline"]} ({r["days"]} days)</li>'
-            for r in due) + "</ul>"]
-    if site:
-        text += [f"Trend history and your picks: {site}"]
-        h += [f'<p><a href="{html.escape(site)}">Trend history and your picks</a></p>']
     rec = record()[0]
     caveat = (f"Flags score about chance in the backtest ({rec['took_off']} of {rec['flagged']} took off), "
               "so read them as long shots.")
-    text += [caveat]
-    h += [f'<p style="color:#777">{caveat}</p>']
-    email = {"date": day.isoformat(), "send": send, "subject": subject, "text": "\n".join(text),
-             "html": "\n".join(h), "paper_ids": [p["id"] for ps in papers.values() for p in ps]}
+    text, html_out = render(day, pick, papers, step, due, site, caveat, parts)
+    email = {"date": day.isoformat(), "send": send, "subject": subject, "text": text,
+             "html": html_out, "paper_ids": [p["id"] for ps in papers.values() for p in ps]}
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(email, indent=1, ensure_ascii=False))
     return email

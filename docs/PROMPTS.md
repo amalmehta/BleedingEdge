@@ -78,3 +78,7 @@
    → Built BleedingEdge Radar on the Data page type: bleedingedge/site.py writes five data files, web/radar.html draws the explorer, pick card and pick table, and your four acted-on marks are seeded. The Monday task now rebuilds and uploads the files. The daily email comes next.
 9. "Build the email"
    → Added bleedingedge/daily.py and a 7:30 daily task that sends through Gmail to you, only when there are new papers, a Tue–Fri step or a deadline 14/7/3/1 days out. A real run found "policies learn" pulling in 24 unrelated papers, so added data/Fragments.csv. Nothing sent yet.
+10. "Send it now" / "open the website"
+   → Ran the daily task once: sent "BleedingEdge, 19 Nov: 9 new papers". Opened the site; its check found overlapping year labels on the repos chart, fixed, now passes.
+11. "email should be a bit easier to rea"
+   → New layout: a one-line summary first, then today's step, deadlines, your pick's papers and other early topics, each paper a linked title with a date line; quiet footer. Previewed, not sent.
