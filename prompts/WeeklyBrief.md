@@ -9,7 +9,7 @@ This file is the instruction set for the weekly scheduled task. It's under versi
 1. **Check the trial isn't over.** Count the brief files in `briefs/` (named `YYYY-MM-DD.md`) dated 2026-10-27 or later.
    - If there are already 4, write no brief. Say the trial is done and that `docs/TrialReview.md` needs filling in.
    - Then, if today is before 2026-12-28, still do steps 5 and 6, writing the section to `briefs/opportunities/YYYY-MM-DD.md`.
-   - Then do step 4b with the arXiv top-up (leave off `--no-update`), because no brief run has topped it up. Then do steps 9 and 10.
+   - Then do step 4b with the arXiv top-up (leave off `--no-update`), because no brief run has topped it up. Then do steps 8b, 9 and 10.
 2. **Generate the data and the draft.** Run this from the project root:
    ```bash
    uv run python -m bleedingedge.brief
@@ -49,7 +49,14 @@ This file is the instruction set for the weekly scheduled task. It's under versi
    - The track-record paragraph is intact.
    - No section has more than 5 items, and opportunities have at most 3.
    - Nothing gives buy, sell or hold advice.
-9. **Report** in 3 lines: the pick, how many topics were early and how many opportunities were listed, any change in the pick ledger, and anything odd. That includes zero candidates, an error, or a number that looks wrong.
+   **8b. Update the website.** The dashboard's link is in this scheduled task's own instructions, not in the repo (the repo is public).
+   - Run `uv run python -m bleedingedge.site`. It writes `site/topics.json`, `series.json`, `scores.json`, `picks.json` and `record.json`.
+   - Upload each as an asset to the dashboard (Artifact tool, `asset: true`, one file per call). Note each new `/_blob/<id>`.
+   - Read the dashboard's `datasets` collection (ArtifactData `list`). In one `batch`, `update` each of `datasets/topics`, `series`, `scores`, `picks` and `record`, pinned to the version you read: set `source.url` to its new blob and `updated` to `{at: <now, ISO>, by: "bleedingedge.site"}`. Change nothing else, and never touch `files/` or `data/`.
+   - Then delete the five blobs the datasets pointed at before (Artifact `delete` with the old id as `path`).
+   - If any upload or write fails, leave the old files in place and say so in your report.
+
+9. **Report** in 3 lines: the pick, how many topics were early and how many opportunities were listed, any change in the pick ledger, whether the website updated, and anything odd. That includes zero candidates, an error, or a number that looks wrong.
 
 10. **Notify the user.** Run `uv run python -m bleedingedge.notify`. Always do this last, even if an earlier step failed, because it's how the user hears about a failure. A failed notification goes in your report.
 

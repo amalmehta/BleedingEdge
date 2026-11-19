@@ -1,0 +1,447 @@
+<meta name="dash-one-writer">
+<style>
+.br { display: grid; gap: var(--cds-gap-xl); color: var(--color-fg); font-family: var(--font-anthropic-sans); }
+.br-head { display: grid; gap: var(--cds-gap-xs); }
+.br-title { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); margin: 0; text-wrap: balance; }
+.br-lede { margin: 0; max-width: 65ch; }
+.br-caveat { margin: 0; max-width: 65ch; color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); }
+.br a { color: inherit; }
+.br-h2 { font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); margin: 0; }
+.br-help { margin: 0; color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); max-width: 65ch; }
+.br-card { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-lg); display: grid; gap: var(--cds-gap-sm); }
+.br-eyebrow { margin: 0; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); letter-spacing: 0.02em; }
+.br-pick-topic { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); margin: 0; }
+.br-pick-what { margin: 0; max-width: 65ch; }
+.br-test { margin: 0; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.br-meter { height: 6px; border-radius: 3px; background: var(--cds-chart-grid); overflow: hidden; max-width: 360px; }
+.br-meter > div { height: 100%; }
+.br-section { display: grid; gap: var(--cds-gap-md); }
+.br-explore { display: grid; grid-template-columns: minmax(0, 15rem) minmax(0, 1fr); gap: var(--cds-gap-lg); align-items: start; }
+@media (max-width: 640px) { .br-explore { grid-template-columns: minmax(0, 1fr); } .br-list { max-height: 15rem; } }
+.br-list { display: grid; gap: 2px; max-height: 34rem; overflow-y: auto; border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: 4px; }
+.br-item { display: grid; grid-template-columns: minmax(0, 1fr) 44px 2.6rem; align-items: center; gap: 8px; width: 100%; text-align: left; background: none; border: 0; border-radius: var(--cds-radius); padding: 6px 8px; font: inherit; font-size: var(--cds-font-size-caption); color: var(--color-fg); cursor: pointer; }
+.br-item:hover { background: var(--color-panel); }
+.br-item:focus-visible { outline: 2px solid var(--cds-chart-reference); outline-offset: -2px; }
+.br-item[aria-pressed="true"] { background: var(--color-panel); box-shadow: inset 2px 0 0 currentColor; }
+.br-item-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.br-item-score { text-align: right; font-variant-numeric: tabular-nums; color: var(--color-fg-muted); }
+.br-group { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); padding: 8px 8px 2px; }
+.br-detail { display: grid; gap: var(--cds-gap-md); min-width: 0; }
+.br-detail-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--cds-gap-sm); }
+.br-sel { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-heading); margin: 0; }
+.br-tag { font-size: var(--cds-font-size-caption); padding: 1px 8px; border-radius: 999px; border: 1px solid var(--color-border-line); color: var(--color-fg-muted); }
+.br-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(7.5rem, 1fr)); gap: var(--cds-gap-sm); }
+.br-stat { display: grid; gap: 2px; }
+.br-stat-label { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.br-stat-value { font-size: var(--cds-font-size-heading); font-variant-numeric: tabular-nums; }
+.br-fig { margin: 0; display: grid; gap: 4px; }
+.br-fig-title { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin: 0; }
+.br-chart { position: relative; min-height: 170px; }
+.br-chart-sm { position: relative; min-height: 110px; }
+.br-chart svg text { fill: var(--cds-text-secondary); font-size: 11px; font-family: var(--font-anthropic-sans); }
+.br-tip { position: absolute; pointer-events: none; background: var(--cds-surface-popover); border: 1px solid var(--cds-border); box-shadow: var(--cds-shadow-popover); border-radius: var(--cds-radius); padding: 4px 8px; font-size: var(--cds-font-size-caption); white-space: nowrap; }
+.br-links { display: flex; flex-wrap: wrap; gap: var(--cds-gap-md); font-size: var(--cds-font-size-caption); margin: 0; }
+.br-scores { margin: 0; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); font-variant-numeric: tabular-nums; }
+.br-tablewrap { overflow-x: auto; }
+.br-table { width: 100%; border-collapse: collapse; font-size: var(--cds-font-size-caption); font-variant-numeric: tabular-nums; }
+.br-table th, .br-table td { text-align: left; padding: 8px 6px; border-bottom: 1px solid var(--color-border-line); vertical-align: middle; }
+.br-table th { font-weight: var(--cds-font-weight-medium); color: var(--color-fg-muted); }
+.br-table select { font: inherit; }
+.br-ok { color: var(--color-ok); }
+.br-bad { color: var(--color-bad); }
+.br-foot { color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); max-width: 65ch; }
+.br-foot summary { cursor: pointer; }
+.br-foot dl { display: grid; gap: var(--cds-gap-xs); }
+.br-foot dt { color: var(--color-fg); }
+.br-foot dd { margin: 0 0 var(--cds-gap-xs); }
+</style>
+
+<div class="br">
+  <header class="br-head" id="top">
+    <h1 class="br-title">BleedingEdge Radar</h1>
+    <p class="br-lede">Robotics topics heating up on arXiv and GitHub, rescored every Monday. In the brief of <span data-draw="week" data-source="this_week" data-field="week" data-row="0">—</span>, <b data-draw="n-early" data-source="this_week" data-field="early" data-row="0">—</b> topics were early and <b data-draw="n-consensus" data-source="this_week" data-field="consensus" data-row="0">—</b> had reached the crowd.</p>
+    <p class="br-caveat" id="record">Read every flag as a long shot: in the backtest, <span data-draw="rec-hit" data-source="record" data-field="took_off" data-row="0">—</span> of <span data-draw="rec-flagged" data-source="record" data-field="flagged" data-row="0">—</span> flagged robotics topics took off within a year, about what picking at random finds. <a href="https://github.com/amalmehta/BleedingEdge/blob/main/docs/BACKTEST.md#round-2-results">How it was tested</a></p>
+  </header>
+
+  <section class="br-card" id="pick" aria-labelledby="pick-topic">
+    <p class="br-eyebrow">Study this next · picked <span data-draw="pick-date" data-source="picks" data-field="date">—</span></p>
+    <h2 class="br-pick-topic" id="pick-topic" data-draw="pick-topic" data-source="picks" data-field="topic">—</h2>
+    <p class="br-pick-what" data-draw="pick-what" data-source="picks" data-field="what_it_is">—</p>
+    <p class="br-links"><a data-draw="pick-step" data-source="picks" data-field="first_step">—</a><a data-draw="pick-brief">—</a></p>
+    <p class="br-test">What would prove it wrong: its 12-week paper count never passes <b data-draw="pick-bar" data-source="picks" data-field="bar">—</b> by <span data-draw="pick-due" data-source="picks" data-field="due">—</span>. Highest so far: <b data-draw="pick-peak" data-source="picks" data-field="peak_12w">—</b>.</p>
+    <div class="br-meter" data-draw="pick-meter" role="img" aria-label="Highest 12-week paper count so far, against the bar"></div>
+  </section>
+
+  <section class="br-section" id="history" aria-labelledby="history-h">
+    <h2 class="br-h2" id="history-h">Topic history</h2>
+    <p class="br-help">Choose a topic to see its papers and new repos per 4 weeks over about three years. Covers every topic a brief has flagged, plus every pick.</p>
+    <div class="br-explore">
+      <nav class="br-list" id="topic-list" data-draw="list" data-source="topics series" aria-label="Topics"></nav>
+      <div class="br-detail" id="topic-detail">
+        <div class="br-detail-head">
+          <h3 class="br-sel" data-draw="sel-topic" data-source="topics" data-field="topic">—</h3>
+          <span class="br-tag" data-draw="sel-status" data-source="topics" data-field="status">—</span>
+          <span class="br-tag" data-draw="sel-picked">—</span>
+        </div>
+        <div class="br-stats">
+          <div class="br-stat"><span class="br-stat-label">Score</span><span class="br-stat-value" data-draw="st-score" data-source="topics" data-field="score">—</span></div>
+          <div class="br-stat"><span class="br-stat-label">Papers, last 12 weeks</span><span class="br-stat-value" data-draw="st-papers" data-source="topics" data-field="papers_12w">—</span></div>
+          <div class="br-stat"><span class="br-stat-label">Papers vs a year ago</span><span class="br-stat-value" data-draw="st-ptrend" data-source="topics" data-field="papers_vs_year_ago">—</span></div>
+          <div class="br-stat"><span class="br-stat-label">New repos, last 12 weeks</span><span class="br-stat-value" data-draw="st-repos" data-source="topics" data-field="repos_12w">—</span></div>
+          <div class="br-stat"><span class="br-stat-label">First flagged</span><span class="br-stat-value" data-draw="st-first" data-source="topics" data-field="first_flagged">—</span></div>
+        </div>
+        <figure class="br-fig" id="papers-chart">
+          <p class="br-fig-title">arXiv papers per 4 weeks (bulk count; vertical line: first flagged)</p>
+          <div class="br-chart" data-draw="chart-papers" data-source="series"></div>
+        </figure>
+        <figure class="br-fig" id="repos-chart">
+          <p class="br-fig-title">New GitHub repos per 4 weeks (name or description matches)</p>
+          <div class="br-chart-sm" data-draw="chart-repos" data-source="series"></div>
+        </figure>
+        <p class="br-scores">Score each Monday: <span data-draw="sel-scores" data-source="scores">—</span></p>
+        <p class="br-links"><a data-draw="sel-papers-link">—</a><a data-draw="sel-repos-link">—</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="br-section" id="picks-section" aria-labelledby="picks-h">
+    <h2 class="br-h2" id="picks-h">Every pick and its test</h2>
+    <p class="br-help">A pick "took off" if its 12-week paper count passes its bar within a year, the backtest's own test. Graded every Monday. Your marks save as you change them and only you see them.</p>
+    <p class="br-help br-bad" id="unsaved" hidden>That wasn't saved. Try again.</p>
+    <div class="br-tablewrap">
+      <table class="br-table" data-source="picks" data-row-key="date">
+        <thead><tr>
+          <th data-field="date">Picked</th><th data-field="topic">Topic</th><th data-field="peak_12w">Highest 12-wk count</th><th data-field="bar">Bar</th><th data-field="status">Status</th><th data-source="marks" data-field="taste">Taste (1–5)</th><th data-source="marks" data-field="acted">Spent 2+ hours</th>
+        </tr></thead>
+        <tbody data-draw="picks-rows"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <details class="br-foot" id="definitions">
+    <summary>What the numbers mean</summary>
+    <dl>
+      <dt>Score</dt><dd>How fast a topic is growing, as a weighted average of log₂ growth in papers and new repos. 1 means doubling, 2 means four times. Paper growth is measured against arXiv's own growth.</dd>
+      <dt>Early</dt><dd>Growing fast while still small (under 30 bulk papers in 12 weeks) and new (fewer than 10 two years earlier).</dd>
+      <dt>Consensus</dt><dd>Growing fast with 30 or more papers in 12 weeks: the research crowd has arrived.</dd>
+      <dt>Bulk count</dt><dd>Papers in cs.RO, cs.LG, cs.AI and cs.CL whose title or abstract contains the phrase, from arXiv's bulk metadata. About 0.6 times what arXiv's own search finds; the search links are there to read the papers.</dd>
+      <dt>Thresholds</dt><dd>Every threshold is an invented starting point, unchanged from the backtest. The full method is in <a href="https://github.com/amalmehta/BleedingEdge/blob/main/BleedingEdge.md">the spec</a>.</dd>
+    </dl>
+  </details>
+</div>
+
+<script>
+(function () {
+  const fmtDay = d3.utcFormat('%-d %b %Y');
+  const parse = (s) => (s ? new Date(s + 'T00:00:00Z') : null);
+  const day = (s) => (s ? fmtDay(parse(s)) : '—');
+  const ok = (id) => dash.data(id).status === 'ok';
+  const rows = (id) => (ok(id) ? dash.data(id).data : []);
+  const num = (v) => (v === null || v === undefined || v === '' ? null : Number(v));
+  const enc = (v) => encodeURIComponent(v);
+  window.brFmt = { day, parse, rows, ok, num, enc };
+
+  dash.calc('this_week', {
+    inputs: ['topics'],
+    title: 'This week in numbers',
+    description: 'How many topics the latest brief flagged as early, and as consensus.',
+    fn: (topics) => {
+      const week = topics.reduce((m, t) => (t.last_flagged > m ? t.last_flagged : m), '');
+      return [{
+        week,
+        early: topics.filter((t) => t.status === 'Early').length,
+        consensus: topics.filter((t) => t.status === 'Consensus').length,
+      }];
+    },
+  });
+
+  function selected() {
+    const t = rows('topics');
+    const want = dash.params().topic;
+    return t.find((r) => r.topic === want) || t[0] || null;
+  }
+  function latestPick() {
+    const p = rows('picks');
+    return p.length ? p[p.length - 1] : null;
+  }
+  window.brSelected = selected;
+
+  function text(name, id, fn) {
+    dash.draw(name, (el) => {
+      const d = dash.data(id);
+      if (d.status !== 'ok' || !d.data) { el.textContent = '—'; return; }
+      el.textContent = fn(d.data, el) ?? '—';
+    });
+  }
+  text('week', 'this_week', (r) => day(r[0].week));
+  text('n-early', 'this_week', (r) => r[0].early);
+  text('n-consensus', 'this_week', (r) => r[0].consensus);
+  text('rec-hit', 'record', (r) => r[0].took_off);
+  text('rec-flagged', 'record', (r) => r[0].flagged);
+
+  function pickText(name, field, fmt) {
+    dash.draw(name, (el) => {
+      const p = latestPick();
+      if (!p) { el.textContent = '—'; return; }
+      el.dataset.where = 'date=' + enc(p.date);
+      const v = p[field];
+      el.textContent = v === null || v === undefined || v === '' ? '—' : fmt ? fmt(v) : v;
+    });
+  }
+  pickText('pick-date', 'date', day);
+  pickText('pick-topic', 'topic', (v) => v.charAt(0).toUpperCase() + v.slice(1));
+  pickText('pick-what', 'what_it_is');
+  pickText('pick-bar', 'bar');
+  pickText('pick-due', 'due', day);
+  pickText('pick-peak', 'peak_12w');
+  dash.draw('pick-step', (el) => {
+    const p = latestPick();
+    if (!p) { el.textContent = '—'; el.removeAttribute('href'); return; }
+    el.dataset.where = 'date=' + enc(p.date);
+    el.href = p.first_step;
+    el.target = '_blank';
+    el.rel = 'noopener';
+    el.textContent = 'First step, about 2 hours: ' + p.first_step.replace('https://arxiv.org/abs/', 'arXiv ');
+  });
+  dash.draw('pick-brief', (el) => {
+    const p = latestPick();
+    if (!p) { el.textContent = '—'; el.removeAttribute('href'); return; }
+    el.href = p.brief;
+    el.target = '_blank';
+    el.rel = 'noopener';
+    el.textContent = 'Read the brief';
+  });
+  dash.draw('pick-meter', (el) => {
+    const p = latestPick();
+    el.replaceChildren();
+    if (!p || !num(p.bar)) return;
+    const bar = document.createElement('div');
+    bar.style.width = Math.min(100, (100 * num(p.peak_12w)) / num(p.bar)) + '%';
+    bar.style.background = p.status === 'took off' ? 'var(--color-ok)' : dash.colors[0];
+    el.appendChild(bar);
+    el.setAttribute('aria-label', `Highest 12-week paper count ${p.peak_12w} of a bar of ${p.bar}`);
+  });
+})();
+</script>
+
+<script>
+(function () {
+  const { day, rows, num, enc } = window.brFmt;
+  const groups = [['Early', 'Early'], ['Consensus', 'Reached the crowd'], ['Heating', 'Heating, but not new'], ['Not flagged this week', 'Flagged in an earlier week']];
+
+  dash.draw('list', (el) => {
+    const t = rows('topics');
+    const s = rows('series');
+    el.replaceChildren();
+    if (!t.length) { el.textContent = '—'; return; }
+    const sel = window.brSelected();
+    const byTopic = d3.group(s, (r) => r.topic);
+    for (const [status, label] of groups) {
+      const members = t.filter((r) => r.status === status);
+      if (!members.length) continue;
+      const h = document.createElement('div');
+      h.className = 'br-group';
+      h.textContent = label;
+      el.appendChild(h);
+      for (const r of members) {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'br-item';
+        b.setAttribute('aria-pressed', String(sel && sel.topic === r.topic));
+        const name = document.createElement('span');
+        name.className = 'br-item-name';
+        name.textContent = r.topic + (r.picked_on ? ' ★' : '');
+        if (r.picked_on) name.title = 'Picked ' + day(r.picked_on);
+        const vals = (byTopic.get(r.topic) || []).slice(-20).map((x) => num(x.papers) || 0);
+        const svg = d3.create('svg').attr('width', 44).attr('height', 16).attr('aria-hidden', 'true');
+        const m = Math.max(1, ...vals);
+        svg.selectAll('rect').data(vals).join('rect')
+          .attr('x', (_, i) => i * 2.2).attr('width', 1.6)
+          .attr('y', (v) => 16 - (v / m) * 16).attr('height', (v) => (v / m) * 16)
+          .style('fill', dash.colors[0]);
+        const sc = document.createElement('span');
+        sc.className = 'br-item-score';
+        sc.textContent = r.score === null ? '—' : num(r.score).toFixed(1);
+        b.append(name, svg.node(), sc);
+        b.addEventListener('click', () => dash.setParams({ topic: r.topic }));
+        el.appendChild(b);
+      }
+    }
+  });
+
+  function selText(name, field, fmt) {
+    dash.draw(name, (el) => {
+      const r = window.brSelected();
+      if (!r) { el.textContent = '—'; return; }
+      el.dataset.where = 'topic=' + enc(r.topic);
+      const v = r[field];
+      el.textContent = v === null || v === undefined || v === '' ? '—' : fmt ? fmt(v) : v;
+    });
+  }
+  selText('sel-topic', 'topic', (v) => v.charAt(0).toUpperCase() + v.slice(1));
+  selText('sel-status', 'status');
+  selText('st-score', 'score', (v) => num(v).toFixed(2));
+  selText('st-papers', 'papers_12w');
+  selText('st-ptrend', 'papers_vs_year_ago', (v) => num(v).toFixed(1) + '×');
+  selText('st-repos', 'repos_12w');
+  selText('st-first', 'first_flagged', day);
+  dash.draw('sel-picked', (el) => {
+    const r = window.brSelected();
+    el.hidden = !(r && r.picked_on);
+    el.textContent = r && r.picked_on ? 'Picked ' + day(r.picked_on) : '';
+  });
+  function link(name, field, label) {
+    dash.draw(name, (el) => {
+      const r = window.brSelected();
+      if (!r) { el.textContent = '—'; el.removeAttribute('href'); return; }
+      el.href = r[field];
+      el.target = '_blank';
+      el.rel = 'noopener';
+      el.textContent = label;
+    });
+  }
+  link('sel-papers-link', 'papers_link', 'Read the papers on arXiv');
+  link('sel-repos-link', 'repos_link', 'See the new repos on GitHub');
+
+  dash.draw('sel-scores', (el) => {
+    const r = window.brSelected();
+    const sc = rows('scores').filter((x) => r && x.topic === r.topic);
+    el.replaceChildren();
+    if (!sc.length) { el.textContent = '—'; return; }
+    sc.forEach((x, i) => {
+      if (i) el.append(' · ');
+      const s = document.createElement('span');
+      s.dataset.source = 'scores';
+      s.dataset.field = 'score';
+      s.dataset.where = 'date=' + enc(x.date) + '&topic=' + enc(x.topic);
+      s.textContent = num(x.score).toFixed(2);
+      el.append(d3.utcFormat('%-d %b')(window.brFmt.parse(x.date)) + ' ', s);
+    });
+  });
+
+  function barChart(field, height, color) {
+    return (el) => {
+      const r = window.brSelected();
+      const data = rows('series').filter((x) => r && x.topic === r.topic && x[field] !== null && x[field] !== undefined);
+      el.replaceChildren();
+      if (!data.length) {
+        const p = document.createElement('p');
+        p.className = 'br-help';
+        p.textContent = dash.data('series').status === 'error' ? 'Failed to load' : 'No data for this topic.';
+        el.appendChild(p);
+        return;
+      }
+      const W = Math.max(260, el.clientWidth || 600);
+      const H = height;
+      const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`)
+        .attr('role', 'img')
+        .attr('aria-label', `${field === 'papers' ? 'Papers' : 'New repos'} per 4 weeks for ${r.topic}, ${day(data[0].window_end)} to ${day(data[data.length - 1].window_end)}`);
+      const yMax = d3.max(data, (d) => num(d[field])) || 1;
+      const yTicks = d3.scaleLinear().domain([0, yMax]).nice(3).ticks(3);
+      const probe = svg.append('text').text(String(d3.max(yTicks)));
+      const left = Math.ceil((probe.node().getComputedTextLength() || 14) + 8);
+      probe.remove();
+      const m = { t: 8, r: 6, b: 20, l: left };
+      const x = d3.scaleBand().domain(data.map((d) => d.window_end)).range([m.l, W - m.r]).padding(0.18);
+      const y = d3.scaleLinear().domain([0, d3.max(yTicks) || 1]).range([H - m.b, m.t]);
+      svg.append('g').selectAll('line').data(yTicks).join('line')
+        .attr('x1', m.l).attr('x2', W - m.r).attr('y1', y).attr('y2', y).style('stroke', 'var(--cds-chart-grid)');
+      svg.append('g').selectAll('text').data(yTicks).join('text')
+        .attr('x', m.l - 6).attr('y', (d) => y(d) + 4).attr('text-anchor', 'end').text((d) => d);
+      const years = data.filter((d, i) => i === 0 || d.window_end.slice(0, 4) !== data[i - 1].window_end.slice(0, 4));
+      svg.append('g').selectAll('text').data(years).join('text')
+        .attr('x', (d) => x(d.window_end)).attr('y', H - 4).text((d) => d.window_end.slice(0, 4));
+      const bars = svg.append('g').selectAll('rect').data(data).join('rect')
+        .attr('x', (d) => x(d.window_end)).attr('width', x.bandwidth())
+        .attr('y', (d) => y(num(d[field]))).attr('height', (d) => y(0) - y(num(d[field])))
+        .attr('rx', Math.min(2, x.bandwidth() / 3))
+        .style('fill', color);
+      if (field === 'papers' && r.first_flagged) {
+        const ff = data.find((d) => d.window_end >= r.first_flagged);
+        if (ff) {
+          const fx = x(ff.window_end) + x.bandwidth() / 2;
+          svg.append('line').attr('x1', fx).attr('x2', fx).attr('y1', m.t).attr('y2', H - m.b)
+            .style('stroke', 'var(--cds-chart-reference)').style('stroke-dasharray', '3 3');
+          const lab = svg.append('text').attr('y', m.t + 10).text('first flagged ' + d3.utcFormat('%b %Y')(window.brFmt.parse(r.first_flagged)));
+          const w = lab.node().getComputedTextLength() || 0;
+          lab.attr('x', fx + 4 + w > W - m.r ? fx - 4 : fx + 4).attr('text-anchor', fx + 4 + w > W - m.r ? 'end' : 'start');
+        }
+      }
+      const tip = document.createElement('div');
+      tip.className = 'br-tip';
+      tip.hidden = true;
+      el.appendChild(tip);
+      bars.on('pointerenter pointermove', (event, d) => {
+        tip.hidden = false;
+        tip.textContent = `${d[field]} ${field === 'papers' ? 'papers' : 'new repos'}, 4 weeks to ${day(d.window_end)}`;
+        const box = el.getBoundingClientRect();
+        const px = event.clientX - box.left;
+        tip.style.left = Math.max(0, Math.min(px + 10, box.width - tip.offsetWidth)) + 'px';
+        tip.style.top = Math.max(0, event.clientY - box.top - 34) + 'px';
+      }).on('pointerleave', () => { tip.hidden = true; });
+    };
+  }
+  dash.draw('chart-papers', barChart('papers', 170, dash.colors[0]));
+  dash.draw('chart-repos', barChart('new_repos', 110, dash.colors[1]));
+})();
+</script>
+
+<script>
+(function () {
+  const { day, rows, num, enc } = window.brFmt;
+
+  async function saveMark(date, change) {
+    let saved = true;
+    try {
+      const [db, user] = await Promise.all([claude.use('db'), claude.use('user')]);
+      const old = rows('marks').find((m) => m.date === date) || {};
+      const row = { date, taste: old.taste ?? null, acted: old.acted ?? null, ...change };
+      await db.doc(`data/users/${await user.id()}/radar/marks/${date}`).set(row);
+    } catch (e) { saved = false; }
+    document.querySelectorAll('#unsaved').forEach((p) => { p.hidden = saved; });
+  }
+
+  dash.draw('picks-rows', (el) => {
+    const picks = rows('picks');
+    const marks = rows('marks');
+    el.replaceChildren();
+    for (const p of picks.slice().reverse()) {
+      const m = marks.find((x) => x.date === p.date) || {};
+      const tr = document.createElement('tr');
+      tr.dataset.key = enc(p.date);
+      const cells = [
+        day(p.date), p.topic,
+        p.peak_12w === null ? '—' : String(p.peak_12w),
+        p.bar === null ? '—' : String(p.bar),
+        p.status,
+      ];
+      cells.forEach((v, i) => {
+        const td = document.createElement('td');
+        td.textContent = v;
+        if (i === 4) td.className = p.status === 'took off' ? 'br-ok' : p.status === "didn't take off" ? 'br-bad' : '';
+        tr.appendChild(td);
+      });
+      const tasteTd = document.createElement('td');
+      const sel = document.createElement('select');
+      sel.className = 'dash-select';
+      sel.id = 'taste-' + p.date;
+      sel.setAttribute('aria-label', 'Taste rating for ' + p.topic);
+      sel.append(new Option('—', ''), ...[1, 2, 3, 4, 5].map((n) => new Option(String(n), String(n))));
+      sel.value = m.taste ? String(m.taste) : '';
+      sel.addEventListener('change', () => saveMark(p.date, { taste: sel.value ? Number(sel.value) : null }));
+      tasteTd.appendChild(sel);
+      const actedTd = document.createElement('td');
+      const lab = document.createElement('label');
+      const box = document.createElement('input');
+      box.type = 'checkbox';
+      box.id = 'acted-' + p.date;
+      box.checked = m.acted === true;
+      box.addEventListener('change', () => saveMark(p.date, { acted: box.checked }));
+      lab.append(box, ' yes');
+      actedTd.appendChild(lab);
+      tr.append(tasteTd, actedTd);
+      el.appendChild(tr);
+    }
+  });
+})();
+</script>

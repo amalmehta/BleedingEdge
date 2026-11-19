@@ -21,3 +21,6 @@ data/cache/
 # Tooling and OS clutter
 .claude/
 .DS_Store
+
+# The website's data files, rebuilt by `python -m bleedingedge.site`
+site/

@@ -374,6 +374,8 @@ DELIVERABLES:
 - A Monday desktop notification (added 2026-11-02, bleedingedge/notify.py): this week's pick, new opportunities and the oldest unmarked pick's question, or an alert if the brief isn't finished. A second task checks again at 11:00.
 - data/Picks.csv as a pick ledger (added 2026-11-18, bleedingedge/ledger.py): each pick's bar (max(20, 4 × its 12-week bulk count when picked)), due date (a year later), peak count so far and status ("took off", "didn't take off", "open"), graded every Monday by script from the same bulk arXiv download. The weekly task never writes the grade.
 - docs/TrialReview.md — after 4 briefs: which study picks you acted on (success = at least 2), what was noise, and the call: keep, change, stop, or build an app.
+- A persistent website, BleedingEdge Radar (decided 2026-11-19, built the same day; bleedingedge/site.py, web/radar.html): one private claude.ai page at a stable link, republished by the Monday task, shareable by link later. Four jobs: trend history (any topic's score and counts over the weeks, from data/Trends.csv), nicer reading of the current and past briefs (phone-friendly, charts inline), tracking picks (taste and acted-on marked on the page, with each pick's ledger grade), and sharing. Its main job is trend history (your answer, 2026-11-19); the other three come second. Agreed 2026-11-19 from three mockups: layout A, a topic explorer (topic list with sparklines on the left, the selected topic's 3-year paper chart on the right, with its first-flag marker and, for picks, the ledger bar), with this week's pick as a card on top. Covers the topics flagged each week plus every pick (about 30), since only those have the 3-year series saved. Done when: it opens on a phone; the Monday task updates it at the same link; every number links to its source; your pick marks save on the page and survive updates; dark mode works; it loads in under 1 second.
+- A daily email (decided 2026-11-19, not built yet): sent by a scheduled Claude task through the Gmail connector to your own address only, and only on days with something new. Contents: new arXiv papers on this week's pick and flagged topics, today's piece of the pick's first step, opportunity deadlines coming up, and the website link. "Today's step" goes out Tuesday to Friday only, as four 30-minute pieces of the pick's 2-hour first step (agreed 2026-11-19); other days send only when there are new papers or deadlines.
 - docs/SYSTEM-DESIGN.md — architecture (Mermaid), sources, indicators and scoring, data files, known limits.
 - docs/PROMPTS.md — prompt log for every session.
 
@@ -434,7 +436,7 @@ Deferred (not in v1):
 - Reading X and newsletters directly: no reliable access. The brief uses web search for context.
 - A studied/ignored list and a link to the researcher-pal knowledge graph.
 - Tuning the weights to your own picks: after the 4-week trial, not before.
-- An HTML or email version of the brief, and any app.
+- An HTML or email version of the brief, and any app. (Website and daily email moved into DELIVERABLES on 2026-11-19, after the trial passed.)
 
 Not doing, ever: buy/sell calls, price targets, or saying what you should hold. Funding is evidence that a topic is heating up, not a trade recommendation. The brief says so wherever money comes up.
 
@@ -548,4 +550,7 @@ CHANGELOG:
 - 2026-11-01 — your call: added opportunities to apply to, a short section in each brief from week 2, with an 8-week kill test (review 2026-12-28); weeks 1 and 2–4 of the trial now differ in format
 - 2026-11-02 — your call: added the Monday notification and missed-brief alert; moved application records to gitignored data/private/ because the repo is public
 - 2026-11-09 — updated the meta-instructions to the current meta doc
+- 2026-11-19 — built the website: a private claude.ai dashboard fed by five data files from bleedingedge/site.py, updated by the Monday task (step 8b); pick marks saved on the page
+- 2026-11-19 — website and email design agreed: layout A plus a pick card, flagged topics and picks only, six done criteria; "today's step" Tue–Fri only
+- 2026-11-19 — trial review: you acted on 4 of 4 picks (bar: 2), so the format passed; taste ratings left blank. Your call: keep the weekly brief and add a persistent private website and a daily email (Gmail connector, only when something's new); neither built yet
 - 2026-11-18 — your call: added the pick ledger (each pick graded against its own "prove it wrong" test every Monday) and a trial-over reminder in the Monday notification until the review is filled in

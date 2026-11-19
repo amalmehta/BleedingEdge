@@ -66,3 +66,13 @@
    → Listed 5 things to add and 10 to improve, ranked, and no cuts. The trial's 4 briefs are out and the review is still blank. Nothing built until you pick.
 3. "Add 1 and 2"
    → The Monday notification now says the trial review is due until it's filled in. Added bleedingedge/ledger.py, which grades every pick against its own test in data/Picks.csv; the weekly task runs it each Monday, including after the trial.
+4. "open this" / "open the GitHub commits page"
+   → Opened the commits page in the browser pane.
+5. "is this an app? whats the deliverable?"
+   → No: a weekly Markdown brief from a scheduled task, plus the notification, data files, backtest and trial review. An app was deferred to the trial's call.
+6. "i want a website" / "a persistent wwesbite" / "and option to send a daily email to me"
+   → Asked why, hosting and the trial first. You marked all 4 picks acted on (trial passed), chose keep plus a persistent private website and a daily email via Gmail, sent only when something's new. Recorded in the spec; nothing built yet.
+7. "Trend history"
+   → Showed three mockups from real data. You chose the topic explorer with a pick card on top, flagged topics and picks only, the six proposed done criteria, and "today's step" Tue–Fri only. Recorded in the spec; nothing built yet.
+8. "Build the site" / "*and email"
+   → Built BleedingEdge Radar on the Data page type: bleedingedge/site.py writes five data files, web/radar.html draws the explorer, pick card and pick table, and your four acted-on marks are seeded. The Monday task now rebuilds and uploads the files. The daily email comes next.

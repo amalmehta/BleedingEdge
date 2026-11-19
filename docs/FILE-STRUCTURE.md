@@ -19,6 +19,7 @@ BleedingEdge/
 │   ├── report.py            Writes docs/BacktestResults.md and the charts
 │   ├── notify.py            The Monday desktop notification, missed-brief alert and review reminder
 │   ├── ledger.py            Grades each study pick against the test its brief wrote down
+│   ├── site.py              Builds the website's data files (site/, not in git)
 │   ├── mining.py            Mines 2023's new arXiv phrases into a candidate list
 │   └── sources/             One module per signal, each returning matching item dates
 │       ├── arxiv.py         arXiv search API: paper dates per phrase
@@ -26,6 +27,9 @@ BleedingEdge/
 │       ├── github.py        GitHub search: new repos whose name or description matches
 │       ├── hackernews.py    Hacker News stories via Algolia (comparison only)
 │       └── funding.py       Reads the hand-collected funding rounds
+│
+├── web/radar.html           The BleedingEdge Radar page (stored in a private claude.ai dashboard)
+├── site/                    Not in git: the page's data files, rebuilt each Monday
 │
 ├── data/
 │   ├── TestTopics.csv       The 3 test topics and their search phrases
