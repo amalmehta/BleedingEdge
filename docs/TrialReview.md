@@ -12,20 +12,22 @@ So this is a test of the format, not the detector: does a small, firm weekly pic
 
 | Brief | Study pick | Taste (1–5) | Acted on (y/n) | Notes |
 |---|---|---|---|---|
-| [2026-10-27](../briefs/2026-10-27.md) | robot foundation (first step: [arXiv 2610.20750](https://arxiv.org/abs/2610.20750)) |  |  | "robot foundation" is close to "VLA", a test topic the miner filters out. The filter missed the synonym. |
-| [2026-11-02](../briefs/2026-11-02.md) | long-horizon embodied (first step: [arXiv 2610.30043](https://arxiv.org/abs/2610.30043)) |  |  |  |
-| [2026-11-09](../briefs/2026-11-09.md) | embodied manipulation (first step: [arXiv 2611.01112](https://arxiv.org/abs/2611.01112)) |  |  |  |
-| [2026-11-16](../briefs/2026-11-16.md) | physical intelligence (first step: [arXiv 2611.12286](https://arxiv.org/abs/2611.12286)) |  |  |  |
+| [2026-10-27](../briefs/2026-10-27.md) | robot foundation (first step: [arXiv 2610.20750](https://arxiv.org/abs/2610.20750)) |  | y | "robot foundation" is close to "VLA", a test topic the miner filters out. The filter missed the synonym. |
+| [2026-11-02](../briefs/2026-11-02.md) | long-horizon embodied (first step: [arXiv 2610.30043](https://arxiv.org/abs/2610.30043)) |  | y |  |
+| [2026-11-09](../briefs/2026-11-09.md) | embodied manipulation (first step: [arXiv 2611.01112](https://arxiv.org/abs/2611.01112)) |  | y |  |
+| [2026-11-16](../briefs/2026-11-16.md) | physical intelligence (first step: [arXiv 2611.12286](https://arxiv.org/abs/2611.12286)) |  | y |  |
 
 **Format change (2026-11-01):** from week 2, briefs also list up to 3 opportunities to apply to. Week 1 didn't, so weeks 1 and 2–4 aren't the same format. Keep that in mind when judging the picks.
 
 ## After the 4th brief
 
-- Picks acted on: _ of 4. Success means 2 or more.
+- Picks acted on: 4 of 4 (recorded 2026-11-19). Success means 2 or more: **passed**.
 - Did the picks you rated 4–5 match the ones you acted on? If yes, future picks are ranked by score and your rating together. If no, the rating is dropped.
 - What was noise: flags that were fragments or obviously old topics.
 - Each pick's own test ("never passes N by a year later") is graded every Monday in `data/Picks.csv` (status column). Most stay "open" for a year, so this checks the detector later, not the format now.
 - The call: keep, change, stop, or build an app. If fewer than 2 picks were acted on, the default is **stop**.
+  - **Your call (2026-11-19): keep**, and add a persistent private website and a daily email. 4 of 4 shows the format gets you to act; it says nothing about whether the picks were early. The pick ledger in `data/Picks.csv` grades that over the next year.
+- Taste: left blank. With every pick acted on, the taste-vs-acted check has nothing to tell apart, so under the rule above the rating is dropped.
 
 ## Opportunities: review on 28 Dec 2026
 
