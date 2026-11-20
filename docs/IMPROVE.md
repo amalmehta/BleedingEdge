@@ -78,3 +78,4 @@ Add ideas here; the improver takes the top one when no explainer is due.
 
 - 2026-11-19: improver set up (harness, explainers, this file). No runs yet.
 - 2026-11-19: improve/2026-11-19. Explainers for this week's pick (physical intelligence) and the two top early topics (embodied manipulation, long-horizon embodied). Reviewers: titles like "embodied" and "long-horizon" still lose non-technical readers, so a plainer display name per topic is worth trying.
+- 2026-11-20: improve/2026-11-20. Explainers for the next two early topics (policies learn, humanoid manipulation); the rest of this week's early topics have no papers in the brief to write from. Reviewers: the topic name "policies learn" reads as broken English to a non-technical reader, which makes the plainer display name per topic more pressing.

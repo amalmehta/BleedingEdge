@@ -55,5 +55,43 @@
       }
     ],
     "written": "2026-11-19"
+  },
+  "policies learn": {
+    "what": "In robotics, a policy is the program that decides what a robot does next, based on what it senses. These papers look at how such programs learn. Some learn by copying people who show the robot a task. Others learn by trial and error in a simulator, a virtual world on a computer, where good moves earn points. One paper teaches a robot when it can move in quick, rough steps and when it needs slow, careful ones.",
+    "why": "Knowing what a robot has really learned helps people predict what it will do. One simulator study found that robots copying people learn to trust a noisy sensor only partly. They also lean on where their own arm is. But once the robots acted on their own, they followed the faulty sensor more than in training. In another study, robots carried a load together without sending each other messages. Each one went only by what it sensed of itself and the load.",
+    "sources": [
+      {
+        "url": "https://arxiv.org/abs/2611.17658",
+        "title": "Imitation Policies Learn a Proprioceptive Anchor: A Predictive Law for Perception Noise and Its Closed Loop Cost"
+      },
+      {
+        "url": "https://arxiv.org/abs/2610.33584",
+        "title": "HA-DiPO: Diffusion Policy Optimization for Heterogeneous Cooperative Transport"
+      },
+      {
+        "url": "https://arxiv.org/abs/2610.25961",
+        "title": "PaceVLA: Adaptive Temporal Action Quantization in Vision-Language-Action Models"
+      }
+    ],
+    "written": "2026-11-20"
+  },
+  "humanoid manipulation": {
+    "what": "A humanoid is a robot shaped roughly like a person, with arms, legs and often hands. Humanoid manipulation means such a robot handling objects. Researchers teach these robots from videos of people, including moves that use more than the hands, like bracing an object against a leg. Others split the robot's thinking in two: a slow part that understands the scene and the instructions, and a fast part that keeps steering the hands with fresh camera views.",
+    "why": "A robot keeps moving while its program thinks, so a slow program means acting on an old view of the world. Splitting the work lets a large, slow model help without holding the hands back. Large robot models also often fail when small things change, such as the camera angle, the background or the object. One team lets the robot look up demonstrations recorded in other settings, adjusted to fit its own setup, and use them as a guide.",
+    "sources": [
+      {
+        "url": "https://arxiv.org/abs/2611.11854",
+        "title": "Decoupled Asynchronous System for Humanoids (DASH): Latency-Agnostic Scaling of Vision-Language-Action Models for Humanoid Manipulation"
+      },
+      {
+        "url": "https://arxiv.org/abs/2611.10894",
+        "title": "Zero-Shot VLA Adaptation with Retrieved Guidance"
+      },
+      {
+        "url": "https://arxiv.org/abs/2611.02968",
+        "title": "ReContact: Reconstruct and Retarget Human Contacts from Video for Contact-Rich Humanoid Manipulation"
+      }
+    ],
+    "written": "2026-11-20"
   }
 }
