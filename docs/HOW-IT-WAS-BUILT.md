@@ -6,7 +6,7 @@ BleedingEdge is a weekly robotics brief that names one topic to study next. Arou
 ## Build history
 
 ```mermaid
-flowchart LR
+flowchart TD
   idea["Idea: see where things are going, study topics before the crowd"]
   d1["Decided: change one decision, what to study next; speed of growth, not size"]
   d2["Decided: weekly brief first, numbers first, LLM optional; 4-week trial plus backtest"]
