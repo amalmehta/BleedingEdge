@@ -86,3 +86,8 @@
    → Fragments left off the site; older and not-new topics fold under "Show more"; one line explains ★ and the score; plainer picks-table headings. Uploaded; recheck runs when the page is next opened.
 13. "there should be an agent specifically workign to improive this daily. set up a loop and a harness" / "we want even the everyday person to get hooked, not just folks in the field (but dont reduce qulaity at all)"
    → Asked who, what it may change, how to judge and who writes explainers. Built bleedingedge/harness.py (8 checks), docs/IMPROVE.md (rules, backlog, log), explainers on the site, and a 9:00 daily improver task that opens one PR a day and ships what you merge. Friends' visits can't be counted on this page type.
+
+## 2026-11-24: feedback in the daily email
+
+1. "in the email, make sure to allow user to add feedback in order to improve future suggestions"
+   → Asked how, what it may change, where it's kept and a kill test. You chose More/Less links plus replies, effects on the email's topics, the Monday pick and scoring, private storage, and a 4-week kill test. Scoring was agreed as a separate taste boost so the detector's scores and the ledger stay a fair test. Built bleedingedge/feedback.py, vote links and a footer line in the email, and muting and re-ranking in the Monday shortlist, with tests. The 7:30 task's new step is written in docs/INSTRUCTIONS.md, to apply after merge.

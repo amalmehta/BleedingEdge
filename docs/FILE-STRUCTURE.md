@@ -21,6 +21,7 @@ BleedingEdge/
 │   ├── ledger.py            Grades each study pick against the test its brief wrote down
 │   ├── site.py              Builds the website's data files (site/, not in git)
 │   ├── daily.py             Composes the daily email (sent by a scheduled task through Gmail)
+│   ├── feedback.py          Records your More/Less votes and replies from the email; mutes and ranks topics
 │   ├── harness.py           Hard checks every improver change must pass
 │   ├── mining.py            Mines 2023's new arXiv phrases into a candidate list
 │   └── sources/             One module per signal, each returning matching item dates
@@ -76,4 +77,5 @@ hand-made inputs, each row citing its source.
 | `data/cache/` | About 1 GB, and APIs change, so it can't be rebuilt exactly | Run the backtest to refetch; back it up separately |
 | `.venv/` | Rebuilt from the lock file | `uv sync` |
 | `data/private/Applications.csv` | What you applied to; the repo is public | It can't be rebuilt; back it up yourself |
+| `data/private/Feedback.csv` | Your votes and replies from the daily email | It can't be rebuilt; back it up yourself, or delete it to reset your feedback |
 | `*.log` | Run logs | Written by long runs |

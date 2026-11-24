@@ -1,6 +1,6 @@
 """The daily email: what's new since the last one, or nothing at all.
 
-    uv run python -m bleedingedge.daily compose --site URL     # writes site/email.json, prints a summary
+    uv run python -m bleedingedge.daily compose --site URL --to ADDRESS   # writes site/email.json, prints a summary
     uv run python -m bleedingedge.daily sent                   # after the email went out: remember its papers
     uv run python -m bleedingedge.daily compose --date 2026-11-24 --no-fetch   # sample run, no network
 
@@ -11,7 +11,9 @@ runs `sent`. Three things can make an email, and nothing else does:
   - Today's step: on Tuesday to Friday, one 30-minute piece of the pick's 2-hour first step, from
     data/steps/<pick date>.json, which the Monday task writes.
   - An opportunity deadline exactly 14, 7, 3 or 1 days away (data/Opportunities.csv).
-The website link rides along but never makes an email by itself. Papers count as emailed only once
+The website link rides along but never makes an email by itself. With --to, each topic gets
+"More like this" / "Less like this" links that open a ready-to-send email to you; the task records
+those and your replies with bleedingedge.feedback before composing, so muted topics aren't watched. Papers count as emailed only once
 `sent` runs, so a failed send shows them again tomorrow.
 """
 import argparse
@@ -23,6 +25,7 @@ from datetime import date, timedelta
 from urllib.parse import quote
 
 from . import brief as br
+from . import feedback as fb
 from .http import CACHE, get_text
 from .notify import OPPORTUNITIES
 from .site import record
@@ -54,17 +57,19 @@ def fragments() -> set[str]:
 
 
 def watched(day: date) -> list[str]:
-    """This week's pick first, then the highest-scoring early topics of the latest brief,
-    leaving out phrases listed in data/Fragments.csv."""
+    """This week's pick first, then topics you asked for more of, then the highest-scoring early
+    topics of the latest brief. Leaves out phrases in data/Fragments.csv and topics you muted."""
     pick = latest_pick(day)
-    skip = fragments()
-    out = [pick["topic"]] if pick else []
+    skip = fragments() | fb.muted()
+    cands = ([pick["topic"]] if pick else []) + fb.wanted()
     briefs = sorted(p for p in br.DATA.glob("20*.json") if p.stem <= day.isoformat())
     if briefs:
         early = json.loads(briefs[-1].read_text()).get("early", [])
-        for r in sorted(early, key=lambda r: -(r.get("score") or 0)):
-            if r["topic"] not in out and r["topic"] not in skip and len(out) < TOPICS:
-                out.append(r["topic"])
+        cands += [r["topic"] for r in sorted(early, key=lambda r: -(r.get("score") or 0))]
+    out = []
+    for t in cands:
+        if t not in out and t not in skip and len(out) < TOPICS:
+            out.append(t)
     return out
 
 
@@ -140,7 +145,24 @@ def _short(d: str) -> str:
     return f"{date.fromisoformat(d):%-d %b}"
 
 
-def render(day, pick, papers, step, due, site, caveat, parts) -> tuple[str, str]:
+FEEDBACK_LINE = ("Want more or less of a topic? Use the links under it, or reply in your own words. "
+                 "Your votes change which topics tomorrow's email watches and which topic Monday's brief picks, "
+                 "not the detector's scores. They're kept on your Mac only.")
+FEEDBACK_TEXT = ("Want more or less of a topic? Reply in your own words. Your votes change which topics "
+                 "tomorrow's email watches and which topic Monday's brief picks, not the detector's scores. "
+                 "They're kept on your Mac only.")
+
+
+def votes(to: str, phrase: str) -> str:
+    """'More like this · Less like this' under a topic: each opens a ready-to-send email to you."""
+    if not to:
+        return ""
+    e = html.escape
+    a = lambda v, label: f'<a href="{e(fb.mailto(to, v, phrase))}" style="color:{MUTED}">{label}</a>'
+    return f'<p style="margin:0 0 12px;font-size:13px;color:{MUTED}">{a("more", "More like this")} · {a("less", "Less like this")}</p>'
+
+
+def render(day, pick, papers, step, due, site, caveat, parts, to="") -> tuple[str, str]:
     e = html.escape
     T = [f"BleedingEdge, {day:%A %-d %B}", " · ".join(parts), ""]
     Hh = [f'<div style="{BOX}">',
@@ -179,20 +201,22 @@ def render(day, pick, papers, step, due, site, caveat, parts) -> tuple[str, str]
             if more > 0:
                 T += [f"  and {more} more"]
                 Hh += [f'<p style="margin:0 0 10px;color:{MUTED};font-size:13px">and {more} more</p>']
+            Hh += [votes(to, phrase)]
         T += [""]
     T += ["", "Papers: submitted in the last 7 days, title or abstract matches, never emailed before."]
     if site:
         T += [f"Trend history and your picks: {site}"]
-    T += [caveat]
+    T += [caveat, "", FEEDBACK_TEXT]
     Hh += [f'<div style="margin-top:32px;padding-top:12px;border-top:1px solid {LINE};font-size:13px;color:{MUTED}">',
            "<p style=\"margin:0 0 6px\">Papers: submitted in the last 7 days, title or abstract matches, never emailed before.</p>"]
     if site:
         Hh += [f'<p style="margin:0 0 6px"><a href="{e(site)}" style="color:{ACCENT}">Trend history and your picks</a></p>']
-    Hh += [f'<p style="margin:0">{e(caveat)}</p></div></div>']
+    Hh += [f'<p style="margin:0 0 6px">{e(caveat)}</p>',
+           f'<p style="margin:0">{e(FEEDBACK_LINE if to else FEEDBACK_TEXT)}</p></div></div>']
     return "\n".join(T), "\n".join(Hh)
 
 
-def compose(day: date, site: str = "", fetch=get_text) -> dict:
+def compose(day: date, site: str = "", fetch=get_text, to: str = "") -> dict:
     pick = latest_pick(day)
     papers = new_papers(day, fetch)
     step = todays_step(day)
@@ -206,7 +230,7 @@ def compose(day: date, site: str = "", fetch=get_text) -> dict:
     rec = record()[0]
     caveat = (f"Flags score about chance in the backtest ({rec['took_off']} of {rec['flagged']} took off), "
               "so read them as long shots.")
-    text, html_out = render(day, pick, papers, step, due, site, caveat, parts)
+    text, html_out = render(day, pick, papers, step, due, site, caveat, parts, to)
     email = {"date": day.isoformat(), "send": send, "subject": subject, "text": text,
              "html": html_out, "paper_ids": [p["id"] for ps in papers.values() for p in ps]}
     OUT.parent.mkdir(parents=True, exist_ok=True)
@@ -227,11 +251,12 @@ if __name__ == "__main__":
     ap.add_argument("action", choices=["compose", "sent"])
     ap.add_argument("--date", type=date.fromisoformat, default=date.today())
     ap.add_argument("--site", default="", help="the website link to include")
+    ap.add_argument("--to", default="", help="your address, for the More/Less links (kept out of the repo)")
     ap.add_argument("--no-fetch", action="store_true", help="no network: every arXiv search comes back empty")
     a = ap.parse_args()
     if a.action == "sent":
         print(f"Remembered {mark_sent()} papers as emailed.")
     else:
         empty = '<feed xmlns="http://www.w3.org/2005/Atom"></feed>'
-        e = compose(a.date, a.site, (lambda url: empty) if a.no_fetch else get_text)
+        e = compose(a.date, a.site, (lambda url: empty) if a.no_fetch else get_text, a.to)
         print(f"send: {str(e['send']).lower()}" + (f" | subject: {e['subject']}" if e["send"] else " | nothing new today"))

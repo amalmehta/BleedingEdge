@@ -18,7 +18,7 @@ This file is the instruction set for the weekly scheduled task. It's under versi
    - It takes about 10–30 minutes, mostly GitHub searches.
    - If it fails, write nothing by hand. Report the error and do step 10.
 3. **Write the study pick.** Replace the text between `<!-- pick:start -->` and `<!-- pick:end -->`, and keep the markers.
-   - **Choose:** the highest-scoring shortlist topic that has a concrete way in, meaning a paper you can read end to end, or a repo with code you can run.
+   - **Choose:** the first shortlist topic, in the order given, that has a concrete way in. The order is the detector score plus your taste boost from email feedback (`bleedingedge/feedback.py`), and muted topics are already left out, so don't re-sort by score. A way in means a paper you can read end to end, or a repo with code you can run.
      - The shortlist and its recent papers are in `data/briefs/YYYY-MM-DD.json`. Read the abstracts of the listed papers (arxiv.org/abs links) before choosing.
      - If the phrase turns out to be a fragment rather than a topic (for example "platform for autonomous"), skip it and say so in one line.
      - If no shortlist topic has a way in, write "No pick this week" and say why. Never force a pick.

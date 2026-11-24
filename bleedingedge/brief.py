@@ -206,7 +206,7 @@ def _row(r: dict, start: date, day: date) -> str:
 
 
 def render(day: date, week: int, recs: list[dict], ex: dict, start: date, shortlist: list[dict],
-           skipped: list[str], img: str | None) -> str:
+           skipped: list[str], img: str | None, n_muted: int = 0, n_boosted: int = 0) -> str:
     early = [r for r in recs if r.get("early")][:SHOW]
     consensus = [r for r in recs if r.get("heating") and sum(r["arxiv"][-3:]) >= bt.LOCAL_SMALL_MAX][:SHOW]
     head = "| Topic | Score | Why flagged | Papers, 12 wk | New repos, 12 wk | First flagged (window ending) |\n|---|---|---|---|---|---|"
@@ -221,6 +221,9 @@ def render(day: date, week: int, recs: list[dict], ex: dict, start: date, shortl
                  + "; ".join(f"[{p['title']}]({p['url']}) ({p['created']})" for p in ex[r["topic"]]))
     if skipped:
         L.append(f"- Left out as repeats of recent picks: {', '.join(skipped)}")
+    if n_muted or n_boosted:
+        L.append(f"- Your email feedback: {n_muted} topic{'s' if n_muted != 1 else ''} left out as muted, "
+                 f"{n_boosted} ranked up by your taste boost. Scores shown are the detector's, unchanged.")
     if not shortlist:
         L.append("- No early robotics topic this week. Say so; don't force a pick.")
     L += [PICK_END, "", "## Opportunities to apply to", "", OPPS_START, OPPS_DRAFT, OPPS_END,
@@ -263,6 +266,18 @@ def keep_pick(old: str, new: str) -> str:
     return new
 
 
+def taste_order(cands: list[dict], day: date) -> tuple[list[dict], int, int]:
+    """The shortlist: muted topics out, then ranked by detector score + your taste boost
+    (bleedingedge/feedback.py), using only votes dated on or before `day`. The scores themselves never
+    change. Topic names of your votes stay out of the public brief: only counts are returned."""
+    from . import feedback as fb
+    mute = fb.muted(day)
+    kept = [r for r in cands if r["topic"] not in mute]
+    kept.sort(key=lambda r: -((r.get("score") or -99) + fb.boost(r["topic"], day)))
+    top = kept[:SHORTLIST]
+    return top, len(cands) - len(kept), sum(1 for r in top if fb.boost(r["topic"], day) > 0)
+
+
 def main(day: date, update: bool = True, log=print) -> Path:
     if update:
         arxiv_bulk.update(log)
@@ -271,7 +286,7 @@ def main(day: date, update: bool = True, log=print) -> Path:
     recs.sort(key=lambda r: -(r.get("score") or -99))
     picks = recent_picks(day)
     early = [r for r in recs if r.get("early")]
-    shortlist = [r for r in early if r["topic"] not in picks][:SHORTLIST]
+    shortlist, n_muted, n_boosted = taste_order([r for r in early if r["topic"] not in picks], day)
     skipped = [r["topic"] for r in early[:SHORTLIST + len(picks)] if r["topic"] in picks]
     show = {r["topic"] for r in early[:SHOW]} | {r["topic"] for r in shortlist}
     ex = examples(papers, sorted(show), day)
@@ -284,12 +299,13 @@ def main(day: date, update: bool = True, log=print) -> Path:
         img = f"img/{day}.png"
     week = 1 + sum(1 for p in BRIEFS.glob("20*.md") if TRIAL_START.isoformat() <= p.stem < day.isoformat())
     out = BRIEFS / f"{day}.md"
-    text = render(day, week, recs, ex, start, shortlist, skipped, img)
+    text = render(day, week, recs, ex, start, shortlist, skipped, img, n_muted, n_boosted)
     out.write_text(keep_pick(out.read_text(), text) if out.exists() else text)
     append_trends(day, recs)
     (DATA / f"{day}.json").write_text(json.dumps({
         "date": day.isoformat(), "week": week, "grid_start": start.isoformat(), "candidates": len(recs),
         "screened": sum(1 for r in recs if "github" in r), "recent_picks": picks,
+        "feedback": {"muted": n_muted, "boosted": n_boosted},
         "shortlist": [r | {"papers": ex[r["topic"]]} for r in shortlist],
         "early": [r | {"papers": ex.get(r["topic"], [])} for r in early],
         "heating": [r for r in recs if r.get("heating")]}, indent=1))
