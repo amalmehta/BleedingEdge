@@ -41,7 +41,7 @@ BleedingEdge/
 │   ├── Candidates2022-24.csv  The first candidate list, kept for comparison
 │   ├── Funding.csv          Announced funding rounds, each with a source URL
 │   ├── Opportunities.csv    Opportunities the brief listed
-│   ├── Fragments.csv        Mined phrases that aren't topics, skipped by the email and site
+│   ├── Fragments.csv        Mined phrases that aren't topics, skipped by the email, site and Monday shortlist
 │   ├── Explainers.json      Plain-language, cited explainers per topic (written by the improver)
 │   ├── steps/               Each pick's first step in four Tue–Fri pieces, for the daily email
 │   ├── Picks.csv            The study picks, each with its bar, due date and grade (ledger.py fills these)
