@@ -3,7 +3,7 @@ from datetime import date
 
 import pytest
 
-from bleedingedge import brief, daily
+from bleedingedge import brief, daily, feedback
 
 TUE, SAT = date(2026, 11, 24), date(2026, 11, 29)  # SAT: a quiet Sunday, 2 days before "Soon"
 
@@ -27,6 +27,7 @@ def paths(tmp_path, monkeypatch):
     monkeypatch.setattr(daily, "SEEN", tmp_path / "seen.json")
     monkeypatch.setattr(daily, "STEPS", tmp_path / "steps")
     monkeypatch.setattr(daily, "FRAGMENTS", tmp_path / "Fragments.csv")
+    monkeypatch.setattr(feedback, "FEEDBACK", tmp_path / "private" / "Feedback.csv")
     (tmp_path / "briefs").mkdir()
     (tmp_path / "steps").mkdir()
     (tmp_path / "Picks.csv").write_text("date,topic,first_step\n2026-11-23,flow policies,https://arxiv.org/abs/1\n")
@@ -107,3 +108,24 @@ def test_no_pick_still_watches_early_topics(paths):
 def test_fragments_are_never_watched(paths):
     (paths / "Fragments.csv").write_text("phrase,added,reason\nb,2026-11-19,fragment\n")
     assert daily.watched(TUE) == ["flow policies", "c", "d", "e"]
+
+
+def test_muted_topics_are_not_watched_and_wanted_ones_come_first(paths):
+    feedback.add("2026-11-23", "m1", "less", "b")
+    feedback.add("2026-11-23", "m2", "more", "old favourite")
+    assert daily.watched(TUE) == ["flow policies", "old favourite", "c", "d"]
+
+
+def test_muting_the_pick_stops_its_papers(paths):
+    feedback.add("2026-11-23", "m1", "less", "flow policies")
+    assert "flow policies" not in daily.watched(TUE)
+
+
+def test_vote_links_under_each_topic_only_with_an_address(paths):
+    f = fetch_map({"flow policies": feed(("2611.00001", "A"))})
+    e = daily.compose(TUE, "https://site", f, to="me@example.com")
+    assert "BleedingEdge%20feedback%3A%20less%20%C2%B7%20flow%20policies" in e["html"]
+    assert "mailto:me@example.com" in e["html"] and "Use the links under it" in e["html"]
+    assert "mailto:" not in e["text"] and "Reply in your own words" in e["text"]
+    bare = daily.compose(TUE, "https://site", f)
+    assert "mailto:" not in bare["html"] and "Reply in your own words" in bare["html"]

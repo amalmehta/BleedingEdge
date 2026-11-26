@@ -87,9 +87,18 @@
 13. "there should be an agent specifically workign to improive this daily. set up a loop and a harness" / "we want even the everyday person to get hooked, not just folks in the field (but dont reduce qulaity at all)"
    → Asked who, what it may change, how to judge and who writes explainers. Built bleedingedge/harness.py (8 checks), docs/IMPROVE.md (rules, backlog, log), explainers on the site, and a 9:00 daily improver task that opens one PR a day and ships what you merge. Friends' visits can't be counted on this page type.
 
+## 2026-11-24: feedback in the daily email
+
+1. "in the email, make sure to allow user to add feedback in order to improve future suggestions"
+   → Asked how, what it may change, where it's kept and a kill test. You chose More/Less links plus replies, effects on the email's topics, the Monday pick and scoring, private storage, and a 4-week kill test. Scoring was agreed as a separate taste boost so the detector's scores and the ledger stay a fair test. Built bleedingedge/feedback.py, vote links and a footer line in the email, and muting and re-ranking in the Monday shortlist, with tests. The 7:30 task's new step is written in docs/INSTRUCTIONS.md, to apply after merge.
+
 ## 2026-11-26: post-trial fixes
 
 1. "0, 10, 20"
    → Listed 10 things to add and 20 to improve, ranked, no cuts. Top finding: the weekly brief stopped picking after the trial although the review kept it (no pick since 16 Nov, so the email's "today's step" never ran). PR #4 conflicted with main.
 2. "Improve 1–5"
    → Merged main into PR #4 (no history rewritten) and kept fragments off the Monday shortlist there. On a new branch: the brief runs every Monday after the trial (`brief.KEPT`), the harness fails explainers for listed fragments (open PR #3 now fails it), and the brief says "Week 5" rather than "Week 5 of 4".
+3. "merged both"
+   → GitHub still showed #4 and #6 open, so nothing changed; offered to merge them.
+4. "Merge them for me"
+   → Merged #6, merged main into #4 (both logs kept, each side's system-design lines combined), then merged #4. Pulled main into the main checkout, updated the 7:30 task to read feedback first and compose with the vote links, and dry-ran the compose.

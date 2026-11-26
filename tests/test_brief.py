@@ -56,6 +56,23 @@ def test_brief_flags_a_new_bursting_phrase_and_skips_recent_picks(tmp_path, monk
     assert len(list(csv.DictReader((tmp_path / "Trends.csv").open()))) == len(rows)  # re-run replaced its day
 
 
+def test_listed_fragments_never_reach_the_shortlist(tmp_path, monkeypatch):
+    from bleedingedge import daily
+    for name in ("BRIEFS", "DATA"):
+        monkeypatch.setattr(brief, name, tmp_path / name.lower())
+    monkeypatch.setattr(brief, "TRENDS", tmp_path / "Trends.csv")
+    monkeypatch.setattr(brief, "PICKS", tmp_path / "Picks.csv")
+    monkeypatch.setattr(brief.arxiv_bulk, "papers", _corpus)
+    gh = [DAY - timedelta(days=28 * k + 3) for k in (1, 2, 3)] + [DAY - timedelta(days=j + 1) for j in range(12)]
+    monkeypatch.setattr(brief.github, "dates", lambda phrases, start, end: gh)
+    daily.FRAGMENTS.write_text("phrase,added,reason\nmagnetic skin gripper,2026-10-20,test\n")
+    text = brief.main(DAY, update=False, log=lambda *_: None).read_text()
+    pick = text.split("<!-- pick:start -->")[1].split("<!-- pick:end -->")[0]
+    assert "Left out as fragments, not topics (data/Fragments.csv): magnetic skin gripper" in pick
+    assert "No early robotics topic this week" in pick
+    assert "**magnetic skin gripper**" in text.split("## Early")[1]  # still shown in the table
+
+
 def test_rerun_keeps_a_written_pick_and_refreshes_the_rest(tmp_path, monkeypatch):
     for name in ("BRIEFS", "DATA"):
         monkeypatch.setattr(brief, name, tmp_path / name.lower())
