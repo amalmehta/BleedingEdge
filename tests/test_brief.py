@@ -105,3 +105,10 @@ def test_keep_pick_handles_a_brief_from_before_opportunities():
     old = f"a\n{brief.PICK_START}\nwritten pick\n{brief.PICK_END}\nb\n"
     kept = brief.keep_pick(old, brief.render(DAY, 2, [], {}, DAY, [], [], None))
     assert "written pick" in kept and brief.OPPS_DRAFT in kept
+
+
+def test_week_header_after_the_trial():
+    start = date(2026, 11, 2)
+    assert "Week 4 of 4 of the trial." in brief.render(DAY, 4, [], {}, start, [], [], None)
+    five = brief.render(DAY, 5, [], {}, start, [], [], None)
+    assert "Week 5. The 4-week trial is over and you chose to keep the brief" in five and "of 4 of the trial" not in five

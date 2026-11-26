@@ -86,3 +86,10 @@
    → Fragments left off the site; older and not-new topics fold under "Show more"; one line explains ★ and the score; plainer picks-table headings. Uploaded; recheck runs when the page is next opened.
 13. "there should be an agent specifically workign to improive this daily. set up a loop and a harness" / "we want even the everyday person to get hooked, not just folks in the field (but dont reduce qulaity at all)"
    → Asked who, what it may change, how to judge and who writes explainers. Built bleedingedge/harness.py (8 checks), docs/IMPROVE.md (rules, backlog, log), explainers on the site, and a 9:00 daily improver task that opens one PR a day and ships what you merge. Friends' visits can't be counted on this page type.
+
+## 2026-11-26: post-trial fixes
+
+1. "0, 10, 20"
+   → Listed 10 things to add and 20 to improve, ranked, no cuts. Top finding: the weekly brief stopped picking after the trial although the review kept it (no pick since 16 Nov, so the email's "today's step" never ran). PR #4 conflicted with main.
+2. "Improve 1–5"
+   → Merged main into PR #4 (no history rewritten) and kept fragments off the Monday shortlist there. On a new branch: the brief runs every Monday after the trial (`brief.KEPT`), the harness fails explainers for listed fragments (open PR #3 now fails it), and the brief says "Week 5" rather than "Week 5 of 4".

@@ -73,3 +73,12 @@ def test_hard_reading_fails(ex):
 def test_the_real_project_passes_offline():
     res = harness.run(offline=True, only=["page_scripts", "site_data", "caveat", "no_hype", "reading_level", "private"])
     assert all(r["passed"] for r in res.values()), res
+
+
+def test_an_explainer_for_a_listed_fragment_fails(ex, tmp_path, monkeypatch):
+    from bleedingedge import daily
+    monkeypatch.setattr(daily, "FRAGMENTS", tmp_path / "Fragments.csv")
+    daily.FRAGMENTS.write_text("phrase,added,reason\npolicies learn,2026-11-19,a fragment\n")
+    ex(**{"policies learn": entry(), "whole body control": entry()})
+    ok, detail = harness.check_explainers(offline=True)
+    assert not ok and "policies learn: listed in data/Fragments.csv" in detail and "whole body" not in detail

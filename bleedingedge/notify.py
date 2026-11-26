@@ -1,6 +1,7 @@
 """The Monday desktop notification: this week's pick and last week's question, or an alert that
 the weekly brief didn't finish. Once the trial's 4 briefs are out, it also says the trial review is
-due, every Monday until its result line is filled in.
+due, every Monday until its result line is filled in. The review kept the brief (brief.KEPT), so a
+brief is expected every Monday; with KEPT off, only the opportunities file until 28 Dec.
 
     uv run python -m bleedingedge.notify                    # end of the weekly task, even after a failure
     uv run python -m bleedingedge.notify --only-if-missing  # the later check: silent if the brief finished
@@ -28,7 +29,7 @@ REVIEW_OPEN = "Picks acted on: _ of 4"      # the review's result line, until th
 def expected(day: date):
     """The file the weekly task should have finished by now, or None if nothing is due."""
     done = sum(1 for p in br.BRIEFS.glob("20*.md") if br.TRIAL_START.isoformat() <= p.stem < day.isoformat())
-    if done < TRIAL_BRIEFS:
+    if done < TRIAL_BRIEFS or br.KEPT:             # kept after the trial: a brief every Monday
         return br.BRIEFS / f"{day}.md"
     return OPPS_ONLY / f"{day}.md" if day < OPPS_END else None
 
