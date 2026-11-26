@@ -34,6 +34,8 @@ LEAD_FROM = ROOT / "data" / "backtest" / "Run2024RO" / "Summary.json"  # lead we
 ALL_CATEGORIES = ROOT / "data" / "backtest" / "Run2024" / "Holdout" / "Summary.json"
 
 TRIAL_START = date(2026, 10, 27)
+TRIAL_WEEKS = 4
+KEPT = True         # trial review, 2026-11-19: keep the weekly brief after the trial. False = stop picks
 N = 40              # windows of history: enough for the trend (1 year) and newness (2 years) checks
 SHOW = 5            # items per section ("readable in 15 minutes")
 SHORTLIST = 3       # candidates offered to the weekly task for the study pick
@@ -212,7 +214,9 @@ def render(day: date, week: int, recs: list[dict], ex: dict, start: date, shortl
     consensus = [r for r in recs if r.get("heating") and sum(r["arxiv"][-3:]) >= bt.LOCAL_SMALL_MAX][:SHOW]
     head = "| Topic | Score | Why flagged | Papers, 12 wk | New repos, 12 wk | First flagged (window ending) |\n|---|---|---|---|---|---|"
     L = [f"# Robotics brief, {day:%-d %b %Y}", "",
-         f"Week {week} of 4 of the trial. Robotics only (phrases from cs.RO titles).", "",
+         (f"Week {week} of {TRIAL_WEEKS} of the trial." if week <= TRIAL_WEEKS else
+          f"Week {week}. The {TRIAL_WEEKS}-week trial is over and you chose to keep the brief (docs/TrialReview.md).")
+         + " Robotics only (phrases from cs.RO titles).", "",
          f"> **Track record, read first.** {record()}", "",
          "## Study this next", "", PICK_START,
          "_Not written yet. The weekly task writes this section from the shortlist below "
@@ -239,10 +243,10 @@ def render(day: date, week: int, recs: list[dict], ex: dict, start: date, shortl
     L += ["", "## Consensus is moving", "",
           f"Heating up with {bt.LOCAL_SMALL_MAX} or more papers in 12 weeks: no longer early.", ""]
     L += [head] + [_row(r, start, day) for r in consensus] if consensus else ["None this week."]
-    L += ["", "## Not covered in this trial", "",
+    L += ["", "## Not covered in this brief", "",
           "Tools rising and fading, companies heating up, AI tooling and the wider field. "
           + all_categories() +
-          "so this trial leaves them out rather than print flags known to be noise.", "",
+          "so the brief leaves them out rather than print flags known to be noise.", "",
           "## How this was made", "",
           f"- Candidates: {len(recs)} two- and three-word phrases in cs.RO titles in {day.year - 1} that were rare in the two years before "
           "(`bleedingedge/mining.py`). Mined by rule, not picked.",

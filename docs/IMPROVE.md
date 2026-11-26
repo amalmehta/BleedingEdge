@@ -30,6 +30,7 @@ A scheduled task, **BleedingEdge improver**, runs every morning. It makes one im
   "written": "YYYY-MM-DD"}}
 ```
 
+- Only for real topics: never a phrase in `data/Fragments.csv` (the harness fails it).
 - Written from the papers themselves: read the abstracts of the topic's recent papers (in `data/briefs/<latest>.json`) before writing.
 - No numbers in the prose: numbers live in the data, which the page shows beside it.
 - Every factual claim traceable to a listed source. If a claim isn't in a source, cut it.

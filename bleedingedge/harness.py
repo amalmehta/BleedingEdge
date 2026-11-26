@@ -10,8 +10,9 @@ The checks, and why each exists:
   site_data      the site's data builds, every topic charts (no empty panels)
   caveat         the backtest record shows on page and email (never hide that flags are long shots)
   no_hype        reader-facing text avoids overselling words (hook people without overclaiming)
-  explainers     each explainer is short, plain, cited, with no made-up numbers, and its arXiv
-                 sources exist                               (nothing made up passes as fact)
+  explainers     each explainer is short, plain, cited, with no made-up numbers, its arXiv
+                 sources exist, and it isn't about a phrase in data/Fragments.csv
+                                                             (nothing made up passes as fact)
   reading_level  explainers and page help text read at grade 10 or below (friends, family, students)
   private        no dashboard link or email address in tracked files (the repo is public)
 """
@@ -154,8 +155,12 @@ def check_explainers(offline: bool) -> tuple[bool, str]:
     ex = explainers()
     if not ex:
         return True, "none written yet"
+    from .daily import fragments
+    frags = fragments()
     problems, ids = [], []
     for topic, e in ex.items():
+        if topic in frags:
+            problems.append(f"{topic}: listed in data/Fragments.csv as a fragment, not a topic; explain a real topic instead")
         for part in ("what", "why"):
             text = e.get(part, "")
             n = len(text.split())

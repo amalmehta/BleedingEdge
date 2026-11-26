@@ -75,7 +75,17 @@ def test_no_pick_week_says_so(paths):
     assert notify.message(DAY).startswith("No pick this week. 0 new opportunities.")
 
 
-def test_after_the_trial_it_expects_the_opportunities_file_then_nothing(paths):
+def test_after_the_trial_a_kept_brief_is_expected_every_monday(paths):
+    for d in ("2026-11-02", "2026-11-09", "2026-11-16"):
+        (paths / "briefs" / f"{d}.md").write_text(WRITTEN)
+    later = date(2026, 11, 30)
+    assert notify.expected(later) == paths / "briefs" / f"{later}.md"
+    assert "No finished brief" in notify.message(later)
+    assert notify.expected(date(2027, 1, 4)) == paths / "briefs" / "2027-01-04.md"
+
+
+def test_after_the_trial_it_expects_the_opportunities_file_then_nothing(paths, monkeypatch):
+    monkeypatch.setattr(brief, "KEPT", False)          # if the brief is ever stopped
     for d in ("2026-11-02", "2026-11-09", "2026-11-16"):
         (paths / "briefs" / f"{d}.md").write_text(WRITTEN)
     later = date(2026, 11, 23)
@@ -85,6 +95,12 @@ def test_after_the_trial_it_expects_the_opportunities_file_then_nothing(paths):
     (paths / "briefs" / "opportunities" / f"{later}.md").write_text("None this week\n")
     assert notify.message(later).startswith("Weekly opportunities are ready")
     assert notify.expected(date(2026, 12, 28)) is None and notify.message(date(2026, 12, 28)) is None
+
+
+@pytest.fixture
+def not_kept(monkeypatch):
+    """The opportunities-only weeks: the trial is over and the brief isn't kept."""
+    monkeypatch.setattr(brief, "KEPT", False)
 
 
 def _trial_over(paths, review_done=False):
@@ -102,7 +118,7 @@ def test_review_reminder_waits_for_the_fourth_brief(paths):
     assert notify.review_reminder(date(2026, 11, 16)) == ""
 
 
-def test_trial_over_says_the_review_is_due_with_the_opportunities(paths):
+def test_trial_over_says_the_review_is_due_with_the_opportunities(not_kept, paths):
     _trial_over(paths)
     later = date(2026, 11, 23)
     (paths / "briefs" / "opportunities").mkdir()
@@ -111,18 +127,18 @@ def test_trial_over_says_the_review_is_due_with_the_opportunities(paths):
     assert msg.startswith("Weekly opportunities are ready") and "Trial over: 1 of 4 picks marked." in msg
 
 
-def test_review_reminder_also_rides_on_a_missing_alert_and_outlasts_the_opportunities(paths):
+def test_review_reminder_also_rides_on_a_missing_alert_and_outlasts_the_opportunities(not_kept, paths):
     _trial_over(paths)
     assert "Trial over" in notify.message(date(2026, 11, 23)) and "No finished brief" in notify.message(date(2026, 11, 23))
     assert notify.message(date(2027, 1, 4)).startswith("Trial over: 1 of 4")
 
 
-def test_a_filled_in_review_stops_the_reminder(paths):
+def test_a_filled_in_review_stops_the_reminder(not_kept, paths):
     _trial_over(paths, review_done=True)
     assert notify.message(date(2027, 1, 4)) is None
 
 
-def test_the_later_check_stays_silent_about_the_review(paths, monkeypatch):
+def test_the_later_check_stays_silent_about_the_review(not_kept, paths, monkeypatch):
     sent = _sent(monkeypatch)
     _trial_over(paths)
     notify.main(date(2027, 1, 4), only_if_missing=True)
