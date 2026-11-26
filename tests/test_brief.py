@@ -65,7 +65,7 @@ def test_listed_fragments_never_reach_the_shortlist(tmp_path, monkeypatch):
     monkeypatch.setattr(brief.arxiv_bulk, "papers", _corpus)
     gh = [DAY - timedelta(days=28 * k + 3) for k in (1, 2, 3)] + [DAY - timedelta(days=j + 1) for j in range(12)]
     monkeypatch.setattr(brief.github, "dates", lambda phrases, start, end: gh)
-    daily.FRAGMENTS.write_text("phrase,added,why\nmagnetic skin gripper,2026-10-20,test\n")
+    daily.FRAGMENTS.write_text("phrase,added,reason\nmagnetic skin gripper,2026-10-20,test\n")
     text = brief.main(DAY, update=False, log=lambda *_: None).read_text()
     pick = text.split("<!-- pick:start -->")[1].split("<!-- pick:end -->")[0]
     assert "Left out as fragments, not topics (data/Fragments.csv): magnetic skin gripper" in pick
